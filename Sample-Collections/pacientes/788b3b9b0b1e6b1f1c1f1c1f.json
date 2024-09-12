@@ -1,0 +1,27 @@
+{
+    "_id": "788b3b9b0b1e6b1f1c1f1c1f",
+    "nome": "Paulo Santos",
+    "data_nascimento": "1995-02-14",
+    "endereco": {
+        "logradouro": "Rua A",
+        "numero": "10",
+        "bairro": "Centro",
+        "cidade": "São Paulo",
+        "estado": "SP",
+        "CEP": "12345678"
+    },
+    "contato": {
+        "telefone": "111122223333",
+        "email": "paulo@gmail.com"
+    },
+    "convenio": {
+        "nome": "Saúde",
+        "validade": "2021-12-31",
+        "CNPJ": "23456789000102", 
+        "carencia": 60
+    },
+    "documentos": {
+        "CPF": "98765432100",
+        "RG": "SP123456"
+    }
+}

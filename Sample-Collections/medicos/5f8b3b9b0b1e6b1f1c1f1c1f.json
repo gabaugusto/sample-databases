@@ -1,0 +1,18 @@
+{
+    "_id": "5f8b3b9b0b1e6b1f1c1f1c1f",
+    "nome": "Dr. João Silva",
+    "data_nascimento": "1980-05-14",
+    "especialidades": [
+        "Pediatria"
+    ],
+    "tipo": "Generalista",
+    "contato": { 
+        "telefone": "111111111",
+        "email": "joao@hospital.com"
+    },
+    "status": 1,
+    "documentos": { 
+        "CPF": "12345678901", 
+        "CRM": "MG123456"
+    }
+}

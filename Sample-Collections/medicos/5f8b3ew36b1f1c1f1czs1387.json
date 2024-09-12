@@ -1,0 +1,18 @@
+{
+    "_id": "5f8b3ew36b1f1c1f1czs1387",
+    "nome": "Dra. Ana Souza",
+    "data_nascimento": "1985-02-10",
+    "especialidades": [
+        "Dermatologia"
+    ],
+    "tipo": "Especialista",
+    "contato": {
+        "telefone": "222222222",
+        "email": "ana@hospital.com"
+    },
+    "documentos": {
+        "CPF": "23456789012",
+        "CRM": "MG234567"
+    },
+    "status": 1
+}

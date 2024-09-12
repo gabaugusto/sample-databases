@@ -1,0 +1,18 @@
+{
+    "_id": "5f8b3b9bew36b1f1c1f1ca0",
+    "nome": "Dr. Carlos Pereira",
+    "status": 0,
+    "data_nascimento": "1975-08-22",
+    "especialidades": [
+        "Gastroenterologia"
+    ],
+    "tipo": "Especialista",
+    "contato": {
+        "telefone": "333333333",
+        "email": "carlos@hospital.com"
+    },
+    "documentos": {
+        "CPF": "34567890123",
+        "CRM": "MG345678"
+    }
+}
