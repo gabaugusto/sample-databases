@@ -1,5 +1,3 @@
-
-
 // Buscar todos os médicos que tenham "Infectologia" como especialidade e que tenham status 1 ou 2
 db.medicos.find({
   especialidades: "Infectologia",
@@ -24,13 +22,34 @@ db.medicos.find().sort({
   especialidades: 1
 });
 
-// Buscar  e ordernar por nome e especialidade e limitar a 5 registros
+//////////////////////////////////
+//////////////////////////////////
+//////////////////////////////////
+
+// A diferença entre countDocuments e estimatedDocumentCount é que o primeiro é mais preciso, mas mais lento, enquanto o segundo é mais rápido, mas menos preciso.
+
+// Contar a quantidade de médicos
+db.medicos.countDocuments();
+
+// Contar a quantidade de médicos com status 1
+db.medicos.countDocuments({
+  status: 1
+});
+
+// Contar a quantidade de médicos
+db.medicos.estimatedDocumentCount();
+
+//////////////////////////////////
+//////////////////////////////////
+//////////////////////////////////
+
+// Buscar e ordernar por nome e especialidade e limitar a 5 registros
 db.medicos.find().sort({
   nome: 1,
   especialidades: 1
 }).limit(5);
 
-// Buscar  e ordernar por nome e especialidade e limitar a 5 registros e pular 5 registros
+// Buscar e ordernar por nome e especialidade e limitar a 5 registros e pular 5 registros
 db.medicos.find().sort({
   nome: 1,
   especialidades: 1
@@ -61,13 +80,34 @@ db.enfermeiros.find({
 // Buscar uma consulta pelo id e encontrar o médico relacionado
 db.consultas.aggregate([{
   $match: {
-    _id: ObjectId("5f1d6a0c4e1f4d0b5c1e4d5b")
+    _id: ObjectId("66e96b2076efecbc5e470c2a")
   }
 }, {
   $lookup: {
     from: "medicos",
-    localField: "medico",
+    localField: "medico_id",
     foreignField: "_id",
     as: "medico"
+  }
+}]);
+
+// Buscar uma consulta pelo id e encontrar o médico e o paciente relacionado
+db.consultas.aggregate([{
+  $match: {
+    _id: ObjectId("66e96b2076efecbc5e470c2a")
+  }
+}, {
+  $lookup: {
+    from: "medicos",
+    localField: "medico_id",
+    foreignField: "_id",
+    as: "medico"
+  }
+}, {
+  $lookup: {
+    from: "pacientes",
+    localField: "paciente_id",
+    foreignField: "_id",
+    as: "paciente"
   }
 }]);
