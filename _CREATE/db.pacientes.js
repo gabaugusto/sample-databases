@@ -2,6 +2,7 @@ db.pacientes.insertMany([
     {
         "nome": "Paulo Santos",
         "data_nascimento": ISODate("1995-02-14"),
+        "altura": 1.75,
         "endereco": {
             "logradouro": "Rua A",
             "numero": "10",
@@ -28,6 +29,7 @@ db.pacientes.insertMany([
     {
         "nome": "Maria Oliveira",
         "data_nascimento": ISODate("1987-11-30"),
+        "altura": 1.55,
         "endereco": {
             "logradouro": "Rua B",
             "numero": "20",
