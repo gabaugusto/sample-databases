@@ -1,0 +1,19 @@
+{
+    "_id": "5f8b3b9bew36b1f1c1f1caa",
+    "nome": "Dr. Roberto Dias",
+    "data_nascimento": "1990-11-05",
+    "especialidades": [
+        "Clínica Geral",
+        "Cardiologia"
+    ],
+    "tipo": "Residente",
+    "contato": {
+        "telefone": "444444444",
+        "email": "roberto@hospital.com"
+    },
+    "status": 1,
+    "documentos": {
+        "CPF": "45678901234",
+        "CRM": "MG456789"
+    }
+}
