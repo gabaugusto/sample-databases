@@ -1,23 +1,3 @@
-/*
-10	Uniforme do Superman	1	300.13	2023-06-19
-167	Uniforme do Superman	1	300.13	2023-07-10
-14	Fake Batarang	2	239.29	2023-07-29
-10	Lança-Teias	3	237.19	2023-07-13
-19	Lança-Teias	3	237.19	2023-06-05
-29	Capacete do Homem-Formiga	4	289.29	2023-07-19
-55	Capacete do Homem-Formiga	4	289.29	2023-06-21
-17	Nulificador Total	5	750.19	2023-06-13
-19	Nulificador Total	5	750.19	2023-07-18
-13	Laço da Verdade	6	325.13	2023-06-14
-15	Laço da Verdade	6	325.13	2023-06-10
-22	Sabre de Luz (Mace Windu)	8	990.29	2023-06-15
-14	Sentinelas do Bolivar Trask	9	150.13	2023-06-20
-13	Uniforme de Moléculas Instáveis	10	158.29	2023-06-29
-10	Uniforme de Moléculas Instáveis	10	158.29	2023-07-20
-8	Laço da Honestidade	11	649.29	2023-07-21
-3	Batarangs Oficiais	12	900.29	2023-07-05
-*/
-
 db.vendas.insertMany([{
     "_id": ObjectId("5f8b3f3f9b3e0b3b3c1e3e46"),
     "produto": "Uniforme do Superman",
