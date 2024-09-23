@@ -97,10 +97,10 @@ db.consultas.aggregate([{
   }
 }, {
   $lookup: {
-    from: "medicos",
-    localField: "medico_id",
-    foreignField: "_id",
-    as: "medico"
+    from: "medicos",         // Buscar na Coleção de médicos
+    localField: "medico_id", // Campo da coleção de consultas
+    foreignField: "_id",     // Campo da coleção de médicos (Equivalente ao campo medico_id da coleção de consultas)
+    as: "medico"              // Nome do campo que será criado na coleção de consultas
   }
 }]);
 
@@ -147,4 +147,3 @@ db.consultas.aggregate([{
       }
   }
 }]);
-
