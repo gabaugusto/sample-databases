@@ -33,3 +33,9 @@ Ele será locado no Brasil. Por favor, adicione-o no banco de dados da empresa c
 
 * Qual o departamento com o menor número de funcionários?
 
+* Pensando na relação quantidade e valor unitario, qual o produto mais valioso da empresa?
+
+* Qual o produto mais vendido da empresa?
+
+* Qual o produto menos vendido da empresa?
+
