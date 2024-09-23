@@ -161,7 +161,7 @@ db.funcionarios.insertMany(
             "dataAdmissao": "1995-05-01",
             "cargo": "Vendas",
             "salario": 9600,
-            "departamento": ObjectId("5992103f9b3e0b3b3c1e3e3f"),
+            "departamento": ObjectId("85992103f9b3e0b3b3c1fe71"),
         },
         {
             "_id": ObjectId("5f8b3f3f9b3e0b3b3c1e3e4c"),
@@ -205,7 +205,7 @@ db.funcionarios.insertMany(
             "dataAdmissao": "1996-02-04",
             "cargo": "Consultor de Vendas",
             "salario": 7900,
-            "departamento": ObjectId("5992103f9b3e0b3b3c1e3e3f"),
+            "departamento": ObjectId("85992103f9b3e0b3b3c1fe71"),
             "dependentes": {
                 "filhos": [
                     {
@@ -229,7 +229,7 @@ db.funcionarios.insertMany(
             "dataAdmissao": "1997-03-03",
             "cargo": "Consultor de Vendas",
             "salario": 7600,
-            "departamento": ObjectId("5992103f9b3e0b3b3c1e3e3f"),
+            "departamento": ObjectId("85992103f9b3e0b3b3c1fe71"),
         },
         {
             "_id": ObjectId("5f8b3f3f9b3e0b3b3c1e3e50"),
@@ -282,7 +282,7 @@ db.funcionarios.insertMany(
         "cargo": "Consultor de Vendas",
         "salario": 6000,
         "comissionado": true,
-        "departamento": ObjectId("5992103f9b3e0b3b3c1e3e3f"),
+        "departamento": ObjectId("85992103f9b3e0b3b3c1fe71"),
     },
     {
         "_id": ObjectId("5f8b3f3f9b3e0b3b3c1e3e54"),
@@ -291,7 +291,7 @@ db.funcionarios.insertMany(
         "cargo": "Consultor de Vendas",
         "salario": 6000,
         "comissionado": true,
-        "departamento": ObjectId("5992103f9b3e0b3b3c1e3e3f"),
+        "departamento": ObjectId("85992103f9b3e0b3b3c1fe71"),
     },
     {
         "_id": ObjectId("5f8b3f3f9b3e0b3b3c1e3e55"),
@@ -300,7 +300,7 @@ db.funcionarios.insertMany(
         "cargo": "Consultor de Vendas",
         "salario": 6000,
         "comissionado": true,
-        "departamento": ObjectId("5992103f9b3e0b3b3c1e3e3f"),
+        "departamento": ObjectId("85992103f9b3e0b3b3c1fe71"),
     },
     {
         "_id": ObjectId("5f8b3f3f9b3e0b3b3c1e3e56"),
@@ -309,7 +309,7 @@ db.funcionarios.insertMany(
         "cargo": "Consultor de Vendas",
         "salario": 6000,
         "comissionado": true,
-        "departamento": ObjectId("5992103f9b3e0b3b3c1e3e3f"),
+        "departamento": ObjectId("85992103f9b3e0b3b3c1fe71"),
     },
     {
         "_id": ObjectId("5f8b3f3f9b3e0b3b3c1e3e57"),
@@ -318,7 +318,7 @@ db.funcionarios.insertMany(
         "cargo": "Consultor de Vendas",
         "salario": 6000,
         "comissionado": true,
-        "departamento": ObjectId("5992103f9b3e0b3b3c1e3e3f"),
+        "departamento": ObjectId("85992103f9b3e0b3b3c1fe71"),
     },
     {
         "_id": ObjectId("5f8b3f3f9b3e0b3b3c1e3e58"),
@@ -327,5 +327,5 @@ db.funcionarios.insertMany(
         "cargo": "Consultor de Vendas",
         "salario": 6000,
         "comissionado": true,
-        "departamento": ObjectId("5992103f9b3e0b3b3c1e3e3f"),
+        "departamento": ObjectId("85992103f9b3e0b3b3c1fe71"),
     }]);
