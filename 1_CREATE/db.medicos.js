@@ -67,5 +67,20 @@ db.medicos.insertMany([
             "CPF": "34567890123",
             "CRM": "MA345678"
         }
+    }, {
+        "nome": "Dra. Erika Torres Cavalcanti",
+        "data_nascimento": ISODate("1995-03-20"),
+        "especialidades": [
+            "Ortopedia"
+        ],
+        "tipo": "Residente",
+        "contato": {
+            "telefone": "555555555",
+            "email": "erika.tcavalcanti@hospital.com"
+        }, 
+        "documentos": {
+            "CPF": "56789012345",
+            "CRM": "SP567890"
+        }
     }
 ])

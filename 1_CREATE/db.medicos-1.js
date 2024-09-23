@@ -10,6 +10,7 @@
 
 db.medicos.insertOne(
     {
+        "_id": ObjectId("66e96ae976efecbc5e470c24"),
         "nome": "Dra. Carla Elizabete",
         "data_nascimento": ISODate("1989-06-29"),
         "especialidades": [

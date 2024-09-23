@@ -6,6 +6,19 @@ db.medicos.find({
   }
 });
 
+// Buscar médicos com status 1 e especialidade "Infectologia" ou "Cardiologia"
+db.medicos.find({
+  $and: [{
+    status: 1
+  }, {
+    $or: [{
+      especialidades: "Infectologia"
+    }, {
+      especialidades: "Cardiologia"
+    }]
+  }]
+});
+
 // Buscar todos os médicos e ordernar por nome
 db.medicos.find().sort({
   nome: 1
@@ -111,3 +124,27 @@ db.consultas.aggregate([{
     as: "paciente"
   }
 }]);
+
+// Consultar o valor da consulta do paciente Paulo Santos.
+// Dessa vez, o valor da consulta é um campo do documento de consulta, e não do paciente.
+// A expressão "valor": 1 no segundo argumento da função find() indica que apenas o campo "valor" deve ser retornado.
+db.consultas.find({
+  "paciente_id": ObjectId("66e96b0576efecbc5e470c28")
+}, {
+  "valor": 1
+}).pretty();
+
+// Consultar as somas dos valores das consultas de cada paciente.
+// O método aggregate() é utilizado para realizar operações de agregação no MongoDB.
+// A operação de agregação $group é utilizada para agrupar os documentos de uma coleção.
+// A operação $sum é utilizada para somar os valores dos documentos agrupados.
+
+db.consultas.aggregate([{
+  $group: { // Agrupa os documentos
+      _id: "$paciente_id", // Agrupa pelo campo paciente_id
+      total: { // Cria um campo total
+          $sum: "$valor" // Soma os valores dos documentos agrupados
+      }
+  }
+}]);
+

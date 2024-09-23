@@ -7,6 +7,7 @@ db.funcionarios.insertMany(
             "email": "e.braddock@momento.org",
             "dataAdmissao": "1996-02-17",
             "cargo": "CEO",
+            "salario": 71000,
             "departamento": ObjectId("85992103f9b3e0b3b3c1fe70"),
         },
         {
@@ -16,6 +17,7 @@ db.funcionarios.insertMany(
             "email": "p.ferreira@momento.org",
             "dataAdmissao": "1997-08-17",
             "cargo": "Representante de Vendas para a América Latina",
+            "salario": 34000,
             "departamento": ObjectId("85992103f9b3e0b3b3c1fe71"),
             "dependentes": {
                 "filhos": [
@@ -42,8 +44,9 @@ db.funcionarios.insertMany(
             "nome": "Alexander Hunold",
             "telefone": "590.423.4567",
             "email": "a.hunold@momento.org",
-            "dataAdmissao": "1990-01-03",
+            "dataAdmissao": "2008-01-03",
             "cargo": "Web Developer",
+            "salario": 3500,
             "departamento": ObjectId("85992103f9b3e0b3b3c1fe74"),
         },
         {
@@ -51,8 +54,9 @@ db.funcionarios.insertMany(
             "nome": "Bruce Ernst",
             "telefone": "590.423.4568",
             "email": "b.ernst@momento.org",
-            "dataAdmissao": "1991-05-21",
+            "dataAdmissao": "2005-05-21",
             "cargo": "Web Developer",
+            "salario": 3400,
             "departamento": ObjectId("85992103f9b3e0b3b3c1fe74"),
             "dependentes": {
                 'filhos': [
@@ -69,8 +73,9 @@ db.funcionarios.insertMany(
             "nome": "David Austin",
             "telefone": "590.423.4569",
             "email": "d.austin",
-            "dataAdmissao": "1997-06-25",
+            "dataAdmissao": "2000-06-25",
             "cargo": "Web Developer",
+            "salario": 4100,
             "departamento": ObjectId("85992103f9b3e0b3b3c1fe74"),
             "dependentes": {
                 "conjuge": {
@@ -85,7 +90,8 @@ db.funcionarios.insertMany(
             "nome": "Valli Stark",
             "telefone": "590.423.4560",
             "email": "v.stark@momento.org",
-            "dataAdmissao": "1998-02-05",
+            "dataAdmissao": "2009-02-05",
+            "salario": 2900,
             "cargo": "Web Developer",
             "departamento": ObjectId("85992103f9b3e0b3b3c1fe74"),
             "dependentes": {
@@ -109,7 +115,8 @@ db.funcionarios.insertMany(
             "telefone": "590.423.5567",
             "email": "d.lorentz@momento.org",
             "dataAdmissao": "1999-02-07",
-            "cargo": "Web Developer",
+            "cargo": "Web Developer Senior",
+            "salario": 8900,
             "departamento": ObjectId("85992103f9b3e0b3b3c1fe74"),
             "dependentes": {
                 "filhos": [
@@ -133,6 +140,7 @@ db.funcionarios.insertMany(
             "email": "m.weiss@momento.org",
             "dataAdmissao": "1996-07-18",
             "cargo": "Gerente de Estoque",
+            "salario": 14000,
             "departamento": ObjectId("85992103f9b3e0b3b3c1fe75"),
         },
         {
@@ -142,6 +150,7 @@ db.funcionarios.insertMany(
             "email": "a.fripp@momento.org",
             "dataAdmissao": "1997-04-10",
             "cargo": "Gerente de Estoque",
+            "salario": 9800,
             "departamento": ObjectId("85992103f9b3e0b3b3c1fe75"),
         },
         {
@@ -151,6 +160,7 @@ db.funcionarios.insertMany(
             "email": "payam.kaufling@momento.org",
             "dataAdmissao": "1995-05-01",
             "cargo": "Vendas",
+            "salario": 9600,
             "departamento": ObjectId("85992103f9b3e0b3b3c1e3e3f"),
         },
         {
@@ -160,6 +170,7 @@ db.funcionarios.insertMany(
             "email": "shanta.vollman@momento.org",
             "dataAdmissao": "1997-10-10",
             "cargo": "Gerente de Estoque",
+            "salario": 9700,
             "departamento": ObjectId("85992103f9b3e0b3b3c1fe75"),
         },
         {
@@ -169,6 +180,7 @@ db.funcionarios.insertMany(
             "email": "irene.adler@momento.org",
             "dataAdmissao": "1980-09-28",
             "cargo": "Gerente de Estoque",
+            "salario": 9700,
             "departamento": ObjectId("85992103f9b3e0b3b3c1fe75"),
             "dependentes": {
                 "filhos": [
@@ -192,6 +204,7 @@ db.funcionarios.insertMany(
             "email": "sarah.bell@momento.org",
             "dataAdmissao": "1996-02-04",
             "cargo": "Consultor de Vendas",
+            "salario": 7900,
             "departamento": ObjectId("85992103f9b3e0b3b3c1e3e3f"),
             "dependentes": {
                 "filhos": [
@@ -215,6 +228,7 @@ db.funcionarios.insertMany(
             "email": "britney.everett@momento.org",
             "dataAdmissao": "1997-03-03",
             "cargo": "Consultor de Vendas",
+            "salario": 7600,
             "departamento": ObjectId("85992103f9b3e0b3b3c1e3e3f"),
         },
         {
@@ -224,6 +238,7 @@ db.funcionarios.insertMany(
             "email": "jennifeer.whalen@momento.org",
             "dataAdmissao": "1987-09-17",
             "cargo": "Assistente Administrativo",
+            "salario": 23000,
             "departamento": ObjectId("85992103f9b3e0b3b3c1fe75"),
         },
         {
@@ -233,6 +248,7 @@ db.funcionarios.insertMany(
             "email": "den.raphaely@momento.org",
             "dataAdmissao": "1994-12-07",
             "cargo": "Gerente de Recursos",
+            "salario": 12500,
             "departamento": ObjectId("85992103f9b3e0b3b3c1fe75"),
         },
         {
@@ -242,6 +258,7 @@ db.funcionarios.insertMany(
             "email": "normam.osborn@momento.org",
             "dataAdmissao": "1995-05-18",
             "cargo": "Gerente de Recursos Químicos",
+            "salario": 18080,
             "departamento": ObjectId("85992103f9b3e0b3b3c1fe75"),
             "dependentes": {
                 "filhos": [
@@ -263,6 +280,8 @@ db.funcionarios.insertMany(
         "nome": "Alexa Green",
         "telefone": "515.127.4563",
         "cargo": "Consultor de Vendas",
+        "salario": 6000,
+        "comissionado": true,
         "departamento": ObjectId("85992103f9b3e0b3b3c1e3e3f"),
     },
     {
@@ -270,6 +289,8 @@ db.funcionarios.insertMany(
         "nome": "Kelly Chung",
         "telefone": "515.127.4564",
         "cargo": "Consultor de Vendas",
+        "salario": 6000,
+        "comissionado": true,
         "departamento": ObjectId("85992103f9b3e0b3b3c1e3e3f"),
     },
     {
@@ -277,6 +298,8 @@ db.funcionarios.insertMany(
         "nome": "Jenny Tseng",
         "telefone": "515.127.4565",
         "cargo": "Consultor de Vendas",
+        "salario": 6000,
+        "comissionado": true,
         "departamento": ObjectId("85992103f9b3e0b3b3c1e3e3f"),
     },
     {
@@ -284,6 +307,8 @@ db.funcionarios.insertMany(
         "nome": "Michael Hartstein",
         "telefone": "515.127.4566",
         "cargo": "Consultor de Vendas",
+        "salario": 6000,
+        "comissionado": true,
         "departamento": ObjectId("85992103f9b3e0b3b3c1e3e3f"),
     },
     {
@@ -291,6 +316,8 @@ db.funcionarios.insertMany(
         "nome": "Jon Deegan",
         "telefone": "515.127.4567",
         "cargo": "Consultor de Vendas",
+        "salario": 6000,
+        "comissionado": true,
         "departamento": ObjectId("85992103f9b3e0b3b3c1e3e3f"),
     },
     {
@@ -298,6 +325,8 @@ db.funcionarios.insertMany(
         "nome": "Sundar Ande",
         "telefone": "515.127.4568",
         "cargo": "Consultor de Vendas",
+        "salario": 6000,
+        "comissionado": true,
         "departamento": ObjectId("85992103f9b3e0b3b3c1e3e3f"),
     }],
 );

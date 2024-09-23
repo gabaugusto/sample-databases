@@ -21,7 +21,7 @@ db.departamentos.insertMany([
     },
     {
         "_id": ObjectId("85992103f9b3e0b3b3c1fe74"),
-        "nome": "Desenvolvimento",
+        "nome": "Tecnologia",
         "escritorio": ObjectId("85992103f9b3e0b3b3c1e3e3e")
     },
     {
