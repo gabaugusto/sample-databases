@@ -24,15 +24,3 @@ Um banco de dados orientado a documentos é um tipo de banco de dados NoSQL que 
 }
 
 ```
-
-## Neste repositório:
-
-Pasta | Descrição
-
-Coleções | Contém arquivos JSON com exemplos de coleções para importar no MongoDB.
-CREATE   | Contém arquivos com exemplos de comandos para criar coleções e documentos no MongoDB.
-READ     | Contém arquivos com exemplos de comandos para consultar documentos no MongoDB.
-UPDATE   | Contém arquivos com exemplos de comandos para atualizar documentos no MongoDB.
-DELETE   | Contém arquivos com exemplos de comandos para excluir documentos no MongoDB.
-OSCAR    | Contém a base de indicados ao Oscar em formato JSON para treinar comandos de consulta no MongoDB. 
-MOMENTO | Contém a base de indicados da empresa Momento para treinar consultas complexas no MongoDB.
