@@ -5,9 +5,9 @@ Contém a base de indicados ao Oscar em formato JSON para treinar comandos de co
 * Quantas vezes Natalie Portman foi indicada ao Oscar?
 
 R: 3 vezes
-
-```json
-Q: db.oscar.find({"Nome": "Natalie Portman"}).countDocuments()
+Q:
+```js
+ db.oscar.find({"Nome": "Natalie Portman"}).countDocuments()
 ```
 
 * Quantos Oscars Natalie Portman ganhou?
