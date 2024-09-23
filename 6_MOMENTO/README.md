@@ -6,17 +6,15 @@ Vamos fazer algumas perguntas para brincar de análise exploratória de dados co
 
 * Quantos funcionarios da empresa Momento trabalham no departamento de vendas?
 
-*  E quanto ao Departamento de Tecnologia?
-
 * Inclua suas próprias informações no departamento de Tecnologia da empresa.
 
 * Agora diga, quantos funcionários temos ao total na empresa?
 
-* Quantos funcionários temos no departamento de vendas?
+* E quanto ao Departamento de Tecnologia?
 
 * Qual a média salarial do departamento de tecnologia?
 
-* Quanto o departamento de Transportes gasta em salários?
+* Quanto o departamento de Vendas gasta em salários?
 
 * Um novo departamento foi criado. O departamento de Inovações. 
 Ele será locado no Brasil. Por favor, adicione-o no banco de dados da empresa colocando quaisquer informações que você achar relevantes.
