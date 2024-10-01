@@ -1,4 +1,5 @@
--- APAGANDO TABELAS
+-- No geral não apagamos dados de uma tabela, mas caso seja necessário, podemos utilizar os comandos DROP ou DELETE. 
+
 -- Apagando uma tabela
 
 DROP TABLE nome_da_tabela;
