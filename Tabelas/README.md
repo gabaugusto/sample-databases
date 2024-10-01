@@ -32,8 +32,11 @@ ou
 CREATE DATABASE IF NOT EXISTS banco_de_dados_exemplo; 
 ```
 
--- Escolho o banco para trabalhar
+Escolhemos o banco para trabalhar
+
+```sql
 USE banco_de_dados_exemplo;
+```
 
 ## Criando uma Tabela
 
