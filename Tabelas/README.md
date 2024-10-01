@@ -23,17 +23,17 @@ Por exemplo, a coluna `id` de uma tabela de usuários pode ser do tipo `INT`, a 
 
 - Exemplo de como criar um banco
 ```sql	
-CREATE database oscar_database;
+CREATE database banco_de_dados_exemplo;
 ```	
 
 ou 
 
 ```sql
-CREATE DATABASE IF NOT EXISTS oscar_database; 
+CREATE DATABASE IF NOT EXISTS banco_de_dados_exemplo; 
 ```
 
 -- Escolho o banco para trabalhar
-USE oscar_database;
+USE banco_de_dados_exemplo;
 
 ## Criando uma Tabela
 
@@ -60,12 +60,12 @@ CREATE TABLE usuarios (
 
 Alguns exemplos de regras/constraints:
 
-- PRIMARY KEY     > torna o campo único e obrigatório -> Só pode ser utilizado uma única vez por tabela. 
-- AUTO_INCREMENT  >
-- NOT NULL        > Não Vazio/Obrigatório
-- UNIQUE          > Único
-- DEFAULT         > Se o campo estiver vazio ele preencherá automaticamente com o valor informado ao lado
-- FOREIGN KEY     > Chave estrangeira
+- `PRIMARY KEY`: Torna o campo único e obrigatório. Só pode ser utilizado uma única vez por tabela. 
+- `FOREIGN KEY`: Chave estrangeira, faz referência a uma chave primária de outra tabela.
+- `AUTO_INCREMENT`: Incrementa automaticamente o valor do campo.
+- `NOT NULL`: o campo não pode ser nulo, ou seja, o campo é obrigatório.
+- `UNIQUE`: O campo não pode ter valores repetidos com outros registros.
+- `DEFAULT`: Se o campo estiver vazio, será preenchido automaticamente com o valor informado.
 
 ## Inserindo Dados em uma Tabela
 
@@ -90,7 +90,6 @@ FROM nome_da_tabela;
 Para atualizar dados em uma tabela em SQL, utilizamos a instrução `UPDATE`. A sintaxe básica para atualizar dados em uma tabela é a seguinte:
 
 ```sql
-
 UPDATE nome_da_tabela
 SET nome_da_coluna1 = valor_da_coluna1, nome_da_coluna2 = valor_da_coluna2, ..., nome_da_colunaN = valor_da_colunaN
 WHERE condicao;
