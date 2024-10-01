@@ -22,7 +22,7 @@ A modelagem de dados lógica é o nível intermediário de abstração e descrev
 
 A modelagem de dados física é o nível mais baixo de abstração e descreve como os dados são armazenados em um dispositivo de armazenamento físico, como um disco rígido. Neste nível, consideramos detalhes de implementação como índices, partições e otimizações de desempenho.
 
-![Modelo Físico](Fisica.png)
+![Modelo Físico](ModelagemFisica.png)
 
 ## Conclusão
 
