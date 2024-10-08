@@ -1,4 +1,15 @@
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+-- TABELAS
+
 -- No geral não apagamos dados de uma tabela, mas caso seja necessário, podemos utilizar os comandos DROP ou DELETE. 
+
+-- REGRA DE OURO: Sempre faça um backup antes de apagar uma tabela.
+-- REGRA DE OURO: Sempre faça um backup antes de apagar uma tabela.
+-- REGRA DE OURO: Sempre faça um backup antes de apagar uma tabela.
+-- REGRA DE OURO: Sempre faça um backup antes de apagar uma tabela.
+-- REGRA DE OURO: Sempre faça um backup antes de apagar uma tabela.
 
 -- Apagando uma tabela
 
@@ -8,6 +19,10 @@ DROP TABLE nome_da_tabela;
 
 DROP TABLE IF EXISTS nome_da_tabela;
 
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+-- REGISTROS
 -- Apagando todos os registros de uma tabela
 
 DELETE FROM nome_da_tabela;

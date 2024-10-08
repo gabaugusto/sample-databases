@@ -12,8 +12,6 @@ Vamos fazer algumas perguntas para brincar de análise exploratória de dados co
 
 * E quanto ao Departamento de Tecnologia?
 
-* Qual a média salarial do departamento de tecnologia?
-
 * Quanto o departamento de Vendas gasta em salários?
 
 * Um novo departamento foi criado. O departamento de Inovações. 
@@ -38,4 +36,3 @@ Ele será locado no Brasil. Por favor, adicione-o no banco de dados da empresa c
 * Qual o produto mais vendido da empresa?
 
 * Qual o produto menos vendido da empresa?
-

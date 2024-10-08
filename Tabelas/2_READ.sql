@@ -32,8 +32,6 @@ SELECT * FROM nome_da_tabela WHERE nome_da_coluna BETWEEN valor1 AND valor2;
 
 SELECT * FROM nome_da_tabela WHERE nome_da_coluna IN (valor1, valor2, valor3);
 
-
-
 -- Selecionar registros de uma tabela com uma condição de comparação de texto nula
 
 SELECT * FROM nome_da_tabela WHERE nome_da_coluna IS NULL;
@@ -45,7 +43,6 @@ SELECT * FROM nome_da_tabela WHERE nome_da_coluna IS NOT NULL;
 -- Selecionar registros de uma tabela com uma condição de comparação de texto ignorando maiúsculas e minúsculas
 
 SELECT * FROM nome_da_tabela WHERE UPPER(nome_da_coluna) LIKE '%VALOR%';
-
 
 -- ###########################################################################################
 -- ###########################################################################################

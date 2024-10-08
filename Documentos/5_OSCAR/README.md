@@ -29,10 +29,10 @@ Q:
 
 * Inclua no banco 3 filmes que nunca foram nem nomeados ao Oscar, mas que merecem ser. 
 
-11- Denzel Washington já ganhou algum Oscar?
+* Denzel Washington já ganhou algum Oscar?
 
-12- Quais os filmes que ganharam o Oscar de Melhor Filme?
+* Quais os filmes que ganharam o Oscar de Melhor Filme?
 
-13- Bonus: Quais os filmes que ganharam o Oscar de Melhor Filme e Melhor Diretor na mesma cerimonia?
+* Bonus: Quais os filmes que ganharam o Oscar de Melhor Filme e Melhor Diretor na mesma cerimonia?
 
-14- Bonus: Denzel Washington e Jamie Foxx já concorreram ao Oscar no mesmo ano?
+* Bonus: Denzel Washington e Jamie Foxx já concorreram ao Oscar no mesmo ano?

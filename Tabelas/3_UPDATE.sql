@@ -1,4 +1,10 @@
--- Atualizando uma tabela 
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+-- TABELAS
+
+-- Evite sempre que possível atualizar registros de uma tabela sem os devidos cuidados.
+-- Sempre faça um backup antes de atualizar registros de uma tabela.
 
 -- Adicionando uma nova coluna
 
@@ -16,9 +22,10 @@ ALTER TABLE nome_da_tabela RENAME COLUMN nome_da_coluna TO novo_nome_da_coluna;
 
 ALTER TABLE nome_da_tabela DROP COLUMN nome_da_coluna;
 
--- #######################################################################################
--- #######################################################################################
--- #######################################################################################
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+-- Registros
 
 -- Atualizando registros de uma tabela; 
 
