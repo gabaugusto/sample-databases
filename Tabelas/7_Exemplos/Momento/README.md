@@ -36,3 +36,7 @@ Ele será locado no Brasil. Por favor, adicione-o no banco de dados da empresa c
 * Qual o produto mais vendido da empresa?
 
 * Qual o produto menos vendido da empresa?
+
+* Qual o funcionário contratado há mais tempo na empresa?
+
+* Qual o funcionário contratado há menos tempo na empresa?
