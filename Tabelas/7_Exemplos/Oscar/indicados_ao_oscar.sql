@@ -20,10 +20,10 @@ DROP TABLE IF EXISTS indicados_ao_oscar;
 
 DROP TABLE IF EXISTS indicados_ao_oscar;
 CREATE TABLE IF NOT EXISTS indicados_ao_oscar(
-  id_registro       INT  PRIMARY KEY AUTO_INCREMENT
-  ,ano_filmagem     INT  NOT NULL
-  ,ano_cerimonia    INT  NOT NULL
-  ,cerimonia        INT  NOT NULL
+  id_registro       INT PRIMARY KEY AUTO_INCREMENT
+  ,ano_filmagem     INT NOT NULL
+  ,ano_cerimonia    INT NOT NULL
+  ,cerimonia        INT NOT NULL
   ,categoria        VARCHAR(255) NOT NULL
   ,nome_do_indicado VARCHAR(512)
   ,nome_do_filme    VARCHAR(255)
