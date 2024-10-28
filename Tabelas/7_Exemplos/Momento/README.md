@@ -1,8 +1,8 @@
 # Momento 
 
-Contém a base de indicados da empresa Momento para treinar consultas complexas no MongoDB.
+Contém a base de indicados da empresa Momento para treinar consultas complexas no MySQL.
 
-Vamos fazer algumas perguntas para brincar de análise exploratória de dados com MongoDB.
+Vamos fazer algumas perguntas para brincar de análise exploratória de dados com MySQL.
 
 * Quantos funcionarios da empresa Momento trabalham no departamento de vendas?
 
