@@ -3,7 +3,7 @@
 
 SELECT funcionarios.primeiro_nome, funcionarios.sobrenome
 FROM funcionarios 
-WHERE ocupacao_id = 
-    (SELECT ocupacao_id
-     FROM ocupacoes
-     WHERE ocupacao_nome = 'Contador');
+WHERE cargo_id = 
+    (SELECT cargo_id
+     FROM cargos
+     WHERE cargo_nome = 'Contador');
