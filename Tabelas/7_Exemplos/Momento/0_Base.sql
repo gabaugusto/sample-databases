@@ -31,7 +31,7 @@ CREATE TABLE escritorios (
 CREATE TABLE suprimentos (
     suprimento_id INT PRIMARY KEY AUTO_INCREMENT,
     suprimento_nome VARCHAR(100),
-    quantidade INT,
+    quantidade_comprada INT,
     custo DECIMAL(10, 2),
     escritorio_id INT DEFAULT NULL,
 	FOREIGN KEY (escritorio_id) REFERENCES escritorios (escritorio_id) ON DELETE CASCADE ON UPDATE CASCADE
@@ -90,7 +90,7 @@ CREATE TABLE produtos (
 CREATE TABLE vendas (
     venda_id INT PRIMARY KEY,
     produto_id INT,
-    quantidade INT,
+    quantidade_vendida INT,
     venda_data DATE,
     funcionario_id INT,
     FOREIGN KEY (produto_id) REFERENCES produtos(produto_id),
@@ -149,58 +149,58 @@ INSERT INTO escritorios(escritorio_id,escritorio_nome,endereco,cep,cidade,estado
 INSERT INTO escritorios(escritorio_id,escritorio_nome,endereco,cep,cidade,estado_provincia,pais_id) VALUES (1800,'Arkham Base','147 Spadina Ave','M5V 2L7','Toronto','Ontario','CA');
 INSERT INTO escritorios(escritorio_id,escritorio_nome,endereco,cep,cidade,estado_provincia,pais_id) VALUES (2400,"Shuri's Palace",'8204 Arthur St',NULL,'Jabari Village','Birnin Zana','WA');
 INSERT INTO escritorios(escritorio_id,escritorio_nome,endereco,cep,cidade,estado_provincia,pais_id) VALUES (2500,'Umbrella Corp','Magdalen Centre, The Oxford Science Park','OX9 9ZB','Oxford','Oxford','UK');
-INSERT INTO escritorios(escritorio_id,escritorio_nome,endereco,cep,cidade,estado_provincia,pais_id) VALUES (2700,'Baxter Building','Excelsior Rd. 7031','00616','London Below','Bavaria','DE');
+INSERT INTO escritorios(escritorio_id,escritorio_nome,endereco,cep,cidade,estado_provincia,pais_id) VALUES (2700,'Archies Mad House','2801 W. Airport Freeway','00616','Green Dale','Bavaria','DE');
 INSERT INTO escritorios(escritorio_id,escritorio_nome,endereco,cep,cidade,estado_provincia,pais_id) VALUES (3900,'Baxter Building','Excelsior Rd. 7031','00616','London Below','London Above','UK');
 INSERT INTO escritorios(escritorio_id,escritorio_nome,endereco,cep,cidade,estado_provincia,pais_id) VALUES (1900,"House of Mystery escritorios",'The Trickster Rd. 42','80925','Newcastle','North East England','UK');
 
-INSERT INTO suprimentos (suprimento_nome,quantidade,custo,escritorio_id) VALUES ('Computers', 20, 100000.00, 1400);
-INSERT INTO suprimentos (suprimento_nome,quantidade,custo,escritorio_id) VALUES ('Impressoras', 3, 500.00, 1400);
-INSERT INTO suprimentos (suprimento_nome,quantidade,custo,escritorio_id) VALUES ('Papel', 50, 21000.00, 1400);
-INSERT INTO suprimentos (suprimento_nome,quantidade,custo,escritorio_id) VALUES ('Planners', 20, 1500.00, 1400);
-INSERT INTO suprimentos (suprimento_nome,quantidade,custo,escritorio_id) VALUES ('Post-its', 5000, 852.65, 1700);
-INSERT INTO suprimentos (suprimento_nome,quantidade,custo,escritorio_id) VALUES ('Highlighter', 20, 500.00, 1700);
-INSERT INTO suprimentos (suprimento_nome,quantidade,custo,escritorio_id) VALUES ('Notebook', 50, 1000.00, 1700);
-INSERT INTO suprimentos (suprimento_nome,quantidade,custo,escritorio_id) VALUES ('Grampeadores', 20, 500.00, 2500);
-INSERT INTO suprimentos (suprimento_nome,quantidade,custo,escritorio_id) VALUES ('Computers', 15, 200000.00, 2500);
-INSERT INTO suprimentos (suprimento_nome,quantidade,custo,escritorio_id) VALUES ('Impressoras', 20, 500.00, 3900);
-INSERT INTO suprimentos (suprimento_nome,quantidade,custo,escritorio_id) VALUES ('Papel', 50, 1000.00, 3900);
-INSERT INTO suprimentos (suprimento_nome,quantidade,custo,escritorio_id) VALUES ('Planners', 20, 500.00, 3900);
-INSERT INTO suprimentos (suprimento_nome,quantidade,custo,escritorio_id) VALUES ('Post-its', 50, 1000.00, 1900);
-INSERT INTO suprimentos (suprimento_nome,quantidade,custo,escritorio_id) VALUES ('Highlighter', 20, 500.00, 1900);
-INSERT INTO suprimentos (suprimento_nome,quantidade,custo,escritorio_id) VALUES ('Notebook', 50, 1000.00, 1800);
-INSERT INTO suprimentos (suprimento_nome,quantidade,custo,escritorio_id) VALUES ('Grampeadores', 20, 500.00, 1900);
-INSERT INTO suprimentos (suprimento_nome,quantidade,custo,escritorio_id) VALUES ('Computers', 40, 200000.00, 3900);
-INSERT INTO suprimentos (suprimento_nome,quantidade,custo,escritorio_id) VALUES ('Impressoras', 3, 500.00, 2400);
-INSERT INTO suprimentos (suprimento_nome,quantidade,custo,escritorio_id) VALUES ('Papel', 50, 752.85, 2400);
-INSERT INTO suprimentos (suprimento_nome,quantidade,custo,escritorio_id) VALUES ('Planners', 20, 500.00, 2400);
-INSERT INTO suprimentos (suprimento_nome,quantidade,custo,escritorio_id) VALUES ('Post-its', 50, 1000.00, 2400);
-INSERT INTO suprimentos (suprimento_nome,quantidade,custo,escritorio_id) VALUES ('Highlighter', 20, 500.00, 2500);
-INSERT INTO suprimentos (suprimento_nome,quantidade,custo,escritorio_id) VALUES ('Notebook', 50, 1000.00, 2500);
-INSERT INTO suprimentos (suprimento_nome,quantidade,custo,escritorio_id) VALUES ('Grampeadores', 20, 500.00, 2500);
-INSERT INTO suprimentos (suprimento_nome,quantidade,custo,escritorio_id) VALUES ('Computers', 1, 2000.00, 1400);
-INSERT INTO suprimentos (suprimento_nome,quantidade,custo,escritorio_id) VALUES ('Impressoras', 2, 500.00, 1400);
-INSERT INTO suprimentos (suprimento_nome,quantidade,custo,escritorio_id) VALUES ('Papel', 50, 21000.00, 1400);
-INSERT INTO suprimentos (suprimento_nome,quantidade,custo,escritorio_id) VALUES ('Planners', 20, 1500.00, 1400);
-INSERT INTO suprimentos (suprimento_nome,quantidade,custo,escritorio_id) VALUES ('Post-its', 50, 1197.42, 1700);
-INSERT INTO suprimentos (suprimento_nome,quantidade,custo,escritorio_id) VALUES ('Highlighter', 20, 500.00, 1700);
-INSERT INTO suprimentos (suprimento_nome,quantidade,custo,escritorio_id) VALUES ('Notebook', 50, 1000.00, 1700);
-INSERT INTO suprimentos (suprimento_nome,quantidade,custo,escritorio_id) VALUES ('Grampeadores', 20, 500.00, 2500);
-INSERT INTO suprimentos (suprimento_nome,quantidade,custo,escritorio_id) VALUES ('Computers', 15, 200000.00, 2500);
-INSERT INTO suprimentos (suprimento_nome,quantidade,custo,escritorio_id) VALUES ('Impressoras', 1, 500.00, 3900);
-INSERT INTO suprimentos (suprimento_nome,quantidade,custo,escritorio_id) VALUES ('Papel', 5000, 752.85, 3900);
-INSERT INTO suprimentos (suprimento_nome,quantidade,custo,escritorio_id) VALUES ('Planners', 2010, 500.00, 3900);
-INSERT INTO suprimentos (suprimento_nome,quantidade,custo,escritorio_id) VALUES ('Post-its', 50, 1000.00, 1900);
-INSERT INTO suprimentos (suprimento_nome,quantidade,custo,escritorio_id) VALUES ('Highlighter', 20, 500.00, 1900);
-INSERT INTO suprimentos (suprimento_nome,quantidade,custo,escritorio_id) VALUES ('Notebook', 50, 1000.00, 1800);
-INSERT INTO suprimentos (suprimento_nome,quantidade,custo,escritorio_id) VALUES ('Grampeadores', 20, 500.00, 1900);
-INSERT INTO suprimentos (suprimento_nome,quantidade,custo,escritorio_id) VALUES ('Computers', 40, 200000.00, 3900);
-INSERT INTO suprimentos (suprimento_nome,quantidade,custo,escritorio_id) VALUES ('Impressoras', 2, 500.00, 2400);
-INSERT INTO suprimentos (suprimento_nome,quantidade,custo,escritorio_id) VALUES ('Papel', 50, 752.85, 2400);
-INSERT INTO suprimentos (suprimento_nome,quantidade,custo,escritorio_id) VALUES ('Planners', 20, 500.00, 2400);
-INSERT INTO suprimentos (suprimento_nome,quantidade,custo,escritorio_id) VALUES ('Post-its', 5000, 1000.00, 2400);
-INSERT INTO suprimentos (suprimento_nome,quantidade,custo,escritorio_id) VALUES ('Highlighter', 20, 500.00, 2500);
-INSERT INTO suprimentos (suprimento_nome,quantidade,custo,escritorio_id) VALUES ('Notebook', 50, 1000.00, 2500);
-INSERT INTO suprimentos (suprimento_nome,quantidade,custo,escritorio_id) VALUES ('Grampeadores', 10, 500.00, 2500);
+INSERT INTO suprimentos (suprimento_nome,quantidade_comprada,custo,escritorio_id) VALUES ('Computers', 20, 100000.00, 1400);
+INSERT INTO suprimentos (suprimento_nome,quantidade_comprada,custo,escritorio_id) VALUES ('Impressoras', 3, 500.00, 1400);
+INSERT INTO suprimentos (suprimento_nome,quantidade_comprada,custo,escritorio_id) VALUES ('Papel', 50, 21000.00, 1400);
+INSERT INTO suprimentos (suprimento_nome,quantidade_comprada,custo,escritorio_id) VALUES ('Planners', 20, 1500.00, 1400);
+INSERT INTO suprimentos (suprimento_nome,quantidade_comprada,custo,escritorio_id) VALUES ('Post-its', 5000, 852.65, 1700);
+INSERT INTO suprimentos (suprimento_nome,quantidade_comprada,custo,escritorio_id) VALUES ('Highlighter', 20, 500.00, 1700);
+INSERT INTO suprimentos (suprimento_nome,quantidade_comprada,custo,escritorio_id) VALUES ('Notebook', 50, 1000.00, 1700);
+INSERT INTO suprimentos (suprimento_nome,quantidade_comprada,custo,escritorio_id) VALUES ('Grampeadores', 20, 500.00, 2500);
+INSERT INTO suprimentos (suprimento_nome,quantidade_comprada,custo,escritorio_id) VALUES ('Computers', 15, 200000.00, 2500);
+INSERT INTO suprimentos (suprimento_nome,quantidade_comprada,custo,escritorio_id) VALUES ('Impressoras', 20, 500.00, 3900);
+INSERT INTO suprimentos (suprimento_nome,quantidade_comprada,custo,escritorio_id) VALUES ('Papel', 50, 1000.00, 3900);
+INSERT INTO suprimentos (suprimento_nome,quantidade_comprada,custo,escritorio_id) VALUES ('Planners', 20, 500.00, 3900);
+INSERT INTO suprimentos (suprimento_nome,quantidade_comprada,custo,escritorio_id) VALUES ('Post-its', 50, 1000.00, 1900);
+INSERT INTO suprimentos (suprimento_nome,quantidade_comprada,custo,escritorio_id) VALUES ('Highlighter', 20, 500.00, 1900);
+INSERT INTO suprimentos (suprimento_nome,quantidade_comprada,custo,escritorio_id) VALUES ('Notebook', 50, 1000.00, 1800);
+INSERT INTO suprimentos (suprimento_nome,quantidade_comprada,custo,escritorio_id) VALUES ('Grampeadores', 20, 500.00, 1900);
+INSERT INTO suprimentos (suprimento_nome,quantidade_comprada,custo,escritorio_id) VALUES ('Computers', 40, 200000.00, 3900);
+INSERT INTO suprimentos (suprimento_nome,quantidade_comprada,custo,escritorio_id) VALUES ('Impressoras', 3, 500.00, 2400);
+INSERT INTO suprimentos (suprimento_nome,quantidade_comprada,custo,escritorio_id) VALUES ('Papel', 50, 752.85, 2400);
+INSERT INTO suprimentos (suprimento_nome,quantidade_comprada,custo,escritorio_id) VALUES ('Planners', 20, 500.00, 2400);
+INSERT INTO suprimentos (suprimento_nome,quantidade_comprada,custo,escritorio_id) VALUES ('Post-its', 50, 1000.00, 2400);
+INSERT INTO suprimentos (suprimento_nome,quantidade_comprada,custo,escritorio_id) VALUES ('Highlighter', 20, 500.00, 2500);
+INSERT INTO suprimentos (suprimento_nome,quantidade_comprada,custo,escritorio_id) VALUES ('Notebook', 50, 1000.00, 2500);
+INSERT INTO suprimentos (suprimento_nome,quantidade_comprada,custo,escritorio_id) VALUES ('Grampeadores', 20, 500.00, 2500);
+INSERT INTO suprimentos (suprimento_nome,quantidade_comprada,custo,escritorio_id) VALUES ('Computers', 1, 2000.00, 1400);
+INSERT INTO suprimentos (suprimento_nome,quantidade_comprada,custo,escritorio_id) VALUES ('Impressoras', 2, 500.00, 1400);
+INSERT INTO suprimentos (suprimento_nome,quantidade_comprada,custo,escritorio_id) VALUES ('Papel', 50, 21000.00, 1400);
+INSERT INTO suprimentos (suprimento_nome,quantidade_comprada,custo,escritorio_id) VALUES ('Planners', 20, 1500.00, 1400);
+INSERT INTO suprimentos (suprimento_nome,quantidade_comprada,custo,escritorio_id) VALUES ('Post-its', 50, 1197.42, 1700);
+INSERT INTO suprimentos (suprimento_nome,quantidade_comprada,custo,escritorio_id) VALUES ('Highlighter', 20, 500.00, 1700);
+INSERT INTO suprimentos (suprimento_nome,quantidade_comprada,custo,escritorio_id) VALUES ('Notebook', 50, 1000.00, 1700);
+INSERT INTO suprimentos (suprimento_nome,quantidade_comprada,custo,escritorio_id) VALUES ('Grampeadores', 20, 500.00, 2500);
+INSERT INTO suprimentos (suprimento_nome,quantidade_comprada,custo,escritorio_id) VALUES ('Computers', 15, 200000.00, 2500);
+INSERT INTO suprimentos (suprimento_nome,quantidade_comprada,custo,escritorio_id) VALUES ('Impressoras', 1, 500.00, 3900);
+INSERT INTO suprimentos (suprimento_nome,quantidade_comprada,custo,escritorio_id) VALUES ('Papel', 5000, 752.85, 3900);
+INSERT INTO suprimentos (suprimento_nome,quantidade_comprada,custo,escritorio_id) VALUES ('Planners', 2010, 500.00, 3900);
+INSERT INTO suprimentos (suprimento_nome,quantidade_comprada,custo,escritorio_id) VALUES ('Post-its', 50, 1000.00, 1900);
+INSERT INTO suprimentos (suprimento_nome,quantidade_comprada,custo,escritorio_id) VALUES ('Highlighter', 20, 500.00, 1900);
+INSERT INTO suprimentos (suprimento_nome,quantidade_comprada,custo,escritorio_id) VALUES ('Notebook', 50, 1000.00, 1800);
+INSERT INTO suprimentos (suprimento_nome,quantidade_comprada,custo,escritorio_id) VALUES ('Grampeadores', 20, 500.00, 1900);
+INSERT INTO suprimentos (suprimento_nome,quantidade_comprada,custo,escritorio_id) VALUES ('Computers', 40, 200000.00, 3900);
+INSERT INTO suprimentos (suprimento_nome,quantidade_comprada,custo,escritorio_id) VALUES ('Impressoras', 2, 500.00, 2400);
+INSERT INTO suprimentos (suprimento_nome,quantidade_comprada,custo,escritorio_id) VALUES ('Papel', 50, 752.85, 2400);
+INSERT INTO suprimentos (suprimento_nome,quantidade_comprada,custo,escritorio_id) VALUES ('Planners', 20, 500.00, 2400);
+INSERT INTO suprimentos (suprimento_nome,quantidade_comprada,custo,escritorio_id) VALUES ('Post-its', 5000, 1000.00, 2400);
+INSERT INTO suprimentos (suprimento_nome,quantidade_comprada,custo,escritorio_id) VALUES ('Highlighter', 20, 500.00, 2500);
+INSERT INTO suprimentos (suprimento_nome,quantidade_comprada,custo,escritorio_id) VALUES ('Notebook', 50, 1000.00, 2500);
+INSERT INTO suprimentos (suprimento_nome,quantidade_comprada,custo,escritorio_id) VALUES ('Grampeadores', 10, 500.00, 2500);
 
 INSERT INTO departamentos(departamento_id,departamento_nome,escritorio_id) VALUES (1,'Administração',1700);
 INSERT INTO departamentos(departamento_id,departamento_nome,escritorio_id) VALUES (2,'Marketing',1800);
@@ -264,7 +264,7 @@ INSERT INTO funcionarios(funcionario_id,primeiro_nome,sobrenome,email,senha,tele
 INSERT INTO funcionarios(funcionario_id,primeiro_nome,sobrenome,email,senha,telefone,data_contratacao,cargo_id,salario,gerente_id,departamento_id) VALUES (123,'Shanta','Vollman','shanta.vollman@momento.org','@4@8@15@16','650.123.4234','1997-10-10',19,6500.00,100,5);
 INSERT INTO funcionarios(funcionario_id,primeiro_nome,sobrenome,email,senha,telefone,data_contratacao,cargo_id,salario,gerente_id,departamento_id) VALUES (126,'Irene','Mikkilineni','irene.mikkilineni@momento.org','@4@8@15@16','650.124.1224','1998-09-28',18,2700.00,120,5);
 INSERT INTO funcionarios(funcionario_id,primeiro_nome,sobrenome,email,senha,telefone,data_contratacao,cargo_id,salario,gerente_id,departamento_id) VALUES (145,'John','Russell','john.russell@momento.org','@4@8@15@16',NULL,'1996-10-01',15,14000.00,100,8);
-INSERT INTO funcionarios(funcionario_id,primeiro_nome,sobrenome,email,senha,telefone,data_contratacao,cargo_id,salario,gerente_id,departamento_id) VALUES (146,'Karen','Cônjuges','karen.Cônjuges@momento.org','@4@8@15@16',NULL,'1997-01-05',15,13500.00,100,8);
+INSERT INTO funcionarios(funcionario_id,primeiro_nome,sobrenome,email,senha,telefone,data_contratacao,cargo_id,salario,gerente_id,departamento_id) VALUES (146,'Karen','Partners','karen.partners@momento.org','@4@8@15@16',NULL,'1997-01-05',15,13500.00,100,8);
 INSERT INTO funcionarios(funcionario_id,primeiro_nome,sobrenome,email,senha,telefone,data_contratacao,cargo_id,salario,gerente_id,departamento_id) VALUES (176,'Jonathon','Taylor','jonathon.taylor@momento.org','@4@8@15@16',NULL,'1998-03-24',16,8600.00,100,8);
 INSERT INTO funcionarios(funcionario_id,primeiro_nome,sobrenome,email,senha,telefone,data_contratacao,cargo_id,salario,gerente_id,departamento_id) VALUES (177,'Jack','Livingston','jack.livingston@momento.org','@4@8@15@16',NULL,'1998-04-23',16,8400.00,100,8);
 INSERT INTO funcionarios(funcionario_id,primeiro_nome,sobrenome,email,senha,telefone,data_contratacao,cargo_id,salario,gerente_id,departamento_id) VALUES (178,'Kimberly','Grant','kimberely.grant@momento.org','@4@8@15@16',NULL,'1999-05-24',16,7000.00,100,8);
@@ -279,6 +279,7 @@ INSERT INTO funcionarios(funcionario_id,primeiro_nome,sobrenome,email,senha,tele
 INSERT INTO funcionarios(funcionario_id,primeiro_nome,sobrenome,email,senha,telefone,data_contratacao,cargo_id,salario,gerente_id,departamento_id) VALUES (205,'Shelley','Higgins','shelley.higgins@momento.org','@4@8@15@16','515.123.8080','1994-06-07',2,12000.00,101,11);
 INSERT INTO funcionarios(funcionario_id,primeiro_nome,sobrenome,email,senha,telefone,data_contratacao,cargo_id,salario,gerente_id,departamento_id) VALUES (206,'Susan','Storm','susan.storm@momento.org','@4@8@15@16','515.123.8181','1994-06-07',20,18300.00,205,12);
 INSERT INTO funcionarios(funcionario_id,primeiro_nome,sobrenome,email,senha,telefone,data_contratacao,cargo_id,salario,gerente_id,departamento_id) VALUES (207,'Lucius','Fox','lucius.fox@momento.org','@4@8@15@16','515.124.4569','1994-08-17',7,12000.00,101,10);
+INSERT INTO funcionarios(funcionario_id,primeiro_nome,sobrenome,email,senha,telefone,data_contratacao,cargo_id,salario,gerente_id,departamento_id) VALUES (207,'Sabrina Portela','Spellman','sabrina.spellman@momento.org','1a2b3c@port','945.368.4569','2024-10-28',20,8000.01,101,10);
 
 INSERT INTO produtos (produto_nome, produto_price) VALUES ("Uniforme do Superman", 300.13);
 INSERT INTO produtos (produto_nome, produto_price) VALUES ("Fake Batarang", 239.29);
@@ -342,7 +343,7 @@ INSERT INTO dependentes(dependente_id,primeiro_nome,sobrenome,relacionamento,fun
 INSERT INTO dependentes(dependente_id,primeiro_nome,sobrenome,relacionamento,funcionario_id) VALUES (26,'Rip','Colmenares','Filha(o)',119);
 INSERT INTO dependentes(dependente_id,primeiro_nome,sobrenome,relacionamento,funcionario_id) VALUES (27,'Julia','Raphaely','Filha(o)',114);
 INSERT INTO dependentes(dependente_id,primeiro_nome,sobrenome,relacionamento,funcionario_id) VALUES (28,'Woody','Russell','Filha(o)',145);
-INSERT INTO dependentes(dependente_id,primeiro_nome,sobrenome,relacionamento,funcionario_id) VALUES (29,'Alec','Cônjuges','Filha(o)',146);
+INSERT INTO dependentes(dependente_id,primeiro_nome,sobrenome,relacionamento,funcionario_id) VALUES (29,'Alec','Partners','Filha(o)',146);
 INSERT INTO dependentes(dependente_id,primeiro_nome,sobrenome,relacionamento,funcionario_id) VALUES (30,'Sandra','Taylor','Filha(o)',176);
 INSERT INTO dependentes(dependente_id,primeiro_nome,sobrenome,relacionamento,funcionario_id) VALUES (31,'Franklin','Storm','Filha(o)',206);
 INSERT INTO dependentes(dependente_id,primeiro_nome,sobrenome,relacionamento,funcionario_id) VALUES (32,'Valeria','Storm','Filha(o)',206);
