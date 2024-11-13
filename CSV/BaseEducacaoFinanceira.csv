@@ -1,0 +1,137 @@
+family_id,family_name,family_created_at,family_status,user_id,user_name,user_email,user_password,user_created_at,user_status,transaction_id,transaction_date,transaction_description,transaction_category,transaction_amount,transaction_type,transaction_source,transaction_status
+10,Amari,2022-04-01,1,1,"Ada Amari",ada@gmail.com,123456,2022-04-01,1,1,2024-04-01,"Salario Ada",Renda,3000,Income,NULL,1
+10,Amari,2022-04-01,1,1,"Ada Amari",ada@gmail.com,123456,2022-04-01,1,5,2024-04-05,"Conta de Água",Essencial,1238,Expense,"Cartão de Crédito Alpha",1
+10,Amari,2022-04-01,1,1,"Ada Amari",ada@gmail.com,123456,2022-04-01,1,16,2024-01-01,"Salario Ada",Renda,3000,Income,NULL,0
+10,Amari,2022-04-01,1,1,"Ada Amari",ada@gmail.com,123456,2022-04-01,1,30,2024-02-01,"Salario Ada",Renda,3100,Income,NULL,0
+10,Amari,2022-04-01,1,1,"Ada Amari",ada@gmail.com,123456,2022-04-01,1,33,2024-02-02,Aluguel,NULL,1000,Expense,"Cartão de Crédito Alpha",1
+10,Amari,2022-04-01,1,1,"Ada Amari",ada@gmail.com,123456,2022-04-01,1,34,2024-02-05,"Conta de Água",NULL,87,Expense,"Cartão de Crédito Beta",1
+10,Amari,2022-04-01,1,1,"Ada Amari",ada@gmail.com,123456,2022-04-01,1,44,2024-03-01,"Salario Ada",Renda,3200,Income,NULL,0
+10,Amari,2022-04-01,1,2,"Abeba Amari",abeba@outlook.com,123456,2022-06-09,1,2,2024-04-05,"Salário Abeba ",Renda,2500,Income,NULL,0
+10,Amari,2022-04-01,1,2,"Abeba Amari",abeba@outlook.com,123456,2022-06-09,1,3,2024-04-10,"Pensão de Abeba ",Renda,202.1,Income,"Cartão de Crédito Alpha",1
+10,Amari,2022-04-01,1,2,"Abeba Amari",abeba@outlook.com,123456,2022-06-09,1,4,2024-04-02,Aluguel,Essencial,1200,Expense,"Cartão de Crédito Beta",1
+10,Amari,2022-04-01,1,2,"Abeba Amari",abeba@outlook.com,123456,2022-06-09,1,6,2024-04-07,"Conta de Internet",Essencial,80,Expense,Dinheiro,1
+10,Amari,2022-04-01,1,2,"Abeba Amari",abeba@outlook.com,123456,2022-06-09,1,7,2024-04-20,Supermercado,Mercado,600,Expense,"Cartão de Crédito Beta",1
+10,Amari,2022-04-01,1,2,"Abeba Amari",abeba@outlook.com,123456,2022-06-09,1,8,2024-04-25,Combustível,Carro,2000,Expense,Dinheiro,1
+10,Amari,2022-04-01,1,2,"Abeba Amari",abeba@outlook.com,123456,2022-06-09,1,9,2024-04-28,"Cinema com a família",NULL,119.85,Expense,"Cartão de Crédito Alpha",0
+10,Amari,2022-04-01,1,2,"Abeba Amari",abeba@outlook.com,123456,2022-06-09,1,10,2024-04-03,"Reparo do carro",Emergencial,350,Expense,"Cartão de Crédito Alpha",0
+10,Amari,2022-04-01,1,2,"Abeba Amari",abeba@outlook.com,123456,2022-06-09,1,11,2024-04-08,"Pagamento de Empréstimo",NULL,411.98,Expense,"Cartão de Crédito Beta",1
+10,Amari,2022-04-01,1,2,"Abeba Amari",abeba@outlook.com,123456,2022-06-09,1,12,2024-04-10,"Jantar fora",NULL,158,Expense,NULL,0
+10,Amari,2022-04-01,1,2,"Abeba Amari",abeba@outlook.com,123456,2022-06-09,1,13,2024-04-12,"Material escolar dos filhos",NULL,250,Income,"Cartão de Crédito Alpha",0
+10,Amari,2022-04-01,1,2,"Abeba Amari",abeba@outlook.com,123456,2022-06-09,1,14,2024-04-15,"Streaming (Netflix + Max)",NULL,100,Expense,Dinheiro,1
+10,Amari,2022-04-01,1,2,"Abeba Amari",abeba@outlook.com,123456,2022-06-09,1,15,2024-04-03,Gasolina,NULL,4399,Expense,"Cartão de Crédito Beta",1
+10,Amari,2022-04-01,1,2,"Abeba Amari",abeba@outlook.com,123456,2022-06-09,1,17,2024-01-05,"Salário Abeba ",Renda,2200,Expense,NULL,0
+10,Amari,2022-04-01,1,2,"Abeba Amari",abeba@outlook.com,123456,2022-06-09,1,18,2024-01-10,"Pensão de Abeba ",Renda,200,Expense,NULL,0
+10,Amari,2022-04-01,1,2,"Abeba Amari",abeba@outlook.com,123456,2022-06-09,1,19,2024-01-02,Aluguel,Essencial,1200,Expense,NULL,0
+10,Amari,2022-04-01,1,2,"Abeba Amari",abeba@outlook.com,123456,2022-06-09,1,20,2024-01-05,"Conta de Água",Essencial,100,Expense,"Cartão de Crédito Beta",1
+10,Amari,2022-04-01,1,2,"Abeba Amari",abeba@outlook.com,123456,2022-06-09,1,21,2024-02-15,"Streaming (Netflix + Max)",NULL,100,Expense,Dinheiro,1
+10,Amari,2022-04-01,1,2,"Abeba Amari",abeba@outlook.com,123456,2022-06-09,1,22,2024-02-07,"Conta de Internet",Essencial,80,Expense,NULL,0
+10,Amari,2022-04-01,1,2,"Abeba Amari",abeba@outlook.com,123456,2022-06-09,1,23,2024-02-18,Supermercado,Mercado,500,Expense,NULL,0
+10,Amari,2022-04-01,1,2,"Abeba Amari",abeba@outlook.com,123456,2022-06-09,1,24,2024-01-10,Combustível,NULL,150,Expense,"Cartão de Crédito Beta",0
+10,Amari,2022-04-01,1,2,"Abeba Amari",abeba@outlook.com,123456,2022-06-09,1,25,2024-01-12,"Cinema com a família",NULL,80,Expense,NULL,0
+10,Amari,2022-04-01,1,2,"Abeba Amari",abeba@outlook.com,123456,2022-06-09,1,26,2024-01-15,"Reparo do carro",NULL,300,Expense,NULL,0
+10,Amari,2022-04-01,1,2,"Abeba Amari",abeba@outlook.com,123456,2022-06-09,1,27,2024-01-20,"Pagamento de Empréstimo",Emergencial,350,Expense,NULL,0
+10,Amari,2022-04-01,1,2,"Abeba Amari",abeba@outlook.com,123456,2022-06-09,1,28,2024-01-25,"Jantar fora",Lazer,120,Expense,"Cartão de Crédito Beta",1
+10,Amari,2022-04-01,1,2,"Abeba Amari",abeba@outlook.com,123456,2022-06-09,1,29,2024-01-28,"Material escolar dos filhos",Essencial,200,Expense,NULL,0
+10,Amari,2022-04-01,1,2,"Abeba Amari",abeba@outlook.com,123456,2022-06-09,1,31,2024-02-05,"Salário Abeba ",Renda,2400.05,Income,"Cartão de Crédito Alpha",0
+10,Amari,2022-04-01,1,2,"Abeba Amari",abeba@outlook.com,123456,2022-06-09,1,32,2024-02-10,"Pensão de Abeba ",NULL,200,Expense,NULL,0
+10,Amari,2022-04-01,1,2,"Abeba Amari",abeba@outlook.com,123456,2022-06-09,1,35,2024-02-07,"Conta de Internet",NULL,193,Expense,NULL,0
+10,Amari,2022-04-01,1,2,"Abeba Amari",abeba@outlook.com,123456,2022-06-09,1,36,2024-02-08,Supermercado,NULL,890,Expense,"Cartão de Crédito Beta",1
+10,Amari,2022-04-01,1,2,"Abeba Amari",abeba@outlook.com,123456,2022-06-09,1,37,2024-02-10,Combustível,Carro,180,Expense,NULL,0
+10,Amari,2022-04-01,1,2,"Abeba Amari",abeba@outlook.com,123456,2022-06-09,1,38,2024-02-12,"Cinema com a família",Lazer,100,Expense,NULL,0
+10,Amari,2022-04-01,1,2,"Abeba Amari",abeba@outlook.com,123456,2022-06-09,1,39,2024-02-15,"Reparo do carro",Emergencial,200,Expense,"Cartão de Crédito Beta",1
+10,Amari,2022-04-01,1,2,"Abeba Amari",abeba@outlook.com,123456,2022-06-09,1,40,2024-02-20,"Pagamento de Empréstimo",Emergencial,400,Expense,NULL,0
+10,Amari,2022-04-01,1,2,"Abeba Amari",abeba@outlook.com,123456,2022-06-09,1,41,2024-02-25,"Jantar fora",Lazer,150,Expense,NULL,0
+10,Amari,2022-04-01,1,2,"Abeba Amari",abeba@outlook.com,123456,2022-06-09,1,42,2024-02-28,Remédio,Essencial,250,Expense,"Cartão de Crédito Beta",1
+10,Amari,2022-04-01,1,2,"Abeba Amari",abeba@outlook.com,123456,2022-06-09,1,43,2024-01-22,Saque-Aniversário,NULL,1000,Income,NULL,0
+10,Amari,2022-04-01,1,2,"Abeba Amari",abeba@outlook.com,123456,2022-06-09,1,45,2024-03-05,"Salário Abeba ",Renda,2600,Income,NULL,0
+10,Amari,2022-04-01,1,2,"Abeba Amari",abeba@outlook.com,123456,2022-06-09,1,46,2024-03-05,"Pensão de Abeba ",Renda,200,Income,NULL,0
+10,Amari,2022-04-01,1,2,"Abeba Amari",abeba@outlook.com,123456,2022-06-09,1,47,2024-03-02,Aluguel,NULL,2000,Expense,NULL,0
+10,Amari,2022-04-01,1,2,"Abeba Amari",abeba@outlook.com,123456,2022-06-09,1,48,2024-03-05,"Conta de Água",NULL,119,Expense,NULL,0
+10,Amari,2022-04-01,1,2,"Abeba Amari",abeba@outlook.com,123456,2022-06-09,1,49,2024-03-15,"Streaming (Netflix + Max)",NULL,100,Expense,Dinheiro,0
+10,Amari,2022-04-01,1,2,"Abeba Amari",abeba@outlook.com,123456,2022-06-09,1,50,2024-03-07,"Conta de Internet",NULL,80,Expense,NULL,0
+10,Amari,2022-04-01,1,2,"Abeba Amari",abeba@outlook.com,123456,2022-06-09,1,51,2024-03-08,Supermercado,NULL,550,Expense,NULL,0
+10,Amari,2022-04-01,1,2,"Abeba Amari",abeba@outlook.com,123456,2022-06-09,1,52,2024-03-10,Combustível,NULL,160,Expense,"Cartão de Crédito Alpha",0
+10,Amari,2022-04-01,1,2,"Abeba Amari",abeba@outlook.com,123456,2022-06-09,1,53,2024-03-12,"Cinema com a família",Lazer,108,Expense,"Cartão de Crédito Alpha",0
+10,Amari,2022-04-01,1,2,"Abeba Amari",abeba@outlook.com,123456,2022-06-09,1,54,2024-03-15,"Viagem para a Praia",Emergencial,344,Expense,NULL,0
+10,Amari,2022-04-01,1,2,"Abeba Amari",abeba@outlook.com,123456,2022-06-09,1,55,2024-03-20,"Pagamento de Empréstimo",Emergencial,380,Expense,"Cartão de Crédito Alpha",0
+10,Amari,2022-04-01,1,2,"Abeba Amari",abeba@outlook.com,123456,2022-06-09,1,56,2024-03-25,"Jantar fora",Lazer,130,Expense,NULL,0
+10,Amari,2022-04-01,1,2,"Abeba Amari",abeba@outlook.com,123456,2022-06-09,1,57,2024-03-28,"Material escolar dos filhos",Essencial,270,Expense,NULL,0
+10,Amari,2022-04-01,1,2,"Abeba Amari",abeba@outlook.com,123456,2022-06-09,1,58,2024-03-10,"Restituição IR",NULL,1380.1,Expense,NULL,0
+10,Amari,2022-04-01,1,100000,master,master@master.com,123456,2022-04-01,1,NULL,NULL,NULL,NULL,NULL,Expense,NULL,NULL
+11,Teixeira,2022-03-12,1,3,"Hugo Teixeira",hteixeira@gmail.com,123456,2023-12-01,1,59,2024-04-01,Salario,Renda,3000,Income,NULL,1
+11,Teixeira,2022-03-12,1,3,"Hugo Teixeira",hteixeira@gmail.com,123456,2023-12-01,1,60,2024-04-05,"Freelance 1",Renda,398,Income,NULL,0
+11,Teixeira,2022-03-12,1,3,"Hugo Teixeira",hteixeira@gmail.com,123456,2023-12-01,1,61,2024-04-10,"Freelance 2",Renda,202.1,Income,"Cartão de Crédito Alpha",1
+11,Teixeira,2022-03-12,1,3,"Hugo Teixeira",hteixeira@gmail.com,123456,2023-12-01,1,62,2024-04-02,Aluguel,Essencial,1200,Expense,"Cartão de Crédito Beta",1
+11,Teixeira,2022-03-12,1,3,"Hugo Teixeira",hteixeira@gmail.com,123456,2023-12-01,1,63,2024-04-05,"Conta de Água",Essencial,1238,Expense,"Cartão de Crédito Alpha",1
+11,Teixeira,2022-03-12,1,3,"Hugo Teixeira",hteixeira@gmail.com,123456,2023-12-01,1,64,2024-04-07,"Conta de Internet",Essencial,80,Expense,Dinheiro,1
+11,Teixeira,2022-03-12,1,3,"Hugo Teixeira",hteixeira@gmail.com,123456,2023-12-01,1,65,2024-04-20,Supermercado,Mercado,312,Expense,"Cartão de Crédito Beta",1
+11,Teixeira,2022-03-12,1,3,"Hugo Teixeira",hteixeira@gmail.com,123456,2023-12-01,1,66,2024-04-25,Uber,Carro,398,Expense,Dinheiro,1
+11,Teixeira,2022-03-12,1,3,"Hugo Teixeira",hteixeira@gmail.com,123456,2023-12-01,1,67,2024-04-28,"Festa do Hugo",NULL,119.85,Expense,"Cartão de Crédito Alpha",0
+11,Teixeira,2022-03-12,1,3,"Hugo Teixeira",hteixeira@gmail.com,123456,2023-12-01,1,68,2024-04-03,Diarista,Emergencial,350,Expense,"Cartão de Crédito Alpha",0
+11,Teixeira,2022-03-12,1,3,"Hugo Teixeira",hteixeira@gmail.com,123456,2023-12-01,1,69,2024-04-08,"Reserva de Emergência",NULL,280.98,Expense,"Cartão de Crédito Beta",1
+20,Oliveira,2023-05-22,1,5,"Maria Pedro Bruno Oliveira",mariaoliveira@bol.com.br,123456,2023-09-11,1,109,2024-04-01,"Renda Variavel Carlos",Renda,300,Income,NULL,1
+20,Oliveira,2023-05-22,1,5,"Maria Pedro Bruno Oliveira",mariaoliveira@bol.com.br,123456,2023-09-11,1,112,2024-04-02,Aluguel,Mercado,1800,Expense,NULL,1
+20,Oliveira,2023-05-22,1,5,"Maria Pedro Bruno Oliveira",mariaoliveira@bol.com.br,123456,2023-09-11,1,115,2024-04-05,"Atividades dos pets",Lazer,400,Expense,NULL,1
+20,Oliveira,2023-05-22,1,5,"Maria Pedro Bruno Oliveira",mariaoliveira@bol.com.br,123456,2023-09-11,1,117,2024-04-15,"Despesas com o carro",Outros,600,Expense,NULL,1
+20,Oliveira,2023-05-22,1,5,"Maria Pedro Bruno Oliveira",mariaoliveira@bol.com.br,123456,2023-09-11,1,120,2024-03-05,"Conta de Água",NULL,119,Expense,NULL,0
+20,Oliveira,2023-05-22,1,11,"Carlos Pedro Bruno Oliveira",cpbo@bol.com.br,123456,2023-09-11,1,110,2024-04-01,"Renda Variavel Juliana",Renda,500,Income,NULL,1
+20,Oliveira,2023-05-22,1,11,"Carlos Pedro Bruno Oliveira",cpbo@bol.com.br,123456,2023-09-11,1,113,2024-04-03,"Mensalidade universitária",Mercado,800,Expense,NULL,1
+20,Oliveira,2023-05-22,1,11,"Carlos Pedro Bruno Oliveira",cpbo@bol.com.br,123456,2023-09-11,1,118,2024-04-20,"Despesas com a casa de praia",Renda,300,Expense,NULL,1
+20,Oliveira,2023-05-22,1,11,"Carlos Pedro Bruno Oliveira",cpbo@bol.com.br,123456,2023-09-11,1,121,2024-03-15,Netflix,NULL,89.9,Expense,Dinheiro,0
+20,Oliveira,2023-05-22,1,11,"Carlos Pedro Bruno Oliveira",cpbo@bol.com.br,123456,2023-09-11,1,122,2024-03-07,"Conta de Internet",NULL,80,Expense,NULL,0
+20,Oliveira,2023-05-22,1,11,"Carlos Pedro Bruno Oliveira",cpbo@bol.com.br,123456,2023-09-11,1,123,2024-03-08,Supermercado,NULL,550,Expense,NULL,0
+20,Oliveira,2023-05-22,1,11,"Carlos Pedro Bruno Oliveira",cpbo@bol.com.br,123456,2023-09-11,1,124,2024-04-10,"Renda Variavel Juliana",Renda,250,Expense,NULL,1
+20,Oliveira,2023-05-22,1,12,"Juliana Karina Pedro Bruno Oliveira",jk_pedrob_oliveira@bol.com.br,123456,2023-09-11,1,111,2024-04-01,"Renda Variavel da Mariana",Renda,500,Income,NULL,1
+20,Oliveira,2023-05-22,1,12,"Juliana Karina Pedro Bruno Oliveira",jk_pedrob_oliveira@bol.com.br,123456,2023-09-11,1,114,2024-04-04,"Despesas com alimentação",Renda,700,Expense,NULL,1
+20,Oliveira,2023-05-22,1,12,"Juliana Karina Pedro Bruno Oliveira",jk_pedrob_oliveira@bol.com.br,123456,2023-09-11,1,116,2024-04-10,"Manutenção de propriedades",Outros,250,Expense,NULL,1
+20,Oliveira,2023-05-22,1,12,"Juliana Karina Pedro Bruno Oliveira",jk_pedrob_oliveira@bol.com.br,123456,2023-09-11,1,119,2024-04-25,"Despesas com o carro",Outros,200,Expense,NULL,1
+30,"Silva e Silva",2022-06-01,1,4,"João Silva",joao_silva@protonmal.com,123456,2023-09-11,1,70,2024-04-01,"Salário João",Essencial,5000,Income,NULL,1
+30,"Silva e Silva",2022-06-01,1,4,"João Silva",joao_silva@protonmal.com,123456,2023-09-11,1,75,2024-04-05,"Empréstimo bancário",Carro,300,Expense,NULL,1
+30,"Silva e Silva",2022-06-01,1,4,"João Silva",joao_silva@protonmal.com,123456,2023-09-11,1,78,2024-04-20,"Despesas com o carro",Outros,250,Expense,NULL,1
+30,"Silva e Silva",2022-06-01,1,6,"Maria Fernanda Silva",mafe_silva@protonmail.com,123456,2023-09-11,1,71,2024-04-01,"Salário Maria",Essencial,4000,Income,NULL,1
+30,"Silva e Silva",2022-06-01,1,6,"Maria Fernanda Silva",mafe_silva@protonmail.com,123456,2023-09-11,1,72,2024-04-02,Aluguel,Mercado,1500,Expense,NULL,1
+30,"Silva e Silva",2022-06-01,1,6,"Maria Fernanda Silva",mafe_silva@protonmail.com,123456,2023-09-11,1,73,2024-04-03,"Conta de luz",Mercado,200,Expense,NULL,1
+30,"Silva e Silva",2022-06-01,1,6,"Maria Fernanda Silva",mafe_silva@protonmail.com,123456,2023-09-11,1,74,2024-04-04,"Conta de água",Mercado,100,Expense,NULL,1
+30,"Silva e Silva",2022-06-01,1,6,"Maria Fernanda Silva",mafe_silva@protonmail.com,123456,2023-09-11,1,76,2024-04-10,"Atividades extracurriculares dos filhos",Lazer,500,Expense,NULL,1
+30,"Silva e Silva",2022-06-01,1,6,"Maria Fernanda Silva",mafe_silva@protonmail.com,123456,2023-09-11,1,77,2024-04-15,"Cinema em família",Emergencial,150,Expense,NULL,1
+40,Costa,2024-04-01,1,7,"Fernanda Costa",fema_costa@mailproton.com,123456,2023-09-11,1,80,2024-04-01,"Vendas Fernanda",Renda,2500,Income,NULL,1
+40,Costa,2024-04-01,1,8,"Roberto Macedo Costa",fema_costa@mailproton.com,123456,2023-09-11,1,79,2024-04-01,"Renda Roberto",Renda,3000,Income,NULL,1
+40,Costa,2024-04-01,1,8,"Roberto Macedo Costa",fema_costa@mailproton.com,123456,2023-09-11,1,81,2024-04-02,Aluguel,Mercado,1200,Expense,NULL,1
+40,Costa,2024-04-01,1,8,"Roberto Macedo Costa",fema_costa@mailproton.com,123456,2023-09-11,1,82,2024-04-03,"Compra de materiais para confeitaria",Renda,300,Expense,NULL,1
+40,Costa,2024-04-01,1,8,"Roberto Macedo Costa",fema_costa@mailproton.com,123456,2023-09-11,1,83,2024-04-04,"Despesas escolares dos filhos",Mercado,600,Expense,NULL,1
+40,Costa,2024-04-01,1,8,"Roberto Macedo Costa",fema_costa@mailproton.com,123456,2023-09-11,1,84,2024-04-05,"Despesas médicas",NULL,400,Expense,NULL,1
+40,Costa,2024-04-01,1,8,"Roberto Macedo Costa",fema_costa@mailproton.com,123456,2023-09-11,1,85,2024-04-10,"Viagem de fim de semana",Emergencial,350,Expense,NULL,1
+40,Costa,2024-04-01,1,8,"Roberto Macedo Costa",fema_costa@mailproton.com,123456,2023-09-11,1,86,2024-04-15,"Despesas com o carro",Outros,200,Expense,NULL,1
+40,Costa,2024-04-01,1,8,"Roberto Macedo Costa",fema_costa@mailproton.com,123456,2023-09-11,1,87,2024-04-20,"Despesas com a casa de praia",Renda,300,Expense,NULL,1
+40,Costa,2024-04-01,1,8,"Roberto Macedo Costa",fema_costa@mailproton.com,123456,2023-09-11,1,88,2024-04-25,"Despesas com o carro",Outros,200,Expense,NULL,1
+40,Costa,2024-04-01,1,8,"Roberto Macedo Costa",fema_costa@mailproton.com,123456,2023-09-11,1,89,2024-03-05,"Conta de Água",NULL,119,Expense,NULL,0
+40,Costa,2024-04-01,1,8,"Roberto Macedo Costa",fema_costa@mailproton.com,123456,2023-09-11,1,90,2024-03-15,"Presente do Ulisses",NULL,89.9,Expense,Dinheiro,0
+40,Costa,2024-04-01,1,8,"Roberto Macedo Costa",fema_costa@mailproton.com,123456,2023-09-11,1,91,2024-03-07,"Conta de Internet",NULL,80,Expense,NULL,0
+40,Costa,2024-04-01,1,8,"Roberto Macedo Costa",fema_costa@mailproton.com,123456,2023-09-11,1,92,2024-03-08,Supermercado,NULL,260,Expense,NULL,0
+40,Costa,2024-04-01,1,8,"Roberto Macedo Costa",fema_costa@mailproton.com,123456,2023-09-11,1,93,2024-03-05,"Conta de Água",NULL,119,Expense,NULL,0
+40,Costa,2024-04-01,1,8,"Roberto Macedo Costa",fema_costa@mailproton.com,123456,2023-09-11,1,94,2024-03-15,Netflix,NULL,89.9,Expense,Dinheiro,0
+40,Costa,2024-04-01,1,8,"Roberto Macedo Costa",fema_costa@mailproton.com,123456,2023-09-11,1,95,2024-03-07,"Conta de Internet",NULL,80,Expense,NULL,0
+40,Costa,2024-04-01,1,8,"Roberto Macedo Costa",fema_costa@mailproton.com,123456,2023-09-11,1,96,2024-03-08,Supermercado,NULL,550,Expense,NULL,0
+50,Lima,2024-04-01,1,9,"Ana Maya Costa Lima",anamaya@gmail.com,123456,2023-09-11,1,97,2024-04-01,"Salário Ana",Renda,3500,Income,NULL,1
+50,Lima,2024-04-01,1,9,"Ana Maya Costa Lima",anamaya@gmail.com,123456,2023-09-11,1,100,2024-04-03,"Conta de luz",Mercado,180,Expense,NULL,1
+50,Lima,2024-04-01,1,9,"Ana Maya Costa Lima",anamaya@gmail.com,123456,2023-09-11,1,102,2024-04-05,"Despesas com o bebê",Lazer,500,Expense,NULL,1
+50,Lima,2024-04-01,1,9,"Ana Maya Costa Lima",anamaya@gmail.com,123456,2023-09-11,1,104,2024-04-15,"Compras para o lar",Renda,600,Expense,NULL,1
+50,Lima,2024-04-01,1,9,"Ana Maya Costa Lima",anamaya@gmail.com,123456,2023-09-11,1,105,2024-03-05,"Conta de Água",NULL,119,Expense,NULL,0
+50,Lima,2024-04-01,1,9,"Ana Maya Costa Lima",anamaya@gmail.com,123456,2023-09-11,1,106,2024-03-15,Netflix,NULL,89.9,Expense,Dinheiro,0
+50,Lima,2024-04-01,1,9,"Ana Maya Costa Lima",anamaya@gmail.com,123456,2023-09-11,1,107,2024-03-07,"Conta de Internet",NULL,80,Expense,NULL,0
+50,Lima,2024-04-01,1,9,"Ana Maya Costa Lima",anamaya@gmail.com,123456,2023-09-11,1,108,2024-03-08,Supermercado,NULL,550,Expense,NULL,0
+50,Lima,2024-04-01,1,10,"Pedro Macedo Teixeira Lima",pedrinho_teixeira@gmnail.com,123456,2023-09-11,1,98,2024-04-01,"Salário Pedro",Renda,3000,Income,NULL,1
+50,Lima,2024-04-01,1,10,"Pedro Macedo Teixeira Lima",pedrinho_teixeira@gmnail.com,123456,2023-09-11,1,99,2024-04-02,Aluguel,Mercado,1400,Expense,NULL,1
+50,Lima,2024-04-01,1,10,"Pedro Macedo Teixeira Lima",pedrinho_teixeira@gmnail.com,123456,2023-09-11,1,101,2024-04-04,"Conta de água",Mercado,90,Expense,NULL,1
+50,Lima,2024-04-01,1,10,"Pedro Macedo Teixeira Lima",pedrinho_teixeira@gmnail.com,123456,2023-09-11,1,103,2024-04-10,"Consultas médicas",NULL,250,Expense,NULL,1
+60,Santos,2024-04-01,1,13,"Marina Santos",marinasantos@aol.com.br,123456,2023-09-11,1,125,2024-04-01,"Salário Marina",Essencial,1200,Income,NULL,1
+60,Santos,2024-04-01,1,14,"Mariana Peixoto Santos",marianapeixoto@bol.com.br,123456,2023-09-11,1,126,2024-04-01,"Renda Mariana",Essencial,120,Income,NULL,1
+60,Santos,2024-04-01,1,14,"Mariana Peixoto Santos",marianapeixoto@bol.com.br,123456,2023-09-11,1,128,2024-04-02,Aluguel,Mercado,1300,Expense,NULL,1
+60,Santos,2024-04-01,1,14,"Mariana Peixoto Santos",marianapeixoto@bol.com.br,123456,2023-09-11,1,129,2024-04-03,"Despesas com a faculdade",Lazer,1400,Expense,NULL,1
+60,Santos,2024-04-01,1,14,"Mariana Peixoto Santos",marianapeixoto@bol.com.br,123456,2023-09-11,1,130,2024-04-04,"Compra de materiais para trabalho de Mariana",Renda,200,Expense,NULL,1
+60,Santos,2024-04-01,1,14,"Mariana Peixoto Santos",marianapeixoto@bol.com.br,123456,2023-09-11,1,131,2024-04-05,"Consultas médicas",NULL,450,Expense,NULL,1
+60,Santos,2024-04-01,1,14,"Mariana Peixoto Santos",marianapeixoto@bol.com.br,123456,2023-09-11,1,132,2024-03-05,"Conta de Água",NULL,119,Expense,NULL,0
+60,Santos,2024-04-01,1,14,"Mariana Peixoto Santos",marianapeixoto@bol.com.br,123456,2023-09-11,1,133,2024-03-15,Netflix,NULL,89.9,Expense,Dinheiro,0
+60,Santos,2024-04-01,1,14,"Mariana Peixoto Santos",marianapeixoto@bol.com.br,123456,2023-09-11,1,134,2024-03-07,"Conta de Internet",NULL,80,Expense,NULL,0
+60,Santos,2024-04-01,1,14,"Mariana Peixoto Santos",marianapeixoto@bol.com.br,123456,2023-09-11,1,135,2024-03-08,Supermercado,NULL,550,Expense,NULL,0
+60,Santos,2024-04-01,1,15,"Esther Lopes Peixoto ",marianapeixoto@bol.com.br,123456,2023-09-11,1,127,2024-03-30,"Aposentadoria Esther",Essencial,2800,Income,NULL,1
