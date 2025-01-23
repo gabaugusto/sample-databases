@@ -1,6 +1,21 @@
 # Nomeados ao Oscar
 
-Contém a base de indicados ao Oscar em formato JSON para treinar comandos de consulta no MongoDB. 
+Contém a base de indicados ao Oscar em formato SQL para treinar comandos CRUD. 
+
+Abaixo, algumas perguntas para serem respondidas com comandos SQL.
+
+* Atualize os registros da tabela com os dados do Oscar 2025
+
+* Qual o **total** de registros na tabela indicados?
+
+* Qual o número de indicações por categoria agrupadas por categoria?
+
+```sql
+SELECT categoria, COUNT(*) AS total_indicacoes
+FROM indicados_ao_oscar
+GROUP BY categoria
+ORDER BY total_indicacoes DESC;
+```
 
 * Quantas vezes Natalie Portman foi indicada ao Oscar?
 
@@ -13,9 +28,17 @@ SELECT COUNT(*) FROM indicados WHERE "Name" Like "%Natalie Portman%";
 
 * Quantos Oscars Natalie Portman ganhou?
 
+* Quantas vezes Viola Davis foi indicada ao Oscar?
+
+* Quantos Oscars Viola Davis ganhou?
+
 * Amy Adams já ganhou algum Oscar?
 
-* A série de filmes Toy Story ganhou um Oscar em quais anos?
+* Quais os atores/atrizes que foram indicados mais de uma vez?
+
+Obs: Utilizar a função COUNT e GROUP BY, e a função HAVING para filtrar os registros que possuem mais de uma indicação. 
+
+* A série de filmes Toy Story ganhou Oscars em quais anos?
 
 * A partir de que ano que a categoria "Actress" deixa de existir? 
 
@@ -32,6 +55,8 @@ SELECT COUNT(*) FROM indicados WHERE "Name" Like "%Natalie Portman%";
 * Denzel Washington já ganhou algum Oscar?
 
 * Quais os filmes que ganharam o Oscar de Melhor Filme?
+
+* Sidney Poitier foi o primeiro ator negro a ser indicado ao Oscar. Em que ano ele foi indicado? Por qual filme?
 
 * Bonus: Quais os filmes que ganharam o Oscar de Melhor Filme e Melhor Diretor na mesma cerimonia?
 
