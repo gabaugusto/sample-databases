@@ -2,7 +2,7 @@
 
 Contém a base de indicados ao Oscar em formato SQL para treinar comandos CRUD. 
 
-Abaixo, algumas perguntas para serem respondidas com comandos SQL.
+Abaixo, algumas perguntas e tarefas para serem respondidas com comandos SQL.
 
 * Atualize os registros da tabela com os dados do Oscar 2025
 
