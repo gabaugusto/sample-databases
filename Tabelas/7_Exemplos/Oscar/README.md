@@ -10,6 +10,9 @@ Abaixo, algumas perguntas para serem respondidas com comandos SQL.
 
 * Qual o número de indicações por categoria agrupadas por categoria?
 
+R: 2
+
+Q:
 ```sql
 SELECT categoria, COUNT(*) AS total_indicacoes
 FROM indicados_ao_oscar
