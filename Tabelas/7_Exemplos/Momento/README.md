@@ -15,7 +15,7 @@ Você está prestes a explorar o banco de dados da empresa "Momento"! Com essa b
 * **Quantos funcionários trabalham no Departamento de Vendas?**
 Use uma consulta para descobrir o número total de funcionários alocados nesse departamento.
 
-* **Salários no Departamento de Vendas**
+#### **Salários no Departamento de Vendas**
 
 * Qual é o custo total dos salários do pessoal de Vendas? Isso nos ajuda a entender o orçamento do departamento!
 
