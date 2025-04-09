@@ -64,8 +64,6 @@ Q:
 
 * Quais os atores/atrizes que foram indicados mais de uma vez?
 
-Obs: Utilizar a função COUNT e GROUP BY, e a função HAVING para filtrar os registros que possuem mais de uma indicação. 
-
 ---
 
 * A série de filmes Toy Story ganhou Oscars em quais anos?
