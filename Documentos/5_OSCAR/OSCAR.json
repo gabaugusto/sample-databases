@@ -102105,12 +102105,9 @@
         "ano_cerimonia": 2019,
         "cerimonia": 91,
         "categoria": "MUSIC (Original Song)",
-        "nome_do_indicado": "Music by Kendrick Lamar, Mark Sounwave\" Spears and Anthony \"Top Dawg\" Tiffith; Lyric by Kendrick Lamar",
-        "nome_do_filme": " SZA and Anthony \"Top Dawg\" Tiffith\"",
-        "vencedor": "Black Panther",
-        "null": [
-            "false"
-        ]
+        "nome_do_indicado": "Music by Kendrick Lamar, Mark Sounwave\" Spears and Anthony \"Top Dawg\" Tiffith; Lyric by Kendrick Lamar SZA and Anthony \"Top Dawg\" Tiffith\"",
+        "nome_do_filme": "Black Panther",
+        "vencedor": "false"
     },
     {
         "id_registro": 10212,
