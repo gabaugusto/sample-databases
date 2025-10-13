@@ -2,14 +2,14 @@
 db.medicos.find({
   especialidades: "Infectologia",
   status: {
-    $in: [1, 2]
+    $in: [1, 2] // Operador $in para buscar valores em um array
   }
 });
 
 // Buscar médicos com status 1 e especialidade "Infectologia" ou "Cardiologia"
 db.medicos.find({
-  $and: [{
-    status: 1
+  $and: [{ // Operador $and para combinar condições
+    status: 1,
   }, {
     $or: [{
       especialidades: "Infectologia"
@@ -60,7 +60,7 @@ db.medicos.estimatedDocumentCount();
 db.medicos.find().sort({
   nome: 1,
   especialidades: 1
-}).limit(5);
+}).limit(5); 
 
 // Buscar e ordernar por nome e especialidade e limitar a 5 registros e pular 5 registros
 db.medicos.find().sort({
@@ -71,14 +71,14 @@ db.medicos.find().sort({
 // Buscar enfermeiros com altura maior que 1.70
 db.enfermeiros.find({
   altura: {
-    $gt: 1.70
+    $gt: 1.70 // gt = greater than (maior que)
   }
 });
 
 // Buscar enfermeiros que nasceram antes de 1995
 db.enfermeiros.find({
   data_nascimento: {
-    $lt: ISODate("1995-01-01")
+    $lt: ISODate("1995-01-01") // lt = less than (menor que)
   }
 });
 
@@ -91,12 +91,14 @@ db.enfermeiros.find({
 });
 
 // Buscar uma consulta pelo id e encontrar o médico relacionado
+// O método aggregate() é utilizado para realizar operações de agregação no MongoDB.
+// A operação de agregação $lookup é utilizada para realizar junções entre coleções no MongoDB.
 db.consultas.aggregate([{
-  $match: {
-    _id: ObjectId("66e96b2076efecbc5e470c2a")
+  $match: { // Filtra os documentos da coleção de consultas
+    _id: ObjectId("68ed00f67d36afd851de669c") // Filtra pelo id da consulta
   }
 }, {
-  $lookup: {
+  $lookup: { // Realiza a junção com a coleção de médicos
     from: "medicos",         // Buscar na Coleção de médicos
     localField: "medico_id", // Campo da coleção de consultas
     foreignField: "_id",     // Campo da coleção de médicos (Equivalente ao campo medico_id da coleção de consultas)
@@ -129,9 +131,9 @@ db.consultas.aggregate([{
 // Dessa vez, o valor da consulta é um campo do documento de consulta, e não do paciente.
 // A expressão "valor": 1 no segundo argumento da função find() indica que apenas o campo "valor" deve ser retornado.
 db.consultas.find({
-  "paciente_id": ObjectId("66e96b0576efecbc5e470c28")
+  paciente_id: ObjectId("8a24h1b5d9931b5b00ajhs3b")
 }, {
-  "valor": 1
+  valor: 1
 }).pretty();
 
 // Consultar as somas dos valores das consultas de cada paciente.
