@@ -243,13 +243,6 @@ O CEO pediu um dashboard completo.
 
 ---
 
-## Avaliação
-
-- **Nível 1-3**: Conceitos básicos de MongoDB
-- **Nível 4-6**: Operações CRUD completas
-- **Nível 7-8**: Agregações e análise de dados
-- **Nível 9-10**: Expertise avançada e pensamento crítico
-
 **Objetivo de aprendizado**: Ao completar todos os níveis, você estará apto a trabalhar com MongoDB em ambientes de produção, realizar análises complexas de dados e otimizar queries para performance.
 
-Bons estudos! 🚀
+Bons estudos!
