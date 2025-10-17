@@ -25,6 +25,7 @@ O desafio será dividido em **duas etapas**:
 O caos tomou conta da base de dados! Sua primeira missão é **limpar e padronizar** os registros.
 
 Tarefas obrigatórias:
+
 1. Padronize nomes de campos (`Name`, `nome`, `char_name` → `name`);
 2. Corrija capitalização e espaços extras (`"tOny stark"` → `"Tony Stark"`);
 3. Converta tipos de dados (`"85"` → `85`);
@@ -63,13 +64,13 @@ Use seu poder máximo e crie consultas heroicas!
 
 Tente descobrir:
 
-O personagem mais poderoso de cada universo;
+* O personagem mais poderoso de cada universo;
 
-O universo com mais personagens registrados;
+* O universo com mais personagens registrados;
 
-Quantos personagens possuem mais de 3 equipamentos.
+* Quantos personagens possuem mais de 3 equipamentos.
 
-Entregas: 
+**Entregas**: 
 
 1. Código de higienizados e normalizados em seu repositório pessoal;
 2. Arquivo `nerd_universe_clean.json` com os dados higienizados;
