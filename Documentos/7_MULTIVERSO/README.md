@@ -16,9 +16,9 @@ Seu objetivo é aplicar seus poderes de **higienização** e **normalização de
 
 Há dois arquivos neste repositório com **50 registros** de personagens, criaturas e heróis do mundo nerd. Que devem ser higienizados e normalizados em uma nova coleção chamada **`universo_nerd`**.
 
-O desafio será dividido em **duas etapas**:
-
 ---
+
+O desafio será dividido em **duas etapas**:
 
 ### Etapa 1 — Higienização de Dados
 
@@ -35,7 +35,6 @@ Tarefas obrigatórias:
 8. Gere uma nova coleção limpa chamada **`nerd_universe_clean`**.
 9. Exporte a coleção limpa para um arquivo JSON chamado `nerd_universe_clean.json` e comite no **seu** repositório.
 
-
 ---
 
 ### Etapa 2 — Normalização
@@ -44,18 +43,19 @@ Agora que o multiverso foi parcialmente restaurado, é hora de organizar os dado
 
 Crie as seguintes coleções (ou variações delas):
 
-characters → informações principais dos personagens;
+**characters** → informações principais dos personagens;
 
-universes → nome, tipo (filmes, HQs, games, animes), origem;
+**universes** → nome, tipo (filmes, HQs, games, animes), origem;
 
-species → nome, descrição (humano, alien, elfo, etc.);
+**species** → nome, descrição (humano, alien, elfo, etc.);
 
-equipment → equipamentos icônicos dos personagens;
+**equipment** → equipamentos icônicos dos personagens;
 
-movies → principais obras em que o personagem aparece.
+**movies** → principais obras em que o personagem aparece.
 
 Lembre-se de relacionar as coleções usando IDs de referência (universe_id, species_id, etc.)
-e de testar seus relacionamentos com o operador $lookup.
+e de testar seus relacionamentos com o operador `$lookup`.
+
 
 ### Desafio Extra (opcional)
 
@@ -63,8 +63,13 @@ Use seu poder máximo e crie consultas heroicas!
 
 Tente descobrir:
 
-💪 O personagem mais poderoso de cada universo;
+O personagem mais poderoso de cada universo;
 
-🌍 O universo com mais personagens registrados;
+O universo com mais personagens registrados;
 
-🧰 Quantos personagens possuem mais de 3 equipamentos.
+Quantos personagens possuem mais de 3 equipamentos.
+
+Entregas: 
+
+1. Código de higienizados e normalizados em seu repositório pessoal;
+2. Arquivo `nerd_universe_clean.json` com os dados higienizados;
