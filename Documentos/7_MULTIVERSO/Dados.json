@@ -495,3 +495,14 @@
     "species": "Maia (spirit)",
     "movies": ["Fellowship of the Ring"],
     "debut_year": "1954"
+  },
+  {
+    "_id": 50,
+    "name": "Riri Stark",
+    "universe": "Marvel Comics",
+    "powerLevel": 95,
+    "equipment": ["armor","AI assistant","money"],
+    "species": "Human",
+    "movies": ["Black Panther: Wakanda Forever"],
+    "debut_year": "2022"
+  }]
