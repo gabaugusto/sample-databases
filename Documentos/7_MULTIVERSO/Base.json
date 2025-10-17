@@ -60,7 +60,7 @@
     "debut_year": "1977"
   },
   {
-    "_id": 57,
+    "_id": 24,
     "nome": "Optimus Prime",
     "Universe": "Transformers ",
     "PowerLevel": "98",
@@ -100,7 +100,7 @@
     "debut_year": "1986"
   },
   {
-    "_id": 61,
+    "_id": 29,
     "Nome": "Samus Aran",
     "universe": "metroid",
     "powerlevel": "84",
@@ -170,7 +170,7 @@
     "debut_year": "2013"
   },
   {
-    "_id": 68,
+    "_id": 20,
     "char_name": "Joel miller",
     "universe": "The Last Of us ",
     "power_level": 71,

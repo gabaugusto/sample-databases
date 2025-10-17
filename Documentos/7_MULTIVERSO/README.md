@@ -12,7 +12,102 @@ Seu objetivo é aplicar seus poderes de **higienização** e **normalização de
 
 ## Objetivos do Desafio
 
-Há dois arquivos neste repositório com **50 registros** de personagens, criaturas e heróis do mundo nerd. Que devem ser higienizados e normalizados em uma nova coleção chamada **`universo_nerd`**.
+Há dois arquivos neste repositório com **75 registros** de personagens, criaturas e heróis do mundo nerd. Que devem ser higienizados e normalizados em uma nova coleção chamada **`universo_nerd`**.
+
+---
+
+Exemplos de dados inconsistentes:
+
+```json
+{
+  "_id": 1,
+  "Name": "tony stark",
+  "alias": ["Ironman", "Iron Man", null],
+  "universe": "Marvel",
+  "first_appearance": "1963 (Tales of suspense #39)",
+  "powerLevel": "95",
+  "equipment": ["armor", "AI assistant", "money", "ARMOR"],
+  "species": "Human ",
+  "movies": "Iron Man 1, Iron Man 2, Avengers, Avengers: Endgame",
+  "debut_year": "Nineteen Sixty Three"
+},
+{
+  "_id": 2,
+  "char_name": "Darth vader",
+  "Universe": "StarWars",
+  "First_Appearance": "Star wars episode iv",
+  "power_level": 88,
+  "equipment": "lightsaber, armor, force",
+  "species": "Human (cyborg)",
+  "movies": ["A New Hope", "Empire Strikes Back", "Return of the Jedi"],
+  "debut_year": 1977
+},
+{
+  "_id": 3,
+  "nome": "harry potter",
+  "Alias": "The Boy Who Lived",
+  "universe": "Wizarding world ",
+  "first_appearance": null,
+  "PowerLevel": "N/A",
+  "equipment": ["wand", "cloak", "owl"],
+  "species": "human",
+  "movies": ["Sorcerer's stone","Chamber of secrets","prisoner of azkaban"],
+  "debut_year": 1997
+},
+{
+  "_id": 4,
+  "nome": "Peter Parker",
+  "alias": ["Spider-man", "Spiderman"],
+  "universe": "Marvel",
+  "powerLevel": 89,
+  "equipment": "web shooters, costume",
+  "species": "Human",
+  "movies": null,
+  "debut_year": "1962"
+},
+{
+  "_id": 5,
+  "Nome": "Master Chief",
+  "Alias": ["John-117"],
+  "Universe": "HALO",
+  "firstAppearance": "Halo Combat Evolved",
+  "powerLevel": "100",
+  "equipment": ["Mjolnir armor", "Assault rifle", ""],
+  "species": "Human",
+  "movies": "Halo: Nightfall",
+  "debut_year": "2001"
+},
+{
+  "_id": 6,
+  "name": "Gandalf the Grey",
+  "universe": "Middle-Earth",
+  "powerLevel": 93,
+  "equipment": "staff, sword, horse",
+  "species": "Maia (spirit)",
+  "movies": ["The Fellowship of the Ring", "The Two Towers", "The Return of the King"],
+  "debut_year": "1954"
+},
+{
+  "_id": 7,
+  "char_name": "Batman",
+  "universe": "Dc",
+  "powerlevel": "85 ",
+  "equipment": ["Batsuit","batmobile","money"],
+  "species": "Human",
+  "movies": ["The Dark Knight","Batman Begins","The Batman"],
+  "debut_year": "1939"
+},
+{
+  "_id": 8,
+  "char_name": "bat man",
+  "universe": "DC comics",
+  "power_level": "85",
+  "equipment": "batsuit, batmobile, money",
+  "species": "human",
+  "movies": "The Dark Knight",
+  "debut_year": 1939
+}
+```
 
 ---
 
