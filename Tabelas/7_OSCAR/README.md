@@ -1,10 +1,10 @@
-# Oscar - Exercícios MongoDB
+# Oscar - Exercícios SQL
 
 Bem-vindo à base de dados do **Oscar**!
 
 O Oscar é a premiação mais prestigiada do cinema mundial, realizada anualmente desde 1929 pela Academia de Artes e Ciências Cinematográficas. Nesta base de dados, você encontrará registros históricos de indicados e vencedores de diversas categorias ao longo de quase 100 anos de história do cinema.
 
-Nestes exercícios, você vai explorar o banco de dados MongoDB do Oscar e responder perguntas que revelam insights fascinantes sobre a história do cinema, tendências de premiação, e momentos marcantes da indústria cinematográfica.
+Nestes exercícios, você vai explorar o banco de dados SQL do Oscar e responder perguntas que revelam insights fascinantes sobre a história do cinema, tendências de premiação, e momentos marcantes da indústria cinematográfica.
 
 ---
 
