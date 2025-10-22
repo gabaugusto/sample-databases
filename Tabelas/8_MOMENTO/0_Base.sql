@@ -279,7 +279,7 @@ INSERT INTO funcionarios(funcionario_id,primeiro_nome,sobrenome,email,senha,tele
 INSERT INTO funcionarios(funcionario_id,primeiro_nome,sobrenome,email,senha,telefone,data_contratacao,cargo_id,salario,gerente_id,departamento_id) VALUES (205,'Shelley','Higgins','shelley.higgins@momento.org','@4@8@15@16','515.123.8080','1994-06-07',2,12000.00,101,11);
 INSERT INTO funcionarios(funcionario_id,primeiro_nome,sobrenome,email,senha,telefone,data_contratacao,cargo_id,salario,gerente_id,departamento_id) VALUES (206,'Susan','Storm','susan.storm@momento.org','@4@8@15@16','515.123.8181','1994-06-07',20,18300.00,205,12);
 INSERT INTO funcionarios(funcionario_id,primeiro_nome,sobrenome,email,senha,telefone,data_contratacao,cargo_id,salario,gerente_id,departamento_id) VALUES (207,'Lucius','Fox','lucius.fox@momento.org','@4@8@15@16','515.124.4569','1994-08-17',7,12000.00,101,10);
-INSERT INTO funcionarios(funcionario_id,primeiro_nome,sobrenome,email,senha,telefone,data_contratacao,cargo_id,salario,gerente_id,departamento_id) VALUES (207,'Sabrina Portela','Spellman','sabrina.spellman@momento.org','1a2b3c@port','945.368.4569','2024-10-28',20,8000.01,101,10);
+INSERT INTO funcionarios(funcionario_id,primeiro_nome,sobrenome,email,senha,telefone,data_contratacao,cargo_id,salario,gerente_id,departamento_id) VALUES (208,'Sabrina Portela','Spellman','sabrina.spellman@momento.org','1a2b3c@port','945.368.4569','2024-10-28',20,8000.01,101,10);
 
 INSERT INTO produtos (produto_nome, produto_price) VALUES ("Uniforme do Superman", 300.13);
 INSERT INTO produtos (produto_nome, produto_price) VALUES ("Fake Batarang", 239.29);
