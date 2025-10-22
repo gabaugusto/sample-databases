@@ -143,7 +143,7 @@ INSERT INTO paises(pais_id,pais_nome,regiao_id) VALUES ('WA','Wakanda', 4);
 INSERT INTO paises(pais_id,pais_nome,regiao_id) VALUES ('ZM','Zambia', 4);
 INSERT INTO paises(pais_id,pais_nome,regiao_id) VALUES ('ZW','Zimbabwe', 4);
 
-INSERT INTO escritorios(escritorio_id,escritorio_nome,endereco,cep,cidade,estado_provincia,pais_id) VALUES (1400,'Wayne escritorios', '2014 Jabberwocky Rd','26192','Gotham','New York','US');
+INSERT INTO escritorios(escritorio_id,escritorio_nome,endereco,cep,cidade,estado_provincia,pais_id) VALUES (1400,'Wayne Offices', '2014 Jabberwocky Rd','26192','Gotham','New York','US');
 INSERT INTO escritorios(escritorio_id,escritorio_nome,endereco,cep,cidade,estado_provincia,pais_id) VALUES (1500,'Stark Tower','2011 Interiors Blvd','99236','South San Francisco','California','US');
 INSERT INTO escritorios(escritorio_id,escritorio_nome,endereco,cep,cidade,estado_provincia,pais_id) VALUES (1700,'Sala Winter','2004 Charade Rd','98199','Seattle','Washington','US');
 INSERT INTO escritorios(escritorio_id,escritorio_nome,endereco,cep,cidade,estado_provincia,pais_id) VALUES (1800,'Arkham Base','147 Spadina Ave','M5V 2L7','Toronto','Ontario','CA');
