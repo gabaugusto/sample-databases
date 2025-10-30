@@ -80,15 +80,13 @@ O RH está fazendo uma análise demográfica da empresa.
 
 ## Nível 4: Operações e Escritórios
 
-**4.1** Liste todos os escritórios e seus respectivos países.
+**4.1** Qual é o custo total de suprimentos em cada escritório? Ordene do mais caro ao mais barato.
 
-**4.2** Qual é o custo total de suprimentos em cada escritório? Ordene do mais caro ao mais barato.
+**4.2** Qual escritório possui a maior quantidade de diferentes tipos de suprimentos?
 
-**4.3** Qual escritório possui a maior quantidade de diferentes tipos de suprimentos?
+**4.3** Qual é o suprimento mais caro (considerando preço unitário) em toda a empresa?
 
-**4.4** Qual é o suprimento mais caro (considerando preço unitário) em toda a empresa?
-
-**4.5** Calcule o valor total do inventário de suprimentos da empresa (quantidade × preço unitário de todos os itens em todos os escritórios).
+**4.4** Calcule o valor total do inventário de suprimentos da empresa (quantidade × preço unitário de todos os itens em todos os escritórios).
 
 ---
 
@@ -128,7 +126,7 @@ A empresa está crescendo e mudanças precisam acontecer!
 
 **6.5** Adicione um novo suprimento ao escritório "Wayne Offices": 15 unidades de "Headsets" com preço unitário de $150 cada.
 
-**6.6** Todos os funcionários contratados antes de 1990 estão aposentando. Remova-os do banco de dados (CUIDADO: execute um find antes para ver quantos serão afetados!).
+**6.6** Todos os funcionários contratados antes de 1990 estão aposentando. Remova-os do banco de dados (CUIDADO: execute um **find** antes para ver quantos serão afetados!).
 
 ---
 
