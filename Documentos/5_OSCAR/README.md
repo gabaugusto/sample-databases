@@ -22,7 +22,7 @@ Nestes exercícios, você vai explorar o banco de dados MongoDB do Oscar e respo
 
 **1.5** Quantas cerimônias do Oscar estão registradas no total?
 
-**1.6** Atualize os registros da tabela com os dados do Oscar 2026 (pesquise os vencedores e adicione-os).
+**1.6** Atualize os registros da tabela com os dados do Oscar 2025 e 2026 (pesquise os vencedores e adicione-os).
 
 ---
 
