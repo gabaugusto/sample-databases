@@ -120,3 +120,4 @@ hospedagens   ||--o{ pagamentos     : "gera"
 - [ ] Definir FK de `funcionarios` nas tabelas corretas
 - [ ] Revisar tipos de dados e restrições (`NOT NULL`, `DEFAULT`, `CHECK`, etc.)
 - [ ] Garantir que todos os relacionamentos estejam representados
+
