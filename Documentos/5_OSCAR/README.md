@@ -6,15 +6,46 @@ O Oscar é a premiação mais prestigiada do cinema mundial, realizada anualment
 
 Nestes exercícios, você vai explorar o banco de dados MongoDB do Oscar e responder perguntas que revelam insights fascinantes sobre a história do cinema, tendências de premiação, e momentos marcantes da indústria cinematográfica.
 
+## Dicas Gerais
+
+- **Conversão de Dados**: Use `$toInt`, `$toBool` para converter tipos
+- **Arrays**: Use `$addToSet` para valores únicos
+- **Datas**: Use `$year` para extrair o ano de campos de data
+- **Performance**: Para queries complexas, considere criar índices em campos frequentemente consultados
+- **Boa prática**: Sempre teste com `.limit(5)` antes de executar queries que retornam muitos resultados
+
 ---
 
-## 📊 Nível 1: Primeiros Passos
+## Avaliação
+
+- **Nível 1-4**: Operações básicas e queries simples
+- **Nível 5-8**: Agregações e análise de dados
+- **Nível 9-11**: Queries complexas e pensamento analítico
+- **Nível 12-14**: Expertise avançada e pensamento estratégico
+
+**Objetivo de aprendizado**: Ao completar todos os níveis, você será capaz de trabalhar com bases de dados históricas complexas, realizar análises estatísticas sofisticadas e extrair insights valiosos de grandes volumes de dados.
+
+---
+
+## Nível 1: Primeiros Passos
 
 ### Conhecendo a Base de Dados
 
 **1.1** Quantos registros existem na coleção de indicados ao Oscar?
+Exemplo de resposta:
+
+R: 1430 registros
+```javascript
+db.oscar_indicados.countDocuments();
+```
 
 **1.2** Quais são as diferentes categorias de premiação que existem no banco de dados? Liste todas as categorias únicas.
+
+R: 92 registros
+Exemplo de resposta:
+```javascript
+db.oscar_indicados.distinct("categoria");
+```
 
 **1.3** Qual foi o primeiro ano de cerimônia do Oscar registrado na base?
 
@@ -26,7 +57,7 @@ Nestes exercícios, você vai explorar o banco de dados MongoDB do Oscar e respo
 
 ---
 
-## 🎬 Nível 2: Explorando Categorias
+## Nível 2: Explorando Categorias
 
 **2.1** Quantas indicações existem para cada categoria? Agrupe por categoria e ordene da mais frequente para a menos frequente.
 
@@ -42,7 +73,7 @@ Nestes exercícios, você vai explorar o banco de dados MongoDB do Oscar e respo
 
 ---
 
-## 🌟 Nível 3: Atores e Atrizes Famosos
+## Nível 3: Atores e Atrizes Famosos
 
 ### Natalie Portman
 
@@ -78,7 +109,7 @@ Nestes exercícios, você vai explorar o banco de dados MongoDB do Oscar e respo
 
 ---
 
-## 🏆 Nível 4: Vencedores Históricos
+## Nível 4: Vencedores Históricos
 
 **4.1** Quem ganhou o primeiro Oscar para Melhor Atriz (ACTRESS)? Em que ano e por qual filme?
 
@@ -92,7 +123,7 @@ Nestes exercícios, você vai explorar o banco de dados MongoDB do Oscar e respo
 
 ---
 
-## 🎭 Nível 5: Análise de Indicações
+## Nível 5: Análise de Indicações
 
 **5.1** Quais atores/atrizes foram indicados mais de uma vez? Liste o nome e o número de indicações.
 
@@ -106,7 +137,7 @@ Nestes exercícios, você vai explorar o banco de dados MongoDB do Oscar e respo
 
 ---
 
-## 🎥 Nível 6: Análise de Filmes
+## Nível 6: Análise de Filmes
 
 ### Toy Story
 
@@ -132,7 +163,7 @@ Nestes exercícios, você vai explorar o banco de dados MongoDB do Oscar e respo
 
 ---
 
-## 📅 Nível 7: Análise Temporal
+## Nível 7: Análise Temporal
 
 **7.1** Quantas indicações aconteceram por década? Agrupe por década (1920s, 1930s, etc.) e mostre o total.
 
@@ -146,7 +177,7 @@ Nestes exercícios, você vai explorar o banco de dados MongoDB do Oscar e respo
 
 ---
 
-## 🔄 Nível 8: Operações de Atualização
+## Nível 8: Operações de Atualização
 
 **8.1** No campo "vencedor", altere todos os valores "true" (string) para true (booleano) e "false" (string) para false (booleano).
 
@@ -160,7 +191,7 @@ Nestes exercícios, você vai explorar o banco de dados MongoDB do Oscar e respo
 
 ---
 
-## 🎯 Nível 9: Questões Históricas e Sociais
+## Nível 9: Questões Históricas e Sociais
 
 ### Representatividade
 
@@ -182,7 +213,7 @@ Nestes exercícios, você vai explorar o banco de dados MongoDB do Oscar e respo
 
 ---
 
-## 🔍 Nível 10: Análise Avançada
+## Nível 10: Análise Avançada
 
 **10.1** Quais filmes ganharam o Oscar de Melhor Filme ("OUTSTANDING PICTURE" ou "BEST PICTURE") e Melhor Diretor na mesma cerimônia?
 
@@ -198,7 +229,7 @@ Nestes exercícios, você vai explorar o banco de dados MongoDB do Oscar e respo
 
 ---
 
-## 🏅 Nível 11: Desafios Complexos
+## Nível 11: Desafios Complexos
 
 **11.1** Crie um ranking dos 10 filmes mais premiados da história (que ganharam mais Oscars).
 
@@ -214,7 +245,7 @@ Nestes exercícios, você vai explorar o banco de dados MongoDB do Oscar e respo
 
 ---
 
-## 🎲 Nível 12: Casos Práticos
+## Nível 12: Casos Práticos
 
 ### Cenário 1: Curadoria de Mostra de Cinema
 
@@ -248,7 +279,7 @@ Você trabalha para um site de apostas e precisa de estatísticas.
 
 ---
 
-## 💡 Nível 13: Queries Criativas
+## Nível 13: Queries Criativas
 
 **13.1** Encontre todos os filmes cujo nome começa com "The" e ganharam pelo menos um Oscar.
 
@@ -262,7 +293,7 @@ Você trabalha para um site de apostas e precisa de estatísticas.
 
 ---
 
-## 🎓 Desafio Final: Dashboard Completo
+## Desafio Final: Dashboard Completo
 
 **14.1** Crie UMA ÚNICA query de agregação que retorne um dashboard executivo com:
    - Total de indicações
@@ -276,24 +307,6 @@ Você trabalha para um site de apostas e precisa de estatísticas.
 
 ---
 
-## 💡 Dicas Gerais
 
-- **Text Search**: Use regex (`$regex`) para buscar nomes parciais de filmes ou pessoas
-- **Conversão de Dados**: Use `$toInt`, `$toBool` para converter tipos
-- **Arrays**: Use `$addToSet` para valores únicos
-- **Datas**: Use `$year` para extrair o ano de campos de data
-- **Performance**: Para queries complexas, considere criar índices em campos frequentemente consultados
-- **Boa prática**: Sempre teste com `.limit(5)` antes de executar queries que retornam muitos resultados
 
----
-
-## 🎓 Avaliação
-
-- **Nível 1-4**: Operações básicas e queries simples
-- **Nível 5-8**: Agregações e análise de dados
-- **Nível 9-11**: Queries complexas e pensamento analítico
-- **Nível 12-14**: Expertise avançada e pensamento estratégico
-
-**Objetivo de aprendizado**: Ao completar todos os níveis, você será capaz de trabalhar com bases de dados históricas complexas, realizar análises estatísticas sofisticadas e extrair insights valiosos de grandes volumes de dados.
-
-Bons estudos e que vença o melhor! 🏆
+Bons estudos!
