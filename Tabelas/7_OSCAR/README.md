@@ -125,6 +125,8 @@ SELECT DISTINCT categoria FROM oscar_indicados;
 
 **5.5** Quantos indicados têm exatamente 1 indicação na história?
 
+**5.6** Qual o maior números de indicados em um único ano? Essa é uma pergunta franca.  
+
 ---
 
 ## Nível 6: Análise de Filmes
