@@ -64,7 +64,7 @@ db.registros.find().skip(15).limit(1).sort({ano_cerimonia: -1})
 
 **1.5** Quantas cerimônias do Oscar estão registradas no total?
 
-**1.6** Atualize os registros da tabela com os dados do Oscar 2025 e 2026 (pesquise os vencedores e adicione-os).
+**1.6** Atualize os registros da coleção com os dados do Oscar 2025 e 2026 (pesquise os vencedores e adicione-os).
 
 ---
 
