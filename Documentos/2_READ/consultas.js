@@ -27,8 +27,17 @@ db.medicos.find({
   status: 1
 });
 
+// Buscar todos os médicos e ordernar por nome e especialidade
+db.medicos.find({
+  especialidades: "Infectologia",
+  status: 1
+}).sort({
+  nome: 1,
+  especialidades: 1
+});
 
-// Ordenação 
+
+//  Ordenação 
 // "Sort" serve para ordenar esses resultados. "1" É para ordem crescente e "-1" para ordem descrescente.  
 db.medicos.find().sort({
   especialidades: -1
