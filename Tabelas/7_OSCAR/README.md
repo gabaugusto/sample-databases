@@ -22,19 +22,38 @@ Nestes exercícios, você vai explorar o banco de dados SQL do Oscar e responder
 ### Conhecendo a Base de Dados
 
 **1.1** Quantos registros existem na tabela de indicados ao Oscar?
+
 Exemplo de resposta: 
 
 R: 1430 registros
+
 ```sql
 SELECT COUNT(*) FROM oscar_indicados;
 ```
 
-**1.2** Quais são as diferentes categorias de premiação que existem no banco de dados? Liste todas as categorias únicas.
+**1.2.1** Quais são as diferentes categorias de premiação que existem no banco de dados? Liste todas as categorias únicas.
 
-R: 92 registros
 Exemplo de resposta:
+
+R:
+```ACTOR
+ACTOR IN A LEADING ROLE
+ACTOR IN A SUPPORTING ROLE
+...
+```
+
 ```sql
 SELECT DISTINCT categoria FROM oscar_indicados;
+```
+
+**1.2.2** **Quantas** categorias únicas existem?
+
+R: 92 registros
+
+Exemplo de resposta:
+
+```sql
+SELECT COUNT(DISTINCT categoria) FROM oscar_indicados;
 ```
 
 **1.3** Qual foi o primeiro ano de cerimônia do Oscar registrado na base?
@@ -79,7 +98,23 @@ SELECT DISTINCT categoria FROM oscar_indicados;
 
 **3.5** Quantas vezes Viola Davis foi indicada ao Oscar?
 
+R: 4
+
+```sql
+SELECT COUNT(*) FROM indicados_ao_oscar
+WHERE nome_indicado LIKE "%Viola Davis%"
+```
+
 **3.6** Quantos Oscars Viola Davis ganhou?
+
+R: 1
+
+```sql
+SELECT COUNT(*) FROM indicados_ao_oscar
+WHERE nome_indicado LIKE "%Viola Davis%"
+AND 
+vencedor = true;
+```
 
 **3.7** Por quais filmes Viola Davis foi indicada?
 
@@ -119,7 +154,7 @@ SELECT DISTINCT categoria FROM oscar_indicados;
 
 **5.2** Qual ator ou atriz tem o maior número de indicações na história do Oscar?
 
-**5.3** Quais atores foram indicados mais de 3 vezes mas nunca ganharam?
+**5.3** Quais atores foram indicados mais de 3 vezes, mas nunca ganharam?
 
 **5.4** Encontre todos os artistas que foram indicados em categorias diferentes (ex: ator e diretor).
 
@@ -155,31 +190,31 @@ SELECT DISTINCT categoria FROM oscar_indicados;
 
 ---
 
-## Nível 7: Análise Temporal
+## Nível 7: Operações de Atualização
 
-**7.1** Quantas indicações aconteceram por década? Agrupe por década (1920s, 1930s, etc.) e mostre o total.
+**7.1** No campo "vencedor", altere todos os valores "true" (string) para true (booleano) e "false" (string) para false (booleano).
 
-**7.2** Em qual década houve o maior número de indicações?
+**7.2** Inclua no banco 3 filmes que nunca foram nomeados ao Oscar, mas que você acha que merecem. Use dados fictícios, mas realistas.
 
-**7.3** Como o número de categorias evoluiu ao longo dos anos? Mostre quantas categorias únicas existiam a cada década.
+**7.3** Adicione uma nova categoria chamada "BEST INTERNATIONAL FEATURE FILM" com alguns vencedores recentes (2020-2024).
 
-**7.4** Qual foi o ano com o maior número de indicações registradas?
+**7.4** Corrija possíveis erros de digitação nos nomes dos filmes (ex: espaços extras, caracteres especiais desnecessários).
 
-**7.5** Calcule a taxa de crescimento de indicações comparando a primeira década com a última.
+**7.5** Remova todos os registros com valor NULL no campo nome_do_filme.
 
 ---
 
-## Nível 8: Operações de Atualização
+## Nível 8: Análise Temporal
 
-**8.1** No campo "vencedor", altere todos os valores "true" (string) para true (booleano) e "false" (string) para false (booleano).
+**8.1** Quantas indicações aconteceram por década? Agrupe por década (1920s, 1930s, etc.) e mostre o total.
 
-**8.2** Inclua no banco 3 filmes que nunca foram nomeados ao Oscar, mas que você acha que merecem. Use dados fictícios mas realistas.
+**8.2** Em qual década houve o maior número de indicações?
 
-**8.3** Adicione uma nova categoria chamada "BEST INTERNATIONAL FEATURE FILM" com alguns vencedores recentes (2020-2024).
+**8.3** Como o número de categorias evoluiu ao longo dos anos? Mostre quantas categorias únicas existiam a cada década.
 
-**8.4** Corrija possíveis erros de digitação nos nomes dos filmes (ex: espaços extras, caracteres especiais desnecessários).
+**8.4** Qual foi o ano com o maior número de indicações registradas?
 
-**8.5** Remova todos os registros com valor NULL no campo nome_do_filme.
+**8.5** Calcule a taxa de crescimento de indicações comparando a primeira década com a última.
 
 ---
 
@@ -247,7 +282,7 @@ Você está organizando uma mostra de cinema e precisa selecionar filmes.
 
 **12.2** Selecione 5 filmes de cada década (1930s até 2020s) que ganharam pelo menos um Oscar.
 
-**12.3** Crie uma lista de "clássicos esquecidos" - filmes que ganharam Oscars mas são de mais de 50 anos atrás.
+**12.3** Crie uma lista de "clássicos esquecidos" - filmes que ganharam Oscars, mas são de mais de 50 anos atrás.
 
 ### Cenário 2: Análise para Documentário
 
@@ -257,7 +292,7 @@ Você está produzindo um documentário sobre a história do Oscar.
 
 **12.5** Liste todos os "primeiros" históricos (primeira mulher a ganhar melhor direção, primeiro ator negro, etc.) - use sua criatividade para encontrar esses marcos.
 
-**12.6** Encontre casos de "injustiça" - filmes/atores muito indicados mas que nunca ganharam.
+**12.6** Encontre casos de "injustiça" - filmes/atores muito indicados, mas que nunca ganharam.
 
 ### Cenário 3: Estatísticas para Apostas
 
