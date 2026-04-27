@@ -6,6 +6,10 @@
 
 CREATE DATABASE nome_do_banco;
 
+-- ou 
+
+CREATE DATABASE IF NOT EXISTS nome_do_banco_existente;
+
 ----------------------------------------------------
 ----------------------------------------------------
 ----------------------------------------------------
@@ -20,6 +24,15 @@ CREATE TABLE nome_da_tabela (
 -- ou 
 
 CREATE TABLE medicos (
+    crm int,
+    nome varchar(125),
+    email varchar(125),
+    PRIMARY KEY (crm)
+);
+
+-- ou 
+
+CREATE TABLE IF NOT EXISTS medicos (
     crm int,
     nome varchar(125),
     email varchar(125),
@@ -51,3 +64,5 @@ VALUES (valor1, valor2, valor3);
 
 INSERT INTO medicos (crm, nome, email)
 VALUES (123456, 'Dr. Fulano', 'fulano@hospital.com');
+
+
