@@ -26,3 +26,20 @@ db.medicos.find({
   especialidades: "Infectologia",
   status: 1
 });
+
+
+// Ordenação 
+// "Sort" serve para ordenar esses resultados. "1" É para ordem crescente e "-1" para ordem descrescente.  
+db.medicos.find().sort({
+  especialidades: -1
+});
+
+// "Limit" que limita a quantidade de resultados. Serve para não onerar o banco e ser mais assertivo. 
+db.medicos.find().sort({
+  especialidades: -1
+}).limit(3);
+
+// "Skip". Pula a quantidade de registros antes de trazer o resultado final. 
+db.medicos.find().sort({
+  especialidades: -1
+}).limit(3).skip(5);

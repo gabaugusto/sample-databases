@@ -32,6 +32,7 @@ Nestes exercícios, você vai explorar o banco de dados MongoDB do Oscar e respo
 ### Conhecendo a Base de Dados
 
 **1.1** Quantos registros existem na coleção de indicados ao Oscar?
+
 Exemplo de resposta:
 
 R: 1430 registros
@@ -48,6 +49,13 @@ db.oscar_indicados.distinct("categoria");
 ```
 
 **1.3** Qual foi o primeiro ano de cerimônia do Oscar registrado na base?
+
+R: 1500
+
+```
+db.registros.find().skip(15).limit(1).sort({ano_cerimonia: -1})
+``` 
+
 
 **1.4** Qual foi o último ano de cerimônia registrado na base?
 
