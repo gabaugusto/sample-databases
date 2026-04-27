@@ -36,14 +36,17 @@ Nestes exercícios, você vai explorar o banco de dados MongoDB do Oscar e respo
 Exemplo de resposta:
 
 R: 1430 registros
+
 ```javascript
 db.oscar_indicados.countDocuments();
 ```
 
 **1.2** Quais são as diferentes categorias de premiação que existem no banco de dados? Liste todas as categorias únicas.
 
-R: 92 registros
 Exemplo de resposta:
+
+R: 92 registros
+
 ```javascript
 db.oscar_indicados.distinct("categoria");
 ```
