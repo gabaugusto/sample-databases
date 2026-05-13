@@ -75,8 +75,8 @@ Tarefas obrigatórias:
 5. Transforme listas inconsistentes em arrays reais;
 6. Unifique universos semelhantes (`"marvel studios"`, `"MARVEL COMICS"` → `"Marvel"`);
 7. Elimine duplicidades (como `"Batman"` e `"bat man"`);
-8. Gere uma nova coleção limpa chamada **`nerd_universe_clean`**.
-9. Exporte a coleção limpa para um arquivo JSON chamado `nerd_universe_clean.json` e comite no **seu** repositório.
+8. Gere uma nova base limpa chamada **`nerd_universe_clean`**.
+9. Exporte a base limpa para um arquivo chamado `nerd_universe_clean` e comite no **seu** repositório.
 
 ---
 
