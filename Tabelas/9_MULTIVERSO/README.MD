@@ -129,4 +129,4 @@ Tente descobrir:
 **Entregas**: 
 
 1. Código de higienizados e normalizados em seu repositório pessoal;
-2. Arquivo `nerd_universe_clean.json` com os dados higienizados;
+2. Arquivo `nerd_universe_clean.sql` com os dados higienizados;
