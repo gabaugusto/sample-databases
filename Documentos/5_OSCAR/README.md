@@ -35,7 +35,7 @@ Nestes exercícios, você vai explorar o banco de dados MongoDB do Oscar e respo
 
 Exemplo de resposta:
 
-R: 1430 registros
+R: 10889 registros
 
 ```javascript
 db.oscar_indicados.countDocuments();
@@ -64,7 +64,7 @@ db.registros.find().skip(15).limit(1).sort({ano_cerimonia: -1})
 
 **1.5** Quantas cerimônias do Oscar estão registradas no total?
 
-**1.6** Atualize os registros da coleção com os dados do Oscar 2025 e 2026 (pesquise os vencedores e adicione-os).
+**1.6** Atualize os registros da coleção com os dados do Oscar 2025 e 2026 (pesquise os indicados e adicione-os).
 
 ---
 
@@ -189,7 +189,6 @@ db.registros.find().skip(15).limit(1).sort({ano_cerimonia: -1})
 **7.5** Remova todos os registros com valor NULL no campo nome_do_filme.
 
 ---
-
 
 ## Nível 8: Análise Temporal
 
