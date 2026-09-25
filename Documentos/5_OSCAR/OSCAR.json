@@ -52,7 +52,7 @@
         "fa": "Onita"
     },
     {
-        "id_registro": seis,
+        "id_registro": 6,
         "ano_filmagem": 1927,
         "ano_cerimonia": "Mil Novecentos e vinte 8",
         "cerimonia": 1,
@@ -53129,6 +53129,7 @@
         "ano_cerimonia": 1976,
         "cerimonia": 48,
         "categoria": "ACTRESS",
+        "diretor": "Dedê",
         "nome_do_indicado": "Carol Kane",
         "nome_do_filme": "Hester Street",
         "vencedor": 0
