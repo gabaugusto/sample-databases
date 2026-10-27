@@ -1,0 +1,212 @@
+[
+    {
+        "_id": 1,
+        "nome": "Junior Warehouse Assistant",
+        "salario_minimo": {
+            "$numberDecimal": "4200.00"
+        },
+        "salario_maximo": {
+            "$numberDecimal": "9000.00"
+        }
+    },
+    {
+        "_id": 2,
+        "nome": "Gerente de Contabilidade",
+        "salario_minimo": {
+            "$numberDecimal": "8200.00"
+        },
+        "salario_maximo": {
+            "$numberDecimal": "16000.00"
+        }
+    },
+    {
+        "_id": 3,
+        "nome": "Assistente Administrativo",
+        "salario_minimo": {
+            "$numberDecimal": "3000.00"
+        },
+        "salario_maximo": {
+            "$numberDecimal": "6000.00"
+        }
+    },
+    {
+        "_id": 4,
+        "nome": "CEO",
+        "salario_minimo": {
+            "$numberDecimal": "20000.00"
+        },
+        "salario_maximo": {
+            "$numberDecimal": "40000.00"
+        }
+    },
+    {
+        "_id": 5,
+        "nome": "Diretor de Administração, Contabilidade e Recursos",
+        "salario_minimo": {
+            "$numberDecimal": "15000.00"
+        },
+        "salario_maximo": {
+            "$numberDecimal": "30000.00"
+        }
+    },
+    {
+        "_id": 6,
+        "nome": "Contabilidade",
+        "salario_minimo": {
+            "$numberDecimal": "4200.00"
+        },
+        "salario_maximo": {
+            "$numberDecimal": "9000.00"
+        }
+    },
+    {
+        "_id": 7,
+        "nome": "CFO",
+        "salario_minimo": {
+            "$numberDecimal": "8200.00"
+        },
+        "salario_maximo": {
+            "$numberDecimal": "16000.00"
+        }
+    },
+    {
+        "_id": 8,
+        "nome": "Assistente de Recursos",
+        "salario_minimo": {
+            "$numberDecimal": "4000.00"
+        },
+        "salario_maximo": {
+            "$numberDecimal": "9000.00"
+        }
+    },
+    {
+        "_id": 9,
+        "nome": "Web Developer",
+        "salario_minimo": {
+            "$numberDecimal": "4000.00"
+        },
+        "salario_maximo": {
+            "$numberDecimal": "10000.00"
+        }
+    },
+    {
+        "_id": 10,
+        "nome": "CMO",
+        "salario_minimo": {
+            "$numberDecimal": "9000.00"
+        },
+        "salario_maximo": {
+            "$numberDecimal": "15000.00"
+        }
+    },
+    {
+        "_id": 11,
+        "nome": "Representante de Vendas para a América Latina",
+        "salario_minimo": {
+            "$numberDecimal": "4000.00"
+        },
+        "salario_maximo": {
+            "$numberDecimal": "9000.00"
+        }
+    },
+    {
+        "_id": 12,
+        "nome": "Relações Públicas",
+        "salario_minimo": {
+            "$numberDecimal": "4500.00"
+        },
+        "salario_maximo": {
+            "$numberDecimal": "10500.00"
+        }
+    },
+    {
+        "_id": 13,
+        "nome": "Purchasing Clerk",
+        "salario_minimo": {
+            "$numberDecimal": "2500.00"
+        },
+        "salario_maximo": {
+            "$numberDecimal": "5500.00"
+        }
+    },
+    {
+        "_id": 14,
+        "nome": "Gerente de Recursos",
+        "salario_minimo": {
+            "$numberDecimal": "8000.00"
+        },
+        "salario_maximo": {
+            "$numberDecimal": "15000.00"
+        }
+    },
+    {
+        "_id": 15,
+        "nome": "Gerente de Vendas",
+        "salario_minimo": {
+            "$numberDecimal": "10000.00"
+        },
+        "salario_maximo": {
+            "$numberDecimal": "20000.00"
+        }
+    },
+    {
+        "_id": 16,
+        "nome": "Representante de Vendas",
+        "salario_minimo": {
+            "$numberDecimal": "6000.00"
+        },
+        "salario_maximo": {
+            "$numberDecimal": "12000.00"
+        }
+    },
+    {
+        "_id": 17,
+        "nome": "Consultor de Vendas",
+        "salario_minimo": {
+            "$numberDecimal": "2500.00"
+        },
+        "salario_maximo": {
+            "$numberDecimal": "5500.00"
+        }
+    },
+    {
+        "_id": 18,
+        "nome": "Estoquista",
+        "salario_minimo": {
+            "$numberDecimal": "2000.00"
+        },
+        "salario_maximo": {
+            "$numberDecimal": "5000.00"
+        }
+    },
+    {
+        "_id": 19,
+        "nome": "Gerente de Estoque",
+        "salario_minimo": {
+            "$numberDecimal": "5500.00"
+        },
+        "salario_maximo": {
+            "$numberDecimal": "8500.00"
+        }
+    },
+    {
+        "_id": 20,
+        "nome": "Cientista",
+        "salario_minimo": {
+            "$numberDecimal": "14200.00"
+        },
+        "salario_maximo": {
+            "$numberDecimal": "35000.00"
+        }
+    },
+    {
+        "_id": 21,
+        "nome": "Assitente de Garantia de Qualidade",
+        "salario_minimo": {
+            "$numberDecimal": "6200.00"
+        },
+        "salario_maximo": {
+            "$numberDecimal": "12000.00"
+        }
+    }
+]

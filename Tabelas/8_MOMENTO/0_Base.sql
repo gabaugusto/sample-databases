@@ -246,7 +246,7 @@ INSERT INTO cargos(cargo_id,cargo_nome,min_salario,max_salario) VALUES (20,'Cien
 INSERT INTO cargos(cargo_id,cargo_nome,min_salario,max_salario) VALUES (21,'Assitente de Garantia de Qualidade',6200.00,12000.00);
 
 -- Senhas ficticias para exercicios: referencias a quadrinhos, jogos e ficcao cientifica.
-INSERT INTO funcionarios(funcionario_id,primeiro_nome,sobrenome,email,senha,telefone,data_contratacao,cargo_id,salario,gerente_id,departamento_id) VALUES (100,'Steven','Wayne','steven.wayne@momento.org','BatSignal!Gotham1939','515.123.4567','1987-06-17',4,24000.00,NULL,9);
+INSERT INTO funcionarios(funcionario_id,primeiro_nome,sobrenome,email,senha,telefone,data_contratacao,cargo_id,salario,gerente_id,departamento_id) VALUES (100,'Madeleine','Prior','madeleine.prior@momento.org','BatSignal!Gotham1939','515.123.4567','1987-06-17',4,24000.00,NULL,9);
 INSERT INTO funcionarios(funcionario_id,primeiro_nome,sobrenome,email,senha,telefone,data_contratacao,cargo_id,salario,gerente_id,departamento_id) VALUES (101,'Neena','Kochhar','neena.kochhar@momento.org','WhiteRabbit!Follow1865','515.123.4568','1989-09-21',5,17000.00,100,9);
 INSERT INTO funcionarios(funcionario_id,primeiro_nome,sobrenome,email,senha,telefone,data_contratacao,cargo_id,salario,gerente_id,departamento_id) VALUES (102,'Lex',"T'Challa",'lex.tchalla@momento.org','WakandaForever!1966','515.123.4569','1993-01-13',5,17000.00,100,9);
 INSERT INTO funcionarios(funcionario_id,primeiro_nome,sobrenome,email,senha,telefone,data_contratacao,cargo_id,salario,gerente_id,departamento_id) VALUES (103,'Alexander','Hunold','alexander.hunold@momento.org','Matrix!RedPill1999','590.423.4567','1990-01-03',9,9000.00,102,6);

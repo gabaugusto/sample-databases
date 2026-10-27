@@ -1,0 +1,1137 @@
+[
+    {
+        "_id": 100,
+        "primeiro_nome": "Madeleine",
+        "sobrenome": "Prior",
+        "email": "madeleine.prior@momento.org",
+        "senha": "BatSignal!Gotham1939",
+        "telefone": "515.123.4567",
+        "data_contratacao": {
+            "$date": "1987-06-17T00:00:00.000Z"
+        },
+        "cargo_id": 4,
+        "salario": {
+            "$numberDecimal": "24000.00"
+        },
+        "gerente_id": null,
+        "departamento_id": 9,
+        "dependentes": [
+            {
+                "_id": 4,
+                "primeiro_nome": "Alice",
+                "sobrenome": "Wayne",
+                "relacionamento": "Filha(o)"
+            },
+            {
+                "_id": 36,
+                "primeiro_nome": "Jennifer",
+                "sobrenome": "Wayne",
+                "relacionamento": "Cônjuge"
+            }
+        ]
+    },
+    {
+        "_id": 101,
+        "primeiro_nome": "Neena",
+        "sobrenome": "Kochhar",
+        "email": "neena.kochhar@momento.org",
+        "senha": "WhiteRabbit!Follow1865",
+        "telefone": "515.123.4568",
+        "data_contratacao": {
+            "$date": "1989-09-21T00:00:00.000Z"
+        },
+        "cargo_id": 5,
+        "salario": {
+            "$numberDecimal": "17000.00"
+        },
+        "gerente_id": 100,
+        "departamento_id": 9,
+        "dependentes": [
+            {
+                "_id": 5,
+                "primeiro_nome": "Johnny",
+                "sobrenome": "Kochhar",
+                "relacionamento": "Filha(o)"
+            }
+        ]
+    },
+    {
+        "_id": 102,
+        "primeiro_nome": "Lex",
+        "sobrenome": "T'Challa",
+        "email": "lex.tchalla@momento.org",
+        "senha": "WakandaForever!1966",
+        "telefone": "515.123.4569",
+        "data_contratacao": {
+            "$date": "1993-01-13T00:00:00.000Z"
+        },
+        "cargo_id": 5,
+        "salario": {
+            "$numberDecimal": "17000.00"
+        },
+        "gerente_id": 100,
+        "departamento_id": 9,
+        "dependentes": [
+            {
+                "_id": 6,
+                "primeiro_nome": "Bette",
+                "sobrenome": "T'Challa",
+                "relacionamento": "Filha(o)"
+            }
+        ]
+    },
+    {
+        "_id": 103,
+        "primeiro_nome": "Alexander",
+        "sobrenome": "Hunold",
+        "email": "alexander.hunold@momento.org",
+        "senha": "Matrix!RedPill1999",
+        "telefone": "590.423.4567",
+        "data_contratacao": {
+            "$date": "1990-01-03T00:00:00.000Z"
+        },
+        "cargo_id": 9,
+        "salario": {
+            "$numberDecimal": "9000.00"
+        },
+        "gerente_id": 102,
+        "departamento_id": 6,
+        "dependentes": [
+            {
+                "_id": 14,
+                "primeiro_nome": "Vivien",
+                "sobrenome": "Hunold",
+                "relacionamento": "Filha(o)"
+            }
+        ]
+    },
+    {
+        "_id": 104,
+        "primeiro_nome": "Bruce",
+        "sobrenome": "Ernst",
+        "email": "bruce.ernst@momento.org",
+        "senha": "HulkSmash!Gamma1962",
+        "telefone": "590.423.4568",
+        "data_contratacao": {
+            "$date": "1991-05-21T00:00:00.000Z"
+        },
+        "cargo_id": 9,
+        "salario": {
+            "$numberDecimal": "6000.00"
+        },
+        "gerente_id": 103,
+        "departamento_id": 6,
+        "dependentes": [
+            {
+                "_id": 15,
+                "primeiro_nome": "Cuba",
+                "sobrenome": "Ernst",
+                "relacionamento": "Filha(o)"
+            },
+            {
+                "_id": 35,
+                "primeiro_nome": "Salvadora",
+                "sobrenome": "Ernst",
+                "relacionamento": "Cônjuge"
+            }
+        ]
+    },
+    {
+        "_id": 105,
+        "primeiro_nome": "David",
+        "sobrenome": "Austin",
+        "email": "david.austin@momento.org",
+        "senha": "SixMillion!Bionic1974",
+        "telefone": "590.423.4569",
+        "data_contratacao": {
+            "$date": "1997-06-25T00:00:00.000Z"
+        },
+        "cargo_id": 9,
+        "salario": {
+            "$numberDecimal": "4800.00"
+        },
+        "gerente_id": 103,
+        "departamento_id": 6,
+        "dependentes": [
+            {
+                "_id": 16,
+                "primeiro_nome": "Fred",
+                "sobrenome": "Austin",
+                "relacionamento": "Filha(o)"
+            }
+        ]
+    },
+    {
+        "_id": 106,
+        "primeiro_nome": "Valli",
+        "sobrenome": "Stark",
+        "email": "valli.stark@momento.org",
+        "senha": "ArcReactor!MarkVII",
+        "telefone": "590.423.4560",
+        "data_contratacao": {
+            "$date": "1998-02-05T00:00:00.000Z"
+        },
+        "cargo_id": 9,
+        "salario": {
+            "$numberDecimal": "4800.00"
+        },
+        "gerente_id": 103,
+        "departamento_id": 6,
+        "dependentes": [
+            {
+                "_id": 17,
+                "primeiro_nome": "Helen",
+                "sobrenome": "Stark",
+                "relacionamento": "Filha(o)"
+            }
+        ]
+    },
+    {
+        "_id": 107,
+        "primeiro_nome": "Diana",
+        "sobrenome": "Lorentz",
+        "email": "diana.lorentz@momento.org",
+        "senha": "GreatScott!1.21GW",
+        "telefone": "590.423.5567",
+        "data_contratacao": {
+            "$date": "1999-02-07T00:00:00.000Z"
+        },
+        "cargo_id": 9,
+        "salario": {
+            "$numberDecimal": "4200.00"
+        },
+        "gerente_id": 103,
+        "departamento_id": 6,
+        "dependentes": [
+            {
+                "_id": 18,
+                "primeiro_nome": "Dan",
+                "sobrenome": "Lorentz",
+                "relacionamento": "Filha(o)"
+            }
+        ]
+    },
+    {
+        "_id": 108,
+        "primeiro_nome": "Nancy",
+        "sobrenome": "Constantine",
+        "email": "nancy.constantine@momento.org",
+        "senha": "Hellblazer!Newcastle1988",
+        "telefone": "515.124.4569",
+        "data_contratacao": {
+            "$date": "1994-08-17T00:00:00.000Z"
+        },
+        "cargo_id": 9,
+        "salario": {
+            "$numberDecimal": "23980.00"
+        },
+        "gerente_id": 101,
+        "departamento_id": 13,
+        "dependentes": [
+            {
+                "_id": 12,
+                "primeiro_nome": "John",
+                "sobrenome": "Constantine",
+                "relacionamento": "Filha(o)"
+            }
+        ]
+    },
+    {
+        "_id": 109,
+        "primeiro_nome": "Daniel",
+        "sobrenome": "Faviet",
+        "email": "daniel.faviet@momento.org",
+        "senha": "D20!CriticalHit1974",
+        "telefone": "515.124.4169",
+        "data_contratacao": {
+            "$date": "1994-08-16T00:00:00.000Z"
+        },
+        "cargo_id": 6,
+        "salario": {
+            "$numberDecimal": "9000.00"
+        },
+        "gerente_id": 108,
+        "departamento_id": 10,
+        "dependentes": [
+            {
+                "_id": 7,
+                "primeiro_nome": "Grace",
+                "sobrenome": "Faviet",
+                "relacionamento": "Filha(o)"
+            }
+        ]
+    },
+    {
+        "_id": 110,
+        "primeiro_nome": "John",
+        "sobrenome": "Chen",
+        "email": "john.chen@momento.org",
+        "senha": "Konami!UpUpDownDown",
+        "telefone": "515.124.4269",
+        "data_contratacao": {
+            "$date": "1997-09-28T00:00:00.000Z"
+        },
+        "cargo_id": 6,
+        "salario": {
+            "$numberDecimal": "8200.00"
+        },
+        "gerente_id": 108,
+        "departamento_id": 10,
+        "dependentes": [
+            {
+                "_id": 8,
+                "primeiro_nome": "Matthew",
+                "sobrenome": "Chen",
+                "relacionamento": "Filha(o)"
+            }
+        ]
+    },
+    {
+        "_id": 111,
+        "primeiro_nome": "Ismael",
+        "sobrenome": "Sciarra",
+        "email": "ismael.sciarra@momento.org",
+        "senha": "OneRing!Mordor1954",
+        "telefone": "515.124.4369",
+        "data_contratacao": {
+            "$date": "1997-09-30T00:00:00.000Z"
+        },
+        "cargo_id": 6,
+        "salario": {
+            "$numberDecimal": "7700.00"
+        },
+        "gerente_id": 108,
+        "departamento_id": 10,
+        "dependentes": [
+            {
+                "_id": 9,
+                "primeiro_nome": "Joe",
+                "sobrenome": "Sciarra",
+                "relacionamento": "Filha(o)"
+            }
+        ]
+    },
+    {
+        "_id": 112,
+        "primeiro_nome": "Jose Manuel",
+        "sobrenome": "Urman",
+        "email": "jose manuel.urman@momento.org",
+        "senha": "DontPanic!Towel42",
+        "telefone": "515.124.4469",
+        "data_contratacao": {
+            "$date": "1998-03-07T00:00:00.000Z"
+        },
+        "cargo_id": 6,
+        "salario": {
+            "$numberDecimal": "7800.00"
+        },
+        "gerente_id": 108,
+        "departamento_id": 10,
+        "dependentes": [
+            {
+                "_id": 10,
+                "primeiro_nome": "Christian",
+                "sobrenome": "Urman",
+                "relacionamento": "Filha(o)"
+            }
+        ]
+    },
+    {
+        "_id": 113,
+        "primeiro_nome": "Luis",
+        "sobrenome": "Popp",
+        "email": "luis.popp@momento.org",
+        "senha": "Portal!CakeIsALie2007",
+        "telefone": "515.124.4567",
+        "data_contratacao": {
+            "$date": "1999-12-07T00:00:00.000Z"
+        },
+        "cargo_id": 6,
+        "salario": {
+            "$numberDecimal": "6900.00"
+        },
+        "gerente_id": 108,
+        "departamento_id": 10,
+        "dependentes": [
+            {
+                "_id": 11,
+                "primeiro_nome": "Zero",
+                "sobrenome": "Popp",
+                "relacionamento": "Filha(o)"
+            }
+        ]
+    },
+    {
+        "_id": 114,
+        "primeiro_nome": "Den",
+        "sobrenome": "Raphaely",
+        "email": "den.raphaely@momento.org",
+        "senha": "DungeonMaster!Roll20",
+        "telefone": "515.127.4561",
+        "data_contratacao": {
+            "$date": "1994-12-07T00:00:00.000Z"
+        },
+        "cargo_id": 14,
+        "salario": {
+            "$numberDecimal": "11000.00"
+        },
+        "gerente_id": 100,
+        "departamento_id": 3,
+        "dependentes": [
+            {
+                "_id": 27,
+                "primeiro_nome": "Julia",
+                "sobrenome": "Raphaely",
+                "relacionamento": "Filha(o)"
+            }
+        ]
+    },
+    {
+        "_id": 115,
+        "primeiro_nome": "Normam",
+        "sobrenome": "Osborn",
+        "email": "alexander.osborn@momento.org",
+        "senha": "GreenGoblin!Oscorp1964",
+        "telefone": "515.127.4562",
+        "data_contratacao": {
+            "$date": "1995-05-18T00:00:00.000Z"
+        },
+        "cargo_id": 13,
+        "salario": {
+            "$numberDecimal": "3100.00"
+        },
+        "gerente_id": 114,
+        "departamento_id": 3,
+        "dependentes": [
+            {
+                "_id": 22,
+                "primeiro_nome": "Harry",
+                "sobrenome": "Osborn",
+                "relacionamento": "Filha(o)"
+            }
+        ]
+    },
+    {
+        "_id": 116,
+        "primeiro_nome": "Shelli",
+        "sobrenome": "Baida",
+        "email": "shelli.baida@momento.org",
+        "senha": "Aperture!CompanionCube",
+        "telefone": "515.127.4563",
+        "data_contratacao": {
+            "$date": "1997-12-24T00:00:00.000Z"
+        },
+        "cargo_id": 13,
+        "salario": {
+            "$numberDecimal": "2900.00"
+        },
+        "gerente_id": 114,
+        "departamento_id": 3,
+        "dependentes": [
+            {
+                "_id": 23,
+                "primeiro_nome": "Sandra",
+                "sobrenome": "Baida",
+                "relacionamento": "Filha(o)"
+            }
+        ]
+    },
+    {
+        "_id": 117,
+        "primeiro_nome": "Sigal",
+        "sobrenome": "Tobias",
+        "email": "sigal.tobias@momento.org",
+        "senha": "TARDIS!BiggerInside1963",
+        "telefone": "515.127.4564",
+        "data_contratacao": {
+            "$date": "1997-07-24T00:00:00.000Z"
+        },
+        "cargo_id": 13,
+        "salario": {
+            "$numberDecimal": "2800.00"
+        },
+        "gerente_id": 114,
+        "departamento_id": 3,
+        "dependentes": [
+            {
+                "_id": 24,
+                "primeiro_nome": "Cameron",
+                "sobrenome": "Tobias",
+                "relacionamento": "Filha(o)"
+            }
+        ]
+    },
+    {
+        "_id": 118,
+        "primeiro_nome": "Guy",
+        "sobrenome": "Himuro",
+        "email": "guy.himuro@momento.org",
+        "senha": "Kamehameha!Over9000",
+        "telefone": "515.127.4565",
+        "data_contratacao": {
+            "$date": "1998-11-15T00:00:00.000Z"
+        },
+        "cargo_id": 13,
+        "salario": {
+            "$numberDecimal": "2600.00"
+        },
+        "gerente_id": 114,
+        "departamento_id": 3,
+        "dependentes": [
+            {
+                "_id": 25,
+                "primeiro_nome": "Kevin",
+                "sobrenome": "Himuro",
+                "relacionamento": "Filha(o)"
+            }
+        ]
+    },
+    {
+        "_id": 119,
+        "primeiro_nome": "Karen",
+        "sobrenome": "Colmenares",
+        "email": "karen.colmenares@momento.org",
+        "senha": "Metroid!Samus1986",
+        "telefone": "515.127.4566",
+        "data_contratacao": {
+            "$date": "1999-08-10T00:00:00.000Z"
+        },
+        "cargo_id": 13,
+        "salario": {
+            "$numberDecimal": "2500.00"
+        },
+        "gerente_id": 114,
+        "departamento_id": 3,
+        "dependentes": [
+            {
+                "_id": 26,
+                "primeiro_nome": "Rip",
+                "sobrenome": "Colmenares",
+                "relacionamento": "Filha(o)"
+            }
+        ]
+    },
+    {
+        "_id": 120,
+        "primeiro_nome": "Matthew",
+        "sobrenome": "Weiss",
+        "email": "matthew.weiss@momento.org",
+        "senha": "MillenniumFalcon!12Parsecs",
+        "telefone": "650.123.1234",
+        "data_contratacao": {
+            "$date": "1996-07-18T00:00:00.000Z"
+        },
+        "cargo_id": 19,
+        "salario": {
+            "$numberDecimal": "8000.00"
+        },
+        "gerente_id": 100,
+        "departamento_id": 5,
+        "dependentes": []
+    },
+    {
+        "_id": 121,
+        "primeiro_nome": "Adam",
+        "sobrenome": "Fripp",
+        "email": "adam.fripp@momento.org",
+        "senha": "Minecraft!Redstone64",
+        "telefone": "650.123.2234",
+        "data_contratacao": {
+            "$date": "1997-04-10T00:00:00.000Z"
+        },
+        "cargo_id": 19,
+        "salario": {
+            "$numberDecimal": "8200.00"
+        },
+        "gerente_id": 100,
+        "departamento_id": 5,
+        "dependentes": []
+    },
+    {
+        "_id": 122,
+        "primeiro_nome": "Payam",
+        "sobrenome": "Kaufling",
+        "email": "payam.kaufling@momento.org",
+        "senha": "GottaCatchEmAll!151",
+        "telefone": "650.123.3234",
+        "data_contratacao": {
+            "$date": "1995-05-01T00:00:00.000Z"
+        },
+        "cargo_id": 19,
+        "salario": {
+            "$numberDecimal": "7900.00"
+        },
+        "gerente_id": 100,
+        "departamento_id": 5,
+        "dependentes": []
+    },
+    {
+        "_id": 123,
+        "primeiro_nome": "Shanta",
+        "sobrenome": "Vollman",
+        "email": "shanta.vollman@momento.org",
+        "senha": "Triforce!Hyrule1986",
+        "telefone": "650.123.4234",
+        "data_contratacao": {
+            "$date": "1997-10-10T00:00:00.000Z"
+        },
+        "cargo_id": 19,
+        "salario": {
+            "$numberDecimal": "6500.00"
+        },
+        "gerente_id": 100,
+        "departamento_id": 5,
+        "dependentes": []
+    },
+    {
+        "_id": 126,
+        "primeiro_nome": "Irene",
+        "sobrenome": "Mikkilineni",
+        "email": "irene.mikkilineni@momento.org",
+        "senha": "Stardew!Junimo2016",
+        "telefone": "650.124.1224",
+        "data_contratacao": {
+            "$date": "1998-09-28T00:00:00.000Z"
+        },
+        "cargo_id": 18,
+        "salario": {
+            "$numberDecimal": "2700.00"
+        },
+        "gerente_id": 120,
+        "departamento_id": 5,
+        "dependentes": []
+    },
+    {
+        "_id": 145,
+        "primeiro_nome": "John",
+        "sobrenome": "Russell",
+        "email": "john.russell@momento.org",
+        "senha": "Enterprise!Engage1701",
+        "telefone": null,
+        "data_contratacao": {
+            "$date": "1996-10-01T00:00:00.000Z"
+        },
+        "cargo_id": 15,
+        "salario": {
+            "$numberDecimal": "14000.00"
+        },
+        "gerente_id": 100,
+        "departamento_id": 8,
+        "dependentes": [
+            {
+                "_id": 28,
+                "primeiro_nome": "Woody",
+                "sobrenome": "Russell",
+                "relacionamento": "Filha(o)"
+            }
+        ]
+    },
+    {
+        "_id": 146,
+        "primeiro_nome": "Karen",
+        "sobrenome": "Partners",
+        "email": "karen.partners@momento.org",
+        "senha": "MassEffect!N7Normandy",
+        "telefone": null,
+        "data_contratacao": {
+            "$date": "1997-01-05T00:00:00.000Z"
+        },
+        "cargo_id": 15,
+        "salario": {
+            "$numberDecimal": "13500.00"
+        },
+        "gerente_id": 100,
+        "departamento_id": 8,
+        "dependentes": [
+            {
+                "_id": 29,
+                "primeiro_nome": "Alec",
+                "sobrenome": "Partners",
+                "relacionamento": "Filha(o)"
+            }
+        ]
+    },
+    {
+        "_id": 176,
+        "primeiro_nome": "Jonathon",
+        "sobrenome": "Taylor",
+        "email": "jonathon.taylor@momento.org",
+        "senha": "SpiderSense!Queens1962",
+        "telefone": null,
+        "data_contratacao": {
+            "$date": "1998-03-24T00:00:00.000Z"
+        },
+        "cargo_id": 16,
+        "salario": {
+            "$numberDecimal": "8600.00"
+        },
+        "gerente_id": 100,
+        "departamento_id": 8,
+        "dependentes": [
+            {
+                "_id": 30,
+                "primeiro_nome": "Sandra",
+                "sobrenome": "Taylor",
+                "relacionamento": "Filha(o)"
+            }
+        ]
+    },
+    {
+        "_id": 177,
+        "primeiro_nome": "Jack",
+        "sobrenome": "Livingston",
+        "email": "jack.livingston@momento.org",
+        "senha": "VaultDweller!Fallout101",
+        "telefone": null,
+        "data_contratacao": {
+            "$date": "1998-04-23T00:00:00.000Z"
+        },
+        "cargo_id": 16,
+        "salario": {
+            "$numberDecimal": "8400.00"
+        },
+        "gerente_id": 100,
+        "departamento_id": 8,
+        "dependentes": []
+    },
+    {
+        "_id": 178,
+        "primeiro_nome": "Kimberly",
+        "sobrenome": "Grant",
+        "email": "kimberely.grant@momento.org",
+        "senha": "PowerRangers!Morphin1993",
+        "telefone": null,
+        "data_contratacao": {
+            "$date": "1999-05-24T00:00:00.000Z"
+        },
+        "cargo_id": 16,
+        "salario": {
+            "$numberDecimal": "7000.00"
+        },
+        "gerente_id": 100,
+        "departamento_id": 8,
+        "dependentes": []
+    },
+    {
+        "_id": 179,
+        "primeiro_nome": "Zatanna",
+        "sobrenome": "Zatara",
+        "email": "zatana.zatara@momento.org",
+        "senha": "Zatanna!arbadacarbA",
+        "telefone": null,
+        "data_contratacao": {
+            "$date": "2000-01-04T00:00:00.000Z"
+        },
+        "cargo_id": 20,
+        "salario": {
+            "$numberDecimal": "19650.00"
+        },
+        "gerente_id": 100,
+        "departamento_id": 13,
+        "dependentes": [
+            {
+                "_id": 37,
+                "primeiro_nome": "Zachary",
+                "sobrenome": "Zatara",
+                "relacionamento": "Father"
+            }
+        ]
+    },
+    {
+        "_id": 192,
+        "primeiro_nome": "Sarah",
+        "sobrenome": "Bell",
+        "email": "sarah.bell@momento.org",
+        "senha": "Firefly!Serenity2002",
+        "telefone": "650.501.1876",
+        "data_contratacao": {
+            "$date": "1996-02-04T00:00:00.000Z"
+        },
+        "cargo_id": 17,
+        "salario": {
+            "$numberDecimal": "4000.00"
+        },
+        "gerente_id": 123,
+        "departamento_id": 5,
+        "dependentes": []
+    },
+    {
+        "_id": 193,
+        "primeiro_nome": "Britney",
+        "sobrenome": "Everett",
+        "email": "britney.everett@momento.org",
+        "senha": "Skyrim!FusRoDah2011",
+        "telefone": "650.501.2876",
+        "data_contratacao": {
+            "$date": "1997-03-03T00:00:00.000Z"
+        },
+        "cargo_id": 17,
+        "salario": {
+            "$numberDecimal": "3900.00"
+        },
+        "gerente_id": 123,
+        "departamento_id": 5,
+        "dependentes": []
+    },
+    {
+        "_id": 200,
+        "primeiro_nome": "Jennifer",
+        "sobrenome": "Whalen",
+        "email": "jennifer.whalen@momento.org",
+        "senha": "MischiefManaged!Map1999",
+        "telefone": "515.123.4444",
+        "data_contratacao": {
+            "$date": "1987-09-17T00:00:00.000Z"
+        },
+        "cargo_id": 3,
+        "salario": {
+            "$numberDecimal": "4400.00"
+        },
+        "gerente_id": 101,
+        "departamento_id": 1,
+        "dependentes": [
+            {
+                "_id": 1,
+                "primeiro_nome": "Penelope",
+                "sobrenome": "Wayne",
+                "relacionamento": "Filha(o)"
+            },
+            {
+                "_id": 3,
+                "primeiro_nome": "Ed",
+                "sobrenome": "Whalen",
+                "relacionamento": "Filha(o)"
+            }
+        ]
+    },
+    {
+        "_id": 201,
+        "primeiro_nome": "Elisabeth",
+        "sobrenome": "Braddock",
+        "email": "michael.braddock@momento.org",
+        "senha": "Psylocke!PsychicBlade",
+        "telefone": "515.123.5555",
+        "data_contratacao": {
+            "$date": "1996-02-17T00:00:00.000Z"
+        },
+        "cargo_id": 10,
+        "salario": {
+            "$numberDecimal": "13000.00"
+        },
+        "gerente_id": 100,
+        "departamento_id": 2,
+        "dependentes": [
+            {
+                "_id": 19,
+                "primeiro_nome": "Bob",
+                "sobrenome": "Braddock ",
+                "relacionamento": "Filha(o)"
+            }
+        ]
+    },
+    {
+        "_id": 202,
+        "primeiro_nome": "Pat",
+        "sobrenome": "Ferreira",
+        "email": "pat.Ferreira@momento.org",
+        "senha": "StreetFighter!HadoukenII",
+        "telefone": "603.123.6666",
+        "data_contratacao": {
+            "$date": "1997-08-17T00:00:00.000Z"
+        },
+        "cargo_id": 11,
+        "salario": {
+            "$numberDecimal": "6000.00"
+        },
+        "gerente_id": 201,
+        "departamento_id": 2,
+        "dependentes": [
+            {
+                "_id": 20,
+                "primeiro_nome": "Lucie",
+                "sobrenome": "Ferreira",
+                "relacionamento": "Filha(o)"
+            }
+        ]
+    },
+    {
+        "_id": 203,
+        "primeiro_nome": "Susan",
+        "sobrenome": "Mavris",
+        "email": "susan.mavris@momento.org",
+        "senha": "SailorMoon!MoonPrism1992",
+        "telefone": "515.123.7777",
+        "data_contratacao": {
+            "$date": "1994-06-07T00:00:00.000Z"
+        },
+        "cargo_id": 8,
+        "salario": {
+            "$numberDecimal": "6500.00"
+        },
+        "gerente_id": 101,
+        "departamento_id": 4,
+        "dependentes": [
+            {
+                "_id": 13,
+                "primeiro_nome": "Duas",
+                "sobrenome": "Mavris",
+                "relacionamento": "Filha(o)"
+            },
+            {
+                "_id": 34,
+                "primeiro_nome": "Uma",
+                "sobrenome": "Mavris",
+                "relacionamento": "Cônjuge"
+            }
+        ]
+    },
+    {
+        "_id": 204,
+        "primeiro_nome": "Hermann",
+        "sobrenome": "Baer",
+        "email": "hermann.baer@momento.org",
+        "senha": "JurassicPark!LifeFindsAWay",
+        "telefone": "515.123.8888",
+        "data_contratacao": {
+            "$date": "1994-06-07T00:00:00.000Z"
+        },
+        "cargo_id": 12,
+        "salario": {
+            "$numberDecimal": "10000.00"
+        },
+        "gerente_id": 101,
+        "departamento_id": 7,
+        "dependentes": [
+            {
+                "_id": 21,
+                "primeiro_nome": "Kirsten",
+                "sobrenome": "Baer",
+                "relacionamento": "Filha(o)"
+            }
+        ]
+    },
+    {
+        "_id": 205,
+        "primeiro_nome": "Shelley",
+        "sobrenome": "Higgins",
+        "email": "shelley.higgins@momento.org",
+        "senha": "Gringotts!Galleons1997",
+        "telefone": "515.123.8080",
+        "data_contratacao": {
+            "$date": "1994-06-07T00:00:00.000Z"
+        },
+        "cargo_id": 2,
+        "salario": {
+            "$numberDecimal": "12000.00"
+        },
+        "gerente_id": 101,
+        "departamento_id": 11,
+        "dependentes": [
+            {
+                "_id": 2,
+                "primeiro_nome": "Nick",
+                "sobrenome": "Higgins",
+                "relacionamento": "Filha(o)"
+            }
+        ]
+    },
+    {
+        "_id": 206,
+        "primeiro_nome": "Susan",
+        "sobrenome": "Storm",
+        "email": "susan.storm@momento.org",
+        "senha": "InvisibleWoman!Baxter4",
+        "telefone": "515.123.8181",
+        "data_contratacao": {
+            "$date": "1994-06-07T00:00:00.000Z"
+        },
+        "cargo_id": 20,
+        "salario": {
+            "$numberDecimal": "18300.00"
+        },
+        "gerente_id": 205,
+        "departamento_id": 12,
+        "dependentes": [
+            {
+                "_id": 31,
+                "primeiro_nome": "Franklin",
+                "sobrenome": "Storm",
+                "relacionamento": "Filha(o)"
+            },
+            {
+                "_id": 32,
+                "primeiro_nome": "Valeria",
+                "sobrenome": "Storm",
+                "relacionamento": "Filha(o)"
+            },
+            {
+                "_id": 33,
+                "primeiro_nome": "Reed",
+                "sobrenome": "Storm",
+                "relacionamento": "Cônjuge"
+            }
+        ]
+    },
+    {
+        "_id": 207,
+        "primeiro_nome": "Lucius",
+        "sobrenome": "Fox",
+        "email": "lucius.fox@momento.org",
+        "senha": "WayneTech!AppliedSciences",
+        "telefone": "515.124.4569",
+        "data_contratacao": {
+            "$date": "1994-08-17T00:00:00.000Z"
+        },
+        "cargo_id": 7,
+        "salario": {
+            "$numberDecimal": "12000.00"
+        },
+        "gerente_id": 101,
+        "departamento_id": 10,
+        "dependentes": []
+    },
+    {
+        "_id": 208,
+        "primeiro_nome": "Sabrina Portela",
+        "sobrenome": "Spellman",
+        "email": "sabrina.spellman@momento.org",
+        "senha": "Spellman!Salem1692",
+        "telefone": "945.368.4569",
+        "data_contratacao": {
+            "$date": "2024-10-28T00:00:00.000Z"
+        },
+        "cargo_id": 20,
+        "salario": {
+            "$numberDecimal": "8000.01"
+        },
+        "gerente_id": 101,
+        "departamento_id": 10,
+        "dependentes": []
+    },
+    {
+        "_id": 209,
+        "primeiro_nome": "Peter",
+        "sobrenome": "Parker",
+        "email": "peter.parker@momento.org",
+        "senha": "WithGreatPower!1962",
+        "telefone": null,
+        "data_contratacao": {
+            "$date": "2024-11-01T00:00:00.000Z"
+        },
+        "cargo_id": 9,
+        "salario": {
+            "$numberDecimal": "6500.00"
+        },
+        "gerente_id": 103,
+        "departamento_id": 6,
+        "dependentes": []
+    },
+    {
+        "_id": 210,
+        "primeiro_nome": "Shuri",
+        "sobrenome": "Udaku",
+        "email": "shuri.udaku@momento.org",
+        "senha": "Vibranium!KimoyoBeads",
+        "telefone": null,
+        "data_contratacao": {
+            "$date": "2024-11-04T00:00:00.000Z"
+        },
+        "cargo_id": 20,
+        "salario": {
+            "$numberDecimal": "25000.00"
+        },
+        "gerente_id": 102,
+        "departamento_id": 13,
+        "dependentes": []
+    },
+    {
+        "_id": 211,
+        "primeiro_nome": "Hermione",
+        "sobrenome": "Granger",
+        "email": "hermione.granger@momento.org",
+        "senha": "Wingardium!Leviosa1997",
+        "telefone": null,
+        "data_contratacao": {
+            "$date": "2024-11-05T00:00:00.000Z"
+        },
+        "cargo_id": 20,
+        "salario": {
+            "$numberDecimal": "18000.00"
+        },
+        "gerente_id": 108,
+        "departamento_id": 13,
+        "dependentes": []
+    },
+    {
+        "_id": 212,
+        "primeiro_nome": "Leia",
+        "sobrenome": "Organa",
+        "email": "leia.organa@momento.org",
+        "senha": "RebelAlliance!Hope1977",
+        "telefone": null,
+        "data_contratacao": {
+            "$date": "2024-11-06T00:00:00.000Z"
+        },
+        "cargo_id": 12,
+        "salario": {
+            "$numberDecimal": "10000.00"
+        },
+        "gerente_id": 101,
+        "departamento_id": 7,
+        "dependentes": []
+    },
+    {
+        "_id": 213,
+        "primeiro_nome": "Spock",
+        "sobrenome": "Sarek",
+        "email": "spock.sarek@momento.org",
+        "senha": "LiveLong!Prosper1701",
+        "telefone": null,
+        "data_contratacao": {
+            "$date": "2024-11-07T00:00:00.000Z"
+        },
+        "cargo_id": 20,
+        "salario": {
+            "$numberDecimal": "23000.00"
+        },
+        "gerente_id": 206,
+        "departamento_id": 12,
+        "dependentes": []
+    },
+    {
+        "_id": 214,
+        "primeiro_nome": "Samus",
+        "sobrenome": "Aran",
+        "email": "samus.aran@momento.org",
+        "senha": "Chozo!PowerSuit1986",
+        "telefone": null,
+        "data_contratacao": {
+            "$date": "2024-11-08T00:00:00.000Z"
+        },
+        "cargo_id": 21,
+        "salario": {
+            "$numberDecimal": "9500.00"
+        },
+        "gerente_id": 103,
+        "departamento_id": 6,
+        "dependentes": []
+    },
+    {
+        "_id": 216,
+        "primeiro_nome": "Dick",
+        "sobrenome": "Grayson",
+        "email": "dick.grayson@momento.org",
+        "senha": "Indic!fafa1986",
+        "telefone": null,
+        "data_contratacao": {
+            "$date": "2024-11-08T00:00:00.000Z"
+        },
+        "cargo_id": 21,
+        "salario": {
+            "$numberDecimal": "9500.00"
+        },
+        "gerente_id": 103,
+        "departamento_id": 6,
+        "dependentes": []
+    }
+]

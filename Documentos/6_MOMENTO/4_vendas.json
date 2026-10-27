@@ -1,0 +1,155 @@
+[
+    {
+        "_id": 35864200,
+        "produto_id": 3,
+        "quantidade": 19,
+        "data_venda": {
+            "$date": "2023-06-05T00:00:00.000Z"
+        },
+        "funcionario_id": 176
+    },
+    {
+        "_id": 460333211,
+        "produto_id": 6,
+        "quantidade": 15,
+        "data_venda": {
+            "$date": "2023-06-10T00:00:00.000Z"
+        },
+        "funcionario_id": 177
+    },
+    {
+        "_id": 23192902,
+        "produto_id": 5,
+        "quantidade": 17,
+        "data_venda": {
+            "$date": "2023-06-13T00:00:00.000Z"
+        },
+        "funcionario_id": 146
+    },
+    {
+        "_id": 23112902,
+        "produto_id": 6,
+        "quantidade": 13,
+        "data_venda": {
+            "$date": "2023-06-14T00:00:00.000Z"
+        },
+        "funcionario_id": 146
+    },
+    {
+        "_id": 58923150,
+        "produto_id": 8,
+        "quantidade": 22,
+        "data_venda": {
+            "$date": "2023-06-15T00:00:00.000Z"
+        },
+        "funcionario_id": 178
+    },
+    {
+        "_id": 11508951,
+        "produto_id": 1,
+        "quantidade": 10,
+        "data_venda": {
+            "$date": "2023-06-19T00:00:00.000Z"
+        },
+        "funcionario_id": 145
+    },
+    {
+        "_id": 19290129,
+        "produto_id": 9,
+        "quantidade": 14,
+        "data_venda": {
+            "$date": "2023-06-20T00:00:00.000Z"
+        },
+        "funcionario_id": 178
+    },
+    {
+        "_id": 29290213,
+        "produto_id": 4,
+        "quantidade": 55,
+        "data_venda": {
+            "$date": "2023-06-21T00:00:00.000Z"
+        },
+        "funcionario_id": 145
+    },
+    {
+        "_id": 12508951,
+        "produto_id": 10,
+        "quantidade": 13,
+        "data_venda": {
+            "$date": "2023-06-29T00:00:00.000Z"
+        },
+        "funcionario_id": 145
+    },
+    {
+        "_id": 89864008,
+        "produto_id": 12,
+        "quantidade": 3,
+        "data_venda": {
+            "$date": "2023-07-05T00:00:00.000Z"
+        },
+        "funcionario_id": 176
+    },
+    {
+        "_id": 46073321,
+        "produto_id": 1,
+        "quantidade": 167,
+        "data_venda": {
+            "$date": "2023-07-10T00:00:00.000Z"
+        },
+        "funcionario_id": 176
+    },
+    {
+        "_id": 14131021,
+        "produto_id": 3,
+        "quantidade": 10,
+        "data_venda": {
+            "$date": "2023-07-13T00:00:00.000Z"
+        },
+        "funcionario_id": 177
+    },
+    {
+        "_id": 23197502,
+        "produto_id": 5,
+        "quantidade": 19,
+        "data_venda": {
+            "$date": "2023-07-18T00:00:00.000Z"
+        },
+        "funcionario_id": 176
+    },
+    {
+        "_id": 12519951,
+        "produto_id": 10,
+        "quantidade": 10,
+        "data_venda": {
+            "$date": "2023-07-20T00:00:00.000Z"
+        },
+        "funcionario_id": 145
+    },
+    {
+        "_id": 23912902,
+        "produto_id": 4,
+        "quantidade": 29,
+        "data_venda": {
+            "$date": "2023-07-19T00:00:00.000Z"
+        },
+        "funcionario_id": 146
+    },
+    {
+        "_id": 23191302,
+        "produto_id": 11,
+        "quantidade": 8,
+        "data_venda": {
+            "$date": "2023-07-21T00:00:00.000Z"
+        },
+        "funcionario_id": 146
+    },
+    {
+        "_id": 29923150,
+        "produto_id": 2,
+        "quantidade": 14,
+        "data_venda": {
+            "$date": "2023-07-29T00:00:00.000Z"
+        },
+        "funcionario_id": 178
+    }
+]

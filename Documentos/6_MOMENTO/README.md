@@ -1,5 +1,7 @@
 # Momento 
 
+Consulte [MODELO.md](MODELO.md) para o modelo atual, tipos BSON, geração a partir do SQL, importação, validação, índices e adaptação dos exercícios abaixo.
+
 Bem-vindo à base de dados da empresa **Momento**!
 
 A Momento é uma empresa inovadora do setor de tecnologia e vendas de produtos temáticos de super-heróis e cultura pop. Fundada em 1980, a empresa começou como uma pequena loja em Gotham City e hoje possui escritórios em diversos países, com departamentos especializados em Vendas, Tecnologia, Recursos Humanos, Marketing, Financeiro e Dados.

@@ -1,0 +1,483 @@
+[
+    {
+        "_id": 1400,
+        "nome": "Wayne Offices",
+        "endereco": "2014 Jabberwocky Rd",
+        "cep": "26192",
+        "cidade": "Gotham",
+        "estado_provincia": "New York",
+        "pais_id": "US",
+        "suprimentos": [
+            {
+                "_id": 1,
+                "nome": "Computers",
+                "quantidade": 20,
+                "custo": {
+                    "$numberDecimal": "100000.00"
+                }
+            },
+            {
+                "_id": 2,
+                "nome": "Impressoras",
+                "quantidade": 3,
+                "custo": {
+                    "$numberDecimal": "500.00"
+                }
+            },
+            {
+                "_id": 3,
+                "nome": "Papel",
+                "quantidade": 50,
+                "custo": {
+                    "$numberDecimal": "21000.00"
+                }
+            },
+            {
+                "_id": 4,
+                "nome": "Planners",
+                "quantidade": 20,
+                "custo": {
+                    "$numberDecimal": "1500.00"
+                }
+            },
+            {
+                "_id": 25,
+                "nome": "Computers",
+                "quantidade": 1,
+                "custo": {
+                    "$numberDecimal": "2000.00"
+                }
+            },
+            {
+                "_id": 26,
+                "nome": "Impressoras",
+                "quantidade": 2,
+                "custo": {
+                    "$numberDecimal": "500.00"
+                }
+            },
+            {
+                "_id": 27,
+                "nome": "Papel",
+                "quantidade": 50,
+                "custo": {
+                    "$numberDecimal": "21000.00"
+                }
+            },
+            {
+                "_id": 28,
+                "nome": "Planners",
+                "quantidade": 20,
+                "custo": {
+                    "$numberDecimal": "1500.00"
+                }
+            }
+        ]
+    },
+    {
+        "_id": 1500,
+        "nome": "Stark Tower",
+        "endereco": "2011 Interiors Blvd",
+        "cep": "99236",
+        "cidade": "South San Francisco",
+        "estado_provincia": "California",
+        "pais_id": "US",
+        "suprimentos": []
+    },
+    {
+        "_id": 1700,
+        "nome": "Sala Winter",
+        "endereco": "2004 Charade Rd",
+        "cep": "98199",
+        "cidade": "Seattle",
+        "estado_provincia": "Washington",
+        "pais_id": "US",
+        "suprimentos": [
+            {
+                "_id": 5,
+                "nome": "Post-its",
+                "quantidade": 5000,
+                "custo": {
+                    "$numberDecimal": "852.65"
+                }
+            },
+            {
+                "_id": 6,
+                "nome": "Highlighter",
+                "quantidade": 20,
+                "custo": {
+                    "$numberDecimal": "500.00"
+                }
+            },
+            {
+                "_id": 7,
+                "nome": "Notebook",
+                "quantidade": 50,
+                "custo": {
+                    "$numberDecimal": "1000.00"
+                }
+            },
+            {
+                "_id": 29,
+                "nome": "Post-its",
+                "quantidade": 50,
+                "custo": {
+                    "$numberDecimal": "1197.42"
+                }
+            },
+            {
+                "_id": 30,
+                "nome": "Highlighter",
+                "quantidade": 20,
+                "custo": {
+                    "$numberDecimal": "500.00"
+                }
+            },
+            {
+                "_id": 31,
+                "nome": "Notebook",
+                "quantidade": 50,
+                "custo": {
+                    "$numberDecimal": "1000.00"
+                }
+            }
+        ]
+    },
+    {
+        "_id": 1800,
+        "nome": "Arkham Base",
+        "endereco": "147 Spadina Ave",
+        "cep": "M5V 2L7",
+        "cidade": "Toronto",
+        "estado_provincia": "Ontario",
+        "pais_id": "CA",
+        "suprimentos": [
+            {
+                "_id": 15,
+                "nome": "Notebook",
+                "quantidade": 50,
+                "custo": {
+                    "$numberDecimal": "1000.00"
+                }
+            },
+            {
+                "_id": 39,
+                "nome": "Notebook",
+                "quantidade": 50,
+                "custo": {
+                    "$numberDecimal": "1000.00"
+                }
+            }
+        ]
+    },
+    {
+        "_id": 1900,
+        "nome": "House of Mystery escritorios",
+        "endereco": "The Trickster Rd. 42",
+        "cep": "80925",
+        "cidade": "Newcastle",
+        "estado_provincia": "North East England",
+        "pais_id": "UK",
+        "suprimentos": [
+            {
+                "_id": 13,
+                "nome": "Post-its",
+                "quantidade": 50,
+                "custo": {
+                    "$numberDecimal": "1000.00"
+                }
+            },
+            {
+                "_id": 14,
+                "nome": "Highlighter",
+                "quantidade": 20,
+                "custo": {
+                    "$numberDecimal": "500.00"
+                }
+            },
+            {
+                "_id": 16,
+                "nome": "Grampeadores",
+                "quantidade": 20,
+                "custo": {
+                    "$numberDecimal": "500.00"
+                }
+            },
+            {
+                "_id": 37,
+                "nome": "Post-its",
+                "quantidade": 50,
+                "custo": {
+                    "$numberDecimal": "1000.00"
+                }
+            },
+            {
+                "_id": 38,
+                "nome": "Highlighter",
+                "quantidade": 20,
+                "custo": {
+                    "$numberDecimal": "500.00"
+                }
+            },
+            {
+                "_id": 40,
+                "nome": "Grampeadores",
+                "quantidade": 20,
+                "custo": {
+                    "$numberDecimal": "500.00"
+                }
+            }
+        ]
+    },
+    {
+        "_id": 2400,
+        "nome": "Shuri's Palace",
+        "endereco": "8204 Arthur St",
+        "cep": null,
+        "cidade": "Jabari Village",
+        "estado_provincia": "Birnin Zana",
+        "pais_id": "WA",
+        "suprimentos": [
+            {
+                "_id": 18,
+                "nome": "Impressoras",
+                "quantidade": 3,
+                "custo": {
+                    "$numberDecimal": "500.00"
+                }
+            },
+            {
+                "_id": 19,
+                "nome": "Papel",
+                "quantidade": 50,
+                "custo": {
+                    "$numberDecimal": "752.85"
+                }
+            },
+            {
+                "_id": 20,
+                "nome": "Planners",
+                "quantidade": 20,
+                "custo": {
+                    "$numberDecimal": "500.00"
+                }
+            },
+            {
+                "_id": 21,
+                "nome": "Post-its",
+                "quantidade": 50,
+                "custo": {
+                    "$numberDecimal": "1000.00"
+                }
+            },
+            {
+                "_id": 42,
+                "nome": "Impressoras",
+                "quantidade": 2,
+                "custo": {
+                    "$numberDecimal": "500.00"
+                }
+            },
+            {
+                "_id": 43,
+                "nome": "Papel",
+                "quantidade": 50,
+                "custo": {
+                    "$numberDecimal": "752.85"
+                }
+            },
+            {
+                "_id": 44,
+                "nome": "Planners",
+                "quantidade": 20,
+                "custo": {
+                    "$numberDecimal": "500.00"
+                }
+            },
+            {
+                "_id": 45,
+                "nome": "Post-its",
+                "quantidade": 5000,
+                "custo": {
+                    "$numberDecimal": "1000.00"
+                }
+            }
+        ]
+    },
+    {
+        "_id": 2500,
+        "nome": "Umbrella Corp",
+        "endereco": "Magdalen Centre, The Oxford Science Park",
+        "cep": "OX9 9ZB",
+        "cidade": "Oxford",
+        "estado_provincia": "Oxford",
+        "pais_id": "UK",
+        "suprimentos": [
+            {
+                "_id": 8,
+                "nome": "Grampeadores",
+                "quantidade": 20,
+                "custo": {
+                    "$numberDecimal": "500.00"
+                }
+            },
+            {
+                "_id": 9,
+                "nome": "Computers",
+                "quantidade": 15,
+                "custo": {
+                    "$numberDecimal": "200000.00"
+                }
+            },
+            {
+                "_id": 22,
+                "nome": "Highlighter",
+                "quantidade": 20,
+                "custo": {
+                    "$numberDecimal": "500.00"
+                }
+            },
+            {
+                "_id": 23,
+                "nome": "Notebook",
+                "quantidade": 50,
+                "custo": {
+                    "$numberDecimal": "1000.00"
+                }
+            },
+            {
+                "_id": 24,
+                "nome": "Grampeadores",
+                "quantidade": 20,
+                "custo": {
+                    "$numberDecimal": "500.00"
+                }
+            },
+            {
+                "_id": 32,
+                "nome": "Grampeadores",
+                "quantidade": 20,
+                "custo": {
+                    "$numberDecimal": "500.00"
+                }
+            },
+            {
+                "_id": 33,
+                "nome": "Computers",
+                "quantidade": 15,
+                "custo": {
+                    "$numberDecimal": "200000.00"
+                }
+            },
+            {
+                "_id": 46,
+                "nome": "Highlighter",
+                "quantidade": 20,
+                "custo": {
+                    "$numberDecimal": "500.00"
+                }
+            },
+            {
+                "_id": 47,
+                "nome": "Notebook",
+                "quantidade": 50,
+                "custo": {
+                    "$numberDecimal": "1000.00"
+                }
+            },
+            {
+                "_id": 48,
+                "nome": "Grampeadores",
+                "quantidade": 10,
+                "custo": {
+                    "$numberDecimal": "500.00"
+                }
+            }
+        ]
+    },
+    {
+        "_id": 2700,
+        "nome": "Archies Mad House",
+        "endereco": "2801 W. Airport Freeway",
+        "cep": "00616",
+        "cidade": "Green Dale",
+        "estado_provincia": "Bavaria",
+        "pais_id": "DE",
+        "suprimentos": []
+    },
+    {
+        "_id": 3900,
+        "nome": "Baxter Building",
+        "endereco": "Excelsior Rd. 7031",
+        "cep": "00616",
+        "cidade": "London Below",
+        "estado_provincia": "London Above",
+        "pais_id": "UK",
+        "suprimentos": [
+            {
+                "_id": 10,
+                "nome": "Impressoras",
+                "quantidade": 20,
+                "custo": {
+                    "$numberDecimal": "500.00"
+                }
+            },
+            {
+                "_id": 11,
+                "nome": "Papel",
+                "quantidade": 50,
+                "custo": {
+                    "$numberDecimal": "1000.00"
+                }
+            },
+            {
+                "_id": 12,
+                "nome": "Planners",
+                "quantidade": 20,
+                "custo": {
+                    "$numberDecimal": "500.00"
+                }
+            },
+            {
+                "_id": 17,
+                "nome": "Computers",
+                "quantidade": 40,
+                "custo": {
+                    "$numberDecimal": "200000.00"
+                }
+            },
+            {
+                "_id": 34,
+                "nome": "Impressoras",
+                "quantidade": 1,
+                "custo": {
+                    "$numberDecimal": "500.00"
+                }
+            },
+            {
+                "_id": 35,
+                "nome": "Papel",
+                "quantidade": 5000,
+                "custo": {
+                    "$numberDecimal": "752.85"
+                }
+            },
+            {
+                "_id": 36,
+                "nome": "Planners",
+                "quantidade": 2010,
+                "custo": {
+                    "$numberDecimal": "500.00"
+                }
+            },
+            {
+                "_id": 41,
+                "nome": "Computers",
+                "quantidade": 40,
+                "custo": {
+                    "$numberDecimal": "200000.00"
+                }
+            }
+        ]
+    }
+]

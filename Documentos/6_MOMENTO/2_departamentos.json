@@ -1,0 +1,67 @@
+[
+    {
+        "_id": 1,
+        "nome": "Administração",
+        "escritorio_id": 1700
+    },
+    {
+        "_id": 2,
+        "nome": "Marketing",
+        "escritorio_id": 1800
+    },
+    {
+        "_id": 3,
+        "nome": "Suprimentos",
+        "escritorio_id": 1700
+    },
+    {
+        "_id": 4,
+        "nome": "Recursos Humanos",
+        "escritorio_id": 2400
+    },
+    {
+        "_id": 5,
+        "nome": "Transportes",
+        "escritorio_id": 1500
+    },
+    {
+        "_id": 6,
+        "nome": "Tecnologia",
+        "escritorio_id": 1400
+    },
+    {
+        "_id": 7,
+        "nome": "Relações Públicas",
+        "escritorio_id": 2700
+    },
+    {
+        "_id": 8,
+        "nome": "Vendas",
+        "escritorio_id": 2500
+    },
+    {
+        "_id": 9,
+        "nome": "Executivo",
+        "escritorio_id": 1700
+    },
+    {
+        "_id": 10,
+        "nome": "Finanças",
+        "escritorio_id": 1700
+    },
+    {
+        "_id": 11,
+        "nome": "Contabilidade",
+        "escritorio_id": 1700
+    },
+    {
+        "_id": 12,
+        "nome": "Biotecnologia",
+        "escritorio_id": 3900
+    },
+    {
+        "_id": 13,
+        "nome": "Tecnologias Avançadas",
+        "escritorio_id": 1900
+    }
+]

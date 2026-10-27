@@ -1,0 +1,523 @@
+[
+    {
+        "nome": "escritorios",
+        "schema": {
+            "bsonType": "object",
+            "required": [
+                "_id",
+                "nome",
+                "endereco",
+                "cep",
+                "cidade",
+                "estado_provincia",
+                "pais_id",
+                "suprimentos"
+            ],
+            "additionalProperties": false,
+            "properties": {
+                "_id": {
+                    "bsonType": "int"
+                },
+                "nome": {
+                    "bsonType": "string"
+                },
+                "endereco": {
+                    "bsonType": "string"
+                },
+                "cep": {
+                    "bsonType": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "cidade": {
+                    "bsonType": "string"
+                },
+                "estado_provincia": {
+                    "bsonType": "string"
+                },
+                "pais_id": {
+                    "bsonType": "string"
+                },
+                "suprimentos": {
+                    "bsonType": "array",
+                    "items": {
+                        "bsonType": "object",
+                        "required": [
+                            "_id",
+                            "nome",
+                            "quantidade",
+                            "custo"
+                        ],
+                        "additionalProperties": false,
+                        "properties": {
+                            "_id": {
+                                "bsonType": "int"
+                            },
+                            "nome": {
+                                "bsonType": "string"
+                            },
+                            "quantidade": {
+                                "bsonType": "int",
+                                "minimum": 0
+                            },
+                            "custo": {
+                                "bsonType": "decimal",
+                                "minimum": {
+                                    "$numberDecimal": "0.00"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "indices": [
+            [
+                {
+                    "pais_id": 1
+                },
+                {}
+            ]
+        ]
+    },
+    {
+        "nome": "departamentos",
+        "schema": {
+            "bsonType": "object",
+            "required": [
+                "_id",
+                "nome",
+                "escritorio_id"
+            ],
+            "additionalProperties": false,
+            "properties": {
+                "_id": {
+                    "bsonType": "int"
+                },
+                "nome": {
+                    "bsonType": "string"
+                },
+                "escritorio_id": {
+                    "bsonType": [
+                        "int",
+                        "null"
+                    ]
+                }
+            }
+        },
+        "indices": [
+            [
+                {
+                    "escritorio_id": 1
+                },
+                {}
+            ]
+        ]
+    },
+    {
+        "nome": "funcionarios",
+        "schema": {
+            "bsonType": "object",
+            "required": [
+                "_id",
+                "primeiro_nome",
+                "sobrenome",
+                "email",
+                "senha",
+                "telefone",
+                "data_contratacao",
+                "cargo_id",
+                "salario",
+                "gerente_id",
+                "departamento_id",
+                "dependentes"
+            ],
+            "additionalProperties": false,
+            "properties": {
+                "_id": {
+                    "bsonType": "int"
+                },
+                "primeiro_nome": {
+                    "bsonType": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "sobrenome": {
+                    "bsonType": "string"
+                },
+                "email": {
+                    "bsonType": "string"
+                },
+                "senha": {
+                    "bsonType": "string"
+                },
+                "telefone": {
+                    "bsonType": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "data_contratacao": {
+                    "bsonType": "date"
+                },
+                "cargo_id": {
+                    "bsonType": "int"
+                },
+                "salario": {
+                    "bsonType": "decimal",
+                    "minimum": {
+                        "$numberDecimal": "0.00"
+                    }
+                },
+                "gerente_id": {
+                    "bsonType": [
+                        "int",
+                        "null"
+                    ]
+                },
+                "departamento_id": {
+                    "bsonType": "int"
+                },
+                "dependentes": {
+                    "bsonType": "array",
+                    "items": {
+                        "bsonType": "object",
+                        "required": [
+                            "_id",
+                            "primeiro_nome",
+                            "sobrenome",
+                            "relacionamento"
+                        ],
+                        "additionalProperties": false,
+                        "properties": {
+                            "_id": {
+                                "bsonType": "int"
+                            },
+                            "primeiro_nome": {
+                                "bsonType": [
+                                    "string",
+                                    "null"
+                                ]
+                            },
+                            "sobrenome": {
+                                "bsonType": "string"
+                            },
+                            "relacionamento": {
+                                "bsonType": "string"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "indices": [
+            [
+                {
+                    "email": 1
+                },
+                {
+                    "unique": true
+                }
+            ],
+            [
+                {
+                    "departamento_id": 1
+                },
+                {}
+            ],
+            [
+                {
+                    "cargo_id": 1
+                },
+                {}
+            ],
+            [
+                {
+                    "gerente_id": 1
+                },
+                {}
+            ]
+        ]
+    },
+    {
+        "nome": "vendas",
+        "schema": {
+            "bsonType": "object",
+            "required": [
+                "_id",
+                "produto_id",
+                "quantidade",
+                "data_venda",
+                "funcionario_id"
+            ],
+            "additionalProperties": false,
+            "properties": {
+                "_id": {
+                    "bsonType": "int"
+                },
+                "produto_id": {
+                    "bsonType": "int"
+                },
+                "quantidade": {
+                    "bsonType": "int",
+                    "minimum": 0
+                },
+                "data_venda": {
+                    "bsonType": "date"
+                },
+                "funcionario_id": {
+                    "bsonType": "int"
+                }
+            }
+        },
+        "indices": [
+            [
+                {
+                    "funcionario_id": 1,
+                    "data_venda": -1
+                },
+                {}
+            ],
+            [
+                {
+                    "produto_id": 1
+                },
+                {}
+            ],
+            [
+                {
+                    "data_venda": -1
+                },
+                {}
+            ]
+        ]
+    },
+    {
+        "nome": "log",
+        "schema": {
+            "bsonType": "object",
+            "required": [
+                "_id",
+                "acao",
+                "data",
+                "modulo",
+                "status",
+                "origem",
+                "detalhes",
+                "funcionario_id",
+                "autor"
+            ],
+            "additionalProperties": false,
+            "properties": {
+                "_id": {
+                    "bsonType": "int"
+                },
+                "acao": {
+                    "bsonType": "string"
+                },
+                "data": {
+                    "bsonType": "date"
+                },
+                "modulo": {
+                    "bsonType": "string"
+                },
+                "status": {
+                    "bsonType": "string",
+                    "enum": [
+                        "REGISTRADO",
+                        "SUCESSO",
+                        "FALHA",
+                        "BLOQUEADO"
+                    ]
+                },
+                "origem": {
+                    "bsonType": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "detalhes": {
+                    "bsonType": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "funcionario_id": {
+                    "bsonType": "int"
+                },
+                "autor": {
+                    "bsonType": "object",
+                    "required": [
+                        "primeiro_nome",
+                        "sobrenome",
+                        "email"
+                    ],
+                    "additionalProperties": false,
+                    "properties": {
+                        "primeiro_nome": {
+                            "bsonType": [
+                                "string",
+                                "null"
+                            ]
+                        },
+                        "sobrenome": {
+                            "bsonType": "string"
+                        },
+                        "email": {
+                            "bsonType": "string"
+                        }
+                    }
+                }
+            }
+        },
+        "indices": [
+            [
+                {
+                    "funcionario_id": 1,
+                    "data": -1
+                },
+                {}
+            ],
+            [
+                {
+                    "status": 1,
+                    "data": -1
+                },
+                {}
+            ],
+            [
+                {
+                    "modulo": 1,
+                    "data": -1
+                },
+                {}
+            ],
+            [
+                {
+                    "data": -1
+                },
+                {}
+            ]
+        ]
+    },
+    {
+        "nome": "produtos",
+        "schema": {
+            "bsonType": "object",
+            "required": [
+                "_id",
+                "nome",
+                "preco_unitario"
+            ],
+            "additionalProperties": false,
+            "properties": {
+                "_id": {
+                    "bsonType": "int"
+                },
+                "nome": {
+                    "bsonType": "string"
+                },
+                "preco_unitario": {
+                    "bsonType": "decimal",
+                    "minimum": {
+                        "$numberDecimal": "0.00"
+                    }
+                }
+            }
+        },
+        "indices": []
+    },
+    {
+        "nome": "paises",
+        "schema": {
+            "bsonType": "object",
+            "required": [
+                "_id",
+                "nome",
+                "regiao_id"
+            ],
+            "additionalProperties": false,
+            "properties": {
+                "_id": {
+                    "bsonType": "string"
+                },
+                "nome": {
+                    "bsonType": "string"
+                },
+                "regiao_id": {
+                    "bsonType": "int"
+                }
+            }
+        },
+        "indices": [
+            [
+                {
+                    "regiao_id": 1
+                },
+                {}
+            ]
+        ]
+    },
+    {
+        "nome": "regioes",
+        "schema": {
+            "bsonType": "object",
+            "required": [
+                "_id",
+                "nome"
+            ],
+            "additionalProperties": false,
+            "properties": {
+                "_id": {
+                    "bsonType": "int"
+                },
+                "nome": {
+                    "bsonType": "string"
+                }
+            }
+        },
+        "indices": []
+    },
+    {
+        "nome": "cargos",
+        "schema": {
+            "bsonType": "object",
+            "required": [
+                "_id",
+                "nome",
+                "salario_minimo",
+                "salario_maximo"
+            ],
+            "additionalProperties": false,
+            "properties": {
+                "_id": {
+                    "bsonType": "int"
+                },
+                "nome": {
+                    "bsonType": "string"
+                },
+                "salario_minimo": {
+                    "bsonType": [
+                        "decimal",
+                        "null"
+                    ],
+                    "minimum": {
+                        "$numberDecimal": "0.00"
+                    }
+                },
+                "salario_maximo": {
+                    "bsonType": [
+                        "decimal",
+                        "null"
+                    ],
+                    "minimum": {
+                        "$numberDecimal": "0.00"
+                    }
+                }
+            }
+        },
+        "indices": []
+    }
+]

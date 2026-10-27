@@ -1,0 +1,93 @@
+[
+    {
+        "_id": 1,
+        "nome": "Uniforme do Superman",
+        "preco_unitario": {
+            "$numberDecimal": "300.13"
+        }
+    },
+    {
+        "_id": 2,
+        "nome": "Fake Batarang",
+        "preco_unitario": {
+            "$numberDecimal": "239.29"
+        }
+    },
+    {
+        "_id": 3,
+        "nome": "Lança-Teias",
+        "preco_unitario": {
+            "$numberDecimal": "237.19"
+        }
+    },
+    {
+        "_id": 4,
+        "nome": "Capacete do Homem-Formiga",
+        "preco_unitario": {
+            "$numberDecimal": "289.29"
+        }
+    },
+    {
+        "_id": 5,
+        "nome": "Nulificador Total",
+        "preco_unitario": {
+            "$numberDecimal": "750.19"
+        }
+    },
+    {
+        "_id": 6,
+        "nome": "Laço da Verdade",
+        "preco_unitario": {
+            "$numberDecimal": "325.13"
+        }
+    },
+    {
+        "_id": 7,
+        "nome": "Iron-man MK 5 Helmet",
+        "preco_unitario": {
+            "$numberDecimal": "322.29"
+        }
+    },
+    {
+        "_id": 8,
+        "nome": "Sabre de Luz (Mace Windu)",
+        "preco_unitario": {
+            "$numberDecimal": "990.29"
+        }
+    },
+    {
+        "_id": 9,
+        "nome": "Sentinelas do Bolivar Trask",
+        "preco_unitario": {
+            "$numberDecimal": "150.13"
+        }
+    },
+    {
+        "_id": 10,
+        "nome": "Uniforme de Moléculas Instáveis",
+        "preco_unitario": {
+            "$numberDecimal": "158.29"
+        }
+    },
+    {
+        "_id": 11,
+        "nome": "Laço da Honestidade",
+        "preco_unitario": {
+            "$numberDecimal": "649.29"
+        }
+    },
+    {
+        "_id": 12,
+        "nome": "Batarangs Oficiais",
+        "preco_unitario": {
+            "$numberDecimal": "900.29"
+        }
+    },
+    {
+        "_id": 13,
+        "nome": "R do Robin",
+        "preco_unitario": {
+            "$numberDecimal": "32.29"
+        }
+    }
+]

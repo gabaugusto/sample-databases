@@ -1,0 +1,157 @@
+[
+    {
+        "_id": "AR",
+        "nome": "Argentina",
+        "regiao_id": 2
+    },
+    {
+        "_id": "AU",
+        "nome": "Australia",
+        "regiao_id": 3
+    },
+    {
+        "_id": "BE",
+        "nome": "Belgium",
+        "regiao_id": 1
+    },
+    {
+        "_id": "BR",
+        "nome": "Brazil",
+        "regiao_id": 2
+    },
+    {
+        "_id": "CA",
+        "nome": "Canada",
+        "regiao_id": 2
+    },
+    {
+        "_id": "CH",
+        "nome": "Switzerland",
+        "regiao_id": 1
+    },
+    {
+        "_id": "CN",
+        "nome": "China",
+        "regiao_id": 3
+    },
+    {
+        "_id": "DE",
+        "nome": "Germany",
+        "regiao_id": 1
+    },
+    {
+        "_id": "DK",
+        "nome": "Denmark",
+        "regiao_id": 1
+    },
+    {
+        "_id": "EG",
+        "nome": "Egypt",
+        "regiao_id": 4
+    },
+    {
+        "_id": "FR",
+        "nome": "France",
+        "regiao_id": 1
+    },
+    {
+        "_id": "HK",
+        "nome": "HongKong",
+        "regiao_id": 3
+    },
+    {
+        "_id": "IL",
+        "nome": "Israel",
+        "regiao_id": 4
+    },
+    {
+        "_id": "IN",
+        "nome": "India",
+        "regiao_id": 3
+    },
+    {
+        "_id": "IT",
+        "nome": "Italy",
+        "regiao_id": 1
+    },
+    {
+        "_id": "KK",
+        "nome": "Krakoa",
+        "regiao_id": 2
+    },
+    {
+        "_id": "JP",
+        "nome": "Japan",
+        "regiao_id": 3
+    },
+    {
+        "_id": "KW",
+        "nome": "Kuwait",
+        "regiao_id": 4
+    },
+    {
+        "_id": "LE",
+        "nome": "Latveria",
+        "regiao_id": 1
+    },
+    {
+        "_id": "MI",
+        "nome": "Markovia",
+        "regiao_id": 1
+    },
+    {
+        "_id": "MX",
+        "nome": "Mexico",
+        "regiao_id": 2
+    },
+    {
+        "_id": "NG",
+        "nome": "Nigeria",
+        "regiao_id": 4
+    },
+    {
+        "_id": "NL",
+        "nome": "Netherlands",
+        "regiao_id": 1
+    },
+    {
+        "_id": "QU",
+        "nome": "Qurac",
+        "regiao_id": 4
+    },
+    {
+        "_id": "TY",
+        "nome": "Themyscira",
+        "regiao_id": 1
+    },
+    {
+        "_id": "SG",
+        "nome": "Singapore",
+        "regiao_id": 3
+    },
+    {
+        "_id": "UK",
+        "nome": "United Kingdom",
+        "regiao_id": 1
+    },
+    {
+        "_id": "US",
+        "nome": "United States of America",
+        "regiao_id": 2
+    },
+    {
+        "_id": "WA",
+        "nome": "Wakanda",
+        "regiao_id": 4
+    },
+    {
+        "_id": "ZM",
+        "nome": "Zambia",
+        "regiao_id": 4
+    },
+    {
+        "_id": "ZW",
+        "nome": "Zimbabwe",
+        "regiao_id": 4
+    }
+]

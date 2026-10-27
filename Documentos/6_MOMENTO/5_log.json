@@ -1,0 +1,818 @@
+[
+    {
+        "_id": 1,
+        "acao": "Login",
+        "data": {
+            "$date": "2023-01-15T08:00:01.000Z"
+        },
+        "modulo": "SISTEMA",
+        "status": "REGISTRADO",
+        "origem": null,
+        "detalhes": null,
+        "funcionario_id": 100,
+        "autor": {
+            "primeiro_nome": "Madeleine",
+            "sobrenome": "Prior",
+            "email": "madeleine.prior@momento.org"
+        }
+    },
+    {
+        "_id": 2,
+        "acao": "Login",
+        "data": {
+            "$date": "2023-01-15T08:22:00.000Z"
+        },
+        "modulo": "SISTEMA",
+        "status": "REGISTRADO",
+        "origem": null,
+        "detalhes": null,
+        "funcionario_id": 107,
+        "autor": {
+            "primeiro_nome": "Diana",
+            "sobrenome": "Lorentz",
+            "email": "diana.lorentz@momento.org"
+        }
+    },
+    {
+        "_id": 3,
+        "acao": "Solicitou a Alteração de Senha",
+        "data": {
+            "$date": "2023-01-15T08:25:33.000Z"
+        },
+        "modulo": "SISTEMA",
+        "status": "REGISTRADO",
+        "origem": null,
+        "detalhes": null,
+        "funcionario_id": 106,
+        "autor": {
+            "primeiro_nome": "Valli",
+            "sobrenome": "Stark",
+            "email": "valli.stark@momento.org"
+        }
+    },
+    {
+        "_id": 4,
+        "acao": "Login",
+        "data": {
+            "$date": "2023-01-15T08:41:17.000Z"
+        },
+        "modulo": "SISTEMA",
+        "status": "REGISTRADO",
+        "origem": null,
+        "detalhes": null,
+        "funcionario_id": 110,
+        "autor": {
+            "primeiro_nome": "John",
+            "sobrenome": "Chen",
+            "email": "john.chen@momento.org"
+        }
+    },
+    {
+        "_id": 5,
+        "acao": "Login",
+        "data": {
+            "$date": "2023-01-15T08:45:02.000Z"
+        },
+        "modulo": "SISTEMA",
+        "status": "REGISTRADO",
+        "origem": null,
+        "detalhes": null,
+        "funcionario_id": 111,
+        "autor": {
+            "primeiro_nome": "Ismael",
+            "sobrenome": "Sciarra",
+            "email": "ismael.sciarra@momento.org"
+        }
+    },
+    {
+        "_id": 6,
+        "acao": "Solicitou a Alteração de Senha",
+        "data": {
+            "$date": "2023-01-15T08:47:22.000Z"
+        },
+        "modulo": "SISTEMA",
+        "status": "REGISTRADO",
+        "origem": null,
+        "detalhes": null,
+        "funcionario_id": 177,
+        "autor": {
+            "primeiro_nome": "Jack",
+            "sobrenome": "Livingston",
+            "email": "jack.livingston@momento.org"
+        }
+    },
+    {
+        "_id": 7,
+        "acao": "Alterou a Senha",
+        "data": {
+            "$date": "2023-01-15T08:49:22.000Z"
+        },
+        "modulo": "SISTEMA",
+        "status": "REGISTRADO",
+        "origem": null,
+        "detalhes": null,
+        "funcionario_id": 177,
+        "autor": {
+            "primeiro_nome": "Jack",
+            "sobrenome": "Livingston",
+            "email": "jack.livingston@momento.org"
+        }
+    },
+    {
+        "_id": 8,
+        "acao": "Login",
+        "data": {
+            "$date": "2023-01-15T08:51:24.000Z"
+        },
+        "modulo": "SISTEMA",
+        "status": "REGISTRADO",
+        "origem": null,
+        "detalhes": null,
+        "funcionario_id": 177,
+        "autor": {
+            "primeiro_nome": "Jack",
+            "sobrenome": "Livingston",
+            "email": "jack.livingston@momento.org"
+        }
+    },
+    {
+        "_id": 9,
+        "acao": "Login",
+        "data": {
+            "$date": "2023-01-15T09:01:00.000Z"
+        },
+        "modulo": "SISTEMA",
+        "status": "REGISTRADO",
+        "origem": null,
+        "detalhes": null,
+        "funcionario_id": 101,
+        "autor": {
+            "primeiro_nome": "Neena",
+            "sobrenome": "Kochhar",
+            "email": "neena.kochhar@momento.org"
+        }
+    },
+    {
+        "_id": 10,
+        "acao": "Solicitou a Alteração de Senha",
+        "data": {
+            "$date": "2023-01-15T09:05:00.000Z"
+        },
+        "modulo": "SISTEMA",
+        "status": "REGISTRADO",
+        "origem": null,
+        "detalhes": null,
+        "funcionario_id": 114,
+        "autor": {
+            "primeiro_nome": "Den",
+            "sobrenome": "Raphaely",
+            "email": "den.raphaely@momento.org"
+        }
+    },
+    {
+        "_id": 11,
+        "acao": "Alterou a Senha",
+        "data": {
+            "$date": "2023-01-15T09:08:22.000Z"
+        },
+        "modulo": "SISTEMA",
+        "status": "REGISTRADO",
+        "origem": null,
+        "detalhes": null,
+        "funcionario_id": 206,
+        "autor": {
+            "primeiro_nome": "Susan",
+            "sobrenome": "Storm",
+            "email": "susan.storm@momento.org"
+        }
+    },
+    {
+        "_id": 12,
+        "acao": "Login",
+        "data": {
+            "$date": "2023-01-15T09:18:00.000Z"
+        },
+        "modulo": "SISTEMA",
+        "status": "REGISTRADO",
+        "origem": null,
+        "detalhes": null,
+        "funcionario_id": 123,
+        "autor": {
+            "primeiro_nome": "Shanta",
+            "sobrenome": "Vollman",
+            "email": "shanta.vollman@momento.org"
+        }
+    },
+    {
+        "_id": 13,
+        "acao": "Login",
+        "data": {
+            "$date": "2023-01-15T09:32:00.000Z"
+        },
+        "modulo": "SISTEMA",
+        "status": "REGISTRADO",
+        "origem": null,
+        "detalhes": null,
+        "funcionario_id": 200,
+        "autor": {
+            "primeiro_nome": "Jennifer",
+            "sobrenome": "Whalen",
+            "email": "jennifer.whalen@momento.org"
+        }
+    },
+    {
+        "_id": 14,
+        "acao": "Login",
+        "data": {
+            "$date": "2023-01-15T09:31:24.000Z"
+        },
+        "modulo": "SISTEMA",
+        "status": "REGISTRADO",
+        "origem": null,
+        "detalhes": null,
+        "funcionario_id": 204,
+        "autor": {
+            "primeiro_nome": "Hermann",
+            "sobrenome": "Baer",
+            "email": "hermann.baer@momento.org"
+        }
+    },
+    {
+        "_id": 15,
+        "acao": "Solicitou a Alteração de Senha",
+        "data": {
+            "$date": "2023-01-15T09:45:18.000Z"
+        },
+        "modulo": "SISTEMA",
+        "status": "REGISTRADO",
+        "origem": null,
+        "detalhes": null,
+        "funcionario_id": 207,
+        "autor": {
+            "primeiro_nome": "Lucius",
+            "sobrenome": "Fox",
+            "email": "lucius.fox@momento.org"
+        }
+    },
+    {
+        "_id": 16,
+        "acao": "Solicitou a Alteração de Senha",
+        "data": {
+            "$date": "2023-01-15T09:45:33.000Z"
+        },
+        "modulo": "SISTEMA",
+        "status": "REGISTRADO",
+        "origem": null,
+        "detalhes": null,
+        "funcionario_id": 193,
+        "autor": {
+            "primeiro_nome": "Britney",
+            "sobrenome": "Everett",
+            "email": "britney.everett@momento.org"
+        }
+    },
+    {
+        "_id": 17,
+        "acao": "Login",
+        "data": {
+            "$date": "2023-01-15T09:47:01.000Z"
+        },
+        "modulo": "SISTEMA",
+        "status": "REGISTRADO",
+        "origem": null,
+        "detalhes": null,
+        "funcionario_id": 121,
+        "autor": {
+            "primeiro_nome": "Adam",
+            "sobrenome": "Fripp",
+            "email": "adam.fripp@momento.org"
+        }
+    },
+    {
+        "_id": 18,
+        "acao": "Solicitou a Alteração de Senha",
+        "data": {
+            "$date": "2023-01-15T09:51:17.000Z"
+        },
+        "modulo": "SISTEMA",
+        "status": "REGISTRADO",
+        "origem": null,
+        "detalhes": null,
+        "funcionario_id": 103,
+        "autor": {
+            "primeiro_nome": "Alexander",
+            "sobrenome": "Hunold",
+            "email": "alexander.hunold@momento.org"
+        }
+    },
+    {
+        "_id": 19,
+        "acao": "Solicitou a Alteração de Senha",
+        "data": {
+            "$date": "2023-01-15T09:51:19.000Z"
+        },
+        "modulo": "SISTEMA",
+        "status": "REGISTRADO",
+        "origem": null,
+        "detalhes": null,
+        "funcionario_id": 103,
+        "autor": {
+            "primeiro_nome": "Alexander",
+            "sobrenome": "Hunold",
+            "email": "alexander.hunold@momento.org"
+        }
+    },
+    {
+        "_id": 20,
+        "acao": "Solicitou a Alteração de Senha",
+        "data": {
+            "$date": "2023-01-15T09:51:19.000Z"
+        },
+        "modulo": "SISTEMA",
+        "status": "REGISTRADO",
+        "origem": null,
+        "detalhes": null,
+        "funcionario_id": 192,
+        "autor": {
+            "primeiro_nome": "Sarah",
+            "sobrenome": "Bell",
+            "email": "sarah.bell@momento.org"
+        }
+    },
+    {
+        "_id": 21,
+        "acao": "Login",
+        "data": {
+            "$date": "2023-01-15T09:52:00.000Z"
+        },
+        "modulo": "SISTEMA",
+        "status": "REGISTRADO",
+        "origem": null,
+        "detalhes": null,
+        "funcionario_id": 118,
+        "autor": {
+            "primeiro_nome": "Guy",
+            "sobrenome": "Himuro",
+            "email": "guy.himuro@momento.org"
+        }
+    },
+    {
+        "_id": 22,
+        "acao": "Login",
+        "data": {
+            "$date": "2023-01-15T10:32:00.000Z"
+        },
+        "modulo": "SISTEMA",
+        "status": "REGISTRADO",
+        "origem": null,
+        "detalhes": null,
+        "funcionario_id": 119,
+        "autor": {
+            "primeiro_nome": "Karen",
+            "sobrenome": "Colmenares",
+            "email": "karen.colmenares@momento.org"
+        }
+    },
+    {
+        "_id": 23,
+        "acao": "Alterou a Senha",
+        "data": {
+            "$date": "2023-01-15T11:08:22.000Z"
+        },
+        "modulo": "SISTEMA",
+        "status": "REGISTRADO",
+        "origem": null,
+        "detalhes": null,
+        "funcionario_id": 120,
+        "autor": {
+            "primeiro_nome": "Matthew",
+            "sobrenome": "Weiss",
+            "email": "matthew.weiss@momento.org"
+        }
+    },
+    {
+        "_id": 24,
+        "acao": "Solicitou a Alteração de Senha",
+        "data": {
+            "$date": "2023-01-15T11:45:29.000Z"
+        },
+        "modulo": "SISTEMA",
+        "status": "REGISTRADO",
+        "origem": null,
+        "detalhes": null,
+        "funcionario_id": 122,
+        "autor": {
+            "primeiro_nome": "Payam",
+            "sobrenome": "Kaufling",
+            "email": "payam.kaufling@momento.org"
+        }
+    },
+    {
+        "_id": 25,
+        "acao": "Login",
+        "data": {
+            "$date": "2023-01-15T12:00:29.000Z"
+        },
+        "modulo": "SISTEMA",
+        "status": "REGISTRADO",
+        "origem": null,
+        "detalhes": null,
+        "funcionario_id": 109,
+        "autor": {
+            "primeiro_nome": "Daniel",
+            "sobrenome": "Faviet",
+            "email": "daniel.faviet@momento.org"
+        }
+    },
+    {
+        "_id": 26,
+        "acao": "Solicitou a Alteração de Senha",
+        "data": {
+            "$date": "2023-01-15T13:13:21.000Z"
+        },
+        "modulo": "SISTEMA",
+        "status": "REGISTRADO",
+        "origem": null,
+        "detalhes": null,
+        "funcionario_id": 207,
+        "autor": {
+            "primeiro_nome": "Lucius",
+            "sobrenome": "Fox",
+            "email": "lucius.fox@momento.org"
+        }
+    },
+    {
+        "_id": 27,
+        "acao": "Login",
+        "data": {
+            "$date": "2023-01-15T14:19:13.000Z"
+        },
+        "modulo": "SISTEMA",
+        "status": "REGISTRADO",
+        "origem": null,
+        "detalhes": null,
+        "funcionario_id": 109,
+        "autor": {
+            "primeiro_nome": "Daniel",
+            "sobrenome": "Faviet",
+            "email": "daniel.faviet@momento.org"
+        }
+    },
+    {
+        "_id": 28,
+        "acao": "Login",
+        "data": {
+            "$date": "2023-01-15T17:57:19.000Z"
+        },
+        "modulo": "SISTEMA",
+        "status": "REGISTRADO",
+        "origem": null,
+        "detalhes": null,
+        "funcionario_id": 203,
+        "autor": {
+            "primeiro_nome": "Susan",
+            "sobrenome": "Mavris",
+            "email": "susan.mavris@momento.org"
+        }
+    },
+    {
+        "_id": 29,
+        "acao": "Login",
+        "data": {
+            "$date": "2023-01-15T18:32:29.000Z"
+        },
+        "modulo": "SISTEMA",
+        "status": "REGISTRADO",
+        "origem": null,
+        "detalhes": null,
+        "funcionario_id": 205,
+        "autor": {
+            "primeiro_nome": "Shelley",
+            "sobrenome": "Higgins",
+            "email": "shelley.higgins@momento.org"
+        }
+    },
+    {
+        "_id": 30,
+        "acao": "Login",
+        "data": {
+            "$date": "2023-01-15T19:00:01.000Z"
+        },
+        "modulo": "SISTEMA",
+        "status": "REGISTRADO",
+        "origem": null,
+        "detalhes": null,
+        "funcionario_id": 108,
+        "autor": {
+            "primeiro_nome": "Nancy",
+            "sobrenome": "Constantine",
+            "email": "nancy.constantine@momento.org"
+        }
+    },
+    {
+        "_id": 31,
+        "acao": "Login",
+        "data": {
+            "$date": "2024-11-11T08:00:00.000Z"
+        },
+        "modulo": "AUTENTICACAO",
+        "status": "SUCESSO",
+        "origem": "Batcomputador",
+        "detalhes": "Bat-sinal recebido. Acesso ao painel executivo autorizado.",
+        "funcionario_id": 100,
+        "autor": {
+            "primeiro_nome": "Madeleine",
+            "sobrenome": "Prior",
+            "email": "madeleine.prior@momento.org"
+        }
+    },
+    {
+        "_id": 32,
+        "acao": "Login",
+        "data": {
+            "$date": "2024-11-11T08:03:00.000Z"
+        },
+        "modulo": "AUTENTICACAO",
+        "status": "FALHA",
+        "origem": "Terminal Oscorp",
+        "detalhes": "Credenciais recusadas. Tentativa 1 de 3.",
+        "funcionario_id": 115,
+        "autor": {
+            "primeiro_nome": "Normam",
+            "sobrenome": "Osborn",
+            "email": "alexander.osborn@momento.org"
+        }
+    },
+    {
+        "_id": 33,
+        "acao": "Login",
+        "data": {
+            "$date": "2024-11-11T08:03:20.000Z"
+        },
+        "modulo": "AUTENTICACAO",
+        "status": "FALHA",
+        "origem": "Terminal Oscorp",
+        "detalhes": "Credenciais recusadas. Tentativa 2 de 3.",
+        "funcionario_id": 115,
+        "autor": {
+            "primeiro_nome": "Normam",
+            "sobrenome": "Osborn",
+            "email": "alexander.osborn@momento.org"
+        }
+    },
+    {
+        "_id": 34,
+        "acao": "Login",
+        "data": {
+            "$date": "2024-11-11T08:03:40.000Z"
+        },
+        "modulo": "AUTENTICACAO",
+        "status": "BLOQUEADO",
+        "origem": "Terminal Oscorp",
+        "detalhes": "Terceira tentativa recusada. Conta bloqueada por 15 minutos.",
+        "funcionario_id": 115,
+        "autor": {
+            "primeiro_nome": "Normam",
+            "sobrenome": "Osborn",
+            "email": "alexander.osborn@momento.org"
+        }
+    },
+    {
+        "_id": 35,
+        "acao": "Solicitou desbloqueio",
+        "data": {
+            "$date": "2024-11-11T08:05:00.000Z"
+        },
+        "modulo": "SUPORTE",
+        "status": "REGISTRADO",
+        "origem": "Portal Oscorp",
+        "detalhes": "Chamado OSC-616 aberto para verificar a identidade do Duende Verde.",
+        "funcionario_id": 115,
+        "autor": {
+            "primeiro_nome": "Normam",
+            "sobrenome": "Osborn",
+            "email": "alexander.osborn@momento.org"
+        }
+    },
+    {
+        "_id": 36,
+        "acao": "Login",
+        "data": {
+            "$date": "2024-11-11T08:10:00.000Z"
+        },
+        "modulo": "AUTENTICACAO",
+        "status": "SUCESSO",
+        "origem": "Notebook do Clarim",
+        "detalhes": "Identidade confirmada com segundo fator. Sentido aranha em dia.",
+        "funcionario_id": 209,
+        "autor": {
+            "primeiro_nome": "Peter",
+            "sobrenome": "Parker",
+            "email": "peter.parker@momento.org"
+        }
+    },
+    {
+        "_id": 37,
+        "acao": "Consultou catalogo",
+        "data": {
+            "$date": "2024-11-11T08:12:00.000Z"
+        },
+        "modulo": "PRODUTOS",
+        "status": "SUCESSO",
+        "origem": "Notebook do Clarim",
+        "detalhes": "Consultou o estoque de Lanca-Teias antes da ronda.",
+        "funcionario_id": 209,
+        "autor": {
+            "primeiro_nome": "Peter",
+            "sobrenome": "Parker",
+            "email": "peter.parker@momento.org"
+        }
+    },
+    {
+        "_id": 38,
+        "acao": "Exportou relatorio",
+        "data": {
+            "$date": "2024-11-11T08:20:00.000Z"
+        },
+        "modulo": "FINANCEIRO",
+        "status": "SUCESSO",
+        "origem": "WayneTech",
+        "detalhes": "Relatorio de folha salarial exportado para a revisao do conselho.",
+        "funcionario_id": 207,
+        "autor": {
+            "primeiro_nome": "Lucius",
+            "sobrenome": "Fox",
+            "email": "lucius.fox@momento.org"
+        }
+    },
+    {
+        "_id": 39,
+        "acao": "Atualizou inventario",
+        "data": {
+            "$date": "2024-11-11T09:00:00.000Z"
+        },
+        "modulo": "SUPRIMENTOS",
+        "status": "SUCESSO",
+        "origem": "Pulseira Kimoyo",
+        "detalhes": "Conferencia dos equipamentos de vibranium concluida.",
+        "funcionario_id": 210,
+        "autor": {
+            "primeiro_nome": "Shuri",
+            "sobrenome": "Udaku",
+            "email": "shuri.udaku@momento.org"
+        }
+    },
+    {
+        "_id": 40,
+        "acao": "Consultou folha salarial",
+        "data": {
+            "$date": "2024-11-11T09:15:00.000Z"
+        },
+        "modulo": "FINANCEIRO",
+        "status": "BLOQUEADO",
+        "origem": "Notebook do Clarim",
+        "detalhes": "Perfil de tecnologia sem permissao para consultar a folha salarial.",
+        "funcionario_id": 209,
+        "autor": {
+            "primeiro_nome": "Peter",
+            "sobrenome": "Parker",
+            "email": "peter.parker@momento.org"
+        }
+    },
+    {
+        "_id": 41,
+        "acao": "Solicitou compra",
+        "data": {
+            "$date": "2024-11-11T10:00:00.000Z"
+        },
+        "modulo": "SUPRIMENTOS",
+        "status": "REGISTRADO",
+        "origem": "Terminal de Hogwarts",
+        "detalhes": "Pedido HOG-394: novos planners para organizar os estudos de magia.",
+        "funcionario_id": 211,
+        "autor": {
+            "primeiro_nome": "Hermione",
+            "sobrenome": "Granger",
+            "email": "hermione.granger@momento.org"
+        }
+    },
+    {
+        "_id": 42,
+        "acao": "Publicou comunicado",
+        "data": {
+            "$date": "2024-11-11T10:30:00.000Z"
+        },
+        "modulo": "COMUNICACAO",
+        "status": "SUCESSO",
+        "origem": "Console da Alianca",
+        "detalhes": "Comunicado sobre a reuniao do conselho enviado ao portal interno.",
+        "funcionario_id": 212,
+        "autor": {
+            "primeiro_nome": "Leia",
+            "sobrenome": "Organa",
+            "email": "leia.organa@momento.org"
+        }
+    },
+    {
+        "_id": 43,
+        "acao": "Executou diagnostico",
+        "data": {
+            "$date": "2024-11-11T11:00:00.000Z"
+        },
+        "modulo": "TECNOLOGIA",
+        "status": "SUCESSO",
+        "origem": "Terminal Enterprise",
+        "detalhes": "Diagnostico concluido. Sistemas operando dentro dos parametros logicos.",
+        "funcionario_id": 213,
+        "autor": {
+            "primeiro_nome": "Spock",
+            "sobrenome": "Sarek",
+            "email": "spock.sarek@momento.org"
+        }
+    },
+    {
+        "_id": 44,
+        "acao": "Exportou relatorio",
+        "data": {
+            "$date": "2024-11-11T14:00:00.000Z"
+        },
+        "modulo": "VENDAS",
+        "status": "FALHA",
+        "origem": "Portal de Vendas",
+        "detalhes": "Exportacao interrompida por indisponibilidade do servico de arquivos.",
+        "funcionario_id": 176,
+        "autor": {
+            "primeiro_nome": "Jonathon",
+            "sobrenome": "Taylor",
+            "email": "jonathon.taylor@momento.org"
+        }
+    },
+    {
+        "_id": 45,
+        "acao": "Exportou relatorio",
+        "data": {
+            "$date": "2024-11-11T14:05:00.000Z"
+        },
+        "modulo": "VENDAS",
+        "status": "SUCESSO",
+        "origem": "Portal de Vendas",
+        "detalhes": "Nova tentativa concluida. Relatorio mensal disponivel para download.",
+        "funcionario_id": 176,
+        "autor": {
+            "primeiro_nome": "Jonathon",
+            "sobrenome": "Taylor",
+            "email": "jonathon.taylor@momento.org"
+        }
+    },
+    {
+        "_id": 46,
+        "acao": "Iniciou sessao de testes",
+        "data": {
+            "$date": "2024-11-12T09:00:00.000Z"
+        },
+        "modulo": "TECNOLOGIA",
+        "status": "SUCESSO",
+        "origem": "Holodeck de QA",
+        "detalhes": "Suite de testes do portal iniciada em ambiente de homologacao.",
+        "funcionario_id": 103,
+        "autor": {
+            "primeiro_nome": "Alexander",
+            "sobrenome": "Hunold",
+            "email": "alexander.hunold@momento.org"
+        }
+    },
+    {
+        "_id": 47,
+        "acao": "Revisou permissoes",
+        "data": {
+            "$date": "2024-11-12T10:00:00.000Z"
+        },
+        "modulo": "SEGURANCA",
+        "status": "SUCESSO",
+        "origem": "Batcomputador",
+        "detalhes": "Revisao de acessos concluida. Protocolo Torre de Babel arquivado.",
+        "funcionario_id": 100,
+        "autor": {
+            "primeiro_nome": "Madeleine",
+            "sobrenome": "Prior",
+            "email": "madeleine.prior@momento.org"
+        }
+    },
+    {
+        "_id": 48,
+        "acao": "Logout",
+        "data": {
+            "$date": "2024-11-12T18:00:00.000Z"
+        },
+        "modulo": "AUTENTICACAO",
+        "status": "SUCESSO",
+        "origem": "Batcomputador",
+        "detalhes": "Sessao encerrada. Gotham esta chamando.",
+        "funcionario_id": 100,
+        "autor": {
+            "primeiro_nome": "Madeleine",
+            "sobrenome": "Prior",
+            "email": "madeleine.prior@momento.org"
+        }
+    }
+]
