@@ -10,6 +10,7 @@ CREATE TABLE regioes (
 
 DROP TABLE IF EXISTS paises;
 CREATE TABLE paises (
+
   pais_id CHAR(2) PRIMARY KEY,
   pais_nome VARCHAR(48) NOT NULL,
   regiao_id INT NOT NULL, 
@@ -100,8 +101,14 @@ CREATE TABLE vendas (
 CREATE TABLE audit_log (
     log_id INT PRIMARY KEY AUTO_INCREMENT,
     log_acao VARCHAR(100),
-    log_ts DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    -- O horario representa o evento e nao muda quando a linha e atualizada.
+    log_ts DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    log_modulo VARCHAR(30) NOT NULL DEFAULT 'SISTEMA',
+    log_status VARCHAR(20) NOT NULL DEFAULT 'REGISTRADO',
+    log_origem VARCHAR(64) DEFAULT NULL,
+    log_detalhes VARCHAR(255) DEFAULT NULL,
     funcionario_id INT NOT NULL,
+    CONSTRAINT chk_audit_status CHECK (log_status IN ('REGISTRADO', 'SUCESSO', 'FALHA', 'BLOQUEADO')),
     FOREIGN KEY (funcionario_id) REFERENCES funcionarios(funcionario_id) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
@@ -238,48 +245,57 @@ INSERT INTO cargos(cargo_id,cargo_nome,min_salario,max_salario) VALUES (19,'Gere
 INSERT INTO cargos(cargo_id,cargo_nome,min_salario,max_salario) VALUES (20,'Cientista',14200.00,35000.00);
 INSERT INTO cargos(cargo_id,cargo_nome,min_salario,max_salario) VALUES (21,'Assitente de Garantia de Qualidade',6200.00,12000.00);
 
-INSERT INTO funcionarios(funcionario_id,primeiro_nome,sobrenome,email,senha,telefone,data_contratacao,cargo_id,salario,gerente_id,departamento_id) VALUES (100,'Steven','Wayne','steven.wayne@momento.org','@4@8@15@16','515.123.4567','1987-06-17',4,24000.00,NULL,9);
-INSERT INTO funcionarios(funcionario_id,primeiro_nome,sobrenome,email,senha,telefone,data_contratacao,cargo_id,salario,gerente_id,departamento_id) VALUES (101,'Neena','Kochhar','neena.kochhar@momento.org','@48@15@16','515.123.4568','1989-09-21',5,17000.00,100,9);
-INSERT INTO funcionarios(funcionario_id,primeiro_nome,sobrenome,email,senha,telefone,data_contratacao,cargo_id,salario,gerente_id,departamento_id) VALUES (102,'Lex',"T'Challa",'lex.tchalla@momento.org','@4@8@5@16','515.123.4569','1993-01-13',5,17000.00,100,9);
-INSERT INTO funcionarios(funcionario_id,primeiro_nome,sobrenome,email,senha,telefone,data_contratacao,cargo_id,salario,gerente_id,departamento_id) VALUES (103,'Alexander','Hunold','alexander.hunold@momento.org','@48@15@16','590.423.4567','1990-01-03',9,9000.00,102,6);
-INSERT INTO funcionarios(funcionario_id,primeiro_nome,sobrenome,email,senha,telefone,data_contratacao,cargo_id,salario,gerente_id,departamento_id) VALUES (104,'Bruce','Ernst','bruce.ernst@momento.org','@4@8@15@17','590.423.4568','1991-05-21',9,6000.00,103,6);
-INSERT INTO funcionarios(funcionario_id,primeiro_nome,sobrenome,email,senha,telefone,data_contratacao,cargo_id,salario,gerente_id,departamento_id) VALUES (105,'David','Austin','david.austin@momento.org','@4@8@235@16','590.423.4569','1997-06-25',9,4800.00,103,6);
-INSERT INTO funcionarios(funcionario_id,primeiro_nome,sobrenome,email,senha,telefone,data_contratacao,cargo_id,salario,gerente_id,departamento_id) VALUES (106,'Valli','Stark','valli.stark@momento.org','@1@2@15@16','590.423.4560','1998-02-05',9,4800.00,103,6);
-INSERT INTO funcionarios(funcionario_id,primeiro_nome,sobrenome,email,senha,telefone,data_contratacao,cargo_id,salario,gerente_id,departamento_id) VALUES (107,'Diana','Lorentz','diana.lorentz@momento.org','@0@8@15@16','590.423.5567','1999-02-07',9,4200.00,103,6);
-INSERT INTO funcionarios(funcionario_id,primeiro_nome,sobrenome,email,senha,telefone,data_contratacao,cargo_id,salario,gerente_id,departamento_id) VALUES (108,'Nancy','Constantine','nancy.constantine@momento.org','@4@8@15@16','515.124.4569','1994-08-17',9,23980.00,101,13);
-INSERT INTO funcionarios(funcionario_id,primeiro_nome,sobrenome,email,senha,telefone,data_contratacao,cargo_id,salario,gerente_id,departamento_id) VALUES (109,'Daniel','Faviet','daniel.faviet@momento.org','@4@15@16','515.124.4169','1994-08-16',6,9000.00,108,10);
-INSERT INTO funcionarios(funcionario_id,primeiro_nome,sobrenome,email,senha,telefone,data_contratacao,cargo_id,salario,gerente_id,departamento_id) VALUES (110,'John','Chen','john.chen@momento.org','@4@8@15@12','515.124.4269','1997-09-28',6,8200.00,108,10);
-INSERT INTO funcionarios(funcionario_id,primeiro_nome,sobrenome,email,senha,telefone,data_contratacao,cargo_id,salario,gerente_id,departamento_id) VALUES (111,'Ismael','Sciarra','ismael.sciarra@momento.org','@4@8@5@16','515.124.4369','1997-09-30',6,7700.00,108,10);
-INSERT INTO funcionarios(funcionario_id,primeiro_nome,sobrenome,email,senha,telefone,data_contratacao,cargo_id,salario,gerente_id,departamento_id) VALUES (112,'Jose Manuel','Urman','jose manuel.urman@momento.org','@@8@15@16','515.124.4469','1998-03-07',6,7800.00,108,10);
-INSERT INTO funcionarios(funcionario_id,primeiro_nome,sobrenome,email,senha,telefone,data_contratacao,cargo_id,salario,gerente_id,departamento_id) VALUES (113,'Luis','Popp','luis.popp@momento.org','@4@8@15@16','515.124.4567','1999-12-07',6,6900.00,108,10);
-INSERT INTO funcionarios(funcionario_id,primeiro_nome,sobrenome,email,senha,telefone,data_contratacao,cargo_id,salario,gerente_id,departamento_id) VALUES (114,'Den','Raphaely','den.raphaely@momento.org','@4@8@1@16','515.127.4561','1994-12-07',14,11000.00,100,3);
-INSERT INTO funcionarios(funcionario_id,primeiro_nome,sobrenome,email,senha,telefone,data_contratacao,cargo_id,salario,gerente_id,departamento_id) VALUES (115,'Normam','Osborn','alexander.osborn@momento.org','@4@8@15@16','515.127.4562','1995-05-18',13,3100.00,114,3);
-INSERT INTO funcionarios(funcionario_id,primeiro_nome,sobrenome,email,senha,telefone,data_contratacao,cargo_id,salario,gerente_id,departamento_id) VALUES (116,'Shelli','Baida','shelli.baida@momento.org','@4@8@5@16','515.127.4563','1997-12-24',13,2900.00,114,3);
-INSERT INTO funcionarios(funcionario_id,primeiro_nome,sobrenome,email,senha,telefone,data_contratacao,cargo_id,salario,gerente_id,departamento_id) VALUES (117,'Sigal','Tobias','sigal.tobias@momento.org','@4@8@5@16','515.127.4564','1997-07-24',13,2800.00,114,3);
-INSERT INTO funcionarios(funcionario_id,primeiro_nome,sobrenome,email,senha,telefone,data_contratacao,cargo_id,salario,gerente_id,departamento_id) VALUES (118,'Guy','Himuro','guy.himuro@momento.org','@4@8@1@16','515.127.4565','1998-11-15',13,2600.00,114,3);
-INSERT INTO funcionarios(funcionario_id,primeiro_nome,sobrenome,email,senha,telefone,data_contratacao,cargo_id,salario,gerente_id,departamento_id) VALUES (119,'Karen','Colmenares','karen.colmenares@momento.org','@@8@15@16','515.127.4566','1999-08-10',13,2500.00,114,3);
-INSERT INTO funcionarios(funcionario_id,primeiro_nome,sobrenome,email,senha,telefone,data_contratacao,cargo_id,salario,gerente_id,departamento_id) VALUES (120,'Matthew','Weiss','matthew.weiss@momento.org','@4@8@15@16','650.123.1234','1996-07-18',19,8000.00,100,5);
-INSERT INTO funcionarios(funcionario_id,primeiro_nome,sobrenome,email,senha,telefone,data_contratacao,cargo_id,salario,gerente_id,departamento_id) VALUES (121,'Adam','Fripp','adam.fripp@momento.org','@4@8@15@16','650.123.2234','1997-04-10',19,8200.00,100,5);
-INSERT INTO funcionarios(funcionario_id,primeiro_nome,sobrenome,email,senha,telefone,data_contratacao,cargo_id,salario,gerente_id,departamento_id) VALUES (122,'Payam','Kaufling','payam.kaufling@momento.org','@4@8@15@16','650.123.3234','1995-05-01',19,7900.00,100,5);
-INSERT INTO funcionarios(funcionario_id,primeiro_nome,sobrenome,email,senha,telefone,data_contratacao,cargo_id,salario,gerente_id,departamento_id) VALUES (123,'Shanta','Vollman','shanta.vollman@momento.org','@4@8@15@16','650.123.4234','1997-10-10',19,6500.00,100,5);
-INSERT INTO funcionarios(funcionario_id,primeiro_nome,sobrenome,email,senha,telefone,data_contratacao,cargo_id,salario,gerente_id,departamento_id) VALUES (126,'Irene','Mikkilineni','irene.mikkilineni@momento.org','@4@8@15@16','650.124.1224','1998-09-28',18,2700.00,120,5);
-INSERT INTO funcionarios(funcionario_id,primeiro_nome,sobrenome,email,senha,telefone,data_contratacao,cargo_id,salario,gerente_id,departamento_id) VALUES (145,'John','Russell','john.russell@momento.org','@4@8@15@16',NULL,'1996-10-01',15,14000.00,100,8);
-INSERT INTO funcionarios(funcionario_id,primeiro_nome,sobrenome,email,senha,telefone,data_contratacao,cargo_id,salario,gerente_id,departamento_id) VALUES (146,'Karen','Partners','karen.partners@momento.org','@4@8@15@16',NULL,'1997-01-05',15,13500.00,100,8);
-INSERT INTO funcionarios(funcionario_id,primeiro_nome,sobrenome,email,senha,telefone,data_contratacao,cargo_id,salario,gerente_id,departamento_id) VALUES (176,'Jonathon','Taylor','jonathon.taylor@momento.org','@4@8@15@16',NULL,'1998-03-24',16,8600.00,100,8);
-INSERT INTO funcionarios(funcionario_id,primeiro_nome,sobrenome,email,senha,telefone,data_contratacao,cargo_id,salario,gerente_id,departamento_id) VALUES (177,'Jack','Livingston','jack.livingston@momento.org','@4@8@15@16',NULL,'1998-04-23',16,8400.00,100,8);
-INSERT INTO funcionarios(funcionario_id,primeiro_nome,sobrenome,email,senha,telefone,data_contratacao,cargo_id,salario,gerente_id,departamento_id) VALUES (178,'Kimberly','Grant','kimberely.grant@momento.org','@4@8@15@16',NULL,'1999-05-24',16,7000.00,100,8);
-INSERT INTO funcionarios(funcionario_id,primeiro_nome,sobrenome,email,senha,telefone,data_contratacao,cargo_id,salario,gerente_id,departamento_id) VALUES (179,'Zatanna','Zatara','zatana.zatara@momento.org','@4@8@15@16',NULL,'2000-01-04',20,19650.00,100,13);
-INSERT INTO funcionarios(funcionario_id,primeiro_nome,sobrenome,email,senha,telefone,data_contratacao,cargo_id,salario,gerente_id,departamento_id) VALUES (192,'Sarah','Bell','sarah.bell@momento.org','@4@8@15@16','650.501.1876','1996-02-04',17,4000.00,123,5);
-INSERT INTO funcionarios(funcionario_id,primeiro_nome,sobrenome,email,senha,telefone,data_contratacao,cargo_id,salario,gerente_id,departamento_id) VALUES (193,'Britney','Everett','britney.everett@momento.org','@4@8@15@16','650.501.2876','1997-03-03',17,3900.00,123,5);
-INSERT INTO funcionarios(funcionario_id,primeiro_nome,sobrenome,email,senha,telefone,data_contratacao,cargo_id,salario,gerente_id,departamento_id) VALUES (200,'Jennifer','Whalen','jennifer.whalen@momento.org','@4@8@15@16','515.123.4444','1987-09-17',3,4400.00,101,1);
-INSERT INTO funcionarios(funcionario_id,primeiro_nome,sobrenome,email,senha,telefone,data_contratacao,cargo_id,salario,gerente_id,departamento_id) VALUES (201,'Elisabeth','Braddock','michael.braddock@momento.org','@4@8@15@16','515.123.5555','1996-02-17',10,13000.00,100,2);
-INSERT INTO funcionarios(funcionario_id,primeiro_nome,sobrenome,email,senha,telefone,data_contratacao,cargo_id,salario,gerente_id,departamento_id) VALUES (202,'Pat','Ferreira','pat.Ferreira@momento.org','@4@8@15@16','603.123.6666','1997-08-17',11,6000.00,201,2);
-INSERT INTO funcionarios(funcionario_id,primeiro_nome,sobrenome,email,senha,telefone,data_contratacao,cargo_id,salario,gerente_id,departamento_id) VALUES (203,'Susan','Mavris','susan.mavris@momento.org','@4@8@15@16','515.123.7777','1994-06-07',8,6500.00,101,4);
-INSERT INTO funcionarios(funcionario_id,primeiro_nome,sobrenome,email,senha,telefone,data_contratacao,cargo_id,salario,gerente_id,departamento_id) VALUES (204,'Hermann','Baer','hermann.baer@momento.org','@4@8@15@16','515.123.8888','1994-06-07',12,10000.00,101,7);
-INSERT INTO funcionarios(funcionario_id,primeiro_nome,sobrenome,email,senha,telefone,data_contratacao,cargo_id,salario,gerente_id,departamento_id) VALUES (205,'Shelley','Higgins','shelley.higgins@momento.org','@4@8@15@16','515.123.8080','1994-06-07',2,12000.00,101,11);
-INSERT INTO funcionarios(funcionario_id,primeiro_nome,sobrenome,email,senha,telefone,data_contratacao,cargo_id,salario,gerente_id,departamento_id) VALUES (206,'Susan','Storm','susan.storm@momento.org','@4@8@15@16','515.123.8181','1994-06-07',20,18300.00,205,12);
-INSERT INTO funcionarios(funcionario_id,primeiro_nome,sobrenome,email,senha,telefone,data_contratacao,cargo_id,salario,gerente_id,departamento_id) VALUES (207,'Lucius','Fox','lucius.fox@momento.org','@4@8@15@16','515.124.4569','1994-08-17',7,12000.00,101,10);
-INSERT INTO funcionarios(funcionario_id,primeiro_nome,sobrenome,email,senha,telefone,data_contratacao,cargo_id,salario,gerente_id,departamento_id) VALUES (208,'Sabrina Portela','Spellman','sabrina.spellman@momento.org','1a2b3c@port','945.368.4569','2024-10-28',20,8000.01,101,10);
+-- Senhas ficticias para exercicios: referencias a quadrinhos, jogos e ficcao cientifica.
+INSERT INTO funcionarios(funcionario_id,primeiro_nome,sobrenome,email,senha,telefone,data_contratacao,cargo_id,salario,gerente_id,departamento_id) VALUES (100,'Steven','Wayne','steven.wayne@momento.org','BatSignal!Gotham1939','515.123.4567','1987-06-17',4,24000.00,NULL,9);
+INSERT INTO funcionarios(funcionario_id,primeiro_nome,sobrenome,email,senha,telefone,data_contratacao,cargo_id,salario,gerente_id,departamento_id) VALUES (101,'Neena','Kochhar','neena.kochhar@momento.org','WhiteRabbit!Follow1865','515.123.4568','1989-09-21',5,17000.00,100,9);
+INSERT INTO funcionarios(funcionario_id,primeiro_nome,sobrenome,email,senha,telefone,data_contratacao,cargo_id,salario,gerente_id,departamento_id) VALUES (102,'Lex',"T'Challa",'lex.tchalla@momento.org','WakandaForever!1966','515.123.4569','1993-01-13',5,17000.00,100,9);
+INSERT INTO funcionarios(funcionario_id,primeiro_nome,sobrenome,email,senha,telefone,data_contratacao,cargo_id,salario,gerente_id,departamento_id) VALUES (103,'Alexander','Hunold','alexander.hunold@momento.org','Matrix!RedPill1999','590.423.4567','1990-01-03',9,9000.00,102,6);
+INSERT INTO funcionarios(funcionario_id,primeiro_nome,sobrenome,email,senha,telefone,data_contratacao,cargo_id,salario,gerente_id,departamento_id) VALUES (104,'Bruce','Ernst','bruce.ernst@momento.org','HulkSmash!Gamma1962','590.423.4568','1991-05-21',9,6000.00,103,6);
+INSERT INTO funcionarios(funcionario_id,primeiro_nome,sobrenome,email,senha,telefone,data_contratacao,cargo_id,salario,gerente_id,departamento_id) VALUES (105,'David','Austin','david.austin@momento.org','SixMillion!Bionic1974','590.423.4569','1997-06-25',9,4800.00,103,6);
+INSERT INTO funcionarios(funcionario_id,primeiro_nome,sobrenome,email,senha,telefone,data_contratacao,cargo_id,salario,gerente_id,departamento_id) VALUES (106,'Valli','Stark','valli.stark@momento.org','ArcReactor!MarkVII','590.423.4560','1998-02-05',9,4800.00,103,6);
+INSERT INTO funcionarios(funcionario_id,primeiro_nome,sobrenome,email,senha,telefone,data_contratacao,cargo_id,salario,gerente_id,departamento_id) VALUES (107,'Diana','Lorentz','diana.lorentz@momento.org','GreatScott!1.21GW','590.423.5567','1999-02-07',9,4200.00,103,6);
+INSERT INTO funcionarios(funcionario_id,primeiro_nome,sobrenome,email,senha,telefone,data_contratacao,cargo_id,salario,gerente_id,departamento_id) VALUES (108,'Nancy','Constantine','nancy.constantine@momento.org','Hellblazer!Newcastle1988','515.124.4569','1994-08-17',9,23980.00,101,13);
+INSERT INTO funcionarios(funcionario_id,primeiro_nome,sobrenome,email,senha,telefone,data_contratacao,cargo_id,salario,gerente_id,departamento_id) VALUES (109,'Daniel','Faviet','daniel.faviet@momento.org','D20!CriticalHit1974','515.124.4169','1994-08-16',6,9000.00,108,10);
+INSERT INTO funcionarios(funcionario_id,primeiro_nome,sobrenome,email,senha,telefone,data_contratacao,cargo_id,salario,gerente_id,departamento_id) VALUES (110,'John','Chen','john.chen@momento.org','Konami!UpUpDownDown','515.124.4269','1997-09-28',6,8200.00,108,10);
+INSERT INTO funcionarios(funcionario_id,primeiro_nome,sobrenome,email,senha,telefone,data_contratacao,cargo_id,salario,gerente_id,departamento_id) VALUES (111,'Ismael','Sciarra','ismael.sciarra@momento.org','OneRing!Mordor1954','515.124.4369','1997-09-30',6,7700.00,108,10);
+INSERT INTO funcionarios(funcionario_id,primeiro_nome,sobrenome,email,senha,telefone,data_contratacao,cargo_id,salario,gerente_id,departamento_id) VALUES (112,'Jose Manuel','Urman','jose manuel.urman@momento.org','DontPanic!Towel42','515.124.4469','1998-03-07',6,7800.00,108,10);
+INSERT INTO funcionarios(funcionario_id,primeiro_nome,sobrenome,email,senha,telefone,data_contratacao,cargo_id,salario,gerente_id,departamento_id) VALUES (113,'Luis','Popp','luis.popp@momento.org','Portal!CakeIsALie2007','515.124.4567','1999-12-07',6,6900.00,108,10);
+INSERT INTO funcionarios(funcionario_id,primeiro_nome,sobrenome,email,senha,telefone,data_contratacao,cargo_id,salario,gerente_id,departamento_id) VALUES (114,'Den','Raphaely','den.raphaely@momento.org','DungeonMaster!Roll20','515.127.4561','1994-12-07',14,11000.00,100,3);
+INSERT INTO funcionarios(funcionario_id,primeiro_nome,sobrenome,email,senha,telefone,data_contratacao,cargo_id,salario,gerente_id,departamento_id) VALUES (115,'Normam','Osborn','alexander.osborn@momento.org','GreenGoblin!Oscorp1964','515.127.4562','1995-05-18',13,3100.00,114,3);
+INSERT INTO funcionarios(funcionario_id,primeiro_nome,sobrenome,email,senha,telefone,data_contratacao,cargo_id,salario,gerente_id,departamento_id) VALUES (116,'Shelli','Baida','shelli.baida@momento.org','Aperture!CompanionCube','515.127.4563','1997-12-24',13,2900.00,114,3);
+INSERT INTO funcionarios(funcionario_id,primeiro_nome,sobrenome,email,senha,telefone,data_contratacao,cargo_id,salario,gerente_id,departamento_id) VALUES (117,'Sigal','Tobias','sigal.tobias@momento.org','TARDIS!BiggerInside1963','515.127.4564','1997-07-24',13,2800.00,114,3);
+INSERT INTO funcionarios(funcionario_id,primeiro_nome,sobrenome,email,senha,telefone,data_contratacao,cargo_id,salario,gerente_id,departamento_id) VALUES (118,'Guy','Himuro','guy.himuro@momento.org','Kamehameha!Over9000','515.127.4565','1998-11-15',13,2600.00,114,3);
+INSERT INTO funcionarios(funcionario_id,primeiro_nome,sobrenome,email,senha,telefone,data_contratacao,cargo_id,salario,gerente_id,departamento_id) VALUES (119,'Karen','Colmenares','karen.colmenares@momento.org','Metroid!Samus1986','515.127.4566','1999-08-10',13,2500.00,114,3);
+INSERT INTO funcionarios(funcionario_id,primeiro_nome,sobrenome,email,senha,telefone,data_contratacao,cargo_id,salario,gerente_id,departamento_id) VALUES (120,'Matthew','Weiss','matthew.weiss@momento.org','MillenniumFalcon!12Parsecs','650.123.1234','1996-07-18',19,8000.00,100,5);
+INSERT INTO funcionarios(funcionario_id,primeiro_nome,sobrenome,email,senha,telefone,data_contratacao,cargo_id,salario,gerente_id,departamento_id) VALUES (121,'Adam','Fripp','adam.fripp@momento.org','Minecraft!Redstone64','650.123.2234','1997-04-10',19,8200.00,100,5);
+INSERT INTO funcionarios(funcionario_id,primeiro_nome,sobrenome,email,senha,telefone,data_contratacao,cargo_id,salario,gerente_id,departamento_id) VALUES (122,'Payam','Kaufling','payam.kaufling@momento.org','GottaCatchEmAll!151','650.123.3234','1995-05-01',19,7900.00,100,5);
+INSERT INTO funcionarios(funcionario_id,primeiro_nome,sobrenome,email,senha,telefone,data_contratacao,cargo_id,salario,gerente_id,departamento_id) VALUES (123,'Shanta','Vollman','shanta.vollman@momento.org','Triforce!Hyrule1986','650.123.4234','1997-10-10',19,6500.00,100,5);
+INSERT INTO funcionarios(funcionario_id,primeiro_nome,sobrenome,email,senha,telefone,data_contratacao,cargo_id,salario,gerente_id,departamento_id) VALUES (126,'Irene','Mikkilineni','irene.mikkilineni@momento.org','Stardew!Junimo2016','650.124.1224','1998-09-28',18,2700.00,120,5);
+INSERT INTO funcionarios(funcionario_id,primeiro_nome,sobrenome,email,senha,telefone,data_contratacao,cargo_id,salario,gerente_id,departamento_id) VALUES (145,'John','Russell','john.russell@momento.org','Enterprise!Engage1701',NULL,'1996-10-01',15,14000.00,100,8);
+INSERT INTO funcionarios(funcionario_id,primeiro_nome,sobrenome,email,senha,telefone,data_contratacao,cargo_id,salario,gerente_id,departamento_id) VALUES (146,'Karen','Partners','karen.partners@momento.org','MassEffect!N7Normandy',NULL,'1997-01-05',15,13500.00,100,8);
+INSERT INTO funcionarios(funcionario_id,primeiro_nome,sobrenome,email,senha,telefone,data_contratacao,cargo_id,salario,gerente_id,departamento_id) VALUES (176,'Jonathon','Taylor','jonathon.taylor@momento.org','SpiderSense!Queens1962',NULL,'1998-03-24',16,8600.00,100,8);
+INSERT INTO funcionarios(funcionario_id,primeiro_nome,sobrenome,email,senha,telefone,data_contratacao,cargo_id,salario,gerente_id,departamento_id) VALUES (177,'Jack','Livingston','jack.livingston@momento.org','VaultDweller!Fallout101',NULL,'1998-04-23',16,8400.00,100,8);
+INSERT INTO funcionarios(funcionario_id,primeiro_nome,sobrenome,email,senha,telefone,data_contratacao,cargo_id,salario,gerente_id,departamento_id) VALUES (178,'Kimberly','Grant','kimberely.grant@momento.org','PowerRangers!Morphin1993',NULL,'1999-05-24',16,7000.00,100,8);
+INSERT INTO funcionarios(funcionario_id,primeiro_nome,sobrenome,email,senha,telefone,data_contratacao,cargo_id,salario,gerente_id,departamento_id) VALUES (179,'Zatanna','Zatara','zatana.zatara@momento.org','Zatanna!arbadacarbA',NULL,'2000-01-04',20,19650.00,100,13);
+INSERT INTO funcionarios(funcionario_id,primeiro_nome,sobrenome,email,senha,telefone,data_contratacao,cargo_id,salario,gerente_id,departamento_id) VALUES (192,'Sarah','Bell','sarah.bell@momento.org','Firefly!Serenity2002','650.501.1876','1996-02-04',17,4000.00,123,5);
+INSERT INTO funcionarios(funcionario_id,primeiro_nome,sobrenome,email,senha,telefone,data_contratacao,cargo_id,salario,gerente_id,departamento_id) VALUES (193,'Britney','Everett','britney.everett@momento.org','Skyrim!FusRoDah2011','650.501.2876','1997-03-03',17,3900.00,123,5);
+INSERT INTO funcionarios(funcionario_id,primeiro_nome,sobrenome,email,senha,telefone,data_contratacao,cargo_id,salario,gerente_id,departamento_id) VALUES (200,'Jennifer','Whalen','jennifer.whalen@momento.org','MischiefManaged!Map1999','515.123.4444','1987-09-17',3,4400.00,101,1);
+INSERT INTO funcionarios(funcionario_id,primeiro_nome,sobrenome,email,senha,telefone,data_contratacao,cargo_id,salario,gerente_id,departamento_id) VALUES (201,'Elisabeth','Braddock','michael.braddock@momento.org','Psylocke!PsychicBlade','515.123.5555','1996-02-17',10,13000.00,100,2);
+INSERT INTO funcionarios(funcionario_id,primeiro_nome,sobrenome,email,senha,telefone,data_contratacao,cargo_id,salario,gerente_id,departamento_id) VALUES (202,'Pat','Ferreira','pat.Ferreira@momento.org','StreetFighter!HadoukenII','603.123.6666','1997-08-17',11,6000.00,201,2);
+INSERT INTO funcionarios(funcionario_id,primeiro_nome,sobrenome,email,senha,telefone,data_contratacao,cargo_id,salario,gerente_id,departamento_id) VALUES (203,'Susan','Mavris','susan.mavris@momento.org','SailorMoon!MoonPrism1992','515.123.7777','1994-06-07',8,6500.00,101,4);
+INSERT INTO funcionarios(funcionario_id,primeiro_nome,sobrenome,email,senha,telefone,data_contratacao,cargo_id,salario,gerente_id,departamento_id) VALUES (204,'Hermann','Baer','hermann.baer@momento.org','JurassicPark!LifeFindsAWay','515.123.8888','1994-06-07',12,10000.00,101,7);
+INSERT INTO funcionarios(funcionario_id,primeiro_nome,sobrenome,email,senha,telefone,data_contratacao,cargo_id,salario,gerente_id,departamento_id) VALUES (205,'Shelley','Higgins','shelley.higgins@momento.org','Gringotts!Galleons1997','515.123.8080','1994-06-07',2,12000.00,101,11);
+INSERT INTO funcionarios(funcionario_id,primeiro_nome,sobrenome,email,senha,telefone,data_contratacao,cargo_id,salario,gerente_id,departamento_id) VALUES (206,'Susan','Storm','susan.storm@momento.org','InvisibleWoman!Baxter4','515.123.8181','1994-06-07',20,18300.00,205,12);
+INSERT INTO funcionarios(funcionario_id,primeiro_nome,sobrenome,email,senha,telefone,data_contratacao,cargo_id,salario,gerente_id,departamento_id) VALUES (207,'Lucius','Fox','lucius.fox@momento.org','WayneTech!AppliedSciences','515.124.4569','1994-08-17',7,12000.00,101,10);
+
+INSERT INTO funcionarios(funcionario_id,primeiro_nome,sobrenome,email,senha,telefone,data_contratacao,cargo_id,salario,gerente_id,departamento_id) VALUES (208,'Sabrina Portela','Spellman','sabrina.spellman@momento.org','Spellman!Salem1692','945.368.4569','2024-10-28',20,8000.01,101,10);
+INSERT INTO funcionarios(funcionario_id,primeiro_nome,sobrenome,email,senha,telefone,data_contratacao,cargo_id,salario,gerente_id,departamento_id) VALUES (214,'Dick','Grayson','dick.grayson@momento.org','Indic!fafa1986',NULL,'2024-11-08',21,9500.0,103,6);
+INSERT INTO funcionarios(funcionario_id,primeiro_nome,sobrenome,email,senha,telefone,data_contratacao,cargo_id,salario,gerente_id,departamento_id) VALUES (209,'Peter','Parker','peter.parker@momento.org','WithGreatPower!1962',NULL,'2024-11-01',9,6500.0,103,6);
+INSERT INTO funcionarios(funcionario_id,primeiro_nome,sobrenome,email,senha,telefone,data_contratacao,cargo_id,salario,gerente_id,departamento_id) VALUES (210,'Shuri','Udaku','shuri.udaku@momento.org','Vibranium!KimoyoBeads',NULL,'2024-11-04',20,25000.0,102,13);
+INSERT INTO funcionarios(funcionario_id,primeiro_nome,sobrenome,email,senha,telefone,data_contratacao,cargo_id,salario,gerente_id,departamento_id) VALUES (211,'Hermione','Granger','hermione.granger@momento.org','Wingardium!Leviosa1997',NULL,'2024-11-05',20,18000.0,108,13);
+INSERT INTO funcionarios(funcionario_id,primeiro_nome,sobrenome,email,senha,telefone,data_contratacao,cargo_id,salario,gerente_id,departamento_id) VALUES (212,'Leia','Organa','leia.organa@momento.org','RebelAlliance!Hope1977',NULL,'2024-11-06',12,10000.0,101,7);
+INSERT INTO funcionarios(funcionario_id,primeiro_nome,sobrenome,email,senha,telefone,data_contratacao,cargo_id,salario,gerente_id,departamento_id) VALUES (213,'Spock','Sarek','spock.sarek@momento.org','LiveLong!Prosper1701',NULL,'2024-11-07',20,23000.0,206,12);
+INSERT INTO funcionarios(funcionario_id,primeiro_nome,sobrenome,email,senha,telefone,data_contratacao,cargo_id,salario,gerente_id,departamento_id) VALUES (214,'Samus','Aran','samus.aran@momento.org','Chozo!PowerSuit1986',NULL,'2024-11-08',21,9500.0,103,6);
 
 INSERT INTO produtos (produto_nome, produto_price) VALUES ("Uniforme do Superman", 300.13);
 INSERT INTO produtos (produto_nome, produto_price) VALUES ("Fake Batarang", 239.29);
@@ -353,33 +369,56 @@ INSERT INTO dependentes(dependente_id,primeiro_nome,sobrenome,relacionamento,fun
 INSERT INTO dependentes(dependente_id,primeiro_nome,sobrenome,relacionamento,funcionario_id) VALUES (36,'Jennifer','Wayne','Cônjuge',100);
 INSERT INTO dependentes(dependente_id,primeiro_nome,sobrenome,relacionamento,funcionario_id) VALUES (37,'Zachary','Zatara','Father',179);
 
-INSERT INTO audit_log(log_acao, log_ts, funcionario_id) VALUES ('Login', '2023-01-15 08:00:01', 100);
-INSERT INTO audit_log(log_acao, log_ts, funcionario_id) VALUES ('Login', '2023-01-15 08:22:00', 107);
-INSERT INTO audit_log(log_acao, log_ts, funcionario_id) VALUES ('Solicitou a Alteração de Senha', '2023-01-15 08:25:33', 106);
-INSERT INTO audit_log(log_acao, log_ts, funcionario_id) VALUES ('Login', '2023-01-15 08:41:17', 110);
-INSERT INTO audit_log(log_acao, log_ts, funcionario_id) VALUES ('Login', '2023-01-15 08:45:02', 111);
-INSERT INTO audit_log(log_acao, log_ts, funcionario_id) VALUES ('Solicitou a Alteração de Senha', '2023-01-15 08:47:22', 177);
-INSERT INTO audit_log(log_acao, log_ts, funcionario_id) VALUES ('Alterou a Senha', '2023-01-15 08:49:22', 177);
-INSERT INTO audit_log(log_acao, log_ts, funcionario_id) VALUES ('Login', '2023-01-15 08:51:24', 177);
-INSERT INTO audit_log(log_acao, log_ts, funcionario_id) VALUES ('Login', '2023-01-15 09:01:00', 101);
-INSERT INTO audit_log(log_acao, log_ts, funcionario_id) VALUES ('Solicitou a Alteração de Senha', '2023-01-15 09:05:00', 114);
-INSERT INTO audit_log(log_acao, log_ts, funcionario_id) VALUES ('Alterou a Senha', '2023-01-15 09:08:22', 206);
-INSERT INTO audit_log(log_acao, log_ts, funcionario_id) VALUES ('Login', '2023-01-15 09:18:00', 123);
-INSERT INTO audit_log(log_acao, log_ts, funcionario_id) VALUES ('Login', '2023-01-15 09:32:00', 200);
-INSERT INTO audit_log(log_acao, log_ts, funcionario_id) VALUES ('Login', '2023-01-15 09:31:24', 204);
-INSERT INTO audit_log(log_acao, log_ts, funcionario_id) VALUES ('Solicitou a Alteração de Senha', '2023-01-15 09:45:18', 207);
-INSERT INTO audit_log(log_acao, log_ts, funcionario_id) VALUES ('Solicitou a Alteração de Senha', '2023-01-15 09:45:33', 193);
-INSERT INTO audit_log(log_acao, log_ts, funcionario_id) VALUES ('Login', '2023-01-15 09:47:01', 121);
-INSERT INTO audit_log(log_acao, log_ts, funcionario_id) VALUES ('Solicitou a Alteração de Senha', '2023-01-15 09:51:17', 103);
-INSERT INTO audit_log(log_acao, log_ts, funcionario_id) VALUES ('Solicitou a Alteração de Senha', '2023-01-15 09:51:19', 103);
-INSERT INTO audit_log(log_acao, log_ts, funcionario_id) VALUES ('Solicitou a Alteração de Senha', '2023-01-15 09:51:19', 192);
-INSERT INTO audit_log(log_acao, log_ts, funcionario_id) VALUES ('Login', '2023-01-15 09:52:00', 118);
-INSERT INTO audit_log(log_acao, log_ts, funcionario_id) VALUES ('Login', '2023-01-15 10:32:00', 119);
-INSERT INTO audit_log(log_acao, log_ts, funcionario_id) VALUES ('Alterou a Senha', '2023-01-15 11:08:22', 120);
-INSERT INTO audit_log(log_acao, log_ts, funcionario_id) VALUES ('Solicitou a Alteração de Senha', '2023-01-15 11:45:29', 122);
-INSERT INTO audit_log(log_acao, log_ts, funcionario_id) VALUES ('Login', '2023-01-15 12:00:29', 109);
-INSERT INTO audit_log(log_acao, log_ts, funcionario_id) VALUES ('Solicitou a Alteração de Senha', '2023-01-15 13:13:21', 207);
-INSERT INTO audit_log(log_acao, log_ts, funcionario_id) VALUES ('Login', '2023-01-15 14:19:13', 109);
-INSERT INTO audit_log(log_acao, log_ts, funcionario_id) VALUES ('Login', '2023-01-15 17:57:19', 203);
-INSERT INTO audit_log(log_acao, log_ts, funcionario_id) VALUES ('Login', '2023-01-15 18:32:29', 205);
-INSERT INTO audit_log(log_acao, log_ts, funcionario_id) VALUES ('Login', '2023-01-15 19:00:01', 108);
+INSERT INTO audit_log(log_acao, log_ts, funcionario_id) VALUES 
+    ('Login', '2023-01-15 08:00:01', 100),
+    ('Login', '2023-01-15 08:22:00', 107),
+    ('Solicitou a Alteração de Senha', '2023-01-15 08:25:33', 106),
+    ('Login', '2023-01-15 08:41:17', 110),
+    ('Login', '2023-01-15 08:45:02', 111),
+    ('Solicitou a Alteração de Senha', '2023-01-15 08:47:22', 177),
+    ('Alterou a Senha', '2023-01-15 08:49:22', 177),
+    ('Login', '2023-01-15 08:51:24', 177),
+    ('Login', '2023-01-15 09:01:00', 101),
+    ('Solicitou a Alteração de Senha', '2023-01-15 09:05:00', 114),
+    ('Alterou a Senha', '2023-01-15 09:08:22', 206),
+    ('Login', '2023-01-15 09:18:00', 123),
+    ('Login', '2023-01-15 09:32:00', 200),
+    ('Login', '2023-01-15 09:31:24', 204),
+    ('Solicitou a Alteração de Senha', '2023-01-15 09:45:18', 207),
+    ('Solicitou a Alteração de Senha', '2023-01-15 09:45:33', 193),
+    ('Login', '2023-01-15 09:47:01', 121),
+    ('Solicitou a Alteração de Senha', '2023-01-15 09:51:17', 103),
+    ('Solicitou a Alteração de Senha', '2023-01-15 09:51:19', 103),
+    ('Solicitou a Alteração de Senha', '2023-01-15 09:51:19', 192),
+    ('Login', '2023-01-15 09:52:00', 118),
+    ('Login', '2023-01-15 10:32:00', 119),
+    ('Alterou a Senha', '2023-01-15 11:08:22', 120),
+    ('Solicitou a Alteração de Senha', '2023-01-15 11:45:29', 122),
+    ('Login', '2023-01-15 12:00:29', 109),
+    ('Solicitou a Alteração de Senha', '2023-01-15 13:13:21', 207),
+    ('Login', '2023-01-15 14:19:13', 109),
+    ('Login', '2023-01-15 17:57:19', 203),
+    ('Login', '2023-01-15 18:32:29', 205),
+    ('Login', '2023-01-15 19:00:01', 108);
+
+-- Cenarios ficticios para explorar falhas, bloqueios, modulos e atividade por dia.
+-- REGISTRADO preserva eventos antigos cujo resultado nao foi informado.
+INSERT INTO audit_log (log_acao, log_ts, funcionario_id, log_modulo, log_status, log_origem, log_detalhes) VALUES
+    ('Login', '2024-11-11 08:00:00', 100, 'AUTENTICACAO', 'SUCESSO', 'Batcomputador', 'Bat-sinal recebido. Acesso ao painel executivo autorizado.'),
+    ('Login', '2024-11-11 08:03:00', 115, 'AUTENTICACAO', 'FALHA', 'Terminal Oscorp', 'Credenciais recusadas. Tentativa 1 de 3.'),
+    ('Login', '2024-11-11 08:03:20', 115, 'AUTENTICACAO', 'FALHA', 'Terminal Oscorp', 'Credenciais recusadas. Tentativa 2 de 3.'),
+    ('Login', '2024-11-11 08:03:40', 115, 'AUTENTICACAO', 'BLOQUEADO', 'Terminal Oscorp', 'Terceira tentativa recusada. Conta bloqueada por 15 minutos.'),
+    ('Solicitou desbloqueio', '2024-11-11 08:05:00', 115, 'SUPORTE', 'REGISTRADO', 'Portal Oscorp', 'Chamado OSC-616 aberto para verificar a identidade do Duende Verde.'),
+    ('Login', '2024-11-11 08:10:00', 209, 'AUTENTICACAO', 'SUCESSO', 'Notebook do Clarim', 'Identidade confirmada com segundo fator. Sentido aranha em dia.'),
+    ('Consultou catalogo', '2024-11-11 08:12:00', 209, 'PRODUTOS', 'SUCESSO', 'Notebook do Clarim', 'Consultou o estoque de Lanca-Teias antes da ronda.'),
+    ('Exportou relatorio', '2024-11-11 08:20:00', 207, 'FINANCEIRO', 'SUCESSO', 'WayneTech', 'Relatorio de folha salarial exportado para a revisao do conselho.'),
+    ('Atualizou inventario', '2024-11-11 09:00:00', 210, 'SUPRIMENTOS', 'SUCESSO', 'Pulseira Kimoyo', 'Conferencia dos equipamentos de vibranium concluida.'),
+    ('Consultou folha salarial', '2024-11-11 09:15:00', 209, 'FINANCEIRO', 'BLOQUEADO', 'Notebook do Clarim', 'Perfil de tecnologia sem permissao para consultar a folha salarial.'),
+    ('Solicitou compra', '2024-11-11 10:00:00', 211, 'SUPRIMENTOS', 'REGISTRADO', 'Terminal de Hogwarts', 'Pedido HOG-394: novos planners para organizar os estudos de magia.'),
+    ('Publicou comunicado', '2024-11-11 10:30:00', 212, 'COMUNICACAO', 'SUCESSO', 'Console da Alianca', 'Comunicado sobre a reuniao do conselho enviado ao portal interno.'),
+    ('Executou diagnostico', '2024-11-11 11:00:00', 213, 'TECNOLOGIA', 'SUCESSO', 'Terminal Enterprise', 'Diagnostico concluido. Sistemas operando dentro dos parametros logicos.'),
+    ('Exportou relatorio', '2024-11-11 14:00:00', 176, 'VENDAS', 'FALHA', 'Portal de Vendas', 'Exportacao interrompida por indisponibilidade do servico de arquivos.'),
+    ('Exportou relatorio', '2024-11-11 14:05:00', 176, 'VENDAS', 'SUCESSO', 'Portal de Vendas', 'Nova tentativa concluida. Relatorio mensal disponivel para download.'),
+    ('Iniciou sessao de testes', '2024-11-12 09:00:00', 103, 'TECNOLOGIA', 'SUCESSO', 'Holodeck de QA', 'Suite de testes do portal iniciada em ambiente de homologacao.'),
+    ('Revisou permissoes', '2024-11-12 10:00:00', 100, 'SEGURANCA', 'SUCESSO', 'Batcomputador', 'Revisao de acessos concluida. Protocolo Torre de Babel arquivado.'),
+    ('Logout', '2024-11-12 18:00:00', 100, 'AUTENTICACAO', 'SUCESSO', 'Batcomputador', 'Sessao encerrada. Gotham esta chamando.');
