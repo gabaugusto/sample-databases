@@ -1,7 +1,7 @@
 CREATE TABLE nerd_items (
   id INT,
-  nome VARCHAR(255),
-  universo VARCHAR(255),
+  nome INT,
+  universo VARCHAR(255) UNIQUE,
   categoria VARCHAR(255),
   preco VARCHAR(50),
   estoque VARCHAR(50),
