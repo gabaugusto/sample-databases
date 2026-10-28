@@ -14,7 +14,7 @@ Importe o arquivo [portal9_catalogo_bruto.sql](portal9_catalogo_bruto.sql) em um
 
 Antes de alterar os dados:
 
-- identifique problemas de **preenchimento, formato, domínio e consistência**;
+- identifique problemas de **tipos de dados, preenchimento, formato, domínio e consistência**;
 - compare registros com o mesmo SKU e produtos que parecem iguais, **sem presumir que sejam duplicatas**;
 - diferencie **ausência de informação, valor desconhecido, zero e valor inválido**;
 - registre quais casos podem ser **corrigidos com segurança** e quais precisam de **confirmação**.
@@ -27,7 +27,7 @@ Em grupo, criem um **pequeno protocolo de tratamento**. Para cada tipo de proble
 - quando o dado deve ser **corrigido, mantido, separado ou marcado para revisão**;
 - como **preservar o valor original** e rastrear a origem da decisão.
 
-**Não inventem valores para completar lacunas.** Se um preço não tiver moeda identificável, ou uma data não permitir determinar o dia, **sinalizem essa limitação** em vez de supor uma resposta.
+**Não inventem valores para completar lacunas.** Se um preço não tiver moeda identificável, ou uma data não permitir determinar o dia, **sinalizem essa limitação** em vez de supor uma resposta. Você pode criar uma tabela de referência para **moedas, datas e variantes** que ajude a equipe a decidir se um registro pode ser anunciado ou precisa de confirmação.
 
 ### 3. Criar uma versão tratada
 
@@ -78,6 +78,21 @@ A nova remessa chama [nerd_itens_old_bases.sql](nerd_itens_old_bases.sql)
 - **Duplicatas reais são tratadas** sem apagar variantes ou históricos legítimos.
 - O modelo separa entidades e fatos que têm **ciclos de vida diferentes**.
 - As consultas ajudam alguém da loja a tomar uma **decisão concreta**.
+
+## O que é Normalização de Banco de Dados?
+
+A **normalização** é um processo de organização de dados em um banco de dados relacional. O objetivo é reduzir a redundância e melhorar a integridade dos dados, dividindo os dados em tabelas menores e definindo relacionamentos entre elas. A normalização geralmente envolve várias etapas, conhecidas como **formas normais**, que incluem:
+
+- **1ª Forma Normal (1NF)**: Elimina grupos repetitivos e garante que cada campo contenha apenas valores atômicos.
+- **2ª Forma Normal (2NF)**: Remove dependências parciais, garantindo que cada campo não-chave dependa da chave primária inteira.
+- **3ª Forma Normal (3NF)**: Remove dependências transitivas, garantindo que os campos não-chave dependam apenas da chave primária.
+
+## O que é Higienização de Dados?
+
+A **higienização de dados** é o processo de identificar e corrigir ou remover dados incorretos, incompletos, duplicados ou irrelevantes de um conjunto de dados. O objetivo é melhorar a qualidade dos dados, tornando-os mais precisos, consistentes e confiáveis para análise e tomada de decisões. A higienização de dados pode envolver várias etapas, incluindo:
+
+- **Detecção de erros**: Identificar dados incorretos, inconsistentes ou incompletos.
+- **Correção de erros**: Corrigir ou remover dados incorretos, inconsistentes ou incompletos.
 
 ## Dica
 
