@@ -2,7 +2,13 @@
 -- Execute em uma base de estudo vazia. Os campos de origem são VARCHAR de propósito:
 -- a tabela precisa preservar exatamente o que veio nas planilhas.
 
-CREATE TABLE importacao_catalogo_raw (
+CREATE DATABASE IF NOT EXISTS loja_9; 
+-- Escolho o banco para trabalhar
+USE loja_9;
+
+DROP TABLE IF EXISTS catalogo;
+
+CREATE TABLE catalogo (
   registro_id INT PRIMARY KEY,
   lote_origem VARCHAR(40) NOT NULL,
   sku_origem VARCHAR(80),
@@ -22,7 +28,7 @@ INSERT INTO importacao_catalogo_raw VALUES
 (1,'ERP_OUT_01','SW-001','Sabre de luz azul','Star Wars','arma','edição Jedi','R$ 1.700,00','4','2026-10-01','Jedi Supply','lacrado','ativo'),
 (2,'FORN_JEDI_10','SW-001','Sabre de Luz Azul','star wars','Arma','Jedi edition','1700 BRL','4 un.','01/10/2026','JediSupply','Novo','Disponível'),
 (3,'FORN_SITH_03','SW-044','Capacete do Vader','Star Wars','acessório','eletrônico, com respirador','R$ 4.500,00','2','2026-10-03','Sith Corp.','lacrado','ativo'),
-(4,'ERP_OUT_02','SW-044','Capacete Darth Vader','Star Wrs','Acessorio','réplica estática 1:1','4500','2','03/10/26','SithCorp','novo','ativo'),
+(4,'ERP_OUT_02','SW-044','Capacete Darth Vader','Star wrs','Acessorio','réplica estática 1:1','4500','2','03/10/26','SithCorp','novo','ativo'),
 (5,'FORN_SAURON_01','','Anel do Poder','O Senhor dos Anéis','artefato','réplica licenciada','$ 999.99','??','2026','Sauron Inc.','lacrado','ativo'),
 (6,'ERP_OUT_01','LOTR-FAKE-02','One Ring (fake)','Lord of the Rings','artefato','réplica simples','US$ 59.90','30','2022','Mercadinho do Frodo','usado','descontinuado'),
 (7,'ERP_OUT_02','PK-001','Pokébola','Pokémon','acessório','vermelha, padrão','R$ 35,00','100','04/2023','','novo','ativo'),
