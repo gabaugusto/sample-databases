@@ -1,132 +1,86 @@
-# Desafio: O Multiverso Precisa de Organização!
+# Desafio: Inventário em crise na Loja Portal 9
 
-O **Multiverso Nerd** entrou em colapso.  
-Os portais entre universos se abriram e **personagens de mundos diferentes estão misturados** em uma base de dados completamente confusa:  
-nomes duplicados, franquias desorganizadas, campos escritos de forma diferente e até espécies misteriosas mal registradas!
+## Contexto
 
-O **Conselho Supremo da Galáxia** (você 👀) foi convocado para **restaurar a ordem no banco de dados interdimensional**.
+A **Loja Portal 9** vende colecionáveis de diferentes franquias. Às vésperas da **Feira Multiverso**, a equipe percebeu que o catálogo foi montado a partir de planilhas e exportações de fornecedores. O mesmo item pode aparecer mais de uma vez; alguns registros discordam sobre **preço, variante ou estoque**; e valores importantes vieram **incompletos ou em formatos diferentes**.
 
-Seu objetivo é aplicar seus poderes de **higienização** e **normalização de dados** para reconstruir o equilíbrio nerd do universo dos dados.
+A feira começa em breve. A equipe precisa decidir **quais produtos podem ser anunciados**, **quais dados precisam de confirmação** e **quais registros devem ficar em análise**. Sua missão é preparar uma **base confiável** para essas decisões e explicar como chegou a cada tratamento.
 
----
+## O que você vai fazer
 
-## Objetivos do Desafio
+### 1. Investigar a base bruta
 
-Há dois arquivos neste repositório com **75 registros** de personagens, criaturas e heróis do mundo nerd. Que devem ser higienizados e normalizados em uma nova tabela chamada **`universo_nerd`**.
+Importe o arquivo `portal9_catalogo_bruto.sql` em um banco **MySQL**. A tabela de origem preserva os valores como chegaram, inclusive diferenças de escrita e registros que podem parecer duplicados.
 
----
+Antes de alterar os dados:
 
-O arquivo conterá:
+- identifique problemas de **preenchimento, formato, domínio e consistência**;
+- compare registros com o mesmo SKU e produtos que parecem iguais, **sem presumir que sejam duplicatas**;
+- diferencie **ausência de informação, valor desconhecido, zero e valor inválido**;
+- registre quais casos podem ser **corrigidos com segurança** e quais precisam de **confirmação**.
 
-Uma tabela chamada nerd_items com registros de itens nerds coletados de diferentes universos fictícios. Cada registro pode conter:
+### 2. Definir regras de qualidade
 
-* registros com inconsistências reais, como:
+Em grupo, criem um **pequeno protocolo de tratamento**. Para cada tipo de problema, indiquem:
 
-* Preços em formatos diferentes (R$, USD, números sem separador);
+- a **regra aplicada**;
+- quando o dado deve ser **corrigido, mantido, separado ou marcado para revisão**;
+- como **preservar o valor original** e rastrear a origem da decisão.
 
-* Datas em formatos variados (2023-04-10, 10/04/23, 04/2023);
+**Não inventem valores para completar lacunas.** Se um preço não tiver moeda identificável, ou uma data não permitir determinar o dia, **sinalizem essa limitação** em vez de supor uma resposta.
 
-* Campos faltando ou trocados;
+### 3. Criar uma versão tratada
 
-* Letras trocadas, maiúsculas aleatórias;
+Criem uma **tabela de trabalho limpa**, mantendo uma referência ao registro bruto. Padronizem campos e tipos **apenas quando houver informação suficiente**. Valores não resolvidos devem continuar rastreáveis e distinguíveis de um zero ou de um campo vazio.
 
-* “universos” misturados (Marvel, Star Wars, Pokémon, etc.);
+A equipe deve conseguir explicar por que dois registros foram **unidos ou mantidos separados**. **SKU repetido, nome parecido ou mesma franquia, isoladamente, não provam** que dois registros representam o mesmo produto.
 
-* Alguns campos numéricos salvos como texto e vice-versa.
+### 4. Propor um modelo relacional
 
-```sql
-INSERT INTO nerd_items VALUES
-(1, 'Sabre d luz azul', 'Star Wrs', 'arma', 'R$1500', '12', 'Sabre com luz LED azul, empunhadura metálica', '2023-04-10', 'JediSupply', 'raro'),
-(2, 'Anel do Poder', 'O Senhor dos Aneis', 'artefato', '$999.99', '??', 'forjado em mordor... ou será que não?', '10/04/23', 'Sauron INC', 'lendário'),
-(3, 'Pokebola', 'Pokémon', 'Acessorio', '35.00', '100', 'bolinha pra pegar monstrinhos', '04/2023', '', 'comum'),
-(4, 'Buster Swrd', 'Final Fantasy', 'arma', 'US$ 1299', '8 unidades', 'espada enorme q o Cloud usa', '12-04-22', 'Shinra', 'raro'),
-(5, 'Mjolnir', 'Marvel', 'arma', '2200 reais', '5', 'martelo do thor, mt pesado', '2021/05/03', 'AsgardTools', 'lendário'),
-(6, 'Varinha do Harry', 'Harry Poter', 'artefato', 'R$250', '42', 'madeira com pena de fênix', '01.05.2023', 'Ollivanders', 'comum'),
-(7, 'Escudo do Capitão', 'marvel', 'Armadura', 'USD4000', '2', 'escudo vibranium original', '2022-11-30', 'StarkIndustries', 'raro'),
-(8, 'Tricorder', 'StarTrek', 'tecnologia', '1800R$', '6', 'dispositivo de análise científica portátil', '30-06-21', 'UFP', 'épico'),
-(9, 'Chapéu seletor', 'harry potter', 'artefato', 'R$400', 'n/a', 'fala sozinho e escolhe casas', '2023/06/01', 'Hogwarts', 'raro'),
-```
+A partir da análise, proponham um **modelo normalizado até a 3ª Forma Normal**. Considerem quais informações pertencem a entidades distintas, como:
 
----
+- **produtos e suas variantes**;
+- **franquias e categorias**;
+- **fornecedores**;
+- **observações de preço e estoque** vindas de cada lote de importação.
 
-O desafio será dividido em **etapas**:
+Escolham **chaves primárias e estrangeiras**, definam restrições que façam sentido e expliquem como o modelo evita inconsistências. O modelo pode variar entre equipes, desde que as decisões sejam **justificadas**.
 
-### Etapa 0 - EXPLORAR E HIGIENIZAR
+### 5. Apoiar uma decisão da loja
 
-1. Execute os comandos abaixo para criar a base original.
-2. Observe os problemas (tipos misturados, datas diferentes, valores errados, etc.).
-3. Liste as anomalias que encontrar.
-4. Crie uma versão “limpa” da tabela (`nerd_items_clean`).  
-   - Padronize tipos de dados (preços como DECIMAL, datas como DATE, etc.).
-   - Corrija valores inconsistentes (nomes, universos, categorias).
-   - Trate valores nulos ou ausentes.
-   - Remova duplicatas.
+Escrevam **consultas SQL** para responder perguntas úteis à equipe da Feira Multiverso. Por exemplo:
 
-### Etapa 1 — Higienização de Dados
+- Quais registros podem ser **anunciados agora** e quais estão bloqueados para revisão?
+- Que SKUs aparecem com **descrições, variantes ou fornecedores divergentes**?
+- Quais produtos estão **sem estoque, com estoque suspeito ou com quantidade desconhecida**?
+- Como comparar preços **sem misturar moedas** ou transformar valores sem uma cotação definida?
+- Quais franquias e categorias concentram mais **itens disponíveis**?
 
-O caos tomou conta da base de dados! Sua primeira missão é **limpar e padronizar** os registros.
+Reconstruam uma visão integrada com `JOIN`. Se fizer sentido, criem uma **view para a equipe de catálogo**.
 
-Tarefas obrigatórias:
+### 6. Novos dados, novos problemas
 
-1. Padronize nomes de campos (`Name`, `nome`, `char_name` → `name`);
-2. Corrija capitalização e espaços extras (`"tOny stark"` → `"Tony Stark"`);
-3. Converta tipos de dados (`"85"` → `85`);
-4. Trate valores nulos, vazios ou `"N/A"`;
-5. Transforme listas inconsistentes em arrays reais;
-6. Unifique universos semelhantes (`"marvel studios"`, `"MARVEL COMICS"` → `"Marvel"`);
-7. Elimine duplicidades (como `"Batman"` e `"bat man"`);
-8. Gere uma nova base limpa chamada **`nerd_universe_clean`**.
-9. Exporte a base limpa para um arquivo chamado `nerd_universe_clean` e comite no **seu** repositório.
+Chegou uma nova remessa de dados, com **mais registros e mais divergências**. A equipe precisa **repetir o processo de investigação e tratamento** para manter a base confiável e importa apenas os registros que podem ser anunciados. Há apenas um produto de cada.
 
----
+A nova remessa chama [nerd_itens_old_bases.sql](nerd_itens_old_bases.sql)
 
-### Etapa 2 — Normalização
+## Entregas
 
-Depois de limpar os dados, você deve propor um **modelo normalizado**
-em 3ª Forma Normal (3FN), separando entidades independentes e relacionamentos.
+1. **Diagnóstico das anomalias** encontradas e protocolo de tratamento.
+2. **Script SQL** com o modelo normalizado, as tabelas preenchidas e as consultas de decisão.
+3. **Versão tratada** que mantenha a rastreabilidade até os registros de origem.
+4. **Breve justificativa dos casos ambíguos**: o que foi decidido e o que ficou pendente de confirmação.
 
-Abaixo está um modelo sugerido, mas você pode propor o seu próprio.
+## Critérios de sucesso
 
-```sql
-CREATE TABLE universos (
-  id_universo INT PRIMARY KEY AUTO_INCREMENT,
-  nome_universo VARCHAR(100) NOT NULL
-);
-```
+- Os **valores originais continuam consultáveis**.
+- As regras são **consistentes e explicitadas**, sem correções por palpite.
+- **Duplicatas reais são tratadas** sem apagar variantes ou históricos legítimos.
+- O modelo separa entidades e fatos que têm **ciclos de vida diferentes**.
+- As consultas ajudam alguém da loja a tomar uma **decisão concreta**.
 
-### DESAFIOS FINAIS
+## Dica
 
-* Corrija e insira os dados higienizados nas tabelas correspondentes.
+Funções como `TRIM`, `LOWER`, `UPPER`, `REPLACE`, `CASE`, `CAST` e `STR_TO_DATE` podem ajudar. Use-as **depois de compreender os formatos e as ambiguidades** dos dados. 
 
-* Garanta que os preços estejam padronizados em BRL com duas casas decimais.
-
-* Padronize universos e categorias (ex: “Star wras”, “star wars” → “Star Wars”).
-
-* Converta datas para formato ISO (`YYYY-MM-DD`).
-
-* Utilize JOINs para reconstruir a visão integrada dos produtos após a normalização.
-
-* (Opcional) Crie uma view chamada `vw_nerd_items_final` unindo todas as tabelas.
-
-**Dica**: explore comandos como:
-    - TRIM(), UPPER(), LOWER(), REPLACE(), STR_TO_DATE()
-    - CAST() e CONVERT()
-    - CASE WHEN ... THEN ... END
-
-
-### Desafio Extra (opcional)
-
-Use seu poder máximo e crie consultas heroicas!
-
-Tente descobrir:
-
-* O personagem mais poderoso de cada universo;
-
-* O universo com mais personagens registrados;
-
-* Quantos personagens possuem mais de 3 equipamentos.
-
-**Entregas**: 
-
-1. Código de higienizados e normalizados em seu repositório pessoal;
-2. Arquivo `nerd_universe_clean.sql` com os dados higienizados;
+**Importante**: Uma conversão que roda sem erro ainda pode produzir um resultado errado.
