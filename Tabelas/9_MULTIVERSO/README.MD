@@ -10,7 +10,7 @@ A feira começa em breve. A equipe precisa decidir **quais produtos podem ser an
 
 ### 1. Investigar a base bruta
 
-Importe o arquivo `portal9_catalogo_bruto.sql` em um banco **MySQL**. A tabela de origem preserva os valores como chegaram, inclusive diferenças de escrita e registros que podem parecer duplicados.
+Importe o arquivo [portal9_catalogo_bruto.sql](portal9_catalogo_bruto.sql) em um banco **MySQL**. A tabela de origem preserva os valores como chegaram, inclusive diferenças de escrita e registros que podem parecer duplicados.
 
 Antes de alterar os dados:
 
@@ -60,7 +60,7 @@ Reconstruam uma visão integrada com `JOIN`. Se fizer sentido, criem uma **view 
 
 ### 6. Novos dados, novos problemas
 
-Chegou uma nova remessa de dados, com **mais registros e mais divergências**. A equipe precisa **repetir o processo de investigação e tratamento** para manter a base confiável e importa apenas os registros que podem ser anunciados. Há apenas um produto de cada.
+Chegou uma nova remessa de dados, com **mais registros e mais divergências**. A equipe precisa **repetir o processo de investigação e tratamento** para manter a base confiável e importa apenas os registros que podem ser anunciados. 
 
 A nova remessa chama [nerd_itens_old_bases.sql](nerd_itens_old_bases.sql)
 
