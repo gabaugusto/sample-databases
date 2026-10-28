@@ -59,7 +59,7 @@ CREATE TABLE funcionarios (
   funcionario_id INT AUTO_INCREMENT PRIMARY KEY,
   primeiro_nome VARCHAR(24) DEFAULT NULL,
   sobrenome VARCHAR(24) NOT NULL,
-  email VARCHAR(128) NOT NULL,
+  email VARCHAR(128) NOT NULL UNIQUE,
   senha VARCHAR(128) NOT NULL,
   telefone VARCHAR(24) DEFAULT NULL,
   data_contratacao DATE NOT NULL,
@@ -211,10 +211,10 @@ INSERT INTO suprimentos (suprimento_nome,quantidade_comprada,custo,escritorio_id
 
 INSERT INTO departamentos(departamento_id,departamento_nome,escritorio_id) VALUES (1,'Administração',1700);
 INSERT INTO departamentos(departamento_id,departamento_nome,escritorio_id) VALUES (2,'Marketing',1800);
-INSERT INTO departamentos(departamento_id,departamento_nome,escritorio_id) VALUES (3,'Suprimentos',1700);
+INSERT INTO departamentos(departamento_id,departamento_nome,escritorio_id) VALUES (3,'Recursos',1700);
 INSERT INTO departamentos(departamento_id,departamento_nome,escritorio_id) VALUES (4,'Recursos Humanos',2400);
-INSERT INTO departamentos(departamento_id,departamento_nome,escritorio_id) VALUES (5,'Transportes',1500);
-INSERT INTO departamentos(departamento_id,departamento_nome,escritorio_id) VALUES (6,'Tecnologia',1400);
+INSERT INTO departamentos(departamento_id,departamento_nome,escritorio_id) VALUES (5,'Logística',1500);
+INSERT INTO departamentos(departamento_id,departamento_nome,escritorio_id) VALUES (6,'Tecnologia da Informação',1400);
 INSERT INTO departamentos(departamento_id,departamento_nome,escritorio_id) VALUES (7,'Relações Públicas',2700);
 INSERT INTO departamentos(departamento_id,departamento_nome,escritorio_id) VALUES (8,'Vendas',2500);
 INSERT INTO departamentos(departamento_id,departamento_nome,escritorio_id) VALUES (9,'Executivo',1700);
