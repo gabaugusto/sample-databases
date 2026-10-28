@@ -19,6 +19,19 @@ Antes de alterar os dados:
 - diferencie **ausência de informação, valor desconhecido, zero e valor inválido**;
 - registre quais casos podem ser **corrigidos com segurança** e quais precisam de **confirmação**.
 
+### 2. Crie um dicionário de dados
+
+Um dicionário de dados ajuda a equipe a **entender o significado de cada campo** e a **padronizar os valores**. Para cada coluna, indiquem:
+
+- o **tipo de dado**, uma descrição e o **formato esperado**
+Por exemplo, se o campo é uma data, especifiquem se o formato é `YYYY-MM-DD` ou `DD/MM/YYYY`. Se for um preço, indiquem a moeda e a precisão decimal.
+
+Modelo: 
+| Campo | Tipo | Descrição | Formato esperado |
+|-------|------|-----------|------------------|
+|sku_origem | VARCHAR |Stock Keeping Unit: código usado para identificar um produto específico. Pode diferenciar, por exemplo, uma réplica em tamanho adulto de uma miniatura. | Alfanumérico, sem espaços, 8 a 12 caracteres: exemplo: `SW-001` |
+
+
 ### 2. Definir regras de qualidade
 
 Em grupo, criem um **pequeno protocolo de tratamento**. Para cada tipo de problema, indiquem:
@@ -70,6 +83,11 @@ A nova remessa chama [nerd_itens_old_bases.sql](nerd_itens_old_bases.sql)
 2. **Script SQL** com o modelo normalizado, as tabelas preenchidas e as consultas de decisão.
 3. **Versão tratada** que mantenha a rastreabilidade até os registros de origem.
 4. **Breve justificativa dos casos ambíguos**: o que foi decidido e o que ficou pendente de confirmação.
+
+**Exemplo de registro ambíguo**: dois SKUs iguais, mas com nomes diferentes. A equipe pode decidir manter ambos, separar por variante ou marcar para revisão.
+
+**Exemplo de registro resolvido**: dois SKUs iguais, com nomes e variantes idênticas, mas com preços diferentes. A equipe pode decidir manter o registro com preço mais recente e marcar o outro para revisão.
+
 
 ## Critérios de sucesso
 
