@@ -1,0 +1,29 @@
+﻿source_row_id;lote_origem;pedido_ref;item_seq;data_venda_raw;locale_origem;sku_raw;quantidade_raw;preco_unitario_raw;moeda_raw;email_vendedor_raw;canal_raw;status_raw
+1;LOJA_2025_08;EXT-9001;1;2025-08-10;ISO;pop-001;2;US$ 300.13;USD; john.russell@momento.org ;web;paid
+2;LOJA_2025_08;EXT-9001;2;2025-08-10;ISO;PKM-002;1;$ 80.50;USD;john.russell@momento.org;Online;concluída
+3;LOJA_2025_08;EXT-9001;1;2025-08-10;ISO;POP-001;2;300.13;USD;john.russell@momento.org;WEB;CONCLUIDA
+4;BRASIL_2025_08;EXT-9002;1;10/08/2025;pt-BR;SW-001;3;R$ 1.250,00;BRL;KAREN.PARTNERS@MOMENTO.ORG;loja física;pago
+5;LEGADO_2025_08;EXT-9003;1;05/06/25;?;BAT-001;1;239,29;USD;john.russell@momento.org;web;pago
+6;LEGADO_2025_08;EXT-9004;1;31/02/2025;pt-BR;WEB-001;1;237,19;USD;john.russell@momento.org;web;pago
+7;LOJA_2025_08;EXT-9005;1;2025-08-11;ISO;SKU-404;1;250.00;USD;john.russell@momento.org;app;pago
+8;LOJA_2025_08;EXT-9006;1;2025-08-11;ISO;ANT-001;1;289.29;USD;nao.existe@momento.org;app;pago
+9;LOJA_2025_08;EXT-9007;1;2025-08-12;ISO;COS-001;0;750.19;USD;john.russell@momento.org;web;pago
+10;LOJA_2025_08;EXT-9008;1;2025-08-12;ISO;WW-001;-2;325.13;USD;john.russell@momento.org;web;pago
+11;BRASIL_2025_08;EXT-9009;1;12/08/2025;pt-BR;IM-005;2;R$ 1.234,50;BRL;karen.partners@momento.org;Loja;concluída
+12;US_WEB_2025_08;EXT-9010;1;08/13/2025;en-US;SW-002;1;4,500.00;USD;john.russell@momento.org;Online;Paid
+13;LOJA_2025_08;EXT-9001;1;2025-08-10;ISO;POP-001;3;300.13;USD;john.russell@momento.org;WEB;CONCLUIDA
+14;LOJA_2025_08;EXT-9011;1;2025-08-13;ISO;SW-003;1;750.00;USD;john.russell@momento.org;marketplace;cancelado
+15;LOJA_2025_08;EXT-9012;1;2025-08-13;ISO;MAR-001;1;4,250.00;USD;  KAREN.PARTNERS@momento.org  ;Marketplace;paid
+16;LOJA_2025_08;EXT-9013;1;2025-08-14;ISO;LOTR-001;1;999.99;USD;john.russell@momento.org;TikTok Shop;pending
+17;LOJA_2025_08;EXT-9014;1;2025-08-14;ISO;DBZ-001;1;500.00;USD;john.russell@momento.org;web;pago
+18;LEGADO_2025_08;EXT-9015;1;2025-08-14;ISO;ZEL-001;1;$ 1,800.00;;john.russell@momento.org;web;pago
+19;LOJA_2025_08;EXT-9016;1;2025-08-15;ISO;FF-001;1;1299;XYZ;john.russell@momento.org;web;pago
+20;LOJA_2025_08;EXT-9017;1;2025-08-15;ISO;HP-001;1;N/A;USD;john.russell@momento.org;web;pago
+21;LOJA_2025_08;EXT-9018;1;2025-08-15;ISO;SW-004;dois;400.00;USD;john.russell@momento.org;web;pago
+22;LOJA_2025_08;EXT-9019;1;2025-08-16;ISO;  mar-002  ;1;7,000.00;USD;john.russell@momento.org;web;pago
+23;BRASIL_2025_08;EXT-9020;1;16/08/2025;pt-BR;DC-003;1;R$ 1.200,00;BRL;karen.partners@momento.org;loja;pago
+24;LOJA_2025_08;EXT-9021;1;2025-08-17;ISO;BEN-001;1;300.00;USD;john.russell@momento.org;web;pago
+25;LOJA_2025_08;EXT-9022;1;2025-08-17;ISO;GOW-001;1;3,000.00;USD;john.russell@momento.org;web;pago
+26;LOJA_2025_08;EXT-9023;1;2025-08-18;ISO;DBZ-002;1;60.00;USD;john.russell@momento.org;web;pago
+27;LOJA_2025_08;EXT-9024;1;2025-08-18;ISO;SW-005;1;850.00;USD;john.russell@momento.org;web;pago
+28;LOJA_2025_08;EXT-9025;1;2025-08-19;ISO;MAR-003;1;5,000.00;USD;john.russell@momento.org;web;pago
