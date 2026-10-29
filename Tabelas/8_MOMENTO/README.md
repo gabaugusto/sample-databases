@@ -2,17 +2,49 @@
 
 Bem-vindo à base de dados da empresa **Momento**!
 
-A Momento é uma empresa inovadora do setor de tecnologia e vendas de produtos temáticos de super-heróis e cultura pop. Fundada em 1980, a empresa começou como uma pequena loja em Gotham City e hoje possui escritórios em diversos países, com departamentos especializados em Vendas, Tecnologia, Recursos Humanos, Marketing, Financeiro e Dados.
+A Momento vende produtos de cultura pop e mantém escritórios em diferentes países, além de manter uma escola como seu projeto educacional. A equipe de dados recebeu duas fontes: uma base relacional usada pela empresa para gestão geral e um CSV exportado por um sistema de vendas recém-integrado para vendas.
 
 Nestes exercícios, você vai explorar o banco de dados da empresa e responder perguntas que revelam insights importantes sobre o negócio. Prepare-se para usar queries básicas, agregações complexas, e operações avançadas!
 
+
+## Ambiente e arquivos
+
+Esses são os arquivos para vocês trabalharem
+
+- [0_Base.sql](0_Base.sql)`: cria e preenche uma base MySQL para as consultas. Requer MySQL 8.0 ou superior.
+- [vendas_campanha_bruto.csv](vendas_campanha_bruto.csv): exportação externa que será usada no exercício de ETL.
+
+O script SQL usa o banco `momento` e **não apaga bancos nem tabelas existentes**. Execute-o em um banco/schema vazio. Ele cria uma área de pouso chamada `stg_vendas_csv`; essa tabela começa vazia para que a turma carregue o CSV. Os campos brutos dessa tabela são texto de propósito: a extração deve preservar os valores recebidos.
+
+> O material é de SQL relacional e usa MySQL. As etapas de ETL podem ser feitas em SQL, Python ou Power Query, desde que o grupo documente as transformações e mantenha a rastreabilidade.
+
+## Desafios 
+
+Prepare dados que ajudem a equipe a responder perguntas sobre pessoas, departamentos, escritórios, produtos, vendas e atividade do sistema. Entregue consultas que possam ser explicadas e reproduzidas por outra pessoa.
+
 ---
+
+### Etapa 0 — Explorar
+
+Uma das técnicas mais utilizadas pelos profissional de dados é a Exploratory Data Analysis (EDA) (Análise de Dados Exploratória, em português). 
+
+A Análise Exploratória de Dados (AED) é o processo inicial crucial de examinar, limpar e visualizar um conjunto de dados para compreender suas principais características, identificar anomalias e descobrir padrões antes de construir modelos estatísticos ou de aprendizado de máquina formais.
+
+Objetivos principais da AED
+
+• Descobrir padrões e estruturas: Permitir que os dados sugiram tendências e relações sem viés preestabelecido.
+
+• Detectar anomalias e outliers: Identificar entradas corrompidas, erros de digitação ou valores extremos que distorcem os resultados.
+
+• Lidar com dados faltantes: Decidir se deve descartar ou imputar registros incompletos usando métodos estatísticos ou de aprendizado de máquina.
+
+Sua missão nesse momento, é explorar os dados. 
 
 ## Nível 1: Conhecendo a Empresa
 
 ### Seu Primeiro Dia na Momento
 
-**1.1** Você acabou de ser contratado pela Momento! Vamos começar incluindo você no sistema.
+**1.1** Você acabou de ser contratado pela Momento! Vamos começar incluindo você no sistema, escolha um departamento, cargo e salário.
 
 **1.2** Agora que você faz parte da equipe, quantos funcionários temos ao total na empresa?
 
@@ -130,79 +162,19 @@ A empresa está crescendo e mudanças precisam acontecer!
 
 ---
 
-## Nível 8: Desafios e Otimização
-
-**8.1** **Desafio de Performance**: Encontre todos os funcionários do departamento de Vendas que possuem dependentes (cônjuge OU filhos). Quantas formas diferentes você consegue resolver isso?
-
-**8.2** **Desafio de Lógica**: Encontre funcionários que trabalham em escritórios diferentes do escritório associado ao seu departamento (se houver alguma inconsistência).
-
-**8.3** **Consulta Complexa**: Crie um relatório completo de um escritório mostrando:
-   - Nome do escritório
-   - País
-   - Número de departamentos naquele escritório
-   - Número total de funcionários
-   - Custo total com salários
-   - Custo total com suprimentos
-
-**8.4** **Desafio de Agregação**: Encontre o "departamento mais equilibrado" - aquele com a menor diferença entre o maior e menor salário.
-
-**8.5** **Text Search**: Encontre todos os produtos que contêm a palavra "Uniforme" no nome.
-
-**8.6** **Date Range**: Encontre todas as vendas que ocorreram no segundo trimestre de 2023 (abril-junho).
-
-## Nível 9: Desafios Ninja
-
-**9.1** **Múltiplas Soluções**: Encontre todos os funcionários cujo salário está entre $6.000 e $10.000. Resolva de 3 formas diferentes.
-
-**9.2** **Data Quality**: Encontre todos os funcionários que NÃO possuem email ou telefone cadastrado.
-
-**9.2** **Desafio de Lógica Avançada**: Crie uma query que encontre "funcionários solitários" - aqueles que são os únicos em seu cargo dentro de seu departamento.
-
-**9.2* **Pipeline Complexo**: Crie um relatório que mostre, para cada país:
-   - Nome do país
-   - Número de escritórios
-   - Número de departamentos
-   - Número de funcionários
-   - Receita total (soma dos salários + custo de suprimentos)
-
----
-
-## Nível 10: Casos Práticos e Simulações
-
-### Cenário 1: Expansão Internacional
-A Momento quer abrir um novo escritório no Brasil.
-
-**10.1** Crie o novo escritório "Momento Brasil" em São Paulo com suprimentos iniciais de sua escolha.
-
-**10.2** Crie um novo departamento "Operações LATAM" vinculado a este escritório.
-
-**10.3** Contrate 5 novos funcionários para este departamento (você e 4 colegas de turma).
-
-### Cenário 2: Crise Financeira
-
-A empresa precisa reduzir custos!
-
-**10.4** Identifique os 3 escritórios com maiores custos de suprimentos.
-
-**10.5** Sugira onde cortar custos: liste suprimentos com quantidade acima de 50 unidades.
-
-**10.6** Calcule quanto a empresa economizaria se reduzisse 20% dos salários acima de $15.000 (apenas calcule, não execute).
-
-### Cenário 3: Auditoria de Vendas
+## Nível 8:  Auditoria de Vendas
 
 O departamento financeiro suspeita de irregularidades.
 
-**10.7** Encontre vendas que não possuem vendedor associado.
+**8.1** Encontre vendas que não possuem vendedor associado.
 
-**10.8** Verifique se há vendedores registrados nas vendas que não existem na coleção de funcionários.
+**8.2** Verifique se há vendedores registrados nas vendas que não existem na coleção de funcionários.
 
-**10.9** Identifique produtos que aparecem nas vendas mas com preços unitários muito diferentes entre transações (variação > 10%).
+**8.3** Identifique produtos que aparecem nas vendas mas com preços unitários muito diferentes entre transações (variação > 10%).
 
-### Cenário 4: Relatório Executivo
+**8.4** O CEO pediu um dashboard completo.
 
-O CEO pediu um dashboard completo.
-
-**10.10** Crie UMA ÚNICA query de agregação que retorne:
+Crie UMA ÚNICA query de agregação que retorne:
    - Total de funcionários
    - Custo total com salários
    - Número de departamentos
@@ -210,16 +182,46 @@ O CEO pediu um dashboard completo.
    - Receita total de vendas
    - Produto mais vendido
 
----
+## Nível 8: ETL do CSV
 
-## Dicas Gerais
+O arquivo [vendas_campanha_bruto.csv](vendas_campanha_bruto.csv) contém dados de pedidos e itens em formatos variados. 
+O que você deve fazer: carregá-lo na tabela `stg_vendas_csv`, sem converter nem corrigir os valores na importação. 
 
-- Sempre verifique os dados antes de executar operações de atualização ou remoção.
-- Utilize índices para otimizar consultas frequentes.
-- Documente suas queries para facilitar a revisão futura.
-- Divida consultas complexas em etapas menores para facilitar o entendimento.
-- Pratique a criação de backups antes de fazer alterações significativas no banco de dados.
-- Explore a documentação oficial do MongoDB para aprofundar seu conhecimento sobre operadores e agregações.
+**Dica**: No MySQL Workbench, vocês podem usar o **Table Data Import Wizard** apontando para a tabela já criada, com delimitador `;` e a primeira linha como cabeçalho. Se o ambiente permitir `LOAD DATA LOCAL INFILE`, também é possível usá-lo.
 
---- 
+Construam um fluxo com estas fases:
 
+1. **Extract:** importar todas as linhas e conservar `source_row_id` e `lote_origem`.
+2. **Transform:** normalizar espaços e capitalização; converter quantidades, datas e preços; padronizar canal e status; conferir SKU e e-mail do vendedor; identificar duplicatas e conflitos.
+3. **Load:** inserir pedidos em `vendas` e linhas em `itens_venda`. Registrar pendências ou rejeições em `etl_rejeicoes`, preservando o valor original, o campo e o motivo.
+
+Regras para orientar a análise:
+
+- usem `locale_origem` ao interpretar datas e separadores decimais; se a localidade não estiver identificada, não escolham uma interpretação por palpite;
+- `moeda_raw` precisa ser identificável. Não convertam BRL ou outra moeda para USD sem uma taxa de câmbio aprovada;
+- SKU desconhecido, vendedor sem correspondência, quantidade inválida, data impossível ou preço não interpretável precisam de tratamento documentado;
+- linhas com a mesma combinação pedido/item podem ser duplicatas ou correções conflitantes. Compare os demais campos antes de decidir;
+- se um pedido tiver uma linha pendente, decidam se carregam as linhas válidas ou mantêm o pedido inteiro em revisão. Registrem o critério usado;
+- `source_row_id` em `itens_venda` liga uma linha carregada à linha original do CSV.
+
+A tabela `etl_rejeicoes` foi criada para documentar decisões. Um registro rejeitado não deve desaparecer silenciosamente: indiquem se foi duplicata, rejeição definitiva ou revisão manual.
+
+## Nível 9: Alterações seguras
+
+Façam alterações em transações e verifiquem o resultado antes de confirmar:
+
+- criar um departamento novo em um escritório existente;
+- cadastrar o cargo “Senior Web Developer” e promover Bruce Ernst, atualizando cargo e salário;
+- transferir duas pessoas de Tecnologia para o novo departamento, justificando a escolha;
+- reajustar salários de quem permanecer em Tecnologia;
+- adicionar uma compra de headsets com quantidade, custo unitário, moeda, data e referência de compra;
+- simular aposentadoria alterando `situacao` para `INATIVO`, sem apagar o funcionário nem seu histórico.
+
+Exemplo de fluxo seguro:
+
+```sql
+START TRANSACTION;
+-- faça a alteração planejada
+-- confira com SELECT se o resultado corresponde ao esperado
+ROLLBACK; -- use COMMIT somente quando estiver validado
+```
