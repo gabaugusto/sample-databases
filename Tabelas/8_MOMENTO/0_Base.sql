@@ -222,7 +222,7 @@ CREATE TABLE clientes (
 CREATE TABLE enderecos_cliente (
   endereco_cliente_id INT PRIMARY KEY,
   cliente_id INT NOT NULL,
-  tipo_movimentacao_estoque_id TINYINT NOT NULL,
+  tipo VARCHAR(16) NOT NULL,
   endereco VARCHAR(100) NOT NULL,
   cidade VARCHAR(64) NOT NULL,
   estado_provincia VARCHAR(64),
@@ -271,7 +271,7 @@ CREATE TABLE movimentacoes_estoque (
   produto_id INT NOT NULL,
   escritorio_id INT NOT NULL,
   data_movimentacao DATETIME NOT NULL,
-  tipo VARCHAR(16) NOT NULL,
+  tipo_movimentacao_estoque_id TINYINT NOT NULL,
   quantidade INT NOT NULL,
   referencia VARCHAR(48),
   CHECK (quantidade > 0),
@@ -1395,11 +1395,11 @@ INSERT INTO clientes (cliente_id, nome, email, telefone, data_cadastro, consenti
   (3, 'Theo Martin', 'theo.martin@example.com', '+33-1-5555-9003', '2024-02-10', 0, 1),
   (4, 'Luna Kim', 'luna.kim@example.com', '+81-3-5555-9004', '2024-09-01', 1, 1);
   
-INSERT INTO enderecos_cliente (endereco_cliente_id, cliente_id, tipo_movimentacao_estoque_id, endereco, cidade, estado_provincia, cep, pais_id, principal) VALUES
-  (1, 1, 1, '10 Market Street', 'Seattle', 'Washington', '98101', 'US', 1),
-  (2, 2, 1, 'Rua das Artes, 55', 'São Paulo', 'SP', '01310-100', 'BR', 1),
-  (3, 3, 1, '12 Rue des Jeux', 'Paris', 'Île-de-France', '75001', 'FR', 1),
-  (4, 4, 1, '2-8-1 Shibuya', 'Tokyo', 'Tokyo', '150-0002', 'JP', 1);
+INSERT INTO enderecos_cliente (endereco_cliente_id, cliente_id, tipo, endereco, cidade, estado_provincia, cep, pais_id, principal) VALUES
+  (1, 1, 'ENTREGA', '10 Market Street', 'Seattle', 'Washington', '98101', 'US', 1),
+  (2, 2, 'ENTREGA', 'Rua das Artes, 55', 'São Paulo', 'SP', '01310-100', 'BR', 1),
+  (3, 3, 'ENTREGA', '12 Rue des Jeux', 'Paris', 'Île-de-France', '75001', 'FR', 1),
+  (4, 4, 'ENTREGA', '2-8-1 Shibuya', 'Tokyo', 'Tokyo', '150-0002', 'JP', 1);
 
 -- Atualizando os registros de clientes/vendas.
 UPDATE vendas SET cliente_id = 1 WHERE venda_id IN (7002, 7007, 7012);
