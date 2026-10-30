@@ -7,8 +7,7 @@
         "categoria": "ACTOR",
         "nome_do_indicado": "Richard Barthelmess",
         "nome_do_filme": "The Noose",
-        "vencedor": 0,
-        "diretor": "Munizzz"
+        "vencedor": 0
     },
     {
         "id_registro": 2,
@@ -59,9 +58,7 @@
         "categoria": "ART DIRECTION",
         "nome_do_indicado": "Rochus Gliese",
         "nome_do_filme": "Sunrise",
-        "vencedor": 0,
-        "personagem_principal": "Sonic",
-        "botao_pressionado_mais_de_mil_vezes": "Quadrado"
+        "vencedor": 0
     },
     {
         "id_registro": 7,
