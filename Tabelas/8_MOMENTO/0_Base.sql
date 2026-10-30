@@ -16,7 +16,8 @@ CREATE TABLE paises (
   pais_nome VARCHAR(64) NOT NULL,
   regiao_id INT NOT NULL,
   CONSTRAINT fk_paises_regiao FOREIGN KEY (regiao_id) REFERENCES regioes(regiao_id)
-    ON UPDATE CASCADE ON DELETE RESTRICT
+    ON UPDATE CASCADE 
+    ON DELETE RESTRICT
 );
 
 CREATE TABLE escritorios (
@@ -28,7 +29,8 @@ CREATE TABLE escritorios (
   estado_provincia VARCHAR(64) NOT NULL,
   pais_id CHAR(2) NOT NULL,
   CONSTRAINT fk_escritorios_pais FOREIGN KEY (pais_id) REFERENCES paises(pais_id)
-    ON UPDATE CASCADE ON DELETE RESTRICT
+    ON UPDATE CASCADE 
+    ON DELETE RESTRICT
 );
 
 CREATE TABLE departamentos (
@@ -38,7 +40,8 @@ CREATE TABLE departamentos (
   escritorio_id INT NOT NULL,
   UNIQUE (departamento_nome, escritorio_id),
   CONSTRAINT fk_departamentos_escritorio FOREIGN KEY (escritorio_id) REFERENCES escritorios(escritorio_id)
-    ON UPDATE CASCADE ON DELETE RESTRICT
+    ON UPDATE CASCADE 
+    ON DELETE RESTRICT
 );
 
 CREATE TABLE cargos (
@@ -47,6 +50,39 @@ CREATE TABLE cargos (
   min_salario DECIMAL(10,2) NOT NULL,
   max_salario DECIMAL(10,2) NOT NULL,
   CHECK (min_salario <= max_salario)
+);
+
+-- Tabelas de domínio: evitam valores livres e repetidos nas tabelas operacionais.
+CREATE TABLE status_funcionario (
+  status_funcionario_id TINYINT PRIMARY KEY,
+  nome VARCHAR(16) NOT NULL UNIQUE
+);
+
+CREATE TABLE status_venda (
+  status_venda_id TINYINT PRIMARY KEY,
+  nome VARCHAR(16) NOT NULL UNIQUE
+);
+
+CREATE TABLE canais_venda (
+  canal_venda_id TINYINT PRIMARY KEY,
+  nome VARCHAR(24) NOT NULL UNIQUE
+);
+
+CREATE TABLE acoes_etl (
+  acao_etl_id TINYINT PRIMARY KEY,
+  nome VARCHAR(24) NOT NULL UNIQUE
+);
+CREATE TABLE modulos_auditoria (
+  modulo_auditoria_id TINYINT PRIMARY KEY,
+  nome VARCHAR(30) NOT NULL UNIQUE
+);
+CREATE TABLE status_auditoria (
+  status_auditoria_id TINYINT PRIMARY KEY,
+  nome VARCHAR(20) NOT NULL UNIQUE
+);
+CREATE TABLE tipos_movimentacao_estoque (
+  tipo_movimentacao_estoque_id TINYINT PRIMARY KEY,
+  nome VARCHAR(16) NOT NULL UNIQUE
 );
 
 CREATE TABLE funcionarios (
@@ -61,15 +97,20 @@ CREATE TABLE funcionarios (
   moeda_salario CHAR(3) NOT NULL DEFAULT 'USD',
   gerente_id INT,
   departamento_id INT NOT NULL,
-  situacao VARCHAR(16) NOT NULL DEFAULT 'ATIVO',
-  CHECK (salario >= 0),
-  CHECK (situacao IN ('ATIVO','AFASTADO','INATIVO')),
+  status_funcionario_id TINYINT NOT NULL DEFAULT 1,
+  CHECK (salario >= 500),
   CONSTRAINT fk_funcionarios_cargo FOREIGN KEY (cargo_id) REFERENCES cargos(cargo_id)
-    ON UPDATE CASCADE ON DELETE RESTRICT,
+    ON UPDATE CASCADE 
+    ON DELETE RESTRICT,
   CONSTRAINT fk_funcionarios_departamento FOREIGN KEY (departamento_id) REFERENCES departamentos(departamento_id)
-    ON UPDATE CASCADE ON DELETE RESTRICT,
+    ON UPDATE CASCADE 
+    ON DELETE RESTRICT,
   CONSTRAINT fk_funcionarios_gerente FOREIGN KEY (gerente_id) REFERENCES funcionarios(funcionario_id)
-    ON UPDATE CASCADE ON DELETE SET NULL
+    ON UPDATE CASCADE 
+    ON DELETE SET NULL,
+  CONSTRAINT fk_funcionario_status FOREIGN KEY (status_funcionario_id) REFERENCES status_funcionario(status_funcionario_id)
+    ON UPDATE CASCADE 
+    ON DELETE RESTRICT
 );
 
 CREATE TABLE dependentes (
@@ -79,7 +120,8 @@ CREATE TABLE dependentes (
   relacionamento VARCHAR(24) NOT NULL,
   funcionario_id INT NOT NULL,
   CONSTRAINT fk_dependentes_funcionario FOREIGN KEY (funcionario_id) REFERENCES funcionarios(funcionario_id)
-    ON UPDATE CASCADE ON DELETE RESTRICT
+    ON UPDATE CASCADE 
+    ON DELETE RESTRICT
 );
 
 CREATE TABLE suprimentos (
@@ -94,7 +136,8 @@ CREATE TABLE suprimentos (
   CHECK (quantidade_estoque > 0),
   CHECK (custo_unitario >= 0),
   CONSTRAINT fk_suprimentos_escritorio FOREIGN KEY (escritorio_id) REFERENCES escritorios(escritorio_id)
-    ON UPDATE CASCADE ON DELETE RESTRICT
+    ON UPDATE CASCADE 
+    ON DELETE RESTRICT
 );
 
 CREATE TABLE categorias_produto (
@@ -112,10 +155,153 @@ CREATE TABLE produtos (
   ativo BOOLEAN NOT NULL DEFAULT TRUE,
   CHECK (preco_catalogo >= 0),
   CONSTRAINT fk_produtos_categoria FOREIGN KEY (categoria_id) REFERENCES categorias_produto(categoria_id)
+    ON UPDATE CASCADE 
+    ON DELETE RESTRICT
+);
+
+CREATE TABLE status_cliente (
+  status_cliente_id TINYINT PRIMARY KEY,
+  nome VARCHAR(16) NOT NULL UNIQUE
+);
+
+CREATE TABLE formas_pagamento (
+  forma_pagamento_id TINYINT PRIMARY KEY,
+  nome VARCHAR(24) NOT NULL UNIQUE
+);
+
+CREATE TABLE status_pagamento (
+  status_pagamento_id TINYINT PRIMARY KEY,
+  nome VARCHAR(16) NOT NULL UNIQUE
+);
+
+CREATE TABLE status_entrega (
+  status_entrega_id TINYINT PRIMARY KEY,
+  nome VARCHAR(16) NOT NULL UNIQUE
+);
+
+CREATE TABLE niveis_curso (
+  nivel_curso_id TINYINT PRIMARY KEY,
+  nome VARCHAR(24) NOT NULL UNIQUE
+);
+
+CREATE TABLE status_matricula (
+  status_matricula_id TINYINT PRIMARY KEY,
+  nome VARCHAR(16) NOT NULL UNIQUE
+);
+
+CREATE TABLE tipos_vinculo (
+  tipo_vinculo_id TINYINT PRIMARY KEY,
+  nome VARCHAR(16) NOT NULL UNIQUE
+);
+
+CREATE TABLE status_vinculo (
+  status_vinculo_id TINYINT PRIMARY KEY,
+  nome VARCHAR(16) NOT NULL UNIQUE
+);
+
+CREATE TABLE status_aluno (
+  status_aluno_id TINYINT PRIMARY KEY,
+  nome VARCHAR(16) NOT NULL UNIQUE
+);
+
+-- Relacionamento comercial: o cliente pode existir sem compras e vendas antigas
+-- permanecem válidas enquanto não houver identificação do consumidor.
+CREATE TABLE clientes (
+  cliente_id INT PRIMARY KEY,
+  nome VARCHAR(128) NOT NULL,
+  email VARCHAR(128) NOT NULL UNIQUE,
+  telefone VARCHAR(24),
+  data_cadastro DATE NOT NULL,
+  consentimento_marketing BOOLEAN NOT NULL DEFAULT FALSE,
+  status_cliente_id TINYINT NOT NULL DEFAULT 1,
+  CONSTRAINT fk_cliente_status FOREIGN KEY (status_cliente_id) REFERENCES status_cliente(status_cliente_id)
+    ON UPDATE CASCADE 
+    ON DELETE RESTRICT
+);
+
+CREATE TABLE enderecos_cliente (
+  endereco_cliente_id INT PRIMARY KEY,
+  cliente_id INT NOT NULL,
+  tipo_movimentacao_estoque_id TINYINT NOT NULL,
+  endereco VARCHAR(100) NOT NULL,
+  cidade VARCHAR(64) NOT NULL,
+  estado_provincia VARCHAR(64),
+  cep VARCHAR(16),
+  pais_id CHAR(2) NOT NULL,
+  principal BOOLEAN NOT NULL DEFAULT FALSE,
+  CHECK (tipo IN ('ENTREGA', 'COBRANCA')),
+  CONSTRAINT fk_endereco_cliente FOREIGN KEY (cliente_id) REFERENCES clientes(cliente_id)
+    ON UPDATE CASCADE 
+    ON DELETE CASCADE,
+  CONSTRAINT fk_endereco_pais FOREIGN KEY (pais_id) REFERENCES paises(pais_id)
+    ON UPDATE CASCADE 
+    ON DELETE RESTRICT
+);
+
+CREATE TABLE fornecedores (
+  fornecedor_id INT PRIMARY KEY,
+  razao_social VARCHAR(128) NOT NULL,
+  email VARCHAR(128),
+  telefone VARCHAR(24),
+  pais_id CHAR(2) NOT NULL,
+  ativo BOOLEAN NOT NULL DEFAULT TRUE,
+  CONSTRAINT fk_fornecedor_pais FOREIGN KEY (pais_id) REFERENCES paises(pais_id)
+    ON UPDATE CASCADE 
+    ON DELETE RESTRICT
+);
+
+CREATE TABLE fornecedores_produtos (
+  fornecedor_id INT NOT NULL,
+  produto_id INT NOT NULL,
+  sku_fornecedor VARCHAR(48),
+  custo_unitario DECIMAL(10,2) NOT NULL,
+  moeda CHAR(3) NOT NULL,
+  PRIMARY KEY (fornecedor_id, produto_id),
+  CHECK (custo_unitario >= 0),
+  CONSTRAINT fk_fp_fornecedor FOREIGN KEY (fornecedor_id) REFERENCES fornecedores(fornecedor_id)
+    ON UPDATE CASCADE 
+    ON DELETE RESTRICT,
+  CONSTRAINT fk_fp_produto FOREIGN KEY (produto_id) REFERENCES produtos(produto_id)
+    ON UPDATE CASCADE 
+    ON DELETE RESTRICT
+);
+
+CREATE TABLE movimentacoes_estoque (
+  movimentacao_id INT PRIMARY KEY,
+  produto_id INT NOT NULL,
+  escritorio_id INT NOT NULL,
+  data_movimentacao DATETIME NOT NULL,
+  tipo VARCHAR(16) NOT NULL,
+  quantidade INT NOT NULL,
+  referencia VARCHAR(48),
+  CHECK (quantidade > 0),
+  CONSTRAINT fk_movimento_produto FOREIGN KEY (produto_id) REFERENCES produtos(produto_id)
+    ON UPDATE CASCADE 
+    ON DELETE RESTRICT,
+  CONSTRAINT fk_movimento_escritorio FOREIGN KEY (escritorio_id) REFERENCES escritorios(escritorio_id)
+    ON UPDATE CASCADE 
+    ON DELETE RESTRICT,
+  CONSTRAINT fk_movimento_tipo FOREIGN KEY (tipo_movimentacao_estoque_id) REFERENCES tipos_movimentacao_estoque(tipo_movimentacao_estoque_id)
     ON UPDATE CASCADE ON DELETE RESTRICT
 );
 
+CREATE TABLE historico_precos_produto (
+  preco_id INT PRIMARY KEY,
+  produto_id INT NOT NULL,
+  preco DECIMAL(10,2) NOT NULL,
+  moeda CHAR(3) NOT NULL,
+  inicio_vigencia DATE NOT NULL,
+  fim_vigencia DATE,
+  CHECK (preco >= 0),
+  CHECK (fim_vigencia IS NULL OR fim_vigencia >= inicio_vigencia),
+  CONSTRAINT fk_historico_preco_produto FOREIGN KEY (produto_id) REFERENCES produtos(produto_id)
+    ON UPDATE CASCADE 
+    ON DELETE RESTRICT
+);
+
 -- Área de pouso ETL: importar o CSV sem converter os valores na entrada.
+-- As tabelas stg_vendas_csv e etl_rejeicoes ficam vazias de propósito; serão usadas no desafio ETL.
+
 CREATE TABLE stg_vendas_csv (
   source_row_id INT PRIMARY KEY,
   lote_origem VARCHAR(32) NOT NULL,
@@ -138,9 +324,11 @@ CREATE TABLE etl_rejeicoes (
   campo VARCHAR(48) NOT NULL,
   valor_original VARCHAR(128),
   motivo VARCHAR(255) NOT NULL,
-  acao VARCHAR(24) NOT NULL DEFAULT 'REVISAR',
-  CHECK (acao IN ('REVISAR','REJEITAR','DUPLICATA')),
+  acao_etl_id TINYINT NOT NULL DEFAULT 1,
   CONSTRAINT fk_rejeicoes_staging FOREIGN KEY (source_row_id) REFERENCES stg_vendas_csv(source_row_id)
+    ON UPDATE CASCADE 
+    ON DELETE RESTRICT,
+  CONSTRAINT fk_rejeicao_acao FOREIGN KEY (acao_etl_id) REFERENCES acoes_etl(acao_etl_id)
     ON UPDATE CASCADE ON DELETE RESTRICT
 );
 
@@ -148,14 +336,24 @@ CREATE TABLE vendas (
   venda_id INT PRIMARY KEY,
   referencia_origem VARCHAR(48) UNIQUE,
   data_venda DATE NOT NULL,
+  cliente_id INT,
   funcionario_id INT NOT NULL,
-  canal VARCHAR(24) NOT NULL,
-  status_venda VARCHAR(16) NOT NULL,
-  CHECK (canal IN ('LOJA','WEB','APP','MARKETPLACE','B2B')),
-  CHECK (status_venda IN ('CONCLUIDA','PENDENTE','CANCELADA')),
+  canal_venda_id TINYINT NOT NULL,
+  status_venda_id TINYINT NOT NULL,
   CONSTRAINT fk_vendas_funcionario FOREIGN KEY (funcionario_id) REFERENCES funcionarios(funcionario_id)
-    ON UPDATE CASCADE ON DELETE RESTRICT
+    ON UPDATE CASCADE 
+    ON DELETE RESTRICT,
+  CONSTRAINT fk_vendas_cliente FOREIGN KEY (cliente_id) REFERENCES clientes(cliente_id)
+    ON UPDATE CASCADE 
+    ON DELETE SET NULL,
+  CONSTRAINT fk_venda_canal FOREIGN KEY (canal_venda_id) REFERENCES canais_venda(canal_venda_id)
+    ON UPDATE CASCADE 
+    ON DELETE RESTRICT,
+  CONSTRAINT fk_venda_status FOREIGN KEY (status_venda_id) REFERENCES status_venda(status_venda_id)
+    ON UPDATE CASCADE 
+    ON DELETE RESTRICT
 );
+
 
 CREATE TABLE itens_venda (
   item_venda_id INT PRIMARY KEY,
@@ -170,29 +368,235 @@ CREATE TABLE itens_venda (
   CHECK (quantidade > 0),
   CHECK (preco_unitario >= 0),
   CONSTRAINT fk_itens_venda_venda FOREIGN KEY (venda_id) REFERENCES vendas(venda_id)
-    ON UPDATE CASCADE ON DELETE RESTRICT,
+    ON UPDATE CASCADE 
+    ON DELETE RESTRICT,
   CONSTRAINT fk_itens_venda_produto FOREIGN KEY (produto_id) REFERENCES produtos(produto_id)
-    ON UPDATE CASCADE ON DELETE RESTRICT,
+    ON UPDATE CASCADE 
+    ON DELETE RESTRICT,
   CONSTRAINT fk_itens_venda_staging FOREIGN KEY (source_row_id) REFERENCES stg_vendas_csv(source_row_id)
-    ON UPDATE CASCADE ON DELETE RESTRICT
+    ON UPDATE CASCADE 
+    ON DELETE RESTRICT
 );
 
 CREATE TABLE audit_log (
   log_id INT PRIMARY KEY,
   log_acao VARCHAR(100) NOT NULL,
   log_ts DATETIME NOT NULL,
-  log_modulo VARCHAR(30) NOT NULL,
-  log_status VARCHAR(20) NOT NULL,
+  modulo_auditoria_id TINYINT NOT NULL,
+  status_auditoria_id TINYINT NOT NULL,
   log_origem VARCHAR(64),
   log_detalhes VARCHAR(255),
   funcionario_id INT,
-  CHECK (log_status IN ('REGISTRADO','SUCESSO','FALHA','BLOQUEADO')),
   CONSTRAINT fk_audit_funcionario FOREIGN KEY (funcionario_id) REFERENCES funcionarios(funcionario_id)
-    ON UPDATE CASCADE ON DELETE SET NULL
+    ON UPDATE CASCADE 
+    ON DELETE SET NULL,
+  CONSTRAINT fk_audit_modulo FOREIGN KEY (modulo_auditoria_id) REFERENCES modulos_auditoria(modulo_auditoria_id)
+    ON UPDATE CASCADE ON DELETE RESTRICT,
+  CONSTRAINT fk_audit_status FOREIGN KEY (status_auditoria_id) REFERENCES status_auditoria(status_auditoria_id)
+    ON UPDATE CASCADE ON DELETE RESTRICT
+);
+
+CREATE TABLE pagamentos (
+  pagamento_id INT PRIMARY KEY,
+  venda_id INT NOT NULL,
+  data_pagamento DATETIME,
+  valor DECIMAL(10,2) NOT NULL,
+  moeda CHAR(3) NOT NULL,
+  forma_pagamento_id TINYINT NOT NULL,
+  status_pagamento_id TINYINT NOT NULL,
+  referencia_transacao VARCHAR(64) UNIQUE,
+  CHECK (valor >= 0),
+  CONSTRAINT fk_pagamento_venda FOREIGN KEY (venda_id) REFERENCES vendas(venda_id)
+    ON UPDATE CASCADE 
+    ON DELETE RESTRICT,
+  CONSTRAINT fk_pagamento_forma FOREIGN KEY (forma_pagamento_id) REFERENCES formas_pagamento(forma_pagamento_id)
+    ON UPDATE CASCADE 
+    ON DELETE RESTRICT,
+  CONSTRAINT fk_pagamento_status FOREIGN KEY (status_pagamento_id) REFERENCES status_pagamento(status_pagamento_id)
+    ON UPDATE CASCADE 
+    ON DELETE RESTRICT
+);
+
+CREATE TABLE entregas (
+  entrega_id INT PRIMARY KEY,
+  venda_id INT NOT NULL UNIQUE,
+  endereco_cliente_id INT,
+  transportadora VARCHAR(64),
+  codigo_rastreio VARCHAR(64),
+  data_postagem DATE,
+  data_entrega DATE,
+  status_entrega_id TINYINT NOT NULL,
+  CHECK (data_entrega IS NULL OR data_postagem IS NULL OR data_entrega >= data_postagem),
+  CONSTRAINT fk_entrega_venda FOREIGN KEY (venda_id) REFERENCES vendas(venda_id)
+    ON UPDATE CASCADE 
+    ON DELETE RESTRICT,
+  CONSTRAINT fk_entrega_endereco FOREIGN KEY (endereco_cliente_id) REFERENCES enderecos_cliente(endereco_cliente_id)
+    ON UPDATE CASCADE 
+    ON DELETE SET NULL,
+  CONSTRAINT fk_entrega_status FOREIGN KEY (status_entrega_id) REFERENCES status_entrega(status_entrega_id)
+    ON UPDATE CASCADE 
+    ON DELETE RESTRICT
+);
+
+-- Núcleo educacional: alunos não são funcionários; a ligação acontece apenas
+-- quando há uma oportunidade formal de estágio ou contratação.
+CREATE TABLE cursos (
+  curso_id INT PRIMARY KEY,
+  curso_nome VARCHAR(120) NOT NULL UNIQUE,
+  carga_horaria INT NOT NULL,
+  nivel_curso_id TINYINT NOT NULL,
+  ativo BOOLEAN NOT NULL DEFAULT TRUE,
+  CHECK (carga_horaria > 0),
+  CONSTRAINT fk_curso_nivel FOREIGN KEY (nivel_curso_id) REFERENCES niveis_curso(nivel_curso_id)
+    ON UPDATE CASCADE 
+    ON DELETE RESTRICT
+);
+
+CREATE TABLE turmas (
+  turma_id INT PRIMARY KEY,
+  curso_id INT NOT NULL,
+  codigo VARCHAR(32) NOT NULL UNIQUE,
+  data_inicio DATE NOT NULL,
+  data_fim DATE NOT NULL,
+  capacidade INT NOT NULL,
+  professor_funcionario_id INT NOT NULL,
+  escritorio_id INT NOT NULL,
+  CHECK (data_fim >= data_inicio),
+  CHECK (capacidade > 0),
+  CONSTRAINT fk_turma_curso FOREIGN KEY (curso_id) REFERENCES cursos(curso_id)
+    ON UPDATE CASCADE 
+    ON DELETE RESTRICT,
+  CONSTRAINT fk_turma_professor FOREIGN KEY (professor_funcionario_id) REFERENCES funcionarios(funcionario_id)
+    ON UPDATE CASCADE 
+    ON DELETE RESTRICT,
+  CONSTRAINT fk_turma_escritorio FOREIGN KEY (escritorio_id) REFERENCES escritorios(escritorio_id)
+    ON UPDATE CASCADE 
+    ON DELETE RESTRICT
+);
+
+CREATE TABLE alunos (
+  aluno_id INT PRIMARY KEY,
+  nome VARCHAR(128) NOT NULL,
+  email VARCHAR(128) NOT NULL UNIQUE,
+  data_nascimento DATE,
+  data_cadastro DATE NOT NULL,
+  status_aluno_id TINYINT NOT NULL DEFAULT 1,
+  CONSTRAINT fk_aluno_status FOREIGN KEY (status_aluno_id) REFERENCES status_aluno(status_aluno_id)
+    ON UPDATE CASCADE 
+    ON DELETE RESTRICT
+);
+
+CREATE TABLE matriculas (
+  matricula_id INT PRIMARY KEY,
+  aluno_id INT NOT NULL,
+  turma_id INT NOT NULL,
+  data_matricula DATE NOT NULL,
+  status_matricula_id TINYINT NOT NULL,
+  nota_final DECIMAL(5,2),
+  certificado_emitido BOOLEAN NOT NULL DEFAULT FALSE,
+  UNIQUE (aluno_id, turma_id),
+  CHECK (nota_final IS NULL OR (nota_final >= 0 AND nota_final <= 100)),
+  CONSTRAINT fk_matricula_aluno FOREIGN KEY (aluno_id) REFERENCES alunos(aluno_id)
+    ON UPDATE CASCADE 
+    ON DELETE RESTRICT,
+  CONSTRAINT fk_matricula_turma FOREIGN KEY (turma_id) REFERENCES turmas(turma_id)
+    ON UPDATE CASCADE 
+    ON DELETE RESTRICT,
+  CONSTRAINT fk_matricula_status FOREIGN KEY (status_matricula_id) REFERENCES status_matricula(status_matricula_id)
+    ON UPDATE CASCADE 
+    ON DELETE RESTRICT
+);
+
+CREATE TABLE bolsas (
+  bolsa_id INT PRIMARY KEY,
+  aluno_id INT NOT NULL,
+  curso_id INT NOT NULL,
+  percentual_desconto DECIMAL(5,2) NOT NULL,
+  criterio VARCHAR(255) NOT NULL,
+  data_concessao DATE NOT NULL,
+  CHECK (percentual_desconto > 0 AND percentual_desconto <= 100),
+  CONSTRAINT fk_bolsa_aluno FOREIGN KEY (aluno_id) REFERENCES alunos(aluno_id)
+    ON UPDATE CASCADE 
+    ON DELETE RESTRICT,
+  CONSTRAINT fk_bolsa_curso FOREIGN KEY (curso_id) REFERENCES cursos(curso_id)
+    ON UPDATE CASCADE 
+    ON DELETE RESTRICT
+);
+
+CREATE TABLE vinculos_talentos (
+  vinculo_id INT PRIMARY KEY,
+  aluno_id INT NOT NULL,
+  funcionario_id INT,
+  departamento_id INT NOT NULL,
+  tipo_vinculo_id TINYINT NOT NULL,
+  data_inicio DATE NOT NULL,
+  data_fim DATE,
+  status_vinculo_id TINYINT NOT NULL,
+  CHECK (data_fim IS NULL OR data_fim >= data_inicio),
+  CONSTRAINT fk_vinculo_aluno FOREIGN KEY (aluno_id) REFERENCES alunos(aluno_id)
+    ON UPDATE CASCADE 
+    ON DELETE RESTRICT,
+  CONSTRAINT fk_vinculo_funcionario FOREIGN KEY (funcionario_id) REFERENCES funcionarios(funcionario_id)
+    ON UPDATE CASCADE 
+    ON DELETE SET NULL,
+  CONSTRAINT fk_vinculo_departamento FOREIGN KEY (departamento_id) REFERENCES departamentos(departamento_id)
+    ON UPDATE CASCADE 
+    ON DELETE RESTRICT,
+  CONSTRAINT fk_vinculo_tipo FOREIGN KEY (tipo_vinculo_id) REFERENCES tipos_vinculo(tipo_vinculo_id)
+    ON UPDATE CASCADE 
+    ON DELETE RESTRICT,
+  CONSTRAINT fk_vinculo_status FOREIGN KEY (status_vinculo_id) REFERENCES status_vinculo(status_vinculo_id)
+    ON UPDATE CASCADE 
+    ON DELETE RESTRICT
 );
 
 
 -- Inserções
+
+INSERT INTO status_funcionario (status_funcionario_id, nome) VALUES 
+  (1, 'ATIVO'), (2, 'AFASTADO'), (3, 'INATIVO');
+
+INSERT INTO status_venda (status_venda_id, nome) VALUES
+  (1, 'CONCLUIDA'), (2, 1), (3, 'CANCELADA');
+
+INSERT INTO canais_venda (canal_venda_id, nome) VALUES
+  (1, 'LOJA'), (2, 'WEB'), (3, 'APP'), (4, 'MARKETPLACE'), (5, 'B2B');
+
+INSERT INTO acoes_etl (acao_etl_id, nome) VALUES
+  (1, 'REVISAR'), (2, 'REJEITAR'), (3, 'DUPLICATA');
+INSERT INTO modulos_auditoria (modulo_auditoria_id, nome) VALUES
+  (1, 'PRODUTOS'), (2, 'FINANCEIRO'), (3, 'SUPRIMENTOS'), (4, 'SEGURANCA'), (5, 'VENDAS'), (6, 'AUTENTICACAO');
+INSERT INTO status_auditoria (status_auditoria_id, nome) VALUES
+  (1, 'REGISTRADO'), (2, 'SUCESSO'), (3, 'FALHA'), (4, 'BLOQUEADO');
+INSERT INTO tipos_movimentacao_estoque (tipo_movimentacao_estoque_id, nome) VALUES
+  (1, 'ENTRADA'), (2, 'SAIDA'), (3, 'AJUSTE');
+
+INSERT INTO status_cliente (status_cliente_id, nome) VALUES
+  (1, 'ATIVO'), (2, 'INATIVO');
+
+INSERT INTO formas_pagamento (forma_pagamento_id, nome) VALUES
+  (1, 'CARTAO'), (2, 'PIX'), (3, 'BOLETO'), (4, 'DINHEIRO'), (5, 'TRANSFERENCIA');
+
+INSERT INTO status_pagamento (status_pagamento_id, nome) VALUES
+  (1, 1), (2, 'APROVADO'), (3, 'RECUSADO'), (4, 'ESTORNADO');
+
+INSERT INTO status_entrega (status_entrega_id, nome) VALUES
+  (1, 1), (2, 'ENVIADA'), (3, 3), (4, 'DEVOLVIDA');
+
+INSERT INTO niveis_curso (nivel_curso_id, nome) VALUES
+  (1, 'INTRODUTORIO'), (2, 'INTERMEDIARIO'), (3, 'AVANCADO');
+
+INSERT INTO status_matricula (status_matricula_id, nome) VALUES
+  (1, 'ATIVA'), (2, 'CANCELADA'), (3, 'CONCLUIDA');
+
+INSERT INTO tipos_vinculo (tipo_vinculo_id, nome) VALUES
+  (1, 'ESTAGIO'), (2, 'CONTRATACAO');
+
+INSERT INTO status_vinculo (status_vinculo_id, nome) VALUES
+  (1, 'ATIVO'), (2, 'ENCERRADO'), (3, 'CANCELADO');
+
+INSERT INTO status_aluno (status_aluno_id, nome) VALUES
+  (1, 'ATIVO'), (2, 'INATIVO'), (3, 'FORMADO');
 
 INSERT INTO regioes (regiao_id, regiao_nome) VALUES
   (1, 'América do Norte'),
@@ -274,7 +678,7 @@ INSERT INTO escritorios (escritorio_id, escritorio_nome, endereco, cep, cidade, 
   (3000, 'Castelo Encantado', 'Ghibli Shrine Rd, 5', '603-8047', 'Kyoto', 'Kyoto', 'JM');
 
 INSERT INTO departamentos (departamento_id, departamento_nome, educacional, escritorio_id) VALUES
-  (1, 'Administração', 0, 1700),
+  (1, 'Administração Executiva', 0, 1700),
   (2, 'Marketing', 0, 1800),
   (3, 'Recursos Humanos', 0, 1700),
   (4, 'Recursos Humanos', 0, 2400),
@@ -301,7 +705,7 @@ INSERT INTO departamentos (departamento_id, departamento_nome, educacional, escr
   (25, 'Projeções Astrais', 1, 4500),
   (26, 'Criaturas Mágicas', 1, 3200),
   (27, 'Biblioteca Arcana', 1, 5000),
-  (28, 'Administração', 1, 3000),
+  (28, 'Administração Educacional', 1, 3000),
   (29, 'Astronomia', 1, 2800),
   (30, 'Herbologia', 1, 3800);
 
@@ -342,148 +746,148 @@ INSERT INTO cargos (cargo_id, cargo_nome, min_salario, max_salario) VALUES
   (33, 'Guardião', 3000.00, 5000.00),
   (34, 'Bibliotecário Arcano', 3500.00, 5500.00),
   (35, 'Tratador de Criaturas', 3200.00, 5200.00),
-  (36, 'Astrônomo', 5000.00, 8000.00),
+  (36, 'Astrônomago', 5000.00, 8000.00),
   (37, 'Herbólogo', 4000.00, 6500.00),
-  (38, 'Auror', 6500.00, 11000.00),
+  (38, 'Oficial de Segurança Biológia', 6500.00, 11000.00),
   (39, 'Secretário Administrativo', 2800.00, 4200.00),
   (40, 'Aprendiz', 1800.00, 2800.00);
 
 INSERT INTO funcionarios 
-  (funcionario_id, primeiro_nome, sobrenome, email, telefone, data_contratacao, cargo_id, salario, moeda_salario, gerente_id, departamento_id, situacao) 
+  (funcionario_id, primeiro_nome, sobrenome, email, telefone, data_contratacao, cargo_id, salario, moeda_salario, gerente_id, departamento_id, status_funcionario_id) 
   VALUES
-  (100, 'Madeleine', 'Prior', 'madeleine.prior@momento.org', NULL, '1987-03-23', 4, 22343.22, 'USD', NULL, 9, 'ATIVO'),
-  (101, 'Neena', 'Kochhar', 'neena.kochhar@momento.org', '+1-555-201-1001', '1987-08-17', 5, 18749.91, 'USD', 100, 9, 'ATIVO'),
-  (102, 'Lex', 'T.Challa', 'lex.tchalla@momento.org', '+1-555-202-1002', '1988-02-08', 5, 25976.13, 'USD', 100, 9, 'ATIVO'),
-  (103, 'Alexander', 'Hunold', 'alexander.hunold@momento.org', '+1-555-203-1003', '1988-10-27', 9, 8371.81, 'USD', 102, 6, 'ATIVO'),
-  (104, 'Bruce', 'Ernst', 'bruce.ernst@momento.org', '+1-555-204-1004', '1989-02-22', 9, 6000.0, 'USD', 100, 6, 'ATIVO'),
-  (105, 'David', 'Austin', 'david.austin@momento.org', '+1-555-205-1005', '1989-08-26', 9, 4684.06, 'USD', 101, 6, 'ATIVO'),
-  (106, 'Valli', 'Stark', 'valli.stark@momento.org', '+1-555-206-1006', '1990-05-07', 9, 7581.51, 'USD', 104, 6, 'ATIVO'),
-  (107, 'Diana', 'Lorentz', 'diana.lorentz@momento.org', NULL, '1990-10-08', 9, 8231.31, 'USD', 105, 6, 'ATIVO'),
-  (108, 'Nancy', 'Constantine', 'nancy.constantine@momento.org', '+1-555-208-1008', '1991-06-02', 26, 10799.82, 'USD', 107, 13, 'ATIVO'),
-  (109, 'Daniel', 'Faviet', 'daniel.faviet@momento.org', '+1-555-209-1009', '1991-12-18', 6, 5601.86, 'USD', 100, 10, 'ATIVO'),
-  (110, 'John', 'Chen', 'john.chen@momento.org', '+1-555-210-1010', '1992-05-04', 6, 7491.63, 'USD', 105, 10, 'ATIVO'),
-  (111, 'Ismael', 'Sciarra', 'ismael.sciarra@momento.org', '+1-555-211-1011', '1992-11-28', 6, 5049.66, 'USD', 105, 10, 'ATIVO'),
-  (112, 'Jose Manuel', 'Urman', 'jose.manuel.urman@momento.org', '+1-555-212-1012', '1993-05-18', 6, 4767.36, 'USD', 101, 10, 'ATIVO'),
-  (113, 'Luis', 'Popp', 'luis.popp@momento.org', '+1-555-213-1013', '1993-12-29', 6, 8163.72, 'USD', 109, 10, 'ATIVO'),
-  (114, 'Den', 'Raphaely', 'den.raphaely@momento.org', NULL, '1994-06-28', 14, 13557.76, 'USD', 100, 3, 'ATIVO'),
-  (115, 'Norman', 'Osborn', 'norman.osborn@momento.org', '+1-555-215-1015', '1995-02-01', 13, 4097.82, 'USD', 114, 3, 'ATIVO'),
-  (116, 'Shelli', 'Baida', 'shelli.baida@momento.org', '+1-555-216-1016', '1995-08-03', 13, 2862.76, 'USD', 109, 3, 'ATIVO'),
-  (117, 'Sigal', 'Tobias', 'sigal.tobias@momento.org', '+1-555-217-1017', '1996-03-15', 13, 4320.0, 'USD', 111, 3, 'ATIVO'),
-  (118, 'Guy', 'Himuro', 'guy.himuro@momento.org', '+1-555-218-1018', '1996-09-17', 13, 3169.18, 'USD', 102, 3, 'ATIVO'),
-  (119, 'Karen', 'Colmenares', 'karen.colmenares@momento.org', '+1-555-219-1019', '1997-01-20', 13, 4435.41, 'USD', 109, 3, 'ATIVO'),
-  (120, 'Matthew', 'Weiss', 'matthew.weiss@momento.org', '+1-555-220-1020', '1997-08-06', 19, 7959.36, 'USD', 100, 5, 'ATIVO'),
-  (121, 'Adam', 'Fripp', 'adam.fripp@momento.org', NULL, '1998-02-17', 19, 6676.34, 'USD', 114, 5, 'ATIVO'),
-  (122, 'Payam', 'Kaufling', 'payam.kaufling@momento.org', '+1-555-222-1022', '1998-11-06', 19, 7902.1, 'USD', 105, 5, 'ATIVO'),
-  (123, 'Shanta', 'Vollman', 'shanta.vollman@momento.org', '+1-555-223-1023', '1999-04-14', 19, 6609.23, 'USD', 121, 5, 'ATIVO'),
-  (124, 'John', 'Russell', 'john.russell@momento.org', '+1-555-224-1024', '1999-10-11', 15, 16957.66, 'USD', 100, 8, 'ATIVO'),
-  (125, 'Karen', 'Partners', 'karen.partners@momento.org', '+1-555-225-1025', '2000-06-13', 15, 16435.94, 'USD', 119, 8, 'ATIVO'),
-  (126, 'Jonathon', 'Taylor', 'jonathon.taylor@momento.org', '+1-555-226-1026', '2000-12-17', 16, 7125.49, 'USD', 123, 8, 'ATIVO'),
-  (127, 'Jack', 'Livingston', 'jack.livingston@momento.org', '+1-555-227-1027', '2001-05-09', 16, 7081.39, 'USD', 112, 8, 'ATIVO'),
-  (128, 'Kimberly', 'Grant', 'kimberly.grant@momento.org', NULL, '2001-11-21', 16, 11790.28, 'USD', 120, 8, 'ATIVO'),
-  (129, 'Jennifer', 'Whalen', 'jennifer.whalen@momento.org', '+1-555-229-1029', '2002-07-26', 3, 4653.76, 'USD', 100, 1, 'ATIVO'),
-  (130, 'Elisabeth', 'Braddock', 'elisabeth.braddock@momento.org', '+1-555-230-1030', '2003-02-03', 10, 11971.26, 'USD', 124, 2, 'ATIVO'),
-  (131, 'Pat', 'Ferreira', 'pat.ferreira@momento.org', '+1-555-231-1031', '2003-05-27', 11, 5226.53, 'USD', 101, 2, 'ATIVO'),
-  (132, 'Susan', 'Mavris', 'susan.mavris@momento.org', '+1-555-232-1032', '2004-01-08', 8, 6035.47, 'USD', 104, 4, 'ATIVO'),
-  (133, 'Hermann', 'Baer', 'hermann.baer@momento.org', '+1-555-233-1033', '2004-07-06', 12, 9854.88, 'USD', 120, 7, 'ATIVO'),
-  (134, 'Shelley', 'Higgins', 'shelley.higgins@momento.org', '+1-555-234-1034', '2005-01-15', 2, 13265.79, 'USD', 125, 11, 'ATIVO'),
-  (135, 'Susan', 'Storm', 'susan.storm@momento.org', NULL, '2005-09-20', 20, 23756.46, 'USD', 116, 12, 'ATIVO'),
-  (136, 'Lucius', 'Fox', 'lucius.fox@momento.org', '+1-555-236-1036', '2006-01-26', 7, 15035.54, 'USD', 135, 10, 'ATIVO'),
-  (137, 'Sabrina', 'Spellman', 'sabrina.spellman@momento.org', '+1-555-237-1037', '2006-09-27', 20, 19736.2, 'USD', 127, 13, 'ATIVO'),
-  (138, 'Dick', 'Grayson', 'dick.grayson@momento.org', '+1-555-238-1038', '2007-04-14', 21, 8546.7, 'USD', 114, 6, 'ATIVO'),
-  (139, 'Peter', 'Parker', 'peter.parker@momento.org', '+1-555-239-1039', '2007-08-28', 9, 7054.3, 'USD', 105, 6, 'ATIVO'),
-  (140, 'Shuri', 'Udaku', 'shuri.udaku@momento.org', '+1-555-240-1040', '2008-02-26', 20, 32002.61, 'USD', 109, 13, 'ATIVO'),
-  (141, 'Hermione', 'Granger', 'hermione.granger@momento.org', '+1-555-241-1041', '2008-11-19', 20, 17629.63, 'USD', 127, 13, 'ATIVO'),
-  (142, 'Leia', 'Organa', 'leia.organa@momento.org', NULL, '2009-05-27', 12, 5012.11, 'USD', 124, 7, 'ATIVO'),
-  (143, 'Spock', 'Sarek', 'spock.sarek@momento.org', '+1-555-243-1043', '2009-12-06', 20, 34770.49, 'USD', 133, 12, 'ATIVO'),
-  (144, 'Samus', 'Aran', 'samus.aran@momento.org', '+1-555-244-1044', '2010-05-04', 21, 11690.93, 'USD', 100, 6, 'ATIVO'),
-  (145, 'Miles', 'Morales', 'miles.morales@momento.org', '+1-555-245-1045', '2011-01-07', 20, 29124.8, 'USD', 143, 14, 'ATIVO'),
-  (146, 'Kamala', 'Khan', 'kamala.khan@momento.org', '+1-555-246-1046', '2011-06-30', 27, 6803.69, 'USD', 141, 15, 'ATIVO'),
-  (147, 'Carol', 'Danvers', 'carol.danvers@momento.org', '+1-555-247-1047', '2011-12-15', 25, 10232.06, 'USD', 127, 16, 'ATIVO'),
-  (148, 'Natasha', 'Romanoff', 'natasha.romanoff@momento.org', '+1-555-248-1048', '2012-06-02', 24, 12551.12, 'USD', 146, 17, 'ATIVO'),
-  (149, 'Clint', 'Barton', 'clint.barton@momento.org', NULL, '2012-12-25', 23, 11661.65, 'USD', 148, 18, 'ATIVO'),
-  (150, 'Barbara', 'Gordon', 'barbara.gordon@momento.org', '+1-555-250-1050', '2013-06-25', 28, 9059.15, 'USD', 106, 19, 'ATIVO'),
-  (151, 'Kara', 'Danvers', 'kara.danvers@momento.org', '+1-555-251-1051', '2014-03-03', 25, 12044.91, 'USD', 140, 20, 'ATIVO'),
-  (152, 'Barry', 'Allen', 'barry.allen@momento.org', '+1-555-252-1052', '2014-08-27', 23, 9230.1, 'USD', 109, 21, 'ATIVO'),
-  (153, 'Arthur', 'Curry', 'arthur.curry@momento.org', '+1-555-253-1053', '2015-02-19', 18, 4208.78, 'USD', 134, 22, 'ATIVO'),
-  (154, 'Victor', 'Stone', 'victor.stone@momento.org', '+1-555-254-1054', '2015-09-20', 20, 33179.12, 'USD', 138, 14, 'ATIVO'),
-  (155, 'Logan', 'Howlett', 'logan.howlett@momento.org', '+1-555-255-1055', '2016-03-05', 27, 5702.14, 'USD', 107, 15, 'ATIVO'),
-  (156, 'Rogue', 'LeBeau', 'rogue.lebeau@momento.org', NULL, '2016-09-19', 25, 17673.6, 'USD', 153, 16, 'ATIVO'),
-  (157, 'Ororo', 'Munroe', 'ororo.munroe@momento.org', '+1-555-257-1057', '2017-03-24', 24, 10472.69, 'USD', 115, 17, 'ATIVO'),
-  (158, 'Jean', 'Grey', 'jean.grey@momento.org', '+1-555-258-1058', '2017-11-05', 23, 11494.56, 'USD', 105, 18, 'ATIVO'),
-  (159, 'Scott', 'Summers', 'scott.summers@momento.org', '+1-555-259-1059', '2018-05-07', 28, 11433.38, 'USD', 148, 19, 'ATIVO'),
-  (160, 'Cyborg', 'Stone', 'cyborg.stone@momento.org', '+1-555-260-1060', '2018-11-22', 25, 16578.59, 'USD', 108, 20, 'ATIVO'),
-  (161, 'Nia', 'Nal', 'nia.nal@momento.org', '+1-555-261-1061', '2019-06-19', 23, 8334.39, 'USD', 135, 21, 'ATIVO'),
-  (162, 'Mina', 'Harker', 'mina.harker@momento.org', '+1-555-262-1062', '2019-10-27', 18, 2865.65, 'USD', 155, 22, 'ATIVO'),
-  (163, 'Ravi', 'Shah', 'ravi.shah@momento.org', NULL, '2020-07-02', 20, 23024.33, 'USD', 113, 14, 'ATIVO'),
-  (164, 'Elena', 'Rossi', 'elena.rossi@momento.org', '+1-555-264-1064', '2021-01-03', 27, 6822.11, 'USD', 125, 15, 'ATIVO'),
-  (165, 'Mateus', 'Silva', 'mateus.silva@momento.org', '+1-555-265-1065', '2021-06-15', 25, 13020.23, 'USD', 147, 16, 'ATIVO'),
-  (166, 'Ana', 'Costa', 'ana.costa@momento.org', '+1-555-266-1066', '2022-01-11', 24, 16876.26, 'USD', 157, 17, 'ATIVO'),
-  (167, 'Camila', 'Oliveira', 'camila.oliveira@momento.org', '+1-555-267-1067', '2022-06-12', 23, 6810.97, 'USD', 108, 18, 'ATIVO'),
-  (168, 'Rafael', 'Santos', 'rafael.santos@momento.org', '+1-555-268-1068', '2023-01-19', 28, 5311.96, 'USD', 129, 19, 'ATIVO'),
-  (169, 'Beatriz', 'Lima', 'beatriz.lima@momento.org', '+1-555-269-1069', '2023-09-01', 25, 11286.11, 'USD', 109, 20, 'ATIVO'),
-  (170, 'Noah', 'Kim', 'noah.kim@momento.org', NULL, '1987-04-11', 23, 9378.39, 'USD', 129, 21, 'ATIVO'),
-  (171, 'Yuki', 'Tanaka', 'yuki.tanaka@momento.org', '+1-555-271-1071', '1987-07-31', 18, 4594.63, 'USD', 142, 22, 'ATIVO');
+  (100, 'Madeleine', 'Prior', 'madeleine.prior@momento.org', NULL, '1987-03-23', 4, 22343.22, 'USD', NULL, 9, 1),
+  (101, 'Neena', 'Kochhar', 'neena.kochhar@momento.org', '+1-555-201-1001', '1987-08-17', 5, 18749.91, 'USD', 100, 9, 1),
+  (102, 'Lex', 'T.Challa', 'lex.tchalla@momento.org', '+1-555-202-1002', '1988-02-08', 5, 25976.13, 'USD', 100, 9, 1),
+  (103, 'Alexander', 'Hunold', 'alexander.hunold@momento.org', '+1-555-203-1003', '1988-10-27', 9, 8371.81, 'USD', 102, 6, 1),
+  (104, 'Bruce', 'Ernst', 'bruce.ernst@momento.org', '+1-555-204-1004', '1989-02-22', 9, 6000.0, 'USD', 100, 6, 1),
+  (105, 'David', 'Austin', 'david.austin@momento.org', '+1-555-205-1005', '1989-08-26', 9, 4684.06, 'USD', 101, 6, 1),
+  (106, 'Valli', 'Stark', 'valli.stark@momento.org', '+1-555-206-1006', '1990-05-07', 9, 7581.51, 'USD', 104, 6, 1),
+  (107, 'Diana', 'Lorentz', 'diana.lorentz@momento.org', NULL, '1990-10-08', 9, 8231.31, 'USD', 105, 6, 1),
+  (108, 'Nancy', 'Constantine', 'nancy.constantine@momento.org', '+1-555-208-1008', '1991-06-02', 26, 10799.82, 'USD', 107, 13, 1),
+  (109, 'Daniel', 'Faviet', 'daniel.faviet@momento.org', '+1-555-209-1009', '1991-12-18', 6, 5601.86, 'USD', 100, 10, 1),
+  (110, 'John', 'Chen', 'john.chen@momento.org', '+1-555-210-1010', '1992-05-04', 6, 7491.63, 'USD', 105, 10, 1),
+  (111, 'Ismael', 'Sciarra', 'ismael.sciarra@momento.org', '+1-555-211-1011', '1992-11-28', 6, 5049.66, 'USD', 105, 10, 1),
+  (112, 'Jose Manuel', 'Urman', 'jose.manuel.urman@momento.org', '+1-555-212-1012', '1993-05-18', 6, 4767.36, 'USD', 101, 10, 1),
+  (113, 'Luis', 'Popp', 'luis.popp@momento.org', '+1-555-213-1013', '1993-12-29', 6, 8163.72, 'USD', 109, 10, 1),
+  (114, 'Den', 'Raphaely', 'den.raphaely@momento.org', NULL, '1994-06-28', 14, 13557.76, 'USD', 100, 3, 1),
+  (115, 'Norman', 'Osborn', 'norman.osborn@momento.org', '+1-555-215-1015', '1995-02-01', 13, 4097.82, 'USD', 114, 3, 1),
+  (116, 'Shelli', 'Baida', 'shelli.baida@momento.org', '+1-555-216-1016', '1995-08-03', 13, 2862.76, 'USD', 109, 3, 1),
+  (117, 'Sigal', 'Tobias', 'sigal.tobias@momento.org', '+1-555-217-1017', '1996-03-15', 13, 4320.0, 'USD', 111, 3, 1),
+  (118, 'Guy', 'Himuro', 'guy.himuro@momento.org', '+1-555-218-1018', '1996-09-17', 13, 3169.18, 'USD', 102, 3, 1),
+  (119, 'Karen', 'Colmenares', 'karen.colmenares@momento.org', '+1-555-219-1019', '1997-01-20', 13, 4435.41, 'USD', 109, 3, 1),
+  (120, 'Matthew', 'Weiss', 'matthew.weiss@momento.org', '+1-555-220-1020', '1997-08-06', 19, 7959.36, 'USD', 100, 5, 1),
+  (121, 'Adam', 'Fripp', 'adam.fripp@momento.org', NULL, '1998-02-17', 19, 6676.34, 'USD', 114, 5, 1),
+  (122, 'Payam', 'Kaufling', 'payam.kaufling@momento.org', '+1-555-222-1022', '1998-11-06', 19, 7902.1, 'USD', 105, 5, 1),
+  (123, 'Shanta', 'Vollman', 'shanta.vollman@momento.org', '+1-555-223-1023', '1999-04-14', 19, 6609.23, 'USD', 121, 5, 1),
+  (124, 'John', 'Russell', 'john.russell@momento.org', '+1-555-224-1024', '1999-10-11', 15, 16957.66, 'USD', 100, 8, 1),
+  (125, 'Karen', 'Partners', 'karen.partners@momento.org', '+1-555-225-1025', '2000-06-13', 15, 16435.94, 'USD', 119, 8, 1),
+  (126, 'Jonathon', 'Taylor', 'jonathon.taylor@momento.org', '+1-555-226-1026', '2000-12-17', 16, 7125.49, 'USD', 123, 8, 1),
+  (127, 'Jack', 'Livingston', 'jack.livingston@momento.org', '+1-555-227-1027', '2001-05-09', 16, 7081.39, 'USD', 112, 8, 1),
+  (128, 'Kimberly', 'Grant', 'kimberly.grant@momento.org', NULL, '2001-11-21', 16, 11790.28, 'USD', 120, 8, 1),
+  (129, 'Jennifer', 'Whalen', 'jennifer.whalen@momento.org', '+1-555-229-1029', '2002-07-26', 3, 4653.76, 'USD', 100, 1, 1),
+  (130, 'Elisabeth', 'Braddock', 'elisabeth.braddock@momento.org', '+1-555-230-1030', '2003-02-03', 10, 11971.26, 'USD', 124, 2, 1),
+  (131, 'Pat', 'Ferreira', 'pat.ferreira@momento.org', '+1-555-231-1031', '2003-05-27', 11, 5226.53, 'USD', 101, 2, 1),
+  (132, 'Susan', 'Mavris', 'susan.mavris@momento.org', '+1-555-232-1032', '2004-01-08', 8, 6035.47, 'USD', 104, 4, 1),
+  (133, 'Hermann', 'Baer', 'hermann.baer@momento.org', '+1-555-233-1033', '2004-07-06', 12, 9854.88, 'USD', 120, 7, 1),
+  (134, 'Shelley', 'Higgins', 'shelley.higgins@momento.org', '+1-555-234-1034', '2005-01-15', 2, 13265.79, 'USD', 125, 11, 1),
+  (135, 'Susan', 'Storm', 'susan.storm@momento.org', NULL, '2005-09-20', 20, 23756.46, 'USD', 116, 12, 1),
+  (136, 'Lucius', 'Fox', 'lucius.fox@momento.org', '+1-555-236-1036', '2006-01-26', 7, 15035.54, 'USD', 135, 10, 1),
+  (137, 'Sabrina', 'Spellman', 'sabrina.spellman@momento.org', '+1-555-237-1037', '2006-09-27', 20, 19736.2, 'USD', 127, 13, 1),
+  (138, 'Dick', 'Grayson', 'dick.grayson@momento.org', '+1-555-238-1038', '2007-04-14', 21, 8546.7, 'USD', 114, 6, 1),
+  (139, 'Peter', 'Parker', 'peter.parker@momento.org', '+1-555-239-1039', '2007-08-28', 9, 7054.3, 'USD', 105, 6, 1),
+  (140, 'Shuri', 'Udaku', 'shuri.udaku@momento.org', '+1-555-240-1040', '2008-02-26', 20, 32002.61, 'USD', 109, 13, 1),
+  (141, 'Hermione', 'Granger', 'hermione.granger@momento.org', '+1-555-241-1041', '2008-11-19', 20, 17629.63, 'USD', 127, 13, 1),
+  (142, 'Leia', 'Organa', 'leia.organa@momento.org', NULL, '2009-05-27', 12, 5012.11, 'USD', 124, 7, 1),
+  (143, 'Spock', 'Sarek', 'spock.sarek@momento.org', '+1-555-243-1043', '2009-12-06', 20, 34770.49, 'USD', 133, 12, 1),
+  (144, 'Samus', 'Aran', 'samus.aran@momento.org', '+1-555-244-1044', '2010-05-04', 21, 11690.93, 'USD', 100, 6, 1),
+  (145, 'Miles', 'Morales', 'miles.morales@momento.org', '+1-555-245-1045', '2011-01-07', 20, 29124.8, 'USD', 143, 14, 1),
+  (146, 'Kamala', 'Khan', 'kamala.khan@momento.org', '+1-555-246-1046', '2011-06-30', 27, 6803.69, 'USD', 141, 15, 1),
+  (147, 'Carol', 'Danvers', 'carol.danvers@momento.org', '+1-555-247-1047', '2011-12-15', 25, 10232.06, 'USD', 127, 16, 1),
+  (148, 'Natasha', 'Romanoff', 'natasha.romanoff@momento.org', '+1-555-248-1048', '2012-06-02', 24, 12551.12, 'USD', 146, 17, 1),
+  (149, 'Clint', 'Barton', 'clint.barton@momento.org', NULL, '2012-12-25', 23, 11661.65, 'USD', 148, 18, 1),
+  (150, 'Barbara', 'Gordon', 'barbara.gordon@momento.org', '+1-555-250-1050', '2013-06-25', 28, 9059.15, 'USD', 106, 19, 1),
+  (151, 'Kara', 'Danvers', 'kara.danvers@momento.org', '+1-555-251-1051', '2014-03-03', 25, 12044.91, 'USD', 140, 20, 1),
+  (152, 'Barry', 'Allen', 'barry.allen@momento.org', '+1-555-252-1052', '2014-08-27', 23, 9230.1, 'USD', 109, 21, 1),
+  (153, 'Arthur', 'Curry', 'arthur.curry@momento.org', '+1-555-253-1053', '2015-02-19', 18, 4208.78, 'USD', 134, 22, 1),
+  (154, 'Victor', 'Stone', 'victor.stone@momento.org', '+1-555-254-1054', '2015-09-20', 20, 33179.12, 'USD', 138, 14, 1),
+  (155, 'Logan', 'Howlett', 'logan.howlett@momento.org', '+1-555-255-1055', '2016-03-05', 27, 5702.14, 'USD', 107, 15, 1),
+  (156, 'Rogue', 'LeBeau', 'rogue.lebeau@momento.org', NULL, '2016-09-19', 25, 17673.6, 'USD', 153, 16, 1),
+  (157, 'Ororo', 'Munroe', 'ororo.munroe@momento.org', '+1-555-257-1057', '2017-03-24', 24, 10472.69, 'USD', 115, 17, 1),
+  (158, 'Jean', 'Grey', 'jean.grey@momento.org', '+1-555-258-1058', '2017-11-05', 23, 11494.56, 'USD', 105, 18, 1),
+  (159, 'Scott', 'Summers', 'scott.summers@momento.org', '+1-555-259-1059', '2018-05-07', 28, 11433.38, 'USD', 148, 19, 1),
+  (160, 'Cyborg', 'Stone', 'cyborg.stone@momento.org', '+1-555-260-1060', '2018-11-22', 25, 16578.59, 'USD', 108, 20, 1),
+  (161, 'Nia', 'Nal', 'nia.nal@momento.org', '+1-555-261-1061', '2019-06-19', 23, 8334.39, 'USD', 135, 21, 1),
+  (162, 'Mina', 'Harker', 'mina.harker@momento.org', '+1-555-262-1062', '2019-10-27', 18, 2865.65, 'USD', 155, 22, 1),
+  (163, 'Ravi', 'Shah', 'ravi.shah@momento.org', NULL, '2020-07-02', 20, 23024.33, 'USD', 113, 14, 1),
+  (164, 'Elena', 'Rossi', 'elena.rossi@momento.org', '+1-555-264-1064', '2021-01-03', 27, 6822.11, 'USD', 125, 15, 1),
+  (165, 'Mateus', 'Silva', 'mateus.silva@momento.org', '+1-555-265-1065', '2021-06-15', 25, 13020.23, 'USD', 147, 16, 1),
+  (166, 'Ana', 'Costa', 'ana.costa@momento.org', '+1-555-266-1066', '2022-01-11', 24, 16876.26, 'USD', 157, 17, 1),
+  (167, 'Camila', 'Oliveira', 'camila.oliveira@momento.org', '+1-555-267-1067', '2022-06-12', 23, 6810.97, 'USD', 108, 18, 1),
+  (168, 'Rafael', 'Santos', 'rafael.santos@momento.org', '+1-555-268-1068', '2023-01-19', 28, 5311.96, 'USD', 129, 19, 1),
+  (169, 'Beatriz', 'Lima', 'beatriz.lima@momento.org', '+1-555-269-1069', '2023-09-01', 25, 11286.11, 'USD', 109, 20, 1),
+  (170, 'Noah', 'Kim', 'noah.kim@momento.org', NULL, '1987-04-11', 23, 9378.39, 'USD', 129, 21, 1),
+  (171, 'Yuki', 'Tanaka', 'yuki.tanaka@momento.org', '+1-555-271-1071', '1987-07-31', 18, 4594.63, 'USD', 142, 22, 1);
 
 -- EDUCACIONAL
 
-INSERT INTO funcionarios (funcionario_id, primeiro_nome, sobrenome, email, telefone, data_contratacao, cargo_id, salario, moeda_salario, gerente_id, departamento_id, situacao) VALUES
+INSERT INTO funcionarios (funcionario_id, primeiro_nome, sobrenome, email, telefone, data_contratacao, cargo_id, salario, moeda_salario, gerente_id, departamento_id, status_funcionario_id) VALUES
 -- Diretores (gerentes de topo, sem gerente)
-(172, 'Helena', 'Parker', 'helena.parker@momento.edu', '+44-555-0101', '1995-03-15', 29, 18000.00, 'GBP', NULL, 28, 'ATIVO'),
-(173, 'Minerva', 'McGivver', 'minerva.mcgivver@momento.edu', '+44-555-0102', '1998-07-22', 29, 15000.00, 'GBP', 172, 23, 'ATIVO'),
-(174, 'Severo', 'Snape', 'severo.snape@momento.edu', '+44-555-0103', '1999-09-01', 32, 9500.00, 'GBP', 172, 23, 'AFASTADO'),
-(175, 'Rúbeo', 'Hagride', 'rubeo.Hagride@momento.edu', '+44-555-0104', '1993-11-10', 35, 4200.00, 'GBP', 172, 26, 'ATIVO'),
-(176, 'Filius', 'Flitwick', 'filius.flitwick@momento.edu', '+44-555-0105', '1996-05-18', 30, 8500.00, 'GBP', 172, 24, 'ATIVO'),
-(177, 'Pomona', 'Sprautii', 'pomona.sprautii@momento.edu', '+44-555-0106', '1997-04-03', 37, 6200.00, 'GBP', 172, 30, 'ATIVO'),
-(178, 'Sybill', 'Trelawney', 'sybill.trelawney@momento.edu', '+44-555-0107', '2001-01-20', 31, 4800.00, 'GBP', 172, 29, 'ATIVO'),
+(172, 'Helena', 'Parker', 'helena.parker@momento.edu', '+44-555-0101', '1995-03-15', 29, 18000.00, 'GBP', NULL, 28, 1),
+(173, 'Minerva', 'McGivver', 'minerva.mcgivver@momento.edu', '+44-555-0102', '1998-07-22', 29, 15000.00, 'GBP', 172, 23, 1),
+(174, 'Severo', 'Snape', 'severo.snape@momento.edu', '+44-555-0103', '1999-09-01', 32, 9500.00, 'GBP', 172, 23, 2),
+(175, 'Rúbeo', 'Hagride', 'rubeo.Hagride@momento.edu', '+44-555-0104', '1993-11-10', 35, 4200.00, 'GBP', 172, 26, 1),
+(176, 'Filius', 'Flitwick', 'filius.flitwick@momento.edu', '+44-555-0105', '1996-05-18', 30, 8500.00, 'GBP', 172, 24, 1),
+(177, 'Pomona', 'Sprautii', 'pomona.sprautii@momento.edu', '+44-555-0106', '1997-04-03', 37, 6200.00, 'GBP', 172, 30, 1),
+(178, 'Sybill', 'Trelawney', 'sybill.trelawney@momento.edu', '+44-555-0107', '2001-01-20', 31, 4800.00, 'GBP', 172, 29, 1),
 -- Professores e staff
-(179, 'Remo', 'Lupin', 'remo.lupin@momento.edu', '+44-555-0108', '2003-08-15', 31, 5500.00, 'GBP', 173, 25, 'INATIVO'),
-(180, 'Ninfadora', 'Tonks', 'ninfadora.tonks@momento.edu', '+44-555-0109', '2008-02-11', 38, 7200.00, 'GBP', 173, 25, 'ATIVO'),
-(181, 'Kingsley', 'Tremerraios', 'kingsley.tremerraios@momento.edu', '+44-555-0110', '2006-10-30', 38, 10500.00, 'GBP', 173, 25, 'ATIVO'),
-(182, 'Horácio', 'Slughorn', 'horacio.slughorn@momento.edu', '+44-555-0111', '2009-06-12', 32, 8800.00, 'GBP', 174, 23, 'ATIVO'),
-(183, 'Pomona', 'Rios', 'pomona.rios@momento.edu', '+44-555-0112', '2010-03-25', 33, 3600.00, 'GBP', 173, 26, 'ATIVO'),
-(184, 'Argus', 'Filch', 'argus.filch@momento.edu', '+44-555-0113', '1990-09-01', 33, 3100.00, 'GBP', 172, 28, 'ATIVO'),
-(185, 'Irma', 'Pince', 'irma.pince@momento.edu', '+44-555-0114', '1994-02-14', 34, 3700.00, 'GBP', 172, 27, 'ATIVO'),
-(186, 'Poppy', 'Pomfrey', 'poppy.pomfrey@momento.edu', '+44-555-0115', '1992-07-07', 31, 5200.00, 'GBP', 172, 28, 'ATIVO'),
+(179, 'Remo', 'Lupin', 'remo.lupin@momento.edu', '+44-555-0108', '2003-08-15', 31, 5500.00, 'GBP', 173, 25, 3),
+(180, 'Ninfadora', 'Tonks', 'ninfadora.tonks@momento.edu', '+44-555-0109', '2008-02-11', 38, 7200.00, 'GBP', 173, 25, 1),
+(181, 'Kingsley', 'Tremerraios', 'kingsley.tremerraios@momento.edu', '+44-555-0110', '2006-10-30', 38, 10500.00, 'GBP', 173, 25, 1),
+(182, 'Horácio', 'Slughorn', 'horacio.slughorn@momento.edu', '+44-555-0111', '2009-06-12', 32, 8800.00, 'GBP', 174, 23, 1),
+(183, 'Pomona', 'Rios', 'pomona.rios@momento.edu', '+44-555-0112', '2010-03-25', 33, 3600.00, 'GBP', 173, 26, 1),
+(184, 'Argus', 'Filch', 'argus.filch@momento.edu', '+44-555-0113', '1990-09-01', 33, 3100.00, 'GBP', 172, 28, 1),
+(185, 'Irma', 'Pince', 'irma.pince@momento.edu', '+44-555-0114', '1994-02-14', 34, 3700.00, 'GBP', 172, 27, 1),
+(186, 'Poppy', 'Pomfrey', 'poppy.pomfrey@momento.edu', '+44-555-0115', '1992-07-07', 31, 5200.00, 'GBP', 172, 28, 1),
 -- Paris
-(187, 'Fleur', 'Dascores', 'fleur.dascores@momento.edu', '+33-555-0201', '2011-09-12', 30, 9200.00, 'EUR', NULL, 26, 'ATIVO'),
-(188, 'Gabrielle', 'Dascores', 'gabrielle.dascores@momento.edu', '+33-555-0202', '2015-04-18', 40, 2400.00, 'EUR', 187, 26, 'ATIVO'),
-(189, 'Olympe', 'Maxime', 'olympe.maxime@momento.edu', '+33-555-0203', '2005-11-01', 29, 14000.00, 'EUR', 187, 26, 'ATIVO'),
-(190, 'Nicole', 'Rousseau', 'nicole.rousseau@momento.edu', '+33-555-0204', '2012-06-30', 34, 4100.00, 'EUR', 187, 27, 'ATIVO'),
-(191, 'Étienne', 'Moreau', 'etienne.moreau@momento.edu', '+33-555-0205', '2013-08-22', 35, 3800.00, 'EUR', 187, 26, 'AFASTADO'),
+(187, 'Fleur', 'Dascores', 'fleur.dascores@momento.edu', '+33-555-0201', '2011-09-12', 30, 9200.00, 'EUR', NULL, 26, 1),
+(188, 'Gabrielle', 'Dascores', 'gabrielle.dascores@momento.edu', '+33-555-0202', '2015-04-18', 40, 2400.00, 'EUR', 187, 26, 1),
+(189, 'Olympe', 'Maxime', 'olympe.maxime@momento.edu', '+33-555-0203', '2005-11-01', 29, 14000.00, 'EUR', 187, 26, 1),
+(190, 'Nicole', 'Rousseau', 'nicole.rousseau@momento.edu', '+33-555-0204', '2012-06-30', 34, 4100.00, 'EUR', 187, 27, 1),
+(191, 'Atienne', 'Moreau', 'etienne.moreau@momento.edu', '+33-555-0205', '2013-08-22', 35, 3800.00, 'EUR', 187, 26, 2),
 -- Lisboa
-(192, 'Beatriz', 'Gonçalves', 'beatriz.goncalves@momento.edu', '+351-555-0301', '2014-01-15', 30, 7200.00, 'EUR', NULL, 27, 'ATIVO'),
-(193, 'Tomás', 'Ferreira', 'tomas.ferreira@momento.edu', '+351-555-0302', '2016-03-09', 31, 4900.00, 'EUR', 192, 27, 'ATIVO'),
-(194, 'Inês', 'Salgado', 'ines.salgado@momento.edu', '+351-555-0303', '2017-10-02', 34, 3900.00, 'EUR', 192, 27, 'ATIVO'),
-(195, 'Rui', 'Meireles', 'rui.meireles@momento.edu', '+351-555-0304', '2018-05-20', 37, 4300.00, 'EUR', 192, 30, 'ATIVO'),
-(196, 'Carla', 'Nogueira', 'carla.nogueira@momento.edu', '+351-555-0305', '2019-09-11', 39, 2900.00, 'EUR', 192, 28, 'INATIVO'),
+(192, 'Beatriz', 'Gonçalves', 'beatriz.goncalves@momento.edu', '+351-555-0301', '2014-01-15', 30, 7200.00, 'EUR', NULL, 27, 1),
+(193, 'Tomas', 'Ferreira', 'tomas.ferreira@momento.edu', '+351-555-0302', '2016-03-09', 31, 4900.00, 'EUR', 192, 27, 1),
+(194, 'Inuis', 'Salgado', 'ines.salgado@momento.edu', '+351-555-0303', '2017-10-02', 34, 3900.00, 'EUR', 192, 27, 1),
+(195, 'Rui', 'Meireles', 'rui.meireles@momento.edu', '+351-555-0304', '2018-05-20', 37, 4300.00, 'EUR', 192, 30, 1),
+(196, 'Carla', 'Nogueira', 'carla.nogueira@momento.edu', '+351-555-0305', '2019-09-11', 39, 2900.00, 'EUR', 192, 28, 3),
 -- Rio de Janeiro (BRL)
-(197, 'Paulo', 'Andrade', 'paulo.andrade@momento.edu', '+55-555-0401', '2013-02-28', 29, 45000.00, 'BRL', NULL, 28, 'ATIVO'),
-(198, 'Marina', 'Costa', 'marina.costa@momento.edu', '+55-555-0402', '2015-07-14', 30, 22000.00, 'BRL', 197, 28, 'ATIVO'),
-(199, 'Lucas', 'Pereira', 'lucas.pereira@momento.edu', '+55-555-0403', '2016-11-23', 32, 18000.00, 'BRL', 197, 23, 'ATIVO'),
-(200, 'Fernanda', 'Lima', 'fernanda.lima@momento.edu', '+55-555-0404', '2017-04-17', 35, 9500.00, 'BRL', 197, 26, 'ATIVO'),
-(201, 'Gustavo', 'Souza', 'gustavo.souza@momento.edu', '+55-555-0405', '2018-08-05', 33, 7800.00, 'BRL', 197, 28, 'ATIVO'),
-(202, 'Ana', 'Martins', 'ana.martins@momento.edu', '+55-555-0406', '2019-12-01', 40, 5200.00, 'BRL', 198, 28, 'ATIVO'),
-(203, 'Rodrigo', 'Alves', 'rodrigo.alves@momento.edu', '+55-555-0407', '2020-06-19', 31, 12000.00, 'BRL', 198, 24, 'AFASTADO'),
+(197, 'Paulo', 'Andrade', 'paulo.andrade@momento.edu', '+55-555-0401', '2013-02-28', 29, 45000.00, 'BRL', NULL, 28, 1),
+(198, 'Marina', 'Costa', 'marina.costa@momento.edu', '+55-555-0402', '2015-07-14', 30, 22000.00, 'BRL', 197, 28, 1),
+(199, 'Lucas', 'Pereira', 'lucas.pereira@momento.edu', '+55-555-0403', '2016-11-23', 32, 18000.00, 'BRL', 197, 23, 1),
+(200, 'Fernanda', 'Lima', 'fernanda.lima@momento.edu', '+55-555-0404', '2017-04-17', 35, 9500.00, 'BRL', 197, 26, 1),
+(201, 'Gustavo', 'Souza', 'gustavo.souza@momento.edu', '+55-555-0405', '2018-08-05', 33, 7800.00, 'BRL', 197, 28, 1),
+(202, 'Ana', 'Martins', 'ana.martins@momento.edu', '+55-555-0406', '2019-12-01', 40, 5200.00, 'BRL', 198, 28, 1),
+(203, 'Rodrigo', 'Alves', 'rodrigo.alves@momento.edu', '+55-555-0407', '2020-06-19', 31, 12000.00, 'BRL', 198, 24, 2),
 -- Salem (USD)
-(204, 'Elizabeth', 'Madpreta', 'elizabeth.madpreta@momento.edu', '+1-555-0501', '2010-10-31', 29, 17000.00, 'USD', NULL, 29, 'ATIVO'),
-(205, 'Nathan', 'Hawthorne', 'nathan.hawthorne@momento.edu', '+1-555-0502', '2012-02-29', 36, 7800.00, 'USD', NULL, 29, 'ATIVO'),
-(206, 'Samantha', 'Crowley', 'samantha.crowley@momento.edu', '+1-555-0503', '2014-09-15', 36, 6500.00, 'USD', 205, 29, 'ATIVO'),
-(207, 'Daniel', 'Ravenwood', 'daniel.ravenwood@momento.edu', '+1-555-0504', '2015-03-07', 38, 9200.00, 'USD', 204, 25, 'ATIVO'),
-(208, 'Olivia', 'Moon', 'olivia.moon@momento.edu', '+1-555-0505', '2016-07-21', 34, 4700.00, 'USD', 204, 27, 'ATIVO'),
-(209, 'Ethan', 'Frost', 'ethan.frost@momento.edu', '+1-555-0506', '2017-11-30', 31, 5600.00, 'USD', 204, 25, 'ATIVO'),
-(210, 'Grace', 'Willow', 'grace.willow@momento.edu', '+1-555-0507', '2018-04-12', 37, 6100.00, 'USD', 204, 30, 'ATIVO'),
-(211, 'Jacob', 'Stone', 'jacob.stone@momento.edu', '+1-555-0508', '2019-01-25', 40, 2600.00, 'USD', 205, 29, 'INATIVO'),
+(204, 'Elizabeth', 'Madpreta', 'elizabeth.madpreta@momento.edu', '+1-555-0501', '2010-10-31', 29, 17000.00, 'USD', NULL, 29, 1),
+(205, 'Nathan', 'Hawthorne', 'nathan.hawthorne@momento.edu', '+1-555-0502', '2012-02-29', 36, 7800.00, 'USD', NULL, 29, 1),
+(206, 'Samantha', 'Crowley', 'samantha.crowley@momento.edu', '+1-555-0503', '2014-09-15', 36, 6500.00, 'USD', 205, 29, 1),
+(207, 'Daniel', 'Ravenwood', 'daniel.ravenwood@momento.edu', '+1-555-0504', '2015-03-07', 38, 9200.00, 'USD', 204, 25, 1),
+(208, 'Olivia', 'Moon', 'olivia.moon@momento.edu', '+1-555-0505', '2016-07-21', 34, 4700.00, 'USD', 204, 27, 1),
+(209, 'Ethan', 'Frost', 'ethan.frost@momento.edu', '+1-555-0506', '2017-11-30', 31, 5600.00, 'USD', 204, 25, 1),
+(210, 'Grace', 'Willow', 'grace.willow@momento.edu', '+1-555-0507', '2018-04-12', 37, 6100.00, 'USD', 204, 30, 1),
+(211, 'Jacob', 'Stone', 'jacob.stone@momento.edu', '+1-555-0508', '2019-01-25', 40, 2600.00, 'USD', 205, 29, 3),
 -- Kyoto
-(212, 'Haruki', 'Tanaka', 'haruki.tanaka@momento.edu', '+81-555-0601', '2011-05-05', 29, 16500.00, 'USD', NULL, 30, 'ATIVO'),
-(213, 'Yuki', 'Sato', 'yuki.sato@momento.edu', '+81-555-0602', '2013-08-08', 37, 6800.00, 'USD', 212, 30, 'ATIVO'),
-(214, 'Kenji', 'Nakamura', 'kenji.nakamura@momento.edu', '+81-555-0603', '2015-02-14', 31, 5100.00, 'USD', 212, 24, 'ATIVO'),
-(215, 'Aiko', 'Yamamoto', 'aiko.yamamoto@momento.edu', '+81-555-0604', '2016-10-10', 35, 4400.00, 'USD', 212, 26, 'ATIVO'),
-(216, 'Ryo', 'Kobayashi', 'ryo.kobayashi@momento.edu', '+81-555-0605', '2017-06-06', 33, 3900.00, 'USD', 212, 30, 'AFASTADO'),
-(217, 'Mei', 'Ito', 'mei.ito@momento.edu', '+81-555-0606', '2018-12-24', 34, 4200.00, 'USD', 212, 27, 'ATIVO'),
-(218, 'Takumi', 'Watanabe', 'takumi.watanabe@momento.edu', '+81-555-0607', '2019-07-07', 39, 3100.00, 'USD', 212, 28, 'ATIVO'),
-(219, 'Sakura', 'Mori', 'sakura.mori@momento.edu', '+81-555-0608', '2020-03-03', 40, 2400.00, 'USD', 213, 30, 'ATIVO'),
-(220, 'Diego', 'Fernández', 'diego.fernandez@momento.edu', '+1-555-0509', '2021-01-18', 31, 5400.00, 'USD', 204, 25, 'ATIVO'),
-(221, 'Larissa', 'Oliveira', 'larissa.oliveira@momento.edu', '+55-555-0408', '2022-02-22', 40, 4800.00, 'BRL', 198, 28, 'ATIVO');
+(212, 'Haruki', 'Tanaka', 'haruki.tanaka@momento.edu', '+81-555-0601', '2011-05-05', 29, 16500.00, 'USD', NULL, 30, 1),
+(213, 'Yuki', 'Sato', 'yuki.sato@momento.edu', '+81-555-0602', '2013-08-08', 37, 6800.00, 'USD', 212, 30, 1),
+(214, 'Kenji', 'Nakamura', 'kenji.nakamura@momento.edu', '+81-555-0603', '2015-02-14', 31, 5100.00, 'USD', 212, 24, 1),
+(215, 'Aiko', 'Yamamoto', 'aiko.yamamoto@momento.edu', '+81-555-0604', '2016-10-10', 35, 4400.00, 'USD', 212, 26, 1),
+(216, 'Ryo', 'Kobayashi', 'ryo.kobayashi@momento.edu', '+81-555-0605', '2017-06-06', 33, 3900.00, 'USD', 212, 30, 2),
+(217, 'Mei', 'Ito', 'mei.ito@momento.edu', '+81-555-0606', '2018-12-24', 34, 4200.00, 'USD', 212, 27, 1),
+(218, 'Takumi', 'Watanabe', 'takumi.watanabe@momento.edu', '+81-555-0607', '2019-07-07', 39, 3100.00, 'USD', 212, 28, 1),
+(219, 'Sakura', 'Mori', 'sakura.mori@momento.edu', '+81-555-0608', '2020-03-03', 40, 2400.00, 'USD', 213, 30, 1),
+(220, 'Diego', 'Fernández', 'diego.fernandez@momento.edu', '+1-555-0509', '2021-01-18', 31, 5400.00, 'USD', 204, 25, 1),
+(221, 'Larissa', 'Oliveira', 'larissa.oliveira@momento.edu', '+55-555-0408', '2022-02-22', 40, 4800.00, 'BRL', 198, 28, 1);
 
 INSERT INTO dependentes (dependente_id, primeiro_nome, sobrenome, relacionamento, funcionario_id) VALUES
   (1, 'Alex', 'Prior', 'Filha(o)', 100),
@@ -732,7 +1136,7 @@ INSERT INTO produtos (produto_id, sku, produto_nome, categoria_id, preco_catalog
   (4, 'ANT-001', 'Capacete do Homem-Formiga', 2, 289.29, 'USD', 1),
   (5, 'COS-001', 'Nulificador Total', 8, 750.19, 'USD', 1),
   (6, 'WW-001', 'Laço da Verdade', 6, 325.13, 'USD', 1),
-  (7, 'IM-005', 'Capacete Iron Man MK 5', 2, 322.29, 'USD', 1),
+  (7, 'IM-005', 'Capacete Iron Man Mark 5', 2, 322.29, 'USD', 1),
   (8, 'SW-001', 'Sabre de luz de Mace Windu', 6, 990.29, 'USD', 1),
   (9, 'X-001', 'Sentinela em miniatura', 4, 150.13, 'USD', 1),
   (10, 'X-002', 'Uniforme de moléculas instáveis', 1, 158.29, 'USD', 1),
@@ -763,61 +1167,61 @@ INSERT INTO produtos (produto_id, sku, produto_nome, categoria_id, preco_catalog
   (35, 'ZEL-002', 'Escudo Hyliano', 3, 1250.0, 'USD', 1),
   (36, 'PKM-003', 'Boné do treinador', 2, 50.0, 'USD', 1);
 
-INSERT INTO vendas (venda_id, referencia_origem, data_venda, funcionario_id, canal, status_venda) VALUES
-  (7001, 'ERP-7001', '2023-01-03', 124, 'WEB', 'CANCELADA'),
-  (7002, 'ERP-7002', '2023-01-22', 125, 'LOJA', 'CONCLUIDA'),
-  (7003, 'ERP-7003', '2023-02-10', 126, 'APP', 'CONCLUIDA'),
-  (7004, 'ERP-7004', '2023-03-01', 127, 'MARKETPLACE', 'CONCLUIDA'),
-  (7005, 'ERP-7005', '2023-03-20', 128, 'B2B', 'CONCLUIDA'),
-  (7006, 'ERP-7006', '2023-04-08', 124, 'WEB', 'CONCLUIDA'),
-  (7007, 'ERP-7007', '2023-04-27', 125, 'LOJA', 'CONCLUIDA'),
-  (7008, 'ERP-7008', '2023-05-16', 126, 'APP', 'CONCLUIDA'),
-  (7009, 'ERP-7009', '2023-06-04', 127, 'MARKETPLACE', 'CONCLUIDA'),
-  (7010, 'ERP-7010', '2023-06-23', 128, 'B2B', 'CONCLUIDA'),
-  (7011, 'ERP-7011', '2023-07-12', 124, 'WEB', 'CONCLUIDA'),
-  (7012, 'ERP-7012', '2023-07-31', 125, 'LOJA', 'CONCLUIDA'),
-  (7013, 'ERP-7013', '2023-08-19', 126, 'APP', 'CONCLUIDA'),
-  (7014, 'ERP-7014', '2023-09-07', 127, 'MARKETPLACE', 'PENDENTE'),
-  (7015, 'ERP-7015', '2023-09-26', 128, 'B2B', 'CONCLUIDA'),
-  (7016, 'ERP-7016', '2023-10-15', 124, 'WEB', 'CONCLUIDA'),
-  (7017, 'ERP-7017', '2023-11-03', 125, 'LOJA', 'CONCLUIDA'),
-  (7018, 'ERP-7018', '2023-11-22', 126, 'APP', 'CANCELADA'),
-  (7019, 'ERP-7019', '2023-12-11', 127, 'MARKETPLACE', 'CONCLUIDA'),
-  (7020, 'ERP-7020', '2023-12-30', 128, 'B2B', 'CONCLUIDA'),
-  (7021, 'ERP-7021', '2024-01-18', 124, 'WEB', 'CONCLUIDA'),
-  (7022, 'ERP-7022', '2024-02-06', 125, 'LOJA', 'CONCLUIDA'),
-  (7023, 'ERP-7023', '2024-02-25', 126, 'APP', 'CONCLUIDA'),
-  (7024, 'ERP-7024', '2024-03-15', 127, 'MARKETPLACE', 'CONCLUIDA'),
-  (7025, 'ERP-7025', '2024-04-03', 128, 'B2B', 'CONCLUIDA'),
-  (7026, 'ERP-7026', '2024-04-22', 124, 'WEB', 'CONCLUIDA'),
-  (7027, 'ERP-7027', '2024-05-11', 125, 'LOJA', 'PENDENTE'),
-  (7028, 'ERP-7028', '2024-05-30', 126, 'APP', 'CONCLUIDA'),
-  (7029, 'ERP-7029', '2024-06-18', 127, 'MARKETPLACE', 'CONCLUIDA'),
-  (7030, 'ERP-7030', '2024-07-07', 128, 'B2B', 'CONCLUIDA'),
-  (7031, 'ERP-7031', '2024-07-26', 124, 'WEB', 'CONCLUIDA'),
-  (7032, 'ERP-7032', '2024-08-14', 125, 'LOJA', 'CONCLUIDA'),
-  (7033, 'ERP-7033', '2024-09-02', 126, 'APP', 'CONCLUIDA'),
-  (7034, 'ERP-7034', '2024-09-21', 127, 'MARKETPLACE', 'CONCLUIDA'),
-  (7035, 'ERP-7035', '2024-10-10', 128, 'B2B', 'CANCELADA'),
-  (7036, 'ERP-7036', '2024-10-29', 124, 'WEB', 'CONCLUIDA'),
-  (7037, 'ERP-7037', '2024-11-17', 125, 'LOJA', 'CONCLUIDA'),
-  (7038, 'ERP-7038', '2024-12-06', 126, 'APP', 'CONCLUIDA'),
-  (7039, 'ERP-7039', '2024-12-25', 127, 'MARKETPLACE', 'CONCLUIDA'),
-  (7040, 'ERP-7040', '2025-01-13', 128, 'B2B', 'PENDENTE'),
-  (7041, 'ERP-7041', '2025-02-01', 124, 'WEB', 'CONCLUIDA'),
-  (7042, 'ERP-7042', '2025-02-20', 125, 'LOJA', 'CONCLUIDA'),
-  (7043, 'ERP-7043', '2025-03-11', 126, 'APP', 'CONCLUIDA'),
-  (7044, 'ERP-7044', '2025-03-30', 127, 'MARKETPLACE', 'CONCLUIDA'),
-  (7045, 'ERP-7045', '2025-04-18', 128, 'B2B', 'CONCLUIDA'),
-  (7046, 'ERP-7046', '2025-05-07', 124, 'WEB', 'CONCLUIDA'),
-  (7047, 'ERP-7047', '2025-05-26', 125, 'LOJA', 'CONCLUIDA'),
-  (7048, 'ERP-7048', '2025-06-14', 126, 'APP', 'CONCLUIDA'),
-  (7049, 'ERP-7049', '2025-07-03', 127, 'MARKETPLACE', 'CONCLUIDA'),
-  (7050, 'ERP-7050', '2025-07-22', 128, 'B2B', 'CONCLUIDA'),
-  (7051, 'ERP-7051', '2025-08-10', 124, 'WEB', 'CONCLUIDA'),
-  (7052, 'ERP-7052', '2023-01-12', 125, 'LOJA', 'CANCELADA'),
-  (7053, 'ERP-7053', '2023-01-31', 126, 'APP', 'PENDENTE'),
-  (7054, 'ERP-7054', '2023-02-19', 127, 'MARKETPLACE', 'CONCLUIDA');
+INSERT INTO vendas (venda_id, referencia_origem, data_venda, funcionario_id, canal_venda_id, status_venda_id) VALUES
+  (7001, 'ERP-7001', '2023-01-03', 124, 1, 3),
+  (7002, 'ERP-7002', '2023-01-22', 125, 2, 1),
+  (7003, 'ERP-7003', '2023-02-10', 126, 3, 1),
+  (7004, 'ERP-7004', '2023-03-01', 127, 4, 1),
+  (7005, 'ERP-7005', '2023-03-20', 128, 5, 1),
+  (7006, 'ERP-7006', '2023-04-08', 124, 1, 1),
+  (7007, 'ERP-7007', '2023-04-27', 125, 2, 1),
+  (7008, 'ERP-7008', '2023-05-16', 126, 3, 1),
+  (7009, 'ERP-7009', '2023-06-04', 127, 4, 1),
+  (7010, 'ERP-7010', '2023-06-23', 128, 5, 1),
+  (7011, 'ERP-7011', '2023-07-12', 124, 1, 1),
+  (7012, 'ERP-7012', '2023-07-31', 125, 2, 1),
+  (7013, 'ERP-7013', '2023-08-19', 126, 3, 1),
+  (7014, 'ERP-7014', '2023-09-07', 127, 4, 2),
+  (7015, 'ERP-7015', '2023-09-26', 128, 5, 1),
+  (7016, 'ERP-7016', '2023-10-15', 124, 1, 1),
+  (7017, 'ERP-7017', '2023-11-03', 125, 2, 1),
+  (7018, 'ERP-7018', '2023-11-22', 126, 3, 3),
+  (7019, 'ERP-7019', '2023-12-11', 127, 4, 1),
+  (7020, 'ERP-7020', '2023-12-30', 128, 5, 1),
+  (7021, 'ERP-7021', '2024-01-18', 124, 1, 1),
+  (7022, 'ERP-7022', '2024-02-06', 125, 2, 1),
+  (7023, 'ERP-7023', '2024-02-25', 126, 3, 1),
+  (7024, 'ERP-7024', '2024-03-15', 127, 4, 1),
+  (7025, 'ERP-7025', '2024-04-03', 128, 5, 1),
+  (7026, 'ERP-7026', '2024-04-22', 124, 1, 1),
+  (7027, 'ERP-7027', '2024-05-11', 125, 2, 2),
+  (7028, 'ERP-7028', '2024-05-30', 126, 3, 1),
+  (7029, 'ERP-7029', '2024-06-18', 127, 4, 1),
+  (7030, 'ERP-7030', '2024-07-07', 128, 5, 1),
+  (7031, 'ERP-7031', '2024-07-26', 124, 1, 1),
+  (7032, 'ERP-7032', '2024-08-14', 125, 2, 1),
+  (7033, 'ERP-7033', '2024-09-02', 126, 3, 1),
+  (7034, 'ERP-7034', '2024-09-21', 127, 4, 1),
+  (7035, 'ERP-7035', '2024-10-10', 128, 5, 3),
+  (7036, 'ERP-7036', '2024-10-29', 124, 1, 1),
+  (7037, 'ERP-7037', '2024-11-17', 125, 2, 1),
+  (7038, 'ERP-7038', '2024-12-06', 126, 3, 1),
+  (7039, 'ERP-7039', '2024-12-25', 127, 4, 1),
+  (7040, 'ERP-7040', '2025-01-13', 128, 5, 2),
+  (7041, 'ERP-7041', '2025-02-01', 124, 1, 1),
+  (7042, 'ERP-7042', '2025-02-20', 125, 2, 1),
+  (7043, 'ERP-7043', '2025-03-11', 126, 3, 1),
+  (7044, 'ERP-7044', '2025-03-30', 127, 4, 1),
+  (7045, 'ERP-7045', '2025-04-18', 128, 5, 1),
+  (7046, 'ERP-7046', '2025-05-07', 124, 1, 1),
+  (7047, 'ERP-7047', '2025-05-26', 125, 2, 1),
+  (7048, 'ERP-7048', '2025-06-14', 126, 3, 1),
+  (7049, 'ERP-7049', '2025-07-03', 127, 4, 1),
+  (7050, 'ERP-7050', '2025-07-22', 128, 5, 1),
+  (7051, 'ERP-7051', '2025-08-10', 124, 1, 1),
+  (7052, 'ERP-7052', '2023-01-12', 125, 2, 3),
+  (7053, 'ERP-7053', '2023-01-31', 126, 3, 2),
+  (7054, 'ERP-7054', '2023-02-19', 127, 4, 1);
 
 INSERT INTO itens_venda (item_venda_id, venda_id, numero_item, produto_id, quantidade, preco_unitario, moeda, source_row_id) VALUES
   (1, 7001, 1, 6, 3, 271.67, 'USD', NULL),
@@ -901,86 +1305,181 @@ INSERT INTO itens_venda (item_venda_id, venda_id, numero_item, produto_id, quant
   (79, 7053, 1, 18, 7, 1025.63, 'USD', NULL),
   (80, 7054, 1, 21, 8, 1123.55, 'USD', NULL);
 
-INSERT INTO audit_log (log_id, log_acao, log_ts, log_modulo, log_status, log_origem, log_detalhes, funcionario_id) VALUES
-  (1, 'Consultou catálogo', '2024-01-04 09:13:00', 'PRODUTOS', 'SUCESSO', 'Terminal-02', 'Evento de demonstração 001', 107),
-  (2, 'Exportou relatório', '2024-01-07 10:26:00', 'FINANCEIRO', 'SUCESSO', 'Terminal-03', 'Evento de demonstração 002', 114),
-  (3, 'Atualizou inventário', '2024-01-10 11:39:00', 'SUPRIMENTOS', 'REGISTRADO', 'Terminal-04', 'Evento de demonstração 003', 121),
-  (4, 'Solicitou compra', '2024-01-13 12:52:00', 'SEGURANCA', 'FALHA', 'Terminal-05', 'Evento de demonstração 004', 128),
-  (5, 'Revisou permissões', '2024-01-16 13:05:00', 'VENDAS', 'BLOQUEADO', 'Terminal-06', 'Evento de demonstração 005', 135),
-  (6, 'Logout', '2024-01-19 14:18:00', 'AUTENTICACAO', 'SUCESSO', 'Terminal-07', 'Evento de demonstração 006', 142),
-  (7, 'Falha de autenticação', '2024-01-22 15:31:00', 'PRODUTOS', 'SUCESSO', 'Terminal-08', 'Evento de demonstração 007', 149),
-  (8, 'Login', '2024-01-25 16:44:00', 'FINANCEIRO', 'SUCESSO', 'Terminal-09', 'Evento de demonstração 008', 156),
-  (9, 'Consultou catálogo', '2024-01-28 17:57:00', 'SUPRIMENTOS', 'REGISTRADO', 'Terminal-10', 'Evento de demonstração 009', 163),
-  (10, 'Exportou relatório', '2024-01-31 08:10:00', 'SEGURANCA', 'FALHA', 'Terminal-11', 'Evento de demonstração 010', 170),
-  (11, 'Atualizou inventário', '2024-02-03 09:23:00', 'VENDAS', 'BLOQUEADO', 'Terminal-12', 'Evento de demonstração 011', 105),
-  (12, 'Solicitou compra', '2024-02-06 10:36:00', 'AUTENTICACAO', 'SUCESSO', 'Terminal-01', 'Evento de demonstração 012', 112),
-  (13, 'Revisou permissões', '2024-02-09 11:49:00', 'PRODUTOS', 'SUCESSO', 'Terminal-02', 'Evento de demonstração 013', 119),
-  (14, 'Logout', '2024-02-12 12:02:00', 'FINANCEIRO', 'SUCESSO', 'Terminal-03', 'Evento de demonstração 014', 126),
-  (15, 'Falha de autenticação', '2024-02-15 13:15:00', 'SUPRIMENTOS', 'REGISTRADO', 'Terminal-04', 'Evento de demonstração 015', 133),
-  (16, 'Login', '2024-02-18 14:28:00', 'SEGURANCA', 'FALHA', 'Terminal-05', 'Evento de demonstração 016', 140),
-  (17, 'Consultou catálogo', '2024-02-21 15:41:00', 'VENDAS', 'BLOQUEADO', 'Terminal-06', 'Evento de demonstração 017', 147),
-  (18, 'Exportou relatório', '2024-02-24 16:54:00', 'AUTENTICACAO', 'SUCESSO', 'Terminal-07', 'Evento de demonstração 018', 154),
-  (19, 'Atualizou inventário', '2024-02-27 17:07:00', 'PRODUTOS', 'SUCESSO', 'Terminal-08', 'Evento de demonstração 019', 161),
-  (20, 'Solicitou compra', '2024-03-01 08:20:00', 'FINANCEIRO', 'SUCESSO', 'Terminal-09', 'Evento de demonstração 020', 168),
-  (21, 'Revisou permissões', '2024-03-04 09:33:00', 'SUPRIMENTOS', 'REGISTRADO', 'Terminal-10', 'Evento de demonstração 021', 103),
-  (22, 'Logout', '2024-03-07 10:46:00', 'SEGURANCA', 'FALHA', 'Terminal-11', 'Evento de demonstração 022', 110),
-  (23, 'Falha de autenticação', '2024-03-10 11:59:00', 'VENDAS', 'BLOQUEADO', 'Terminal-12', 'Evento de demonstração 023', 117),
-  (24, 'Login', '2024-03-13 12:12:00', 'AUTENTICACAO', 'SUCESSO', 'Terminal-01', 'Evento de demonstração 024', 124),
-  (25, 'Consultou catálogo', '2024-03-16 13:25:00', 'PRODUTOS', 'SUCESSO', 'Terminal-02', 'Evento de demonstração 025', 131),
-  (26, 'Exportou relatório', '2024-03-19 14:38:00', 'FINANCEIRO', 'SUCESSO', 'Terminal-03', 'Evento de demonstração 026', 138),
-  (27, 'Atualizou inventário', '2024-03-22 15:51:00', 'SUPRIMENTOS', 'REGISTRADO', 'Terminal-04', 'Evento de demonstração 027', 145),
-  (28, 'Solicitou compra', '2024-03-25 16:04:00', 'SEGURANCA', 'FALHA', 'Terminal-05', 'Evento de demonstração 028', 152),
-  (29, 'Revisou permissões', '2024-03-28 17:17:00', 'VENDAS', 'BLOQUEADO', 'Terminal-06', 'Evento de demonstração 029', 159),
-  (30, 'Logout', '2024-03-31 08:30:00', 'AUTENTICACAO', 'SUCESSO', 'Terminal-07', 'Evento de demonstração 030', 166),
-  (31, 'Falha de autenticação', '2024-04-03 09:43:00', 'PRODUTOS', 'SUCESSO', 'Terminal-08', 'Evento de demonstração 031', 101),
-  (32, 'Login', '2024-04-06 10:56:00', 'FINANCEIRO', 'SUCESSO', 'Terminal-09', 'Evento de demonstração 032', 108),
-  (33, 'Consultou catálogo', '2024-04-09 11:09:00', 'SUPRIMENTOS', 'REGISTRADO', 'Terminal-10', 'Evento de demonstração 033', 115),
-  (34, 'Exportou relatório', '2024-04-12 12:22:00', 'SEGURANCA', 'FALHA', 'Terminal-11', 'Evento de demonstração 034', 122),
-  (35, 'Atualizou inventário', '2024-04-15 13:35:00', 'VENDAS', 'BLOQUEADO', 'Terminal-12', 'Evento de demonstração 035', 129),
-  (36, 'Solicitou compra', '2024-04-18 14:48:00', 'AUTENTICACAO', 'SUCESSO', 'Terminal-01', 'Evento de demonstração 036', 136),
-  (37, 'Revisou permissões', '2024-04-21 15:01:00', 'PRODUTOS', 'SUCESSO', 'Terminal-02', 'Evento de demonstração 037', 143),
-  (38, 'Logout', '2024-04-24 16:14:00', 'FINANCEIRO', 'SUCESSO', 'Terminal-03', 'Evento de demonstração 038', 150),
-  (39, 'Falha de autenticação', '2024-04-27 17:27:00', 'SUPRIMENTOS', 'REGISTRADO', 'Terminal-04', 'Evento de demonstração 039', 157),
-  (40, 'Login', '2024-04-30 08:40:00', 'SEGURANCA', 'FALHA', 'Terminal-05', 'Evento de demonstração 040', 164),
-  (41, 'Consultou catálogo', '2024-05-03 09:53:00', 'VENDAS', 'BLOQUEADO', 'Terminal-06', 'Evento de demonstração 041', 171),
-  (42, 'Exportou relatório', '2024-05-06 10:06:00', 'AUTENTICACAO', 'SUCESSO', 'Terminal-07', 'Evento de demonstração 042', 106),
-  (43, 'Atualizou inventário', '2024-05-09 11:19:00', 'PRODUTOS', 'SUCESSO', 'Terminal-08', 'Evento de demonstração 043', 113),
-  (44, 'Solicitou compra', '2024-05-12 12:32:00', 'FINANCEIRO', 'SUCESSO', 'Terminal-09', 'Evento de demonstração 044', 120),
-  (45, 'Revisou permissões', '2024-05-15 13:45:00', 'SUPRIMENTOS', 'REGISTRADO', 'Terminal-10', 'Evento de demonstração 045', 127),
-  (46, 'Logout', '2024-05-18 14:58:00', 'SEGURANCA', 'FALHA', 'Terminal-11', 'Evento de demonstração 046', 134),
-  (47, 'Falha de autenticação', '2024-05-21 15:11:00', 'VENDAS', 'BLOQUEADO', 'Terminal-12', 'Evento de demonstração 047', 141),
-  (48, 'Login', '2024-05-24 16:24:00', 'AUTENTICACAO', 'SUCESSO', 'Terminal-01', 'Evento de demonstração 048', 148),
-  (49, 'Consultou catálogo', '2024-05-27 17:37:00', 'PRODUTOS', 'SUCESSO', 'Terminal-02', 'Evento de demonstração 049', 155),
-  (50, 'Exportou relatório', '2024-05-30 08:50:00', 'FINANCEIRO', 'SUCESSO', 'Terminal-03', 'Evento de demonstração 050', 162),
-  (51, 'Atualizou inventário', '2024-06-02 09:03:00', 'SUPRIMENTOS', 'REGISTRADO', 'Terminal-04', 'Evento de demonstração 051', 169),
-  (52, 'Solicitou compra', '2024-06-05 10:16:00', 'SEGURANCA', 'FALHA', 'Terminal-05', 'Evento de demonstração 052', 104),
-  (53, 'Revisou permissões', '2024-06-08 11:29:00', 'VENDAS', 'BLOQUEADO', 'Terminal-06', 'Evento de demonstração 053', 111),
-  (54, 'Logout', '2024-06-11 12:42:00', 'AUTENTICACAO', 'SUCESSO', 'Terminal-07', 'Evento de demonstração 054', 118),
-  (55, 'Falha de autenticação', '2024-06-14 13:55:00', 'PRODUTOS', 'SUCESSO', 'Terminal-08', 'Evento de demonstração 055', 125),
-  (56, 'Login', '2024-06-17 14:08:00', 'FINANCEIRO', 'SUCESSO', 'Terminal-09', 'Evento de demonstração 056', 132),
-  (57, 'Consultou catálogo', '2024-06-20 15:21:00', 'SUPRIMENTOS', 'REGISTRADO', 'Terminal-10', 'Evento de demonstração 057', 139),
-  (58, 'Exportou relatório', '2024-06-23 16:34:00', 'SEGURANCA', 'FALHA', 'Terminal-11', 'Evento de demonstração 058', 146),
-  (59, 'Atualizou inventário', '2024-06-26 17:47:00', 'VENDAS', 'BLOQUEADO', 'Terminal-12', 'Evento de demonstração 059', 153),
-  (60, 'Solicitou compra', '2024-06-29 08:00:00', 'AUTENTICACAO', 'SUCESSO', 'Terminal-01', 'Evento de demonstração 060', 160),
-  (61, 'Revisou permissões', '2024-07-02 09:13:00', 'PRODUTOS', 'SUCESSO', 'Terminal-02', 'Evento de demonstração 061', 167),
-  (62, 'Logout', '2024-07-05 10:26:00', 'FINANCEIRO', 'SUCESSO', 'Terminal-03', 'Evento de demonstração 062', 102),
-  (63, 'Falha de autenticação', '2024-07-08 11:39:00', 'SUPRIMENTOS', 'REGISTRADO', 'Terminal-04', 'Evento de demonstração 063', 109),
-  (64, 'Login', '2024-07-11 12:52:00', 'SEGURANCA', 'FALHA', 'Terminal-05', 'Evento de demonstração 064', 116),
-  (65, 'Consultou catálogo', '2024-07-14 13:05:00', 'VENDAS', 'BLOQUEADO', 'Terminal-06', 'Evento de demonstração 065', 123),
-  (66, 'Exportou relatório', '2024-07-17 14:18:00', 'AUTENTICACAO', 'SUCESSO', 'Terminal-07', 'Evento de demonstração 066', 130),
-  (67, 'Atualizou inventário', '2024-07-20 15:31:00', 'PRODUTOS', 'SUCESSO', 'Terminal-08', 'Evento de demonstração 067', 137),
-  (68, 'Solicitou compra', '2024-07-23 16:44:00', 'FINANCEIRO', 'SUCESSO', 'Terminal-09', 'Evento de demonstração 068', 144),
-  (69, 'Revisou permissões', '2024-07-26 17:57:00', 'SUPRIMENTOS', 'REGISTRADO', 'Terminal-10', 'Evento de demonstração 069', 151),
-  (70, 'Logout', '2024-07-29 08:10:00', 'SEGURANCA', 'FALHA', 'Terminal-11', 'Evento de demonstração 070', 158),
-  (71, 'Falha de autenticação', '2024-08-01 09:23:00', 'VENDAS', 'BLOQUEADO', 'Terminal-12', 'Evento de demonstração 071', 165),
-  (72, 'Login', '2024-08-04 10:36:00', 'AUTENTICACAO', 'SUCESSO', 'Terminal-01', 'Evento de demonstração 072', 100),
-  (73, 'Consultou catálogo', '2024-08-07 11:49:00', 'PRODUTOS', 'SUCESSO', 'Terminal-02', 'Evento de demonstração 073', 107),
-  (74, 'Exportou relatório', '2024-08-10 12:02:00', 'FINANCEIRO', 'SUCESSO', 'Terminal-03', 'Evento de demonstração 074', 114),
-  (75, 'Atualizou inventário', '2024-08-13 13:15:00', 'SUPRIMENTOS', 'REGISTRADO', 'Terminal-04', 'Evento de demonstração 075', 121),
-  (76, 'Solicitou compra', '2024-08-16 14:28:00', 'SEGURANCA', 'FALHA', 'Terminal-05', 'Evento de demonstração 076', 128),
-  (77, 'Revisou permissões', '2024-08-19 15:41:00', 'VENDAS', 'BLOQUEADO', 'Terminal-06', 'Evento de demonstração 077', 135),
-  (78, 'Logout', '2024-08-22 16:54:00', 'AUTENTICACAO', 'SUCESSO', 'Terminal-07', 'Evento de demonstração 078', 142),
-  (79, 'Falha de autenticação', '2024-08-25 17:07:00', 'PRODUTOS', 'SUCESSO', 'Terminal-08', 'Evento de demonstração 079', 149),
-  (80, 'Login', '2024-08-28 08:20:00', 'FINANCEIRO', 'SUCESSO', 'Terminal-09', 'Evento de demonstração 080', 156);
+INSERT INTO audit_log (log_id, log_acao, log_ts, modulo_auditoria_id, status_auditoria_id, log_origem, log_detalhes, funcionario_id) VALUES
+  (1, 'Consultou catálogo', '2024-01-04 09:13:00', 1, 2, 'Terminal-02', 'Evento de demonstração 001', 107),
+  (2, 'Exportou relatório', '2024-01-07 10:26:00', 2, 2, 'Terminal-03', 'Evento de demonstração 002', 114),
+  (3, 'Atualizou inventário', '2024-01-10 11:39:00', 3, 1, 'Terminal-04', 'Evento de demonstração 003', 121),
+  (4, 'Solicitou compra', '2024-01-13 12:52:00', 4, 3, 'Terminal-05', 'Evento de demonstração 004', 128),
+  (5, 'Revisou permissões', '2024-01-16 13:05:00', 5, 4, 'Terminal-06', 'Evento de demonstração 005', 135),
+  (6, 'Logout', '2024-01-19 14:18:00', 6, 2, 'Terminal-07', 'Evento de demonstração 006', 142),
+  (7, 'Falha de autenticação', '2024-01-22 15:31:00', 1, 2, 'Terminal-08', 'Evento de demonstração 007', 149),
+  (8, 'Login', '2024-01-25 16:44:00', 2, 2, 'Terminal-09', 'Evento de demonstração 008', 156),
+  (9, 'Consultou catálogo', '2024-01-28 17:57:00', 3, 1, 'Terminal-10', 'Evento de demonstração 009', 163),
+  (10, 'Exportou relatório', '2024-01-31 08:10:00', 4, 3, 'Terminal-11', 'Evento de demonstração 010', 170),
+  (11, 'Atualizou inventário', '2024-02-03 09:23:00', 5, 4, 'Terminal-12', 'Evento de demonstração 011', 105),
+  (12, 'Solicitou compra', '2024-02-06 10:36:00', 6, 2, 'Terminal-01', 'Evento de demonstração 012', 112),
+  (13, 'Revisou permissões', '2024-02-09 11:49:00', 1, 2, 'Terminal-02', 'Evento de demonstração 013', 119),
+  (14, 'Logout', '2024-02-12 12:02:00', 2, 2, 'Terminal-03', 'Evento de demonstração 014', 126),
+  (15, 'Falha de autenticação', '2024-02-15 13:15:00', 3, 1, 'Terminal-04', 'Evento de demonstração 015', 133),
+  (16, 'Login', '2024-02-18 14:28:00', 4, 3, 'Terminal-05', 'Evento de demonstração 016', 140),
+  (17, 'Consultou catálogo', '2024-02-21 15:41:00', 5, 4, 'Terminal-06', 'Evento de demonstração 017', 147),
+  (18, 'Exportou relatório', '2024-02-24 16:54:00', 6, 2, 'Terminal-07', 'Evento de demonstração 018', 154),
+  (19, 'Atualizou inventário', '2024-02-27 17:07:00', 1, 2, 'Terminal-08', 'Evento de demonstração 019', 161),
+  (20, 'Solicitou compra', '2024-03-01 08:20:00', 2, 2, 'Terminal-09', 'Evento de demonstração 020', 168),
+  (21, 'Revisou permissões', '2024-03-04 09:33:00', 3, 1, 'Terminal-10', 'Evento de demonstração 021', 103),
+  (22, 'Logout', '2024-03-07 10:46:00', 4, 3, 'Terminal-11', 'Evento de demonstração 022', 110),
+  (23, 'Falha de autenticação', '2024-03-10 11:59:00', 5, 4, 'Terminal-12', 'Evento de demonstração 023', 117),
+  (24, 'Login', '2024-03-13 12:12:00', 6, 2, 'Terminal-01', 'Evento de demonstração 024', 124),
+  (25, 'Consultou catálogo', '2024-03-16 13:25:00', 1, 2, 'Terminal-02', 'Evento de demonstração 025', 131),
+  (26, 'Exportou relatório', '2024-03-19 14:38:00', 2, 2, 'Terminal-03', 'Evento de demonstração 026', 138),
+  (27, 'Atualizou inventário', '2024-03-22 15:51:00', 3, 1, 'Terminal-04', 'Evento de demonstração 027', 145),
+  (28, 'Solicitou compra', '2024-03-25 16:04:00', 4, 3, 'Terminal-05', 'Evento de demonstração 028', 152),
+  (29, 'Revisou permissões', '2024-03-28 17:17:00', 5, 4, 'Terminal-06', 'Evento de demonstração 029', 159),
+  (30, 'Logout', '2024-03-31 08:30:00', 6, 2, 'Terminal-07', 'Evento de demonstração 030', 166),
+  (31, 'Falha de autenticação', '2024-04-03 09:43:00', 1, 2, 'Terminal-08', 'Evento de demonstração 031', 101),
+  (32, 'Login', '2024-04-06 10:56:00', 2, 2, 'Terminal-09', 'Evento de demonstração 032', 108),
+  (33, 'Consultou catálogo', '2024-04-09 11:09:00', 3, 1, 'Terminal-10', 'Evento de demonstração 033', 115),
+  (34, 'Exportou relatório', '2024-04-12 12:22:00', 4, 3, 'Terminal-11', 'Evento de demonstração 034', 122),
+  (35, 'Atualizou inventário', '2024-04-15 13:35:00', 5, 4, 'Terminal-12', 'Evento de demonstração 035', 129),
+  (36, 'Solicitou compra', '2024-04-18 14:48:00', 6, 2, 'Terminal-01', 'Evento de demonstração 036', 136),
+  (37, 'Revisou permissões', '2024-04-21 15:01:00', 1, 2, 'Terminal-02', 'Evento de demonstração 037', 143),
+  (38, 'Logout', '2024-04-24 16:14:00', 2, 2, 'Terminal-03', 'Evento de demonstração 038', 150),
+  (39, 'Falha de autenticação', '2024-04-27 17:27:00', 3, 1, 'Terminal-04', 'Evento de demonstração 039', 157),
+  (40, 'Login', '2024-04-30 08:40:00', 4, 3, 'Terminal-05', 'Evento de demonstração 040', 164),
+  (41, 'Consultou catálogo', '2024-05-03 09:53:00', 5, 4, 'Terminal-06', 'Evento de demonstração 041', 171),
+  (42, 'Exportou relatório', '2024-05-06 10:06:00', 6, 2, 'Terminal-07', 'Evento de demonstração 042', 106),
+  (43, 'Atualizou inventário', '2024-05-09 11:19:00', 1, 2, 'Terminal-08', 'Evento de demonstração 043', 113),
+  (44, 'Solicitou compra', '2024-05-12 12:32:00', 2, 2, 'Terminal-09', 'Evento de demonstração 044', 120),
+  (45, 'Revisou permissões', '2024-05-15 13:45:00', 3, 1, 'Terminal-10', 'Evento de demonstração 045', 127),
+  (46, 'Logout', '2024-05-18 14:58:00', 4, 3, 'Terminal-11', 'Evento de demonstração 046', 134),
+  (47, 'Falha de autenticação', '2024-05-21 15:11:00', 5, 4, 'Terminal-12', 'Evento de demonstração 047', 141),
+  (48, 'Login', '2024-05-24 16:24:00', 6, 2, 'Terminal-01', 'Evento de demonstração 048', 148),
+  (49, 'Consultou catálogo', '2024-05-27 17:37:00', 1, 2, 'Terminal-02', 'Evento de demonstração 049', 155),
+  (50, 'Exportou relatório', '2024-05-30 08:50:00', 2, 2, 'Terminal-03', 'Evento de demonstração 050', 162),
+  (51, 'Atualizou inventário', '2024-06-02 09:03:00', 3, 1, 'Terminal-04', 'Evento de demonstração 051', 169),
+  (52, 'Solicitou compra', '2024-06-05 10:16:00', 4, 3, 'Terminal-05', 'Evento de demonstração 052', 104),
+  (53, 'Revisou permissões', '2024-06-08 11:29:00', 5, 4, 'Terminal-06', 'Evento de demonstração 053', 111),
+  (54, 'Logout', '2024-06-11 12:42:00', 6, 2, 'Terminal-07', 'Evento de demonstração 054', 118),
+  (55, 'Falha de autenticação', '2024-06-14 13:55:00', 1, 2, 'Terminal-08', 'Evento de demonstração 055', 125),
+  (56, 'Login', '2024-06-17 14:08:00', 2, 2, 'Terminal-09', 'Evento de demonstração 056', 132),
+  (57, 'Consultou catálogo', '2024-06-20 15:21:00', 3, 1, 'Terminal-10', 'Evento de demonstração 057', 139),
+  (58, 'Exportou relatório', '2024-06-23 16:34:00', 4, 3, 'Terminal-11', 'Evento de demonstração 058', 146),
+  (59, 'Atualizou inventário', '2024-06-26 17:47:00', 5, 4, 'Terminal-12', 'Evento de demonstração 059', 153),
+  (60, 'Solicitou compra', '2024-06-29 08:00:00', 6, 2, 'Terminal-01', 'Evento de demonstração 060', 160),
+  (61, 'Revisou permissões', '2024-07-02 09:13:00', 1, 2, 'Terminal-02', 'Evento de demonstração 061', 167),
+  (62, 'Logout', '2024-07-05 10:26:00', 2, 2, 'Terminal-03', 'Evento de demonstração 062', 102),
+  (63, 'Falha de autenticação', '2024-07-08 11:39:00', 3, 1, 'Terminal-04', 'Evento de demonstração 063', 109),
+  (64, 'Login', '2024-07-11 12:52:00', 4, 3, 'Terminal-05', 'Evento de demonstração 064', 116),
+  (65, 'Consultou catálogo', '2024-07-14 13:05:00', 5, 4, 'Terminal-06', 'Evento de demonstração 065', 123),
+  (66, 'Exportou relatório', '2024-07-17 14:18:00', 6, 2, 'Terminal-07', 'Evento de demonstração 066', 130),
+  (67, 'Atualizou inventário', '2024-07-20 15:31:00', 1, 2, 'Terminal-08', 'Evento de demonstração 067', 137),
+  (68, 'Solicitou compra', '2024-07-23 16:44:00', 2, 2, 'Terminal-09', 'Evento de demonstração 068', 144),
+  (69, 'Revisou permissões', '2024-07-26 17:57:00', 3, 1, 'Terminal-10', 'Evento de demonstração 069', 151),
+  (70, 'Logout', '2024-07-29 08:10:00', 4, 3, 'Terminal-11', 'Evento de demonstração 070', 158),
+  (71, 'Falha de autenticação', '2024-08-01 09:23:00', 5, 4, 'Terminal-12', 'Evento de demonstração 071', 165),
+  (72, 'Login', '2024-08-04 10:36:00', 6, 2, 'Terminal-01', 'Evento de demonstração 072', 100),
+  (73, 'Consultou catálogo', '2024-08-07 11:49:00', 1, 2, 'Terminal-02', 'Evento de demonstração 073', 107),
+  (74, 'Exportou relatório', '2024-08-10 12:02:00', 2, 2, 'Terminal-03', 'Evento de demonstração 074', 114),
+  (75, 'Atualizou inventário', '2024-08-13 13:15:00', 3, 1, 'Terminal-04', 'Evento de demonstração 075', 121),
+  (76, 'Solicitou compra', '2024-08-16 14:28:00', 4, 3, 'Terminal-05', 'Evento de demonstração 076', 128),
+  (77, 'Revisou permissões', '2024-08-19 15:41:00', 5, 4, 'Terminal-06', 'Evento de demonstração 077', 135),
+  (78, 'Logout', '2024-08-22 16:54:00', 6, 2, 'Terminal-07', 'Evento de demonstração 078', 142),
+  (79, 'Falha de autenticação', '2024-08-25 17:07:00', 1, 2, 'Terminal-08', 'Evento de demonstração 079', 149),
+  (80, 'Login', '2024-08-28 08:20:00', 2, 2, 'Terminal-09', 'Evento de demonstração 080', 156);
 
--- stg_vendas_csv e etl_rejeicoes ficam vazias de propósito; serão usadas no desafio ETL.
+-- Dados demonstrativos do modelo ampliado. Staging e rejeições continuam vazios:
+-- dependem de uma carga externa e da validação dela.
+INSERT INTO clientes (cliente_id, nome, email, telefone, data_cadastro, consentimento_marketing, status_cliente_id) VALUES
+  (1, 'Alex Morgan', 'alex.morgan@example.com', '+1-555-9001', '2023-01-20', 1, 1),
+  (2, 'Mariana Souza', 'mariana.souza@example.com', '+55-11-5555-9002', '2023-06-15', 1, 1),
+  (3, 'Theo Martin', 'theo.martin@example.com', '+33-1-5555-9003', '2024-02-10', 0, 1),
+  (4, 'Luna Kim', 'luna.kim@example.com', '+81-3-5555-9004', '2024-09-01', 1, 1);
+  
+INSERT INTO enderecos_cliente (endereco_cliente_id, cliente_id, tipo_movimentacao_estoque_id, endereco, cidade, estado_provincia, cep, pais_id, principal) VALUES
+  (1, 1, 1, '10 Market Street', 'Seattle', 'Washington', '98101', 'US', 1),
+  (2, 2, 1, 'Rua das Artes, 55', 'São Paulo', 'SP', '01310-100', 'BR', 1),
+  (3, 3, 1, '12 Rue des Jeux', 'Paris', 'Île-de-France', '75001', 'FR', 1),
+  (4, 4, 1, '2-8-1 Shibuya', 'Tokyo', 'Tokyo', '150-0002', 'JP', 1);
+
+-- Atualizando os registros de clientes/vendas.
+UPDATE vendas SET cliente_id = 1 WHERE venda_id IN (7002, 7007, 7012);
+UPDATE vendas SET cliente_id = 2 WHERE venda_id IN (7022, 7027);
+UPDATE vendas SET cliente_id = 3 WHERE venda_id IN (7037, 7042);
+UPDATE vendas SET cliente_id = 4 WHERE venda_id IN (7048, 7051);
+
+INSERT INTO pagamentos (pagamento_id, venda_id, data_pagamento, valor, moeda, forma_pagamento_id, status_pagamento_id, referencia_transacao) VALUES
+  (1, 7002, '2023-01-22 14:10:00', 520.72, 'USD', 1, 2, 'PAY-7002'),
+  (2, 7007, '2023-04-27 10:30:00', 66644.31, 'USD', 2, 2, 'PAY-7007'),
+  (3, 7022, '2024-02-06 16:05:00', 9078.68, 'USD', 1, 2, 'PAY-7022'),
+  (4, 7037, '2024-11-17 11:40:00', 4217.44, 'USD', 5, 2, 'PAY-7037'),
+  (5, 7048, NULL, 401.50, 'USD', 3, 1, 'PAY-7048');
+
+INSERT INTO entregas (entrega_id, venda_id, endereco_cliente_id, transportadora, codigo_rastreio, data_postagem, data_entrega, status_entrega_id) VALUES
+  (1, 7002, 1, 'Flash Logistics', 'FL-7002', '2023-01-23', '2023-01-25', 3),
+  (2, 7007, 1, 'Flash Logistics', 'FL-7007', '2023-04-28', '2023-05-02', 3),
+  (3, 7022, 2, 'Correio Expresso', 'CE-7022', '2024-02-07', '2024-02-12', 3),
+  (4, 7037, 3, 'Europa Parcel', 'EP-7037', '2024-11-18', '2024-11-22', 3),
+  (5, 7048, 4, 'Tokyo Courier', 'TC-7048', NULL, NULL, 1);
+
+INSERT INTO fornecedores (fornecedor_id, razao_social, email, telefone, pais_id, ativo) VALUES
+  (1, 'Stark Props Supply', 'comercial@starkprops.example', '+1-555-8101', 'US', 1),
+  (2, 'Artes Místicas Brasil', 'vendas@artesmisticas.example', '+55-11-5555-8102', 'BR', 1),
+  (3, 'Kyoto Collectibles', 'sales@kyotocollectibles.example', '+81-3-5555-8103', 'JP', 1);
+
+INSERT INTO fornecedores_produtos (fornecedor_id, produto_id, sku_fornecedor, custo_unitario, moeda) VALUES
+  (1, 1, 'SP-POP-001', 180.00, 'USD'),
+  (1, 3, 'SP-WEB-001', 140.00, 'USD'),
+  (2, 25, 'AMB-DC-003', 820.00, 'BRL'),
+  (3, 15, 'KC-PKM-002', 120.00, 'USD'),
+  (3, 20, 'KC-ZEL-001', 1100.00, 'USD');
+
+INSERT INTO movimentacoes_estoque (movimentacao_id, produto_id, escritorio_id, data_movimentacao, tipo_movimentacao_estoque_id, quantidade, referencia) VALUES
+  (1, 1, 1400, '2025-07-01 09:00:00', 1, 40, 'COMPRA-2025-001'),
+  (2, 1, 1400, '2025-07-10 14:00:00', 2, 4, 'PEDIDO-7051'),
+  (3, 15, 3000, '2025-07-05 10:30:00', 1, 25, 'COMPRA-2025-002'),
+  (4, 20, 3000, '2025-07-08 16:20:00', 3, 2, 'INVENTARIO-2025-07'),
+  (5, 25, 2800, '2025-07-12 11:15:00', 1, 12, 'COMPRA-2025-003');
+
+INSERT INTO historico_precos_produto (preco_id, produto_id, preco, moeda, inicio_vigencia, fim_vigencia) VALUES
+  (1, 1, 280.00, 'USD', '2024-01-01', '2024-12-31'),
+  (2, 1, 300.13, 'USD', '2025-01-01', NULL),
+  (3, 15, 180.00, 'USD', '2024-01-01', '2024-12-31'),
+  (4, 15, 200.00, 'USD', '2025-01-01', NULL),
+  (5, 25, 1200.00, 'USD', '2025-01-01', NULL);
+
+INSERT INTO cursos (curso_id, curso_nome, carga_horaria, nivel_curso_id, ativo) VALUES
+  (1, 'Tecnologia Criativa', 80, 1, 1),
+  (2, 'Narrativas e Cultura Pop', 60, 2, 1),
+  (3, 'Laboratório de Dados', 100, 3, 1);
+
+INSERT INTO turmas (turma_id, curso_id, codigo, data_inicio, data_fim, capacidade, professor_funcionario_id, escritorio_id) VALUES
+  (1, 1, 'TEC-2025-01', '2025-02-03', '2025-04-25', 30, 176, 3000),
+  (2, 2, 'NAR-2025-01', '2025-03-10', '2025-05-30', 25, 180, 4500),
+  (3, 3, 'DAD-2025-01', '2025-06-02', '2025-08-29', 20, 187, 1300);
+
+INSERT INTO alunos (aluno_id, nome, email, data_nascimento, data_cadastro, status_aluno_id) VALUES
+  (1, 'Ariel Nunes', 'ariel.nunes@aluno.momento.edu', '2002-05-14', '2025-01-10', 3),
+  (2, 'Joana Lee', 'joana.lee@aluno.momento.edu', '2001-08-22', '2025-01-12', 3),
+  (3, 'Diego Ramos', 'diego.ramos@aluno.momento.edu', '2003-02-09', '2025-02-01', 1),
+  (4, 'Maya Dupont', 'maya.dupont@aluno.momento.edu', '2000-11-30', '2025-05-20', 1);
+
+INSERT INTO matriculas (matricula_id, aluno_id, turma_id, data_matricula, status_matricula_id, nota_final, certificado_emitido) VALUES
+  (1, 1, 1, '2025-01-15', 3, 91.50, 1),
+  (2, 2, 1, '2025-01-16', 3, 86.00, 1),
+  (3, 3, 2, '2025-02-20', 1, NULL, 0),
+  (4, 4, 3, '2025-05-22', 1, NULL, 0);
+
+INSERT INTO bolsas (bolsa_id, aluno_id, curso_id, percentual_desconto, criterio, data_concessao) VALUES
+  (1, 1, 1, 100.00, 'Bolsa de acesso para formação em tecnologia', '2025-01-12'),
+  (2, 3, 2, 50.00, 'Bolsa de diversidade e inclusão', '2025-02-18');
+
+-- Ariel concluiu o curso e ingressou na empresa; o vínculo conserva essa origem.
+INSERT INTO funcionarios
+  (funcionario_id, primeiro_nome, sobrenome, email, telefone, data_contratacao, cargo_id, salario, moeda_salario, gerente_id, departamento_id, status_funcionario_id)
+VALUES
+  (300, 'Ariel', 'Nunes', 'ariel.nunes@momento.org', '+1-555-9200', '2025-05-12', 9, 5200.00, 'USD', 103, 6, 1);
+
+INSERT INTO vinculos_talentos (vinculo_id, aluno_id, funcionario_id, departamento_id, tipo_vinculo_id, data_inicio, data_fim, status_vinculo_id) VALUES
+  (1, 1, NULL, 6, 1, '2025-05-05', '2025-05-11', 2),
+  (2, 1, 300, 6, 2, '2025-05-12', NULL, 1);
+

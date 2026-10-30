@@ -29,7 +29,8 @@ Por exemplo, se o campo é uma data, especifiquem se o formato é `YYYY-MM-DD` o
 Modelo: 
 | Campo | Tipo | Descrição | Formato esperado |
 |-------|------|-----------|------------------|
-|sku_origem | VARCHAR |Stock Keeping Unit: código usado para identificar um produto específico. Pode diferenciar, por exemplo, uma réplica em tamanho adulto de uma miniatura. | Alfanumérico, sem espaços, 8 a 12 caracteres: exemplo: `SW-001` |
+|sku_origem | VARCHAR | Stock Keeping Unit: código usado para identificar um produto específico. Pode diferenciar, por exemplo, uma réplica em tamanho adulto de uma miniatura. | Alfanumérico, sem espaços, 8 a 12 caracteres: exemplo: `SW-001` |
+
 
 
 ### 2. Definir regras de qualidade
@@ -88,7 +89,6 @@ A nova remessa chama [nerd_itens_old_bases.sql](nerd_itens_old_bases.sql)
 
 **Exemplo de registro resolvido**: dois SKUs iguais, com nomes e variantes idênticas, mas com preços diferentes. A equipe pode decidir manter o registro com preço mais recente e marcar o outro para revisão.
 
-
 ## Critérios de sucesso
 
 - Os **valores originais continuam consultáveis**.
@@ -112,7 +112,9 @@ A **higienização de dados** é o processo de identificar e corrigir ou remover
 - **Detecção de erros**: Identificar dados incorretos, inconsistentes ou incompletos.
 - **Correção de erros**: Corrigir ou remover dados incorretos, inconsistentes ou incompletos.
 
-## Dica
+
+
+## Dicas
 
 Funções como `TRIM`, `LOWER`, `UPPER`, `REPLACE`, `CASE`, `CAST` e `STR_TO_DATE` podem ajudar. Use-as **depois de compreender os formatos e as ambiguidades** dos dados. 
 

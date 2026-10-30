@@ -146,33 +146,89 @@ A empresa está crescendo e mudanças precisam acontecer!
 
 ---
 
-## Nível 7: Análise Avançada com Agregações
+## Nível 7: Da sala de aula ao impacto corporativo
 
-**7.1** Crie um relatório mostrando cada departamento com: nome do departamento, número de funcionários, salário total e média salarial.
+Agora a história acompanha pessoas. A Momento quer entender se sua escola está formando talentos, ampliando acesso e criando pontes reais para o mundo do trabalho. Use os dados para contar essa jornada com cuidado: números revelam tendências, mas não substituem histórias individuais.
 
-**7.2** Liste os 3 cargos mais comuns na empresa e quantos funcionários ocupam cada cargo.
+**7.1 — O ponto de partida**
 
-**7.3** Encontre todos os funcionários que ganham acima da média salarial de seus respectivos departamentos.
+Quais cursos estão ativos? Para cada um, mostre carga horária, nível e quantas turmas já foram abertas. Que jornada de aprendizagem a escola oferece hoje?
 
-**7.4** Calcule a taxa de crescimento da empresa por ano (quantos funcionários foram contratados a cada ano).
+**7.2 — Quem chegou até aqui?**
 
-**7.5** Crie um ranking dos vendedores, mostrando: nome do vendedor, número de vendas realizadas e receita total gerada.
+Para cada turma, mostre curso, professores, capacidade e número de matrículas. Há vagas disponíveis ou turmas ainda sem estudantes? O que isso sugere sobre oferta e procura?
 
-**7.6** Encontre os produtos que foram vendidos por apenas um vendedor.
+**7.3 — Acesso à formação**
+
+Quantos estudantes receberam bolsa, qual foi o percentual concedido e em quais cursos? 
+
+**7.4 — Conclusão e reconhecimento**
+
+Por curso e turma, calcule matrículas, concluintes, certificados emitidos e nota média. Quais perguntas adicionais seriam necessárias antes de afirmar que um curso teve “mais sucesso” que outro?
+
+**7.5 — O próximo capítulo de Ariel**
+
+Reconstrua a trajetória de Ariel Nunes: curso, turma, matrícula, bolsa, estágio e contratação. Em que momento a formação passou a se conectar com uma oportunidade corporativa?
+
+**7.6 — Da aprendizagem para o trabalho**
+
+Liste os vínculos de talentos com estudante, tipo de vínculo, departamento, status e, quando existir, a pessoa funcionária associada. Quantas pessoas passaram por estágio e quantas chegaram à contratação?
+
+**7.7 — Onde a ponte encontra a empresa?**
+
+Quais departamentos recebem talentos da escola? Compare-os com seu total de funcionários e média salarial. Como evitar a conclusão apressada de que um departamento é “melhor” apenas porque contratou mais estudantes?
+
+**7.8 — Um retrato para a liderança**
+
+Crie uma única consulta que apresente: total de alunos, matrículas ativas, concluintes, bolsas concedidas, estágios, contratações e departamentos que receberam talentos. Escreva, abaixo do resultado, um parágrafo de até cinco linhas explicando o que a liderança pode aprender — e o que ainda não é possível afirmar.
+
+**7.9 — Educação e negócio, lado a lado**
+
+Monte uma consulta comparando, por período, indicadores educacionais (matrículas, certificados e vínculos) com indicadores corporativos (vendas, receita e pessoas contratadas). Quais limites existem nessa comparação, já que correlação não comprova causalidade?
+
+**7.10 — A próxima pergunta**
+
+Imagine que você terá recursos para coletar somente um dado novo para tornar essa história mais justa e completa. Qual seria ele: critério socioeconômico, satisfação de estudantes, área de interesse profissional, colocação após a formação ou outro? Justifique e descreva como protegeria a privacidade das pessoas.
+
+## Nível 8: Duas Frentes, Duas Operações
+
+**8.1** Quanto custa manter a frente educacional em comparação à operação comercial? (Faça uma análise de custo total com salários, suprimentos e despesas gerais para cada departamento.)
+
+**8.2** Quais escritórios concentram equipes comerciais e quais concentram equipes da escola?
+
+**8.3** A receita das vendas consegue sustentar investimentos educacionais?
+
+**8.4** Quais cargos e departamentos são compartilhados pelas duas frentes?
+
+**8.5** Como a expansão internacional afeta vendas, equipes e o projeto educacional?
+
+## Nível 9: Análise Avançada com Agregações
+
+**9.1** Crie um relatório mostrando cada departamento com: nome do departamento, número de funcionários, salário total e média salarial.
+
+**9.2** Liste os 3 cargos mais comuns na empresa e quantos funcionários ocupam cada cargo.
+
+**9.3** Encontre todos os funcionários que ganham acima da média salarial de seus respectivos departamentos.
+
+**9.4** Calcule a taxa de crescimento da empresa por ano (quantos funcionários foram contratados a cada ano).
+
+**9.5** Crie um ranking dos vendedores, mostrando: nome do vendedor, número de vendas realizadas e receita total gerada.
+
+**9.6** Encontre os produtos que foram vendidos por apenas um vendedor.
 
 ---
 
-## Nível 8:  Auditoria de Vendas
+## Nível 10:  Auditoria de Vendas
 
 O departamento financeiro suspeita de irregularidades.
 
-**8.1** Encontre vendas que não possuem vendedor associado.
+**10.1** Encontre vendas que não possuem vendedor associado.
 
-**8.2** Verifique se há vendedores registrados nas vendas que não existem na coleção de funcionários.
+**10.2** Verifique se há vendedores registrados nas vendas que não existem na coleção de funcionários.
 
-**8.3** Identifique produtos que aparecem nas vendas mas com preços unitários muito diferentes entre transações (variação > 10%).
+**10.3** Identifique produtos que aparecem nas vendas mas com preços unitários muito diferentes entre transações (variação > 10%).
 
-**8.4** O CEO pediu um dashboard completo.
+**10.4** O CEO pediu um dashboard completo.
 
 Crie UMA ÚNICA query de agregação que retorne:
    - Total de funcionários
@@ -182,10 +238,14 @@ Crie UMA ÚNICA query de agregação que retorne:
    - Receita total de vendas
    - Produto mais vendido
 
-## Nível 8: ETL do CSV
+## Nível 11: ETL do CSV
 
 O arquivo [vendas_campanha_bruto.csv](vendas_campanha_bruto.csv) contém dados de pedidos e itens em formatos variados. 
 O que você deve fazer: carregá-lo na tabela `stg_vendas_csv`, sem converter nem corrigir os valores na importação. 
+
+> stg é uma abreviação de staging (preparação, em portugês): uma área intermediária onde os dados brutos são carregados antes de serem tratados e enviados às tabelas finais.
+
+Neste exercício, stg_vendas_csv recebe o conteúdo do CSV como chegou. Depois, os dados são validados e transformados, carregados os aceitos em vendas e itens_venda. Então, são documentados os casos problemáticos em etl_rejeicoes. Apesar do nome, essa tabela não é necessariamente temporária: ela pode ser mantida para rastrear a origem dos dados.
 
 **Dica**: No MySQL Workbench, vocês podem usar o **Table Data Import Wizard** apontando para a tabela já criada, com delimitador `;` e a primeira linha como cabeçalho. Se o ambiente permitir `LOAD DATA LOCAL INFILE`, também é possível usá-lo.
 
@@ -198,7 +258,7 @@ Construam um fluxo com estas fases:
 Regras para orientar a análise:
 
 - usem `locale_origem` ao interpretar datas e separadores decimais; se a localidade não estiver identificada, não escolham uma interpretação por palpite;
-- `moeda_raw` precisa ser identificável. Não convertam BRL ou outra moeda para USD sem uma taxa de câmbio aprovada;
+- `moeda_raw` precisa ser identificável; preservem a moeda original do registro;
 - SKU desconhecido, vendedor sem correspondência, quantidade inválida, data impossível ou preço não interpretável precisam de tratamento documentado;
 - linhas com a mesma combinação pedido/item podem ser duplicatas ou correções conflitantes. Compare os demais campos antes de decidir;
 - se um pedido tiver uma linha pendente, decidam se carregam as linhas válidas ou mantêm o pedido inteiro em revisão. Registrem o critério usado;
@@ -206,7 +266,7 @@ Regras para orientar a análise:
 
 A tabela `etl_rejeicoes` foi criada para documentar decisões. Um registro rejeitado não deve desaparecer silenciosamente: indiquem se foi duplicata, rejeição definitiva ou revisão manual.
 
-## Nível 9: Alterações seguras
+## Nível 12: Alterações seguras
 
 Façam alterações em transações e verifiquem o resultado antes de confirmar:
 
@@ -215,7 +275,7 @@ Façam alterações em transações e verifiquem o resultado antes de confirmar:
 - transferir duas pessoas de Tecnologia para o novo departamento, justificando a escolha;
 - reajustar salários de quem permanecer em Tecnologia;
 - adicionar uma compra de headsets com quantidade, custo unitário, moeda, data e referência de compra;
-- simular aposentadoria alterando `situacao` para `INATIVO`, sem apagar o funcionário nem seu histórico.
+- simular aposentadoria alterando o status do funcionário para `INATIVO`, sem apagar o funcionário nem seu histórico.
 
 Exemplo de fluxo seguro:
 
@@ -225,3 +285,4 @@ START TRANSACTION;
 -- confira com SELECT se o resultado corresponde ao esperado
 ROLLBACK; -- use COMMIT somente quando estiver validado
 ```
+

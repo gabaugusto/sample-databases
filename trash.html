@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dropdown with Exclude Filter</title>
+    <style>
+        :root {
+            --primary-color: #3b82f6;
+            --border-color: #e5e7eb;
+            --text-color: #1f2937;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, sans-serif;
+            padding: 2rem;
+            background-color: #f9fafb;
+            color: var(--text-color);
+        }
+
+        .dropdown-container {
+            position: relative;
+            width: 300px;
+        }
+
+        .dropdown-button {
+            width: 100%;
+            padding: 10px 12px;
+            background: #fff;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            text-align: left;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 14px;
+        }
+
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            width: 100%;
+            background: #fff;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            margin-top: 4px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            display: none;
+            z-index: 10;
+        }
+
+        .dropdown-menu.show {
+            display: block;
+        }
+
+        .search-container {
+            padding: 8px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .search-input {
+            width: calc(100% - 16px);
+            padding: 6px 8px;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            font-size: 13px;
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: var(--primary-color);
+        }
+
+        .dropdown-list {
+            max-height: 200px;
+            overflow-y: auto;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .dropdown-item {
+            display: flex;
+            align-items: center;
+            padding: 8px 12px;
+            font-size: 14px;
+            cursor: pointer;
+        }
+
+        .dropdown-item:hover {
+            background-color: #f3f4f6;
+        }
+
+        .dropdown-item input[type="checkbox"] {
+            margin-right: 10px;
+            accent-color: var(--primary-color);
+        }
+
+        .helper-text {
+            font-size: 11px;
+            color: #6b7280;
+            margin-top: 4px;
+            padding: 0 4px;
+        }
+    </style>
+</head>
+<body>
+
+    <h3>Select Frameworks</h3>
+    <div class="dropdown-container">
+        <button class="dropdown-button" id="dropBtn">
+            <span id="btnText">Select options...</span>
+            <span>▼</span>
+        </button>
+        
+        <div class="dropdown-menu" id="dropMenu">
+            <div class="search-container">
+                <input type="text" class="search-input" id="searchInput" placeholder="Search... (use -word to exclude)">
+                <div class="helper-text">Tip: Type "Script -React" to find scripts but exclude React.</div>
+            </div>
+            <ul class="dropdown-list" id="dropdownList">
+                <!-- Items generated dynamically via JS -->
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        // Sample Data
+        const items = [
+            "React.js", "Angular", "Vue.js", "Vanilla JavaScript", 
+            "TypeScript", "Next.js", "Nuxt.js", "Svelte"
+        ];
+
+        const dropBtn = document.getElementById('dropBtn');
+        const dropMenu = document.getElementById('dropMenu');
+        const searchInput = document.getElementById('searchInput');
+        const dropdownList = document.getElementById('dropdownList');
+        const btnText = document.getElementById('btnText');
+        
+        let selectedItems = [];
+
+        // Initialize List
+        function initList() {
+            dropdownList.innerHTML = '';
+            items.forEach(item => {
+                const li = document.createElement('li');
+                li.className = 'dropdown-item';
+                li.dataset.value = item;
+                li.innerHTML = `
+                    <input type="checkbox" value="${item}">
+                    <label>${item}</label>
+                `;
+                dropdownList.appendChild(li);
+            });
+        }
+
+        // Toggle Dropdown Visibility
+        dropBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            dropMenu.classList.toggle('show');
+        });
+
+        // Close dropdown when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('.dropdown-container')) {
+                dropMenu.classList.remove('show');
+            }
+        });
+
+        // Filter and Exclude Logic
+        searchInput.addEventListener('input', (e) => {
+            const query = e.target.value.toLowerCase().trim();
+            const tokens = query.split(/\s+/); // Split search by spaces
+            
+            // Separate include words from exclude words (starting with -)
+            const includeWords = tokens.filter(t => t && !t.startsWith('-'));
+            const excludeWords = tokens.filter(t => t.startsWith('-')).map(t => t.substring(1));
+
+            const listItems = dropdownList.querySelectorAll('.dropdown-item');
+
+            listItems.forEach(li => {
+                const itemText = li.dataset.value.toLowerCase();
+                
+                // Condition 1: Must contain all include words
+                const matchesInclude = includeWords.every(word => itemText.includes(word));
+                
+                // Condition 2: Must NOT contain any exclude words
+                const matchesExclude = excludeWords.some(word => word && itemText.includes(word));
+
+                if (matchesInclude && !matchesExclude) {
+                    li.style.display = 'flex';
+                } else {
+                    li.style.display = 'none';
+                }
+            });
+        });
+
+        // Handle Checkbox Selection
+        dropdownList.addEventListener('change', (e) => {
+            if (e.target.type === 'checkbox') {
+                const val = e.target.value;
+                if (e.target.checked) {
+                    selectedItems.push(val);
+                } else {
+                    selectedItems = selectedItems.filter(item => item !== val);
+                }
+                updateButtonText();
+            }
+        });
+
+        // Prevent dropdown from closing when clicking list items or search box
+        dropMenu.addEventListener('click', (e) => {
+            e.stopPropagation();
+        });
+
+        function updateButtonText() {
+            if (selectedItems.length === 0) {
+                btnText.innerText = "Select options...";
+            } else if (selectedItems.length <= 2) {
+                btnText.innerText = selectedItems.join(', ');
+            } else {
+                btnText.innerText = `${selectedItems.length} items selected`;
+            }
+        }
+
+        // Run
+        initList();
+    </script>
+</body>
+</html>

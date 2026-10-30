@@ -1,180 +1,130 @@
+-- Views para o modelo Momento (MySQL 8.0+).
+-- A receita usa itens_venda.preco_unitario: este é o preço histórico da transação.
 
--- Creating VIEWs
-CREATE OR REPLACE VIEW `dados_funcionarios` AS
-SELECT
-  funcionarios.funcionario_id AS funcionario_id,
-  CONCAT(funcionarios.primeiro_nome, ' ', funcionarios.sobrenome) AS 'funcionario_nome',
-  funcionarios.telefone AS telefone,
-  funcionarios.email AS email,
-  funcionarios.data_contratacao AS data_contratacao,
-  cargos.cargo_nome AS cargo,
-  funcionarios.salario AS salario,
-  cargos.min_salario AS min_salario,
-  cargos.max_salario AS max_salario,
-  departamentos.departamento_nome AS departamento,
-  escritorios.escritorio_nome AS escritorio,
-  escritorios.endereco AS endereco,
-  paises.pais_nome AS pais,
-  regioes.regiao_nome AS regiao
-
- FROM funcionarios
-
-INNER JOIN cargos
-  ON funcionarios.cargo_id = cargos.cargo_id
-INNER JOIN departamentos
-  ON funcionarios.departamento_id = departamentos.departamento_id
-INNER JOIN escritorios
-  ON departamentos.escritorio_id = escritorios.escritorio_id
-INNER JOIN paises
-  ON escritorios.pais_id = paises.pais_id
-INNER JOIN regioes
-  ON paises.regiao_id = regioes.regiao_id;
-
--- Creating VIEW dependentes
-CREATE OR REPLACE VIEW `dados_dependentes` AS
-SELECT
-  CONCAT(dependentes.primeiro_nome, ' ', dependentes.sobrenome) AS 'dependente_nome',
-  dependentes.relacionamento AS relacionamento,
-  CONCAT(funcionarios.primeiro_nome, ' ', funcionarios.sobrenome) AS 'funcionario_nome'
- FROM dependentes
-INNER JOIN funcionarios
-  ON dependentes.funcionario_id = funcionarios.funcionario_id;
-
--- Creating VIEW custo escritorios
-CREATE OR REPLACE VIEW `custos_escritorios` AS
-SELECT
-    suprimentos.suprimento_nome,
-    suprimentos.quantidade_comprada AS quantidade,
-    suprimentos.custo,
-    escritorios.escritorio_nome
-	FROM suprimentos
-INNER JOIN escritorios
-	ON suprimentos.escritorio_id = escritorios.escritorio_id;
-
--- Creating audit VIEW
-CREATE OR REPLACE VIEW `relatorio_auditoria` AS
-SELECT
-    audit_log.log_acao as `acao`,
-    audit_log.log_ts as `timestamp`,
-    audit_log.log_id,
-    audit_log.funcionario_id,
-    audit_log.log_modulo AS modulo,
-    audit_log.log_status AS status,
-    audit_log.log_origem AS origem,
-    audit_log.log_detalhes AS detalhes,
-    CONCAT(funcionarios.primeiro_nome, ' ', funcionarios.sobrenome) AS 'funcionario_nome'
-	FROM audit_log
-INNER JOIN  funcionarios
-	ON audit_log.funcionario_id = funcionarios.funcionario_id;
-
--- Creating vendas_report VIEW
-CREATE OR REPLACE VIEW `relatorio_vendas` AS
-SELECT
-    vendas.venda_id as 'ticket',
-    vendas.quantidade_vendida as 'quantidade_vendida',
-    produtos.produto_nome as 'produto',
-    produtos.produto_id as 'produto_id',
-    produtos.produto_price as 'preco_unitario',
-    vendas.venda_data,
-    funcionarios.funcionario_id,
-    CONCAT(funcionarios.primeiro_nome, ' ', funcionarios.sobrenome) AS 'funcionario_nome'
-	FROM vendas
-INNER JOIN funcionarios
-	ON vendas.funcionario_id = funcionarios.funcionario_id
-INNER JOIN produtos
-	ON vendas.produto_id = produtos.produto_id;
-
-  -- Creating vendas_report VIEW
-CREATE OR REPLACE VIEW `vendas_funcionario_performance` AS
-SELECT
-  CONCAT(funcionarios.primeiro_nome, ' ', funcionarios.sobrenome) AS funcionario_nome,
-  SUM(vendas.quantidade_vendida * CAST(produtos.produto_price AS DECIMAL(10, 2))) AS total_vendas
-    FROM vendas
-  INNER JOIN funcionarios ON vendas.funcionario_id = funcionarios.funcionario_id
-  INNER JOIN produtos ON vendas.produto_id = produtos.produto_id
-  GROUP BY funcionarios.funcionario_id, funcionarios.primeiro_nome, funcionarios.sobrenome;
-
--- Quem lidera cada heroi? Inclui funcionarios sem gerente.
-CREATE OR REPLACE VIEW equipes_multiverso AS
-SELECT
-    f.funcionario_id,
-    CONCAT(f.primeiro_nome, ' ', f.sobrenome) AS funcionario_nome,
-    c.cargo_nome AS cargo,
-    d.departamento_nome AS departamento,
-    g.funcionario_id AS gerente_id,
-    CONCAT(g.primeiro_nome, ' ', g.sobrenome) AS gerente_nome
+CREATE OR REPLACE VIEW dados_funcionarios AS
+SELECT f.funcionario_id, CONCAT(f.primeiro_nome, ' ', f.sobrenome) AS funcionario_nome,
+       f.telefone, f.email, f.data_contratacao, sf.nome AS situacao, f.salario, f.moeda_salario,
+       c.cargo_nome AS cargo, c.min_salario, c.max_salario,
+       d.departamento_nome AS departamento, e.escritorio_nome AS escritorio, e.endereco,
+       p.pais_nome AS pais, r.regiao_nome AS regiao
 FROM funcionarios f
-INNER JOIN cargos c ON c.cargo_id = f.cargo_id
-INNER JOIN departamentos d ON d.departamento_id = f.departamento_id
+JOIN cargos c ON c.cargo_id = f.cargo_id
+JOIN departamentos d ON d.departamento_id = f.departamento_id
+JOIN escritorios e ON e.escritorio_id = d.escritorio_id
+JOIN paises p ON p.pais_id = e.pais_id
+JOIN regioes r ON r.regiao_id = p.regiao_id
+JOIN status_funcionario sf ON sf.status_funcionario_id = f.status_funcionario_id;
+
+CREATE OR REPLACE VIEW dados_dependentes AS
+SELECT d.dependente_id, CONCAT(d.primeiro_nome, ' ', d.sobrenome) AS dependente_nome,
+       d.relacionamento, f.funcionario_id,
+       CONCAT(f.primeiro_nome, ' ', f.sobrenome) AS funcionario_nome
+FROM dependentes d JOIN funcionarios f ON f.funcionario_id = d.funcionario_id;
+
+CREATE OR REPLACE VIEW custos_escritorios AS
+SELECT e.escritorio_id, e.escritorio_nome, s.suprimento_id, s.referencia_compra,
+       s.suprimento_nome, s.quantidade_estoque, s.custo_unitario, s.moeda, s.data_compra,
+       s.quantidade_estoque * s.custo_unitario AS custo_total_item
+FROM suprimentos s JOIN escritorios e ON e.escritorio_id = s.escritorio_id;
+
+-- LEFT JOIN preserva eventos de auditoria sem funcionário associado.
+CREATE OR REPLACE VIEW relatorio_auditoria AS
+SELECT a.log_id, a.log_acao AS acao, a.log_ts AS momento, ma.nome AS modulo,
+       sa.nome AS status, a.log_origem AS origem, a.log_detalhes AS detalhes,
+       a.funcionario_id, CONCAT(f.primeiro_nome, ' ', f.sobrenome) AS funcionario_nome
+FROM audit_log a
+JOIN modulos_auditoria ma ON ma.modulo_auditoria_id = a.modulo_auditoria_id
+JOIN status_auditoria sa ON sa.status_auditoria_id = a.status_auditoria_id
+LEFT JOIN funcionarios f ON f.funcionario_id = a.funcionario_id;
+
+-- Uma linha por item vendido; ticket e dados da venda se repetem quando há vários itens.
+CREATE OR REPLACE VIEW relatorio_vendas AS
+SELECT v.venda_id AS ticket, v.referencia_origem, v.data_venda, cv.nome AS canal, sv.nome AS status_venda,
+       i.numero_item, i.quantidade, i.preco_unitario, i.moeda,
+       i.quantidade * i.preco_unitario AS receita_item,
+       p.produto_id, p.sku, p.produto_nome AS produto, f.funcionario_id,
+       CONCAT(f.primeiro_nome, ' ', f.sobrenome) AS funcionario_nome
+FROM vendas v
+JOIN itens_venda i ON i.venda_id = v.venda_id
+JOIN produtos p ON p.produto_id = i.produto_id
+JOIN funcionarios f ON f.funcionario_id = v.funcionario_id
+JOIN canais_venda cv ON cv.canal_venda_id = v.canal_venda_id
+JOIN status_venda sv ON sv.status_venda_id = v.status_venda_id;
+
+CREATE OR REPLACE VIEW vendas_funcionario_performance AS
+SELECT f.funcionario_id, CONCAT(f.primeiro_nome, ' ', f.sobrenome) AS funcionario_nome,
+       COUNT(DISTINCT v.venda_id) AS total_vendas, COALESCE(SUM(i.quantidade), 0) AS unidades_vendidas,
+       COALESCE(SUM(i.quantidade * i.preco_unitario), 0) AS receita_total
+FROM funcionarios f
+LEFT JOIN vendas v ON v.funcionario_id = f.funcionario_id
+LEFT JOIN itens_venda i ON i.venda_id = v.venda_id
+GROUP BY f.funcionario_id, f.primeiro_nome, f.sobrenome;
+
+CREATE OR REPLACE VIEW equipes_multiverso AS
+SELECT f.funcionario_id, CONCAT(f.primeiro_nome, ' ', f.sobrenome) AS funcionario_nome,
+       c.cargo_nome AS cargo, d.departamento_nome AS departamento, g.funcionario_id AS gerente_id,
+       CONCAT(g.primeiro_nome, ' ', g.sobrenome) AS gerente_nome
+FROM funcionarios f JOIN cargos c ON c.cargo_id = f.cargo_id
+JOIN departamentos d ON d.departamento_id = f.departamento_id
 LEFT JOIN funcionarios g ON g.funcionario_id = f.gerente_id;
 
--- Folha salarial por departamento, incluindo equipes ainda sem funcionarios.
 CREATE OR REPLACE VIEW folha_departamentos AS
-SELECT
-    d.departamento_id,
-    d.departamento_nome,
-    COUNT(f.funcionario_id) AS total_funcionarios,
-    COALESCE(SUM(f.salario), 0) AS folha_salarial,
-    ROUND(AVG(f.salario), 2) AS salario_medio,
-    MIN(f.salario) AS menor_salario,
-    MAX(f.salario) AS maior_salario
-FROM departamentos d
-LEFT JOIN funcionarios f ON f.departamento_id = d.departamento_id
+SELECT d.departamento_id, d.departamento_nome, COUNT(f.funcionario_id) AS total_funcionarios,
+       COALESCE(SUM(f.salario), 0) AS folha_salarial, ROUND(AVG(f.salario), 2) AS salario_medio,
+       MIN(f.salario) AS menor_salario, MAX(f.salario) AS maior_salario
+FROM departamentos d LEFT JOIN funcionarios f ON f.departamento_id = d.departamento_id
 GROUP BY d.departamento_id, d.departamento_nome;
 
--- Radar de salarios: compara cada funcionario com a faixa do cargo.
 CREATE OR REPLACE VIEW radar_salarial AS
-SELECT
-    f.funcionario_id,
-    CONCAT(f.primeiro_nome, ' ', f.sobrenome) AS funcionario_nome,
-    c.cargo_nome AS cargo,
-    f.salario,
-    c.min_salario,
-    c.max_salario,
-    CASE
-        WHEN c.min_salario IS NULL OR c.max_salario IS NULL THEN 'Faixa nao definida'
-        WHEN f.salario < c.min_salario THEN 'Abaixo da faixa'
-        WHEN f.salario > c.max_salario THEN 'Acima da faixa'
-        ELSE 'Dentro da faixa'
-    END AS situacao_salarial
-FROM funcionarios f
-INNER JOIN cargos c ON c.cargo_id = f.cargo_id;
+SELECT f.funcionario_id, CONCAT(f.primeiro_nome, ' ', f.sobrenome) AS funcionario_nome,
+       c.cargo_nome AS cargo, f.salario, f.moeda_salario, c.min_salario, c.max_salario,
+       CASE WHEN f.moeda_salario <> 'USD' THEN 'Moeda diferente da faixa'
+            WHEN f.salario < c.min_salario THEN 'Abaixo da faixa'
+            WHEN f.salario > c.max_salario THEN 'Acima da faixa'
+            ELSE 'Dentro da faixa' END AS situacao_salarial
+FROM funcionarios f JOIN cargos c ON c.cargo_id = f.cargo_id;
 
--- Arsenal mais vendido: inclui produtos que ainda nao tiveram vendas.
--- Receita estimada com o preco atual do catalogo; nao ha preco historico por venda.
 CREATE OR REPLACE VIEW arsenal_mais_vendido AS
-SELECT
-    p.produto_id,
-    p.produto_nome,
-    CAST(p.produto_price AS DECIMAL(10, 2)) AS preco_unitario,
-    COUNT(v.venda_id) AS total_vendas,
-    COALESCE(SUM(v.quantidade_vendida), 0) AS unidades_vendidas,
-    COALESCE(SUM(v.quantidade_vendida * CAST(p.produto_price AS DECIMAL(10, 2))), 0) AS receita_estimada
-FROM produtos p
-LEFT JOIN vendas v ON v.produto_id = p.produto_id
-GROUP BY p.produto_id, p.produto_nome, p.produto_price;
+SELECT p.produto_id, p.sku, p.produto_nome, p.preco_catalogo, p.moeda,
+       COUNT(DISTINCT v.venda_id) AS total_vendas, COALESCE(SUM(i.quantidade), 0) AS unidades_vendidas,
+       COALESCE(SUM(i.quantidade * i.preco_unitario), 0) AS receita_total
+FROM produtos p LEFT JOIN itens_venda i ON i.produto_id = p.produto_id
+LEFT JOIN vendas v ON v.venda_id = i.venda_id
+GROUP BY p.produto_id, p.sku, p.produto_nome, p.preco_catalogo, p.moeda;
 
--- Evolucao mensal das vendas; meses sem vendas nao aparecem.
--- Valores estimados com os precos atuais do catalogo.
 CREATE OR REPLACE VIEW vendas_mensais AS
-SELECT
-    EXTRACT(YEAR FROM v.venda_data) AS ano,
-    EXTRACT(MONTH FROM v.venda_data) AS mes,
-    COUNT(v.venda_id) AS total_vendas,
-    SUM(v.quantidade_vendida) AS unidades_vendidas,
-    COUNT(DISTINCT v.funcionario_id) AS vendedores_ativos,
-    SUM(v.quantidade_vendida * CAST(p.produto_price AS DECIMAL(10, 2))) AS receita_estimada,
-    ROUND(AVG(v.quantidade_vendida * CAST(p.produto_price AS DECIMAL(10, 2))), 2) AS ticket_medio_estimado
-FROM vendas v
-INNER JOIN produtos p ON p.produto_id = v.produto_id
-GROUP BY EXTRACT(YEAR FROM v.venda_data), EXTRACT(MONTH FROM v.venda_data);
+SELECT YEAR(v.data_venda) AS ano, MONTH(v.data_venda) AS mes,
+       COUNT(DISTINCT v.venda_id) AS total_vendas, SUM(i.quantidade) AS unidades_vendidas,
+       COUNT(DISTINCT v.funcionario_id) AS vendedores_ativos,
+       SUM(i.quantidade * i.preco_unitario) AS receita_total,
+       ROUND(SUM(i.quantidade * i.preco_unitario) / COUNT(DISTINCT v.venda_id), 2) AS ticket_medio
+FROM vendas v JOIN itens_venda i ON i.venda_id = v.venda_id
+GROUP BY YEAR(v.data_venda), MONTH(v.data_venda);
 
--- Exemplos de consultas (a ordenacao e definida ao consultar cada view):
--- SELECT * FROM equipes_multiverso WHERE gerente_id = 103;
--- SELECT * FROM folha_departamentos ORDER BY folha_salarial DESC;
--- SELECT * FROM radar_salarial WHERE situacao_salarial <> 'Dentro da faixa';
--- SELECT * FROM arsenal_mais_vendido ORDER BY unidades_vendidas DESC;
--- SELECT * FROM vendas_mensais ORDER BY ano, mes;
+-- Indicadores de aprendizagem e impacto; turmas sem matrícula também aparecem.
+CREATE OR REPLACE VIEW impacto_educacional AS
+SELECT c.curso_id, c.curso_nome, t.turma_id, t.codigo AS turma,
+       CONCAT(f.primeiro_nome, ' ', f.sobrenome) AS professor,
+       COUNT(m.matricula_id) AS matriculas,
+       SUM(sm.nome = 'CONCLUIDA') AS concluintes,
+       SUM(m.certificado_emitido) AS certificados_emitidos,
+       ROUND(AVG(m.nota_final), 2) AS nota_media,
+       COUNT(DISTINCT vt.aluno_id) AS talentos_vinculados
+FROM cursos c
+JOIN turmas t ON t.curso_id = c.curso_id
+JOIN funcionarios f ON f.funcionario_id = t.professor_funcionario_id
+LEFT JOIN matriculas m ON m.turma_id = t.turma_id
+LEFT JOIN status_matricula sm ON sm.status_matricula_id = m.status_matricula_id
+LEFT JOIN vinculos_talentos vt ON vt.aluno_id = m.aluno_id
+GROUP BY c.curso_id, c.curso_nome, t.turma_id, t.codigo, f.funcionario_id, f.primeiro_nome, f.sobrenome;
 
--- Selecting data from VIEW
-SELECT * From dados_funcionarios;
+-- Perfil comercial, preservando vendas legadas ainda não associadas a cliente.
+CREATE OR REPLACE VIEW clientes_vendas AS
+SELECT c.cliente_id, c.nome AS cliente, c.email,
+       COUNT(v.venda_id) AS total_vendas,
+       MAX(v.data_venda) AS ultima_venda,
+       COALESCE(SUM(i.quantidade * i.preco_unitario), 0) AS receita_total
+FROM clientes c
+LEFT JOIN vendas v ON v.cliente_id = c.cliente_id
+LEFT JOIN itens_venda i ON i.venda_id = v.venda_id
+GROUP BY c.cliente_id, c.nome, c.email;
