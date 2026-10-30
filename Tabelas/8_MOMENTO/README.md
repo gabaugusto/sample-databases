@@ -190,6 +190,10 @@ Monte uma consulta comparando, por período, indicadores educacionais (matrícul
 
 Imagine que você terá recursos para coletar somente um dado novo para tornar essa história mais justa e completa. Qual seria ele: critério socioeconômico, satisfação de estudantes, área de interesse profissional, colocação após a formação ou outro? Justifique e descreva como protegeria a privacidade das pessoas.
 
+**7.11 — A próxima pergunta**
+
+O que faz a tabela **__vinculos_talentos__**?
+
 ## Nível 8: Duas Frentes, Duas Operações
 
 **8.1** Quanto custa manter a frente educacional em comparação à operação comercial? (Faça uma análise de custo total com salários, suprimentos e despesas gerais para cada departamento.)
