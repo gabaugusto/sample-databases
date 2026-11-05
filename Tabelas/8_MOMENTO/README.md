@@ -150,49 +150,23 @@ A empresa está crescendo e mudanças precisam acontecer!
 
 Agora a história acompanha pessoas. A Momento quer entender se sua escola está formando talentos, ampliando acesso e criando pontes reais para o mundo do trabalho. Use os dados para contar essa jornada com cuidado: números revelam tendências, mas não substituem histórias individuais.
 
-**7.1 — O ponto de partida**
+**7.1** Quais cursos estão ativos? Para cada um, mostre carga horária, nível e quantas turmas já foram abertas. 
 
-Quais cursos estão ativos? Para cada um, mostre carga horária, nível e quantas turmas já foram abertas. Que jornada de aprendizagem a escola oferece hoje?
+**7.2** Para cada turma, mostre curso, professores, capacidade e número de matrículas. 
 
-**7.2 — Quem chegou até aqui?**
+**7.3** Quantos estudantes receberam bolsa, qual foi o percentual concedido e em quais cursos? 
 
-Para cada turma, mostre curso, professores, capacidade e número de matrículas. Há vagas disponíveis ou turmas ainda sem estudantes? O que isso sugere sobre oferta e procura?
+**7.4** Por curso e turma, calcule matrículas, concluintes, certificados emitidos e nota média. Quais perguntas adicionais seriam necessárias antes de afirmar que um curso teve “mais sucesso” que outro?
 
-**7.3 — Acesso à formação**
+**7.5** Reconstrua a trajetória de Ariel Nunes: curso, turma, matrícula, bolsa, estágio e contratação. Em que momento a formação passou a se conectar com uma oportunidade corporativa?
 
-Quantos estudantes receberam bolsa, qual foi o percentual concedido e em quais cursos? 
+**7.6** Liste os vínculos de talentos com estudante, tipo de vínculo, departamento, status e, quando existir, a pessoa funcionária associada. Quantas pessoas passaram por estágio e quantas chegaram à contratação?
 
-**7.4 — Conclusão e reconhecimento**
+**7.7** Quais departamentos recebem talentos da escola? 
 
-Por curso e turma, calcule matrículas, concluintes, certificados emitidos e nota média. Quais perguntas adicionais seriam necessárias antes de afirmar que um curso teve “mais sucesso” que outro?
+**7.8**: Crie uma única consulta que apresente: total de alunos, matrículas ativas, concluintes, bolsas concedidas, estágios, contratações e departamentos que receberam talentos. 
 
-**7.5 — O próximo capítulo de Ariel**
-
-Reconstrua a trajetória de Ariel Nunes: curso, turma, matrícula, bolsa, estágio e contratação. Em que momento a formação passou a se conectar com uma oportunidade corporativa?
-
-**7.6 — Da aprendizagem para o trabalho**
-
-Liste os vínculos de talentos com estudante, tipo de vínculo, departamento, status e, quando existir, a pessoa funcionária associada. Quantas pessoas passaram por estágio e quantas chegaram à contratação?
-
-**7.7 — Onde a ponte encontra a empresa?**
-
-Quais departamentos recebem talentos da escola? Compare-os com seu total de funcionários e média salarial. Como evitar a conclusão apressada de que um departamento é “melhor” apenas porque contratou mais estudantes?
-
-**7.8 — Um retrato para a liderança**
-
-Crie uma única consulta que apresente: total de alunos, matrículas ativas, concluintes, bolsas concedidas, estágios, contratações e departamentos que receberam talentos. Escreva, abaixo do resultado, um parágrafo de até cinco linhas explicando o que a liderança pode aprender — e o que ainda não é possível afirmar.
-
-**7.9 — Educação e negócio, lado a lado**
-
-Monte uma consulta comparando, por período, indicadores educacionais (matrículas, certificados e vínculos) com indicadores corporativos (vendas, receita e pessoas contratadas). Quais limites existem nessa comparação, já que correlação não comprova causalidade?
-
-**7.10 — A próxima pergunta**
-
-Imagine que você terá recursos para coletar somente um dado novo para tornar essa história mais justa e completa. Qual seria ele: critério socioeconômico, satisfação de estudantes, área de interesse profissional, colocação após a formação ou outro? Justifique e descreva como protegeria a privacidade das pessoas.
-
-**7.11 — A próxima pergunta**
-
-O que faz a tabela **__vinculos_talentos__**?
+**7.11** O que faz a tabela **__vinculos_talentos__**?
 
 ## Nível 8: Duas Frentes, Duas Operações
 
@@ -241,6 +215,8 @@ Crie UMA ÚNICA query de agregação que retorne:
    - Número de escritórios
    - Receita total de vendas
    - Produto mais vendido
+
+---
 
 ## Nível 11: ETL do CSV
 
